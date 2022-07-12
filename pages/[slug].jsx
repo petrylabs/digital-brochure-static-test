@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import PropTypes from "prop-types";
 
 export async function getStaticPaths() {
   // TODO: fetch page slugs from dotCMS
@@ -52,5 +53,10 @@ function LandingPage(props) {
     </>
   );
 }
+
+LandingPage.propTypes = {
+  /** This is just a placeholder prop! To be removed when we have actual props */
+  temporaryPageTitle: PropTypes.string.isRequired,
+};
 
 export default LandingPage;
