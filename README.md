@@ -58,6 +58,7 @@ Built files will be hosted in dotCMS. Details TBC.
 # Project structure
 
 - `/components`: React components
+- `/hooks`: React hooks
 - `/pages`: static page templates
 - `/scss`: style files
 - `/utils`: utility functions
