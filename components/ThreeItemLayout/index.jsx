@@ -13,7 +13,11 @@ function ThreeItemLayout(props) {
   return (
     <ul className={styles.list}>
       {threeItems &&
-        threeItems.map((item) => <li className={styles.listItem}>{item}</li>)}
+        threeItems.map((item, i) => (
+          <li key={i} className={styles.listItem}>
+            {item}
+          </li>
+        ))}
     </ul>
   );
 }
