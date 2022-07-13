@@ -2,6 +2,8 @@
 
 .list {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   grid-gap: 26px;
@@ -15,4 +17,7 @@
   }
 }
 
-// .listItem {}
+.listItem {
+  padding: 0;
+  margin: 0;
+}
