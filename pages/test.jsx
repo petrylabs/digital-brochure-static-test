@@ -1,4 +1,4 @@
-import ThreePartLayout from "../components/ThreePartLayout";
+import ThreeItemLayout from "../components/ThreeItemLayout";
 
 function TestComponent() {
   return <div style={{ backgroundColor: `#ccc` }}>This is a component</div>;
@@ -13,11 +13,11 @@ export default function TestPage() {
     <>
       <h1>UI TEST PAGE</h1>
 
-      <ThreePartLayout>
+      <ThreeItemLayout>
         <TestComponent />
         <TestComponent />
         <TestComponent />
-      </ThreePartLayout>
+      </ThreeItemLayout>
     </>
   );
 }

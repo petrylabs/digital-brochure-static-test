@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./ThreePartLayout.module.scss";
+import styles from "./ThreeItemLayout.module.scss";
 
 /**
- * ThreePartLayout
- * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179966523/ThreePartLayout
+ * ThreeItemLayout
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179966523/ThreeItemLayout
  */
 
-function ThreePartLayout(props) {
+function ThreeItemLayout(props) {
   const { children } = props;
   const threeItems = children.filter((child, i) => i < 3);
 
@@ -18,4 +18,4 @@ function ThreePartLayout(props) {
   );
 }
 
-export default ThreePartLayout;
+export default ThreeItemLayout;
