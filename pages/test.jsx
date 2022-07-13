@@ -17,6 +17,7 @@ export default function TestPage() {
         <TestComponent />
         <TestComponent />
         <TestComponent />
+        <div>This child will not be displayed!</div>
       </ThreeItemLayout>
     </>
   );
