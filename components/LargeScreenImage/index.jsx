@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import PropTypes from "prop-types";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 
@@ -17,5 +18,9 @@ function LargeScreenImage(props) {
 
   return null;
 }
+
+LargeScreenImage.PropTypes = {
+  src: PropTypes.string.isRequired,
+};
 
 export default LargeScreenImage;
