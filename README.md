@@ -15,8 +15,9 @@ https://economical.atlassian.net/browse/SKY-198
 ### Tech stack
 
 - [Next.js](https://nextjs.org/) for static page generation
-- []() for linting
-- []() for pre-commit hooks
+- [Eslint](https://eslint.org/) for linting
+- [Prettier](https://prettier.io/) for formatting
+- [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
 
 ---
