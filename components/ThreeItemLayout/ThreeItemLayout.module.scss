@@ -1,0 +1,24 @@
+// TODO: Update with variables
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-gap: 26px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 30px;
+  }
+
+  @media (min-width: 1025px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.listItem {
+  padding: 0;
+  margin: 0;
+}
