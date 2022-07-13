@@ -1,0 +1,287 @@
+@mixin headings($from: 1, $to: 6) {
+    @for $i from $from through $to {
+      h#{$i} {
+        @content;
+      }
+    }
+  }
+  
+  @mixin backdropLayout() {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    content: " ";
+    background-color: $color-teal;
+  }
+  
+  @mixin viewport($sizes: ()) {
+    $viewport-breakpoints: (
+      extra-small: 0,
+      small: 576px,
+      medium: 768px,
+      large: 1024px,
+      extra-large: 1440px,
+    ) !default;
+    @each $size in $sizes {
+      @media screen and (min-width: map-get($viewport-breakpoints, $size)) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin applyThemeMap($component-themes: ()) {
+    @each $theme, $map in $component-themes {
+      .#{"" + $theme} &,
+      &.#{"" + $theme} {
+        @each $key, $value in $map {
+          #{$key}: $value;
+        }
+      }
+    }
+  }
+  
+  @mixin applyThemeMapToChild($component-themes: (), $child: "") {
+    @each $theme, $map in $component-themes {
+      &.#{"" + $theme} #{$child} {
+        @each $key, $value in $map {
+          #{$key}: $value;
+        }
+      }
+    }
+  }
+  
+  @mixin applyAlignmentTheme($content-class: "") {
+    $alignments: left, center, right;
+  
+    @each $alignment in $alignments {
+      &.#{$alignment} .#{$content-class},
+      #{$alignment}.#{$content-class},
+      .#{$alignment} & .#{$content-class} {
+        text-align: $alignment;
+      }
+  
+      @media (max-width: 767px) {
+        &.#{$alignment}-mobile .#{$content-class},
+        .#{$alignment}-mobile.#{$content-class},
+        .#{$alignment}-mobile & .#{$content-class} {
+          text-align: $alignment;
+        }
+      }
+    }
+  }
+  
+  @mixin applyCarouselTheme($component-themes: ()) {
+    @each $theme, $map in $component-themes {
+      .#{"" + $theme} &,
+      &.#{"" + $theme} {
+        @content ($map);
+      }
+    }
+  }
+  
+  @function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+      $map: map-get($map, $key);
+    }
+    @return $map;
+  }
+  
+  @mixin applyAdButtonTheme($ad-button-themes: ()) {
+    @each $variant, $map in $ad-button-themes {
+      &.#{$variant},
+      .#{$variant} & {
+        background-color: map-deep-get(
+          $ad-button-themes,
+          #{$variant},
+          "defaultVal",
+          "background"
+        );
+        color: map-deep-get(
+          $ad-button-themes,
+          #{$variant},
+          "defaultVal",
+          "color"
+        );
+        box-shadow: inset
+          0
+          0
+          0
+          3px
+          map-deep-get($ad-button-themes, #{$variant}, "defaultVal", "border");
+        @content;
+  
+        &:hover,
+        &:focus {
+          @if (map-deep-get($ad-button-themes, #{$variant}, "hover", "color")) {
+            color: map-deep-get($ad-button-themes, #{$variant}, "hover", "color");
+          }
+          @if (
+            map-deep-get($ad-button-themes, #{$variant}, "hover", "background")
+          ) {
+            background-color: map-deep-get(
+              $ad-button-themes,
+              #{$variant},
+              "hover",
+              "background"
+            );
+          }
+          @if (map-deep-get($ad-button-themes, #{$variant}, "hover", "border")) {
+            box-shadow: inset
+              0
+              0
+              0
+              3px
+              map-deep-get($ad-button-themes, #{$variant}, "hover", "border");
+          }
+        }
+      }
+    }
+  }
+  
+  @mixin mixed-column($column-count) {
+    @each $breakpoint, $size in $grid-breakpoints {
+      @media (min-width: $size) {
+        .row {
+          @for $i from 1 through $column-count {
+            &.#{map-get($grid-size-naming, $breakpoint)}-#{$i} {
+              grid-template-columns: repeat($i, minmax(0, 1fr));
+            }
+  
+            &.#{map-get($grid-size-naming, $breakpoint)}-#{$i} .column {
+              flex: 0 0 100%;
+              max-width: 100%;
+  
+              > * {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @mixin gutter-columns() {
+    $gutter-sizes: (
+      xs: 26,
+      sm: 26,
+      md: 26,
+      lg: 30,
+      xl: 30,
+    );
+    @each $breakpoint, $size in $grid-breakpoints {
+      @media (min-width: $size) {
+        @for $i from 1 through 6 {
+          &.#{map-get($grid-size-naming, $breakpoint)}-#{$i} {
+            grid-gap: #{map-get($gutter-sizes, $breakpoint)}px;
+          }
+        }
+      }
+    }
+  }
+  
+  @mixin applySntLinkThemes() {
+    @content;
+    @each $variant, $map in $link-anchor-themes {
+      &.#{$variant},
+      .#{$variant} & {
+        a {
+          color: map-deep-get(
+            $link-anchor-themes,
+            #{$variant},
+            "defaultVal",
+            "color"
+          );
+  
+          &:focus {
+            outline: 1px
+              solid
+              map-deep-get(
+                $link-anchor-themes,
+                #{$variant},
+                "defaultVal",
+                "color"
+              );
+          }
+  
+          &:hover,
+          &:focus {
+            @if (
+              map-deep-get($link-anchor-themes, #{$variant}, "hover", "color")
+            ) {
+              color: map-deep-get(
+                $link-anchor-themes,
+                #{$variant},
+                "hover",
+                "color"
+              );
+            }
+          }
+  
+          &:hover,
+          &:focus {
+            @if (
+              map-deep-get($link-anchor-themes, #{$variant}, "hover", "color")
+            ) {
+              background-image: linear-gradient(transparent, transparent),
+                linear-gradient(
+                  map-deep-get(
+                    $link-anchor-themes,
+                    #{$variant},
+                    "hover",
+                    "color"
+                  ),
+                  map-deep-get($link-anchor-themes, #{$variant}, "hover", "color")
+                );
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @mixin layout() {
+    display: block;
+    width: auto;
+    box-sizing: border-box;
+    overflow: auto;
+  
+    padding: $small-padding;
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      padding: $small-padding;
+    }
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: $medium-padding;
+    }
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      padding: $large-padding;
+    }
+    @media (min-width: map-get($grid-breakpoints, xl)) {
+      padding: $extra-large-padding;
+    }
+  
+    &.p-0 {
+      padding: 0px;
+    }
+    &.px-0 {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    &.py-0 {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    &.pt-0 {
+      padding-top: 0px;
+    }
+    &.pr-0 {
+      padding-right: 0px;
+    }
+    &.pb-0 {
+      padding-bottom: 0px;
+    }
+    &.pl-0 {
+      padding-left: 0px;
+    }
+  }
