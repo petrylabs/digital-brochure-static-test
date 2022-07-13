@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ThreePartLayout.module.scss";
 
 /**
  * ThreePartLayout
@@ -9,7 +10,12 @@ function ThreePartLayout(props) {
   const { children } = props;
   const threeItems = children.filter((child, i) => i < 3);
 
-  return <ul>{threeItems && threeItems.map((item) => <li>{item}</li>)}</ul>;
+  return (
+    <ul className={styles.list}>
+      {threeItems &&
+        threeItems.map((item) => <li className={styles.listItem}>{item}</li>)}
+    </ul>
+  );
 }
 
 export default ThreePartLayout;
