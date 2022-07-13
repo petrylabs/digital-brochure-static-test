@@ -19,8 +19,8 @@ function LargeScreenImage(props) {
   return null;
 }
 
-LargeScreenImage.PropTypes = {
-  src: PropTypes.string.isRequired,
+LargeScreenImage.propTypes = {
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 };
 
 export default LargeScreenImage;
