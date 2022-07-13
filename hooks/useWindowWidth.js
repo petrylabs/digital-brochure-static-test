@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWindow } from "../utils/window";
+import { debounce, getWindow } from "../utils";
 
 /**
  * Returns width (in pixels) of window
