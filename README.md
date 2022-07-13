@@ -60,6 +60,7 @@ Built files will be hosted in dotCMS. Details TBC.
 - `/components`: React components
 - `/pages`: static page templates
 - `/scss`: style files
+- `/utils`: utility functions
 
 # Styles
 
