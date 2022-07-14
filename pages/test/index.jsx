@@ -1,7 +1,8 @@
-import ThreeItemLayout from "../components/ThreeItemLayout";
-import SplitLayout from "../components/SplitLayout";
+import ThreeItemLayout from "../../components/ThreeItemLayout";
+import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import placeholderImage from "./placeholder.jpg";
+import Image from "next/image";
 
 function TestComponent() {
   return <div style={{ backgroundColor: `#ccc` }}>This is a component</div>;
@@ -34,7 +35,9 @@ export default function TestPage() {
       </ThreeItemLayout>
       <br />
       <SplitLayout contentRight={true}>
-        <img src="https://via.placeholder.com/300" alt="placeholder image" />
+        <div>
+          <Image src={placeholderImage} alt="placeholder image" width="100%" height="100%" layout="responsive" objectFit="cover" />
+        </div>
         <TestCopyComponent />
       </SplitLayout>
 
