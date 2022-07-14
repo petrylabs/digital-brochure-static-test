@@ -1,0 +1,84 @@
+@function ns($map, $path) {
+    $keys: ();
+    $separator: '.';
+    $index : str-index($path, $separator);
+    @while $index != null {
+      $item: str-slice($path, 1, $index - 1);
+      $keys: append($keys, $item);
+      $path: str-slice($path, $index + 1);
+      $index : str-index($path, $separator);
+    }
+    $keys: append($keys, $path);
+    @each $key in $keys { $map: map-get($map, $key); }
+    @return $map;
+  }
+  
+  @function config($path) {
+    @return ns($button-themes, $path);
+  }
+  
+  @mixin customize($arg: theme) {
+    @each $variant, $map in $button-themes {
+      &.theme-#{$variant} button{
+        background-color: config(#{$variant}+'.defaultVal.background');
+        color: config(#{$variant}+'.defaultVal.color');
+        box-shadow: inset 0 0 0 3px config(#{$variant}+'.defaultVal.border');
+        border-radius: 25px;
+        @content;
+  
+        &:focus {
+          @if (config(#{$variant}+'.focus.color')) { color: config(#{$variant}+'.focus.color'); }
+          @if (config(#{$variant}+'.focus.background')) { background-color: config(#{$variant}+'.focus.background'); }
+          @if (config(#{$variant}+'.focus.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.focus.border'); }
+          @if (config(#{$variant}+'.focus.outline')) { outline: config(#{$variant}+'.focus.outline'); }
+          @if (config(#{$variant}+'.focus.outline-offset')) { outline-offset: config(#{$variant}+'.focus.outline-offset'); }
+        }
+  
+        &:hover {
+          @if (config(#{$variant}+'.hover.color')) { color: config(#{$variant}+'.hover.color'); }
+          @if (config(#{$variant}+'.hover.background')) { background-color: config(#{$variant}+'.hover.background'); }
+          @if (config(#{$variant}+'.hover.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.hover.border'); }
+        }
+  
+        &:active {
+          @if (config(#{$variant}+'.active.color')) { color: config(#{$variant}+'.active.color'); }
+          @if (config(#{$variant}+'.active.background')) { background-color: config(#{$variant}+'.active.background'); }
+          @if (config(#{$variant}+'.active.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.active.border'); }
+        }
+  
+      }
+    }
+  }
+  
+  @mixin customizeLink($arg: theme) {
+    @each $variant, $map in $button-themes {
+      &.theme-#{$variant}{
+        background-color: config(#{$variant}+'.defaultVal.background');
+        color: config(#{$variant}+'.defaultVal.color');
+        box-shadow: inset 0 0 0 3px config(#{$variant}+'.defaultVal.border');
+        border-radius: 25px;
+        @content;
+  
+        &:focus,
+        &:focus-within {
+          @if (config(#{$variant}+'.focus.color')) { color: config(#{$variant}+'.focus.color'); }
+          @if (config(#{$variant}+'.focus.background')) { background-color: config(#{$variant}+'.focus.background'); }
+          @if (config(#{$variant}+'.focus.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.focus.border'); }
+          @if (config(#{$variant}+'.focus.outline')) { outline: config(#{$variant}+'.focus.outline'); }
+          @if (config(#{$variant}+'.focus.outline-offset')) { outline-offset: config(#{$variant}+'.focus.outline-offset'); }
+        };
+  
+        &:hover {
+          @if (config(#{$variant}+'.hover.color')) { color: config(#{$variant}+'.hover.color'); }
+          @if (config(#{$variant}+'.hover.background')) { background-color: config(#{$variant}+'.hover.background'); }
+          @if (config(#{$variant}+'.hover.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.hover.border'); }
+        }
+  
+        &:active {
+          @if (config(#{$variant}+'.active.color')) { color: config(#{$variant}+'.active.color'); }
+          @if (config(#{$variant}+'.active.background')) { background-color: config(#{$variant}+'.active.background'); }
+          @if (config(#{$variant}+'.active.border')) { box-shadow: inset 0 0 0 3px config(#{$variant}+'.active.border'); }
+        }
+      }
+    }
+  }
