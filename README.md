@@ -19,6 +19,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Prettier](https://prettier.io/) for formatting
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
+- [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding
 
 ---
 
@@ -61,8 +62,16 @@ Built files will be hosted in dotCMS. Details TBC.
 - `/pages`: static page templates
 - `/scss`: style files
 
-# Styles
+# Styling
 
 This project leverages [CSS Modules](https://github.com/css-modules/css-modules) and all styles are written in [Sass](https://sass-lang.com) as [SCSS](https://sass-lang.com/documentation/syntax#scss).
 
 Global style definitions (variables, mixins, etc.) are located in the `/scss` folder. Component-specific styles are kept in SCSS files in each component folder.
+
+## MUI components
+
+To maintain consistent styling patterns within the app (i.e. relying on CSS Modules), any MUI components used are styled using that component's CSS API and providing classes as a prop. See example below.
+
+```jsx
+<Modal classes={{ root: styles.root }}>{/* modal content */}</Modal>
+```
