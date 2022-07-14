@@ -1,4 +1,5 @@
 @import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
 
 .icon {
   height: 80px;
@@ -6,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0px auto 40px;
+  margin: 0px auto 20px;
   box-sizing: border-box;
   background-color: $color-secondary-medium;
   border-radius: 150px;
@@ -24,13 +25,13 @@
 
 .h3 {
   text-align: center;
-  @media screen and (min-width: 1440px) {
+  @include mq-min-width(xl) {
     margin-bottom: 30px;
   }
-  @media screen and (min-width: 1024px) {
+  @include mq-min-width(lg) {
     margin-bottom: 25px;
   }
-  @media (min-width: 768px) {
+  @include mq-min-width(md) {
     margin-bottom: 20px;
   }
 }
