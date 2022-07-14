@@ -1,5 +1,6 @@
 import LargeScreenImage from "../../components/LargeScreenImage";
 import ThreeItemLayout from "../../components/ThreeItemLayout";
+import CTA from "../../components/CTA";
 import placeholderImage from "./placeholder.jpg";
 
 function TestComponent() {
@@ -14,6 +15,14 @@ export default function TestPage() {
   return (
     <>
       <h1>UI TEST PAGE</h1>
+
+      <CTA url="https://www.wikipedia.org">primary link</CTA>
+      <CTA url="https://www.wikipedia.org" type="secondary">
+        secondary link
+      </CTA>
+      <br />
+      <CTA>primary button</CTA>
+      <CTA type="secondary">secondary button</CTA>
 
       <h2>ThreeItemLayout:</h2>
       <ThreeItemLayout>
