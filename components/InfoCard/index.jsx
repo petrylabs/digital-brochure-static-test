@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./InfoCard.module.scss";
-import parse from "html-react-parser";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
@@ -10,7 +9,7 @@ import PropTypes from "prop-types";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, content, withBorder = true } = props;
+  const { iconUrl, title, content, withBorder = false } = props;
   return (
     <div
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
@@ -19,7 +18,7 @@ function InfoCard(props) {
         <Image src={iconUrl} alt="" width={45} height={45} />
       </div>
       <h3 className={styles.h3}>{title}</h3>
-      <div className={styles.content}>{parse(content)}</div>
+      <div className={styles.content}>{content}</div>
     </div>
   );
 }
@@ -31,7 +30,7 @@ InfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   // content copy of card consisting of HTML element
   content: PropTypes.node.isRequired,
-  // optional prop that controls border around the card
+  // optional prop to add border around the card
   withBorder: PropTypes.bool,
 };
 

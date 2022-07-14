@@ -1,11 +1,12 @@
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import InfoCard from "../components/InfoCard";
+import parse from "html-react-parser";
 
 function TestComponent() {
   return <div style={{ backgroundColor: `#ccc` }}>This is a component</div>;
 }
 
-const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
+const htmlCopy = `Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender.`;
 
 /**
  * This is a TEST PAGE for UI components.
@@ -20,18 +21,19 @@ export default function TestPage() {
         <InfoCard
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
-          content={htmlCopy}
+          content={parse(htmlCopy)}
+          withBorder
         ></InfoCard>
         <InfoCard
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
-          content={htmlCopy}
-          withBorder={false}
+          content={parse(htmlCopy)}
         ></InfoCard>
         <InfoCard
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
-          content={htmlCopy}
+          content={parse(htmlCopy)}
+          withBorder
         ></InfoCard>
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
