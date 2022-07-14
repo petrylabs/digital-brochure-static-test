@@ -59,15 +59,29 @@ Built files will be hosted in dotCMS. Details TBC.
 # Project structure
 
 - `/components`: React components
+- `/hooks`: React hooks
 - `/icons`: SVG icons as React components
 - `/pages`: static page templates
 - `/scss`: style files
+- `/utils`: utility functions
 
 # Styling
 
 This project leverages [CSS Modules](https://github.com/css-modules/css-modules) and all styles are written in [Sass](https://sass-lang.com) as [SCSS](https://sass-lang.com/documentation/syntax#scss).
 
 Global style definitions (variables, mixins, etc.) are located in the `/scss` folder. Component-specific styles are kept in SCSS files in each component folder.
+
+## Media queries
+
+Breakpoints are defined in `/scss/global/layout.scss`. Helper mixins for using these breakpoints in media queries are also available in this file, allowing media queries to be written as below:
+
+```scss
+@import "../../scss/globals/layout.scss";
+
+@include mq-min-width(sm) {
+  // your styles here
+}
+```
 
 ## MUI components
 
