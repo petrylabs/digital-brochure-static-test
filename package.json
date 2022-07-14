@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "html-react-parser": "^3.0.1",
     "next": "latest",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
