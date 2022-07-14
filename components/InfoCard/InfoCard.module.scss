@@ -1,0 +1,43 @@
+.icon {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto 40px;
+  box-sizing: border-box;
+  background-color: #acdde4;
+  border-radius: 150px;
+  border: 3px solid #acdde4;
+}
+
+.infoCard {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px 20px;
+  &__border {
+    border: 3px solid #e5e5e5;
+  }
+}
+
+.h3 {
+  text-align: center;
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 25px;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+}
+
+.content {
+  text-align: center;
+}
+
+.icon-image {
+  height: 45px;
+  width: 45px;
+}
