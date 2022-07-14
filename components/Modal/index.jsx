@@ -2,6 +2,7 @@ import React from "react";
 import { Modal as MuiModal } from "@mui/material";
 import PropTypes from "prop-types";
 
+import CloseIcon from "../../icons/CloseIcon";
 import styles from "./Modal.module.scss";
 
 /**
@@ -14,7 +15,14 @@ function Modal(props) {
 
   return (
     <MuiModal open={open} classes={{ root: styles.root }}>
-      <div className={styles.container}>{children}</div>
+      <div className={styles.container}>
+        {/* modal content: */}
+        {children}
+
+        <button type="button" className={styles.closeButton}>
+          <CloseIcon />
+        </button>
+      </div>
     </MuiModal>
   );
 }

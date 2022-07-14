@@ -1,4 +1,5 @@
-// TODO: Update with SCSS variables, etc
+@import "../../scss/globals/color";
+@import "../../scss/globals/buttons";
 
 .root {
   display: flex;
@@ -7,7 +8,7 @@
 
 .container {
   position: relative;
-  background-color: #fff;
+  background-color: $color-white;
   border: 1px solid rgba(0, 0, 0, 0.2);
   width: 100vw;
   max-width: 100%;
@@ -25,5 +26,25 @@
   @media (min-width: 1024px) {
     width: 426px;
     padding: 60px;
+  }
+}
+
+.closeButton {
+  @include unstyle-button;
+
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  color: $color-black;
+  outline: none;
+
+  svg {
+    display: block;
+    height: 15px;
+    width: 15px;
+  }
+
+  &:hover {
+    color: $color-links;
   }
 }
