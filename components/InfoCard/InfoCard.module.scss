@@ -1,3 +1,5 @@
+@import "/scss/globals/color.scss";
+
 .icon {
   height: 80px;
   width: 80px;
@@ -6,9 +8,9 @@
   justify-content: center;
   margin: 0px auto 40px;
   box-sizing: border-box;
-  background-color: #acdde4;
+  background-color: $color-secondary-medium;
   border-radius: 150px;
-  border: 3px solid #acdde4;
+  border: 3px solid $color-secondary-medium;
 }
 
 .infoCard {
@@ -16,7 +18,7 @@
   box-sizing: border-box;
   padding: 40px 20px;
   &__border {
-    border: 3px solid #e5e5e5;
+    border: 3px solid $color-grey-06;
   }
 }
 

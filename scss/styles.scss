@@ -1,0 +1,58 @@
+@import "../scss/globals/fonts.scss";
+@import "../scss/globals/variables.scss";
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Averta-Regular", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $color-black;
+  text-align: left;
+  background-color: $color-lightgray;
+}
+
+h3 {
+  @media screen and (min-width: 320px) {
+    font-size: 1.188rem;
+    line-height: 24px;
+  }
+  @media screen and (min-width: 700px) {
+    font-size: 1.188rem;
+    line-height: 24px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 1.313rem;
+    line-height: 26px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 1.75rem;
+    line-height: 34px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: 0;
+  font-family: "Averta-ExtraBold", sans-serif !important;
+  font-weight: 500 !important;
+}
