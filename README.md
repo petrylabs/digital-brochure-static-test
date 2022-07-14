@@ -59,6 +59,7 @@ Built files will be hosted in dotCMS. Details TBC.
 # Project structure
 
 - `/components`: React components
+- `/icons`: SVG icons as React components
 - `/pages`: static page templates
 - `/scss`: style files
 
