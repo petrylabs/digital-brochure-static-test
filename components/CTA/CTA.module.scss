@@ -1,9 +1,11 @@
+@import "../../scss/globals/buttons.scss";
+
 .cta {
   &.primary {
-    color: red;
+    @include cta-primary;
   }
 
   &.secondary {
-    color: blue;
+    @include cta-secondary;
   }
 }
