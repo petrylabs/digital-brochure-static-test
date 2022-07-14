@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, content, withBorder } = props;
+  const { iconUrl, title, content, withBorder = true } = props;
   return (
     <div
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
@@ -26,12 +26,12 @@ function InfoCard(props) {
 
 InfoCard.propTypes = {
   // url for card icon
-  iconUrl: PropTypes.string,
+  iconUrl: PropTypes.string.isRequired,
   // title of the card
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   // content copy of card consisting of HTML element
-  content: PropTypes.node,
-  // controls border around the card
+  content: PropTypes.node.isRequired,
+  // optional prop that controls border around the card
   withBorder: PropTypes.bool,
 };
 

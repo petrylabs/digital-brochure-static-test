@@ -21,19 +21,17 @@ export default function TestPage() {
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
           content={htmlCopy}
-          withBorder={true}
         ></InfoCard>
         <InfoCard
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
           content={htmlCopy}
-          withBorder={true}
+          withBorder={false}
         ></InfoCard>
         <InfoCard
           iconUrl={"https://www.sonnet.ca/dA/6b63420edd/scrollAndFeather.svg"}
           title={"Hello World"}
           content={htmlCopy}
-          withBorder={true}
         ></InfoCard>
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
