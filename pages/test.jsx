@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import Modal from "../components/Modal";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 
@@ -10,6 +12,8 @@ function TestComponent() {
  * To be deleted before release.
  */
 export default function TestPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <h1>UI TEST PAGE</h1>
@@ -22,8 +26,8 @@ export default function TestPage() {
       </ThreeItemLayout>
 
       <h2>Modal</h2>
-      <button>Open Modal</button>
-      <Modal open>
+      <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <>Modal content!</>
       </Modal>
     </>

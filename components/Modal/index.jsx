@@ -11,15 +11,23 @@ import styles from "./Modal.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179114937/Modal
  */
 function Modal(props) {
-  const { children, open } = props;
+  const { children, onClose, open } = props;
 
   return (
-    <MuiModal open={open} classes={{ root: styles.root }}>
+    <MuiModal
+      open={open}
+      classes={{ root: styles.root }}
+      onClose={() => onClose()}
+    >
       <div className={styles.container}>
         {/* modal content: */}
         {children}
 
-        <button type="button" className={styles.closeButton}>
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={() => onClose()}
+        >
           <CloseIcon />
         </button>
       </div>
@@ -30,6 +38,9 @@ function Modal(props) {
 Modal.propTypes = {
   /** Modal content: */
   children: PropTypes.node.isRequired,
+
+  /** Function to run when closing modal */
+  onClose: PropTypes.func.isRequired,
 
   /** Is Modal open or not: */
   open: PropTypes.bool.isRequired,
