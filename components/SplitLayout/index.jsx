@@ -7,27 +7,18 @@ import styles from "./SplitLayout.module.scss";
  */
 
 function SplitLayout(props) {
-  const { children, contentRight } = props;
+  const { children, contentRight = false } = props;
 
   return (
-    <div className={styles["flex-container"]}>
-      {/* if contentRight is true, then children[0] gets img classes */}
-
-      {contentRight
-        ?
-        <>
-          <div className={styles["image-column"]}>{children[0]}</div>
-          <div className={styles["content-column"]}>
-            <div className={styles["content-container"]}>
-              {children[1]}
-            </div>
-          </div>
-        </>
-        : <>
-          <div className={styles["content-column"]}>{children[1]}</div>
-          <div className={styles["image-column"]}>{children[0]}</div>
-        </>
-      }
+    <div className={`${styles["flex-container"]} ${contentRight ? "" : styles["content-left"]}`}>
+      <div className={styles["image-column"]}>
+        {children[0]}
+      </div>
+      <div className={styles["content-column"]}>
+        <div className={styles["content-container"]}>
+          {children[1]}
+        </div>
+      </div>
     </div>
   );
 }

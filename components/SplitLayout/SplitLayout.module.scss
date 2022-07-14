@@ -1,8 +1,14 @@
+@import "../../scss/globals/layout.scss";
+
 .flex-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   overflow: hidden;
+
+  &.content-left {
+    flex-direction: row-reverse;
+  }
 
   .image-column {
     width: 100%;
@@ -17,36 +23,7 @@
     padding: 40px 30px;
   }
 
-  @media (min-width: 1440px) {
-
-    .content-column,
-    .image-column {
-      flex: 0 0 50%;
-    }
-
-    .content-container {
-      padding: 60px 135px;
-
-      >div {
-        margin-top: 30px !important;
-      }
-    }
-
-  }
-
-  @media (min-width: 1024px) {
-    .content-container {
-      padding: 60px 71px;
-
-      >div {
-        margin-top: 25px;
-        font-size: 1rem;
-      }
-    }
-
-  }
-
-  @media (min-width: 768px) {
+  @include mq-min-width(md) {
 
     .content-column,
     .image-column {
@@ -59,6 +36,33 @@
 
       >div {
         margin-top: 20px;
+      }
+    }
+  }
+
+  @include mq-min-width(lg) {
+    .content-container {
+      padding: 60px 71px;
+
+      >div {
+        margin-top: 25px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @include mq-min-width(xl) {
+
+    .content-column,
+    .image-column {
+      flex: 0 0 50%;
+    }
+
+    .content-container {
+      padding: 60px 135px;
+
+      >div {
+        margin-top: 30px !important;
       }
     }
   }
