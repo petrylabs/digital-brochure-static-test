@@ -1,0 +1,47 @@
+@use "sass:map";
+
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1440px,
+);
+
+/* Helper mixins to create media queries using $breakpoints */
+@mixin mq-min-width($size) {
+  @media (min-width: map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// $viewport-xs: "extra-small";
+// $viewport-sm: "small";
+// $viewport-md: "medium";
+// $viewport-lg: "large";
+// $viewport-xl: "extra-large";
+
+// $extra-large-padding: 3.75em 8.438em;
+// $large-padding: 3.75em 4.438em;
+// $medium-padding: 2.5em 2.313em;
+// $small-padding: 2.5em 1.875em;
+
+// $xl-padding-horizontal: 8.438em;
+// $lg-padding-horizontal: 4.438em;
+// $md-padding-horizontal: 2.313em;
+// $sm-padding-horizontal: 1.875em;
+
+// $container-max-widths: (
+//   sm: 767px,
+//   md: 1023px,
+//   lg: 1439px,
+//   xl: 1440px,
+// ) !default;
+
+// $grid-size-naming: (
+//   xs: "extra-small",
+//   sm: "small",
+//   md: "medium",
+//   lg: "large",
+//   xl: "extra-large",
+// );
