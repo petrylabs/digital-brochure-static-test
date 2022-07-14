@@ -1,4 +1,4 @@
-import "../styles.scss";
+import "../scss/styles.scss";
 
 /**
  * Structure for entire app!
