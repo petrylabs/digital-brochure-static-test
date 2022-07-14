@@ -1,0 +1,29 @@
+// TODO: Update with SCSS variables, etc
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 40px 30px;
+  margin: auto;
+  outline: none;
+
+  @media (min-width: 768px) {
+    min-height: 0;
+    width: 334px;
+    padding: 40px 26px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 426px;
+    padding: 60px;
+  }
+}

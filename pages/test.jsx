@@ -1,3 +1,4 @@
+import Modal from "../components/Modal";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 
 function TestComponent() {
@@ -19,6 +20,12 @@ export default function TestPage() {
         <TestComponent />
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
+
+      <h2>Modal</h2>
+      <button>Open Modal</button>
+      <Modal open>
+        <>Modal content!</>
+      </Modal>
     </>
   );
 }
