@@ -1,5 +1,6 @@
 @import "../../scss/globals/color";
 @import "../../scss/globals/buttons";
+@import "../../scss/globals/layout";
 
 .root {
   display: flex;
@@ -17,13 +18,13 @@
   margin: auto;
   outline: none;
 
-  @media (min-width: 768px) {
+  @include mq-min-width(md) {
     min-height: 0;
     width: 334px;
     padding: 40px 26px;
   }
 
-  @media (min-width: 1024px) {
+  @include mq-min-width(lg) {
     width: 426px;
     padding: 60px;
   }
