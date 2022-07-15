@@ -9,7 +9,7 @@ import styles from "./CTA.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179081829/CTA
  */
 function CTA(props) {
-  const { children, type, target, url } = props;
+  const { buttonId, children, onClick, target, type, url } = props;
 
   /** CTA is a link if URL is provided */
   const isLink = !!url;
@@ -17,33 +17,34 @@ function CTA(props) {
   const ctaClass = `${styles.cta} ${styles[type]}`;
 
   return isLink ? (
-    <a href={url} className={ctaClass}>
+    <a href={url} className={ctaClass} target={target}>
       {children}
     </a>
   ) : (
-    <button type="button" className={ctaClass}>
+    <button
+      type="button"
+      id={buttonId}
+      className={ctaClass}
+      onClick={() => onClick()}
+    >
       {children}
     </button>
   );
 }
 
 CTA.propTypes = {
-  /** CTA text */
+  buttonId: PropTypes.string,
   children: PropTypes.string.isRequired,
-
-  /** CTA style */
+  onClick: PropTypes.func,
+  target: PropTypes.oneOf(["_self", "_blank", "_parent", "_top"]),
   type: PropTypes.oneOf(["primary", "secondary"]),
-
-  /** link target */
-  target: PropTypes.oneOf(["self", "blank", "parent", "top"]),
-
-  /** link destination url */
   url: PropTypes.string.isRequired,
 };
 
 CTA.defaultProps = {
   type: "primary",
-  target: "self",
+  target: null,
+  onClick: () => {},
 };
 
 export default CTA;

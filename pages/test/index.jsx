@@ -56,7 +56,9 @@ export default function TestPage() {
       </ThreeItemLayout>
 
       <h2>Modal</h2>
-      <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+      <CTA type="primary" onClick={() => setIsModalOpen(true)}>
+        Open Modal
+      </CTA>
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <>Modal content!</>
       </Modal>
