@@ -15,9 +15,7 @@ function SplitLayout(props) {
         {children[0]}
       </div>
       <div className={styles["content-column"]}>
-        <div className={styles["content-container"]}>
-          {children[1]}
-        </div>
+        {children[1]}
       </div>
     </div>
   );
