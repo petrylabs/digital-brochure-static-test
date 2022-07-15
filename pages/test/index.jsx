@@ -1,4 +1,4 @@
-import TextSection from "../components/TextSection/index"; 
+import TextSection from "../../components/TextSection/index"; 
 
 const data = [ { 
 "title" : "Auto Insurance / INTRO", 
