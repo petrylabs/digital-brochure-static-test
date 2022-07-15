@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import PropTypes from "prop-types";
 import styles from "./SplitLayout.module.scss";
 
 /**
@@ -7,18 +9,31 @@ import styles from "./SplitLayout.module.scss";
  */
 
 function SplitLayout(props) {
-  const { children, contentRight = false } = props;
+  const { children, contentRight = false, imageSRC } = props;
 
   return (
     <div className={`${styles["flex-container"]} ${contentRight ? "" : styles["content-left"]}`}>
       <div className={styles["image-column"]}>
-        {children[0]}
+        <div>
+          <Image src={imageSRC} alt="placeholder image" width="100%" height="100%" layout="responsive" objectFit="cover" />
+        </div>
       </div>
       <div className={styles["content-column"]}>
-        {children[1]}
+        {children}
       </div>
     </div>
   );
 }
+
+SplitLayout.propTypes = {
+  /** Modal content: */
+  children: PropTypes.node.isRequired,
+
+  /** Optional Prop to set content order, defaults to false: */
+  contentRight: PropTypes.bool,
+
+  /** SRC for Image */
+  imageSRC: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+};
 
 export default SplitLayout;

@@ -6,7 +6,6 @@ import ThreeItemLayout from "../../components/ThreeItemLayout";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import placeholderImage from "./placeholder.jpg";
-import Image from "next/image";
 
 function TestCopyComponent() {
   return (
@@ -51,10 +50,7 @@ export default function TestPage() {
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
       <br />
-      <SplitLayout contentRight={true}>
-        <div>
-          <Image src={placeholderImage} alt="placeholder image" width="100%" height="100%" layout="responsive" objectFit="cover" />
-        </div>
+      <SplitLayout contentRight={true} imageSRC={placeholderImage}>
         <TestCopyComponent />
       </SplitLayout>
 
