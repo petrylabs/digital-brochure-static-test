@@ -1,0 +1,46 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+
+.icon {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto 20px;
+  box-sizing: border-box;
+  background-color: $color-secondary-medium;
+  border-radius: 150px;
+  border: 3px solid $color-secondary-medium;
+}
+
+.infoCard {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px 20px;
+  &__border {
+    border: 3px solid $color-grey-06;
+  }
+}
+
+.h3 {
+  text-align: center;
+  @include mq-min-width(xl) {
+    margin-bottom: 30px;
+  }
+  @include mq-min-width(lg) {
+    margin-bottom: 25px;
+  }
+  @include mq-min-width(md) {
+    margin-bottom: 20px;
+  }
+}
+
+.content {
+  text-align: center;
+}
+
+.icon-image {
+  height: 45px;
+  width: 45px;
+}
