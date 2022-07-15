@@ -1,18 +1,18 @@
 @mixin font($font-family, $font-file) {
-    @font-face {
-      font-family: $font-family;
-      src: url($font-file +'.eot');
-      src: url($font-file +'.eot?#iefix') format('embedded-opentype'),
-      url($font-file +'.woff2') format('woff2'),
-      url($font-file +'.ttf') format('truetype'),
-      url($font-file +'.svg#aller') format('svg');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file + ".eot");
+    src: url($font-file + ".eot?#iefix") format("embedded-opentype"),
+      url($font-file + ".woff2") format("woff2"),
+      url($font-file + ".ttf") format("truetype"),
+      url($font-file + ".svg#aller") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
-  
-  @include font('Averta-RegularItalic', '/asset/fonts/averta-regularitalic-webfont');
-  @include font('Averta-ExtraBold', '/asset/fonts/averta-extrabold-webfont');
-  @include font('Averta-Regular', '/asset/fonts/averta-regular-webfont');
-  @include font('icomoon', '/asset/fonts/icons/icomoon');
+}
+
+@include font("Averta-RegularItalic", "/fonts/averta-regularitalic-webfont");
+@include font("Averta-ExtraBold", "/fonts/averta-extrabold-webfont");
+@include font("Averta-Regular", "/fonts/averta-regular-webfont");
+@include font("icomoon", "/fonts/icons/icomoon");
