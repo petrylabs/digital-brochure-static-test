@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./InfoCard.module.scss";
-import parse from "html-react-parser";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
