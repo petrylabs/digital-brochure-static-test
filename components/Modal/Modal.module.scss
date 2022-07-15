@@ -1,0 +1,51 @@
+@import "../../scss/globals/color";
+@import "../../scss/globals/buttons";
+@import "../../scss/globals/layout";
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  background-color: $color-white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 40px 30px;
+  margin: auto;
+  outline: none;
+
+  @include mq-min-width(md) {
+    min-height: 0;
+    width: 334px;
+    padding: 40px 26px;
+  }
+
+  @include mq-min-width(lg) {
+    width: 426px;
+    padding: 60px;
+  }
+}
+
+.closeButton {
+  @include unstyle-button;
+
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  color: $color-black;
+  outline: none;
+
+  svg {
+    display: block;
+    height: 15px;
+    width: 15px;
+  }
+
+  &:hover {
+    color: $color-links;
+  }
+}
