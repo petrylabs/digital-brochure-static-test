@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import parse from "html-react-parser";
 
+import Modal from "../../components/Modal";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import InfoCard from "../../components/InfoCard";
 import ThreeItemLayout from "../../components/ThreeItemLayout";
@@ -17,6 +19,8 @@ const parsedCopy = parse(htmlCopy);
  * To be deleted before release.
  */
 export default function TestPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <h1>UI TEST PAGE</h1>
@@ -41,6 +45,12 @@ export default function TestPage() {
         ></InfoCard>
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
+
+      <h2>Modal</h2>
+      <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <>Modal content!</>
+      </Modal>
 
       <h2>LargeScreenImage:</h2>
       <p>The image below will only be shown on screens &gt; 767px wide.</p>

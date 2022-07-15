@@ -22,6 +22,10 @@ body {
   background-color: $color-grey-05;
 }
 
+/*
+TYPOGRAPHY
+*/
+
 h3 {
   @include mq-min-width(sm) {
     font-size: 1.188rem;
@@ -56,4 +60,28 @@ h6,
   margin: 0;
   font-family: "Averta-ExtraBold", sans-serif !important;
   font-weight: 500 !important;
+}
+
+/*
+BUTTONS
+*/
+
+/* from sonnet.css */
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+
+/* from sonnet.css */
+.close:not(:disabled):not(.disabled):hover,
+.close:not(:disabled):not(.disabled):focus {
+  opacity: 0.75;
+}
+
+/* from sonnet.css */
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
 }

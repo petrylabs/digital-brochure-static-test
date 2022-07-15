@@ -19,6 +19,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Prettier](https://prettier.io/) for formatting
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
+- [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding
 
 ---
 
@@ -59,6 +60,7 @@ Built files will be hosted in dotCMS. Details TBC.
 
 - `/components`: React components
 - `/hooks`: React hooks
+- `/icons`: SVG icons as React components
 - `/pages`: static page templates
 - `/scss`: style files
 - `/utils`: utility functions
@@ -79,4 +81,12 @@ Breakpoints are defined in `/scss/global/layout.scss`. Helper mixins for using t
 @include mq-min-width(sm) {
   // your styles here
 }
+```
+
+## MUI components
+
+To maintain consistent styling patterns within the app (i.e. relying on CSS Modules), any MUI components used are styled using that component's CSS API and providing classes as a prop. See example below.
+
+```jsx
+<Modal classes={{ root: styles.root }}>{/* modal content */}</Modal>
 ```
