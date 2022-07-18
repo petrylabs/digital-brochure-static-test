@@ -7,13 +7,13 @@ html {
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: subpixel-antialiased;
-  font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
+  font-family: $font-regular;
   font-size: 16px;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, "Averta-Regular", Arial, Helvetica, sans-serif;
+  font-family: $font-regular;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -58,7 +58,7 @@ h6,
 .h5,
 .h6 {
   margin: 0;
-  font-family: "Averta-ExtraBold", sans-serif !important;
+  font-family: $font-extra-bold !important;
   font-weight: 500 !important;
 }
 
