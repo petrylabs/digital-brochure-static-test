@@ -7,6 +7,7 @@ import CTA from "../../components/CTA";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import placeholderImage from "./placeholder.jpg";
+import QuoteModalContent from "../../components/QuoteModalContent";
 
 function TestCopyComponent() {
   return (
@@ -72,7 +73,7 @@ export default function TestPage() {
         Open Modal
       </CTA>
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <>Modal content!</>
+        <QuoteModalContent />
       </Modal>
 
       <h2>LargeScreenImage:</h2>
