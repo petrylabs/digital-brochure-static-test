@@ -1,3 +1,36 @@
+/* Remove default list styles */
+@mixin unstyle-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Remove default link styles */
+@mixin unstyle-link {
+  color: unset;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: unset;
+    text-decoration: none;
+  }
+}
+
+/* Use a dotted-line focus */
+@mixin focus-dotted-outline {
+  &:focus {
+    outline: 1px dashed;
+    outline-offset: 3px;
+  }
+}
+
 /*
 Mixins below are imported from the UI framework repo.
 Uncomment as necessary.
