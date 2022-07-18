@@ -1,0 +1,57 @@
+@import "../../scss/globals/fonts.scss";
+@import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+
+.text {
+  text-align: center;
+  margin-bottom: 26px;
+
+  h1 {
+    margin-bottom: 10px;
+
+    @include mq-min-width(lg) {
+      margin-bottom: 15px;
+    }
+  }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 30px;
+  }
+}
+
+.linksList {
+  @include unstyle-list;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+
+  li {
+    &:first-child,
+    &:last-child {
+      grid-column: 1 / span 2;
+    }
+  }
+
+  @include mq-min-width(lg) {
+    gap: 30px;
+  }
+}
+
+.link {
+  @include unstyle-link;
+  @include focus-dotted-outline;
+
+  display: block;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 10px #e5e5e5;
+  font-family: $font-extra-bold;
+  font-weight: 500;
+  text-align: center;
+  // padding: 15px;
+
+  &:hover {
+    border-color: $color-primary-accent;
+  }
+}
