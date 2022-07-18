@@ -38,7 +38,7 @@ CTA.propTypes = {
   onClick: PropTypes.func,
   target: PropTypes.oneOf(["_self", "_blank", "_parent", "_top"]),
   type: PropTypes.oneOf(["primary", "secondary"]),
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 CTA.defaultProps = {
