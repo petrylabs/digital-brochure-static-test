@@ -67,9 +67,11 @@ Built files will be hosted in dotCMS. Details TBC.
 
 # Styling
 
-This project leverages [CSS Modules](https://github.com/css-modules/css-modules) and all styles are written in [Sass](https://sass-lang.com) as [SCSS](https://sass-lang.com/documentation/syntax#scss).
-
-Global style definitions (variables, mixins, etc.) are located in the `/scss` folder. Component-specific styles are kept in SCSS files in each component folder.
+- Global styles are imported from `https://www.sonnet.ca/asset/css/sonnet.css` in the custom `_document` file.
+- All styles are written in [Sass](https://sass-lang.com) as [SCSS](https://sass-lang.com/documentation/syntax#scss)
+- Common SCSS definitions (variables, mixins, etc.) are located in the `/scss` folder.
+- Component-specific styles are kept in SCSS files in each component folder.
+- Component styles are leveraging [CSS Modules](https://github.com/css-modules/css-modules).
 
 ## Media queries
 
