@@ -1,5 +1,5 @@
 import React from "react"; 
-import Parser from "html-react-parser"; 
+import PropTypes from "prop-types";
 import styles from "./TextSection.module.scss"; 
 
 /** 
@@ -8,18 +8,21 @@ import styles from "./TextSection.module.scss";
 */ 
 
 function TextSection(props) {
-  const hostElement = props.data; 
-  const titleString = hostElement[0].headline; 
-  const hasCopy = ('copy' in hostElement[0]); 
-  const copyString = hasCopy ? hostElement[0].copy: ""; 
+    const titleString = props.titleString;
+    const copyString = props.copyString;
+  
+    return (
+      <div className={styles.spacings}>
+        {titleString.length && <h2 className={styles.header}>{titleString}</h2>}
+        {copyString && <div className={`${styles.content}`}>{copyString}</div>}
+      </div>
+    );
+  }
 
-  return (
-    <div className={styles.spacings}>
-      {titleString.length && <h2 className={styles.header}>{titleString}</h2>} 
-      {hasCopy && (<div className={`${styles.content}`}>{Parser(copyString)}</div>)} 
-    </div> 
-  ); 
-} 
+TextSection.propTypes = {
+    titleString: PropTypes.string,
+    copyString: PropTypes.node
+}
 
 export default TextSection; 
 
