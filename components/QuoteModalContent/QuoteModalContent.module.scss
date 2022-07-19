@@ -49,9 +49,43 @@
   font-family: $font-extra-bold;
   font-weight: 500;
   text-align: center;
-  // padding: 15px;
+}
 
-  &:hover {
-    border-color: $color-primary-accent;
+.linkLightBorder {
+  border-color: $color-secondary-medium;
+}
+
+.linkHeading {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  margin: -3px -3px 0;
+}
+
+.linkHeadingDark {
+  background-color: $color-primary-accent;
+  color: $color-white;
+}
+
+.linkHeadingLight {
+  background-color: $color-secondary-medium;
+}
+
+.link:hover,
+.linkLightBorder:hover {
+  border-color: $color-primary-accent;
+
+  .linkHeadingLight {
+    background-color: $color-primary-accent;
+    color: $color-white;
+  }
+}
+
+.linkPanel {
+  display: block;
+  padding: 26px;
+
+  @include mq-min-width(lg) {
+    padding: 30px;
   }
 }

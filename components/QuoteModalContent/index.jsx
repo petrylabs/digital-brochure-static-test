@@ -19,28 +19,42 @@ function QuoteModalContent() {
       <ul className={styles.linksList}>
         <li>
           <a href="#" className={styles.link}>
-            {/* link heading here */}
-            {/* icon here */}
-            <span>Home &amp; Auto</span>
+            <span className={`${styles.linkHeading} ${styles.linkHeadingDark}`}>
+              Save upto 20%
+            </span>
+            <span className={styles.linkPanel}>
+              {/* icon here */}
+              <span>Home &amp; Auto</span>
+            </span>
           </a>
         </li>
         <li>
           <a href="#" className={styles.link}>
-            {/* icon here */}
-            <span>Auto</span>
+            <span className={styles.linkPanel}>
+              {/* icon here */}
+              <span>Auto</span>
+            </span>
           </a>
         </li>
         <li>
           <a href="#" className={styles.link}>
-            {/* icon here */}
-            <span>Home</span>
+            <span className={styles.linkPanel}>
+              {/* icon here */}
+              <span>Home</span>
+            </span>
           </a>
         </li>
         <li>
-          <a href="#" className={styles.link}>
-            {/* link heading here */}
-            {/* icon here */}
-            <span>Pet</span>
+          <a href="#" className={`${styles.link} ${styles.linkLightBorder}`}>
+            <span
+              className={`${styles.linkHeading} ${styles.linkHeadingLight}`}
+            >
+              NEW! Protect your furry loved one
+            </span>
+            <span className={styles.linkPanel}>
+              {/* icon here */}
+              <span>Pet</span>
+            </span>
           </a>
         </li>
       </ul>
