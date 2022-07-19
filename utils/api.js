@@ -66,6 +66,10 @@ export const getFooter = () => {
   // add footer items call
 };
 
+export const getModal = () => {
+  // add modal items call
+};
+
 export const getContentRelationshipData = (identifier) => {
   return get(`${apiUrl}/contentrelationships/id/${identifier}`);
 };

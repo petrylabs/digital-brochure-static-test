@@ -26,7 +26,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  // TODO: fetch page data from dotCMS & return as props
   const { data } = await getPage(slug);
   if (!data) {
     console.log("error loop");
@@ -70,7 +69,6 @@ function LandingPage(props) {
 }
 
 LandingPage.propTypes = {
-  /** This is just a placeholder prop! To be removed when we have actual props */
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   seodescription: PropTypes.string.isRequired,
