@@ -8,20 +8,20 @@ import styles from "./TextSection.module.scss";
 */ 
 
 function TextSection(props) {
-    const titleString = props.titleString;
-    const copyString = props.copyString;
-  
-    return (
-      <div className={styles.spacings}>
-        {titleString.length && <h2 className={styles.header}>{titleString}</h2>}
-        {copyString && <div className={`${styles.content}`}>{copyString}</div>}
-      </div>
-    );
-  }
+  const titleString = props.titleString;
+  const copyString = props.copyString;
+
+  return (
+    <div className={styles.spacings}>
+      {titleString.length && <h2 className={styles.header}>{titleString}</h2>}
+      {copyString && <div className={`${styles.content}`}>{copyString}</div>}
+    </div>
+  );
+}
 
 TextSection.propTypes = {
-    titleString: PropTypes.string,
-    copyString: PropTypes.node
+  titleString: PropTypes.string,
+  copyString: PropTypes.node
 }
 
 export default TextSection; 

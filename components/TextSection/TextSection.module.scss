@@ -1,72 +1,78 @@
-@import "../../scss/globals/variables.scss"; 
-@import "../../scss/globals/layout.scss"; 
+@import "../../scss/globals/variables.scss";
+@import "../../scss/globals/layout.scss";
 
-.spacings { 
-    padding: 40px 30px 13.008px; 
-    @include mq-min-width(lg) { 
-        padding: 60px 71.008px 13.008px; 
-    } 
-    @include mq-min-width(xl) { 
-        padding: 60px 71.008px 13.008px; 
-    } 
-} 
+.spacings {
+  padding: 40px 30px 13px;
 
-.header { 
-    font-family: Averta-ExtraBold, sans-serif; 
-    margin-block-start: 0; 
-    margin-block-end: 0; 
-} 
+  @include mq-min-width(lg) {
+    padding: 60px 71px 13px;
+  }
 
-.content { 
-    padding-top: 15px; 
-    @include mq-min-width(md) { 
-        padding-top: 20px; 
-    } 
+  @include mq-min-width(xl) {
+    padding: 60px 71px 13px;
+  }
+}
 
-    @include mq-min-width(lg) { 
-        padding-top: 25px; 
-    } 
+.header {
+  font-family: Averta-ExtraBold, sans-serif;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
-    @include mq-min-width(xl) { 
-        padding-top: 30px; 
-    } 
-    p { 
-     margin-block-start: 0; 
-     margin-block-end: 0; 
-     font-family: "Averta-Regular", Arial, Helvetica, sans-serif; 
-    } 
-} 
+.content {
+  padding-top: 15px;
 
-@include mq-min-width(md) { 
-    .header{ 
-     text-align: center; 
-    } 
+  @include mq-min-width(md) {
+    padding-top: 20px;
+  }
 
-    .content { 
-    p { 
-     text-align: center; 
-    } 
-    } 
-} 
+  @include mq-min-width(lg) {
+    padding-top: 25px;
+  }
 
-@include mq-min-width(lg) { 
-    .header{ 
-     text-align: center; 
-    } 
-    .content { 
-    p { 
-     text-align: center; 
-    } 
-    } 
-} 
+  @include mq-min-width(xl) {
+    padding-top: 30px;
+  }
 
-@include mq-min-width(xl) { 
-    .header{ 
-        text-align: center; 
-    } 
-    .content { 
-        p { 
-        text-align: center; 
-        } 
-    } 
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
+  }
+}
+
+@include mq-min-width(md) {
+  .header {
+    text-align: center;
+  }
+
+  .content {
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@include mq-min-width(lg) {
+  .header {
+    text-align: center;
+  }
+
+  .content {
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@include mq-min-width(xl) {
+  .header {
+    text-align: center;
+  }
+
+  .content {
+    p {
+      text-align: center;
+    }
+  }
 }
