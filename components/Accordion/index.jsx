@@ -6,6 +6,8 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 
+import styles from "./Accordion.module.scss";
+
 /**
  * Accordion
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179409491/Accordion
@@ -14,9 +16,24 @@ function Accordion(props) {
   const { details, summary } = props;
 
   return (
-    <MuiAccordion>
-      <AccordionSummary>{summary}</AccordionSummary>
-      <AccordionDetails>{details}</AccordionDetails>
+    <MuiAccordion
+      square
+      disableGutters
+      TransitionProps={{ timeout: 0 }}
+      classes={{ root: styles.accordion }}
+    >
+      <AccordionSummary
+        classes={{
+          root: styles.summary,
+          content: styles.summaryContent,
+          expanded: styles.summaryExpanded,
+        }}
+      >
+        {summary}
+      </AccordionSummary>
+      <AccordionDetails classes={{ root: styles.details }}>
+        {details}
+      </AccordionDetails>
     </MuiAccordion>
   );
 }
