@@ -7,6 +7,7 @@ import CTA from "../../components/CTA";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import placeholderImage from "./placeholder.jpg";
+import Accordion from "../../components/Accordion";
 
 function TestCopyComponent() {
   return (
@@ -41,6 +42,11 @@ export default function TestPage() {
       <br />
       <CTA>primary button</CTA>
       <CTA type="secondary">secondary button</CTA>
+
+      <h2>Accordion</h2>
+      <Accordion summary={<>Item 1</>} details={parsedCopy} />
+      <Accordion summary={<>Item 2</>} details={parsedCopy} />
+      <Accordion summary={<>Item 3</>} details={parsedCopy} />
 
       <h2>ThreeItemLayout &amp; InfoCard:</h2>
       <ThreeItemLayout>
