@@ -19,21 +19,38 @@ $accordion-border: 0.25px solid $color-grey-10;
   font-family: $font-extra-bold;
   font-weight: 500;
 
-  /* Hover animation when collapsed */
-  &:hover::after,
-  &:focus::after {
-    width: 100%;
+  &:focus {
+    background-color: $color-white;
   }
 
+  /* animated elements */
+  &::before,
   &::after {
     position: absolute;
     top: 0;
     left: 0;
-    content: " ";
-    background-color: #147582;
+    content: "";
+    background-color: $color-primary-accent;
+  }
+
+  /* top bar */
+  &::before {
     width: 0;
     height: 2px;
-    transition: 0.65s;
+    transition: 0.65s width;
+  }
+
+  /* background fill */
+  &::after {
+    width: 100%;
+    height: 0;
+    transition: 0.65s height;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    width: 100%;
+    transition: 0.65s width;
   }
 
   /* animation when expanded */
@@ -41,7 +58,6 @@ $accordion-border: 0.25px solid $color-grey-10;
     color: $color-white;
 
     &::after {
-      width: 100%;
       height: 100%;
       transition: 0.65s height;
     }
