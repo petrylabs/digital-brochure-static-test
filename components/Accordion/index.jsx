@@ -7,6 +7,7 @@ import {
 import PropTypes from "prop-types";
 
 import styles from "./Accordion.module.scss";
+import Chevron from "../../icons/Chevron";
 
 /**
  * Accordion
@@ -27,10 +28,12 @@ function Accordion(props) {
       onChange={onChange}
     >
       <AccordionSummary
+        expandIcon={<Chevron />}
         classes={{
           root: styles.summary,
           content: styles.summaryContent,
           expanded: styles.summaryExpanded,
+          expandIconWrapper: styles.summaryIcon,
         }}
       >
         {summary}
