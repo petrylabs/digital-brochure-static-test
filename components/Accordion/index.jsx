@@ -10,17 +10,21 @@ import styles from "./Accordion.module.scss";
 
 /**
  * Accordion
+ * A single expand/collapse panel. To control a set of Accordions, nest them inside an AccordionGroup.
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179409491/Accordion
  */
 function Accordion(props) {
-  const { details, summary } = props;
+  const { details, expanded, id, onChange, summary } = props;
 
   return (
     <MuiAccordion
+      id={id}
       square
       disableGutters
       TransitionProps={{ timeout: 0 }}
       classes={{ root: styles.accordion }}
+      expanded={expanded}
+      onChange={onChange}
     >
       <AccordionSummary
         classes={{
@@ -41,6 +45,15 @@ function Accordion(props) {
 Accordion.propTypes = {
   /** The content of the expanding panel */
   details: PropTypes.node.isRequired,
+
+  /** The open vs. collapsed state of the Accordion */
+  expanded: PropTypes.bool,
+
+  /** Unique id for a11y and Accordion control */
+  id: PropTypes.string.isRequired,
+
+  /** Action to run on open/close of Accordion */
+  onChange: PropTypes.func,
 
   /** The content of the clickable bar */
   summary: PropTypes.node.isRequired,
