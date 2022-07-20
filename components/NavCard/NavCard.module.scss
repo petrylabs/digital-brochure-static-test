@@ -13,34 +13,53 @@
     .mainText {
       text-decoration: underline;
     }
-  }
-
-  @include mq-min-width(lg) {
-    padding: 10px;
-    padding-bottom: 30px;
-  }
-
-  @include mq-min-width(xl) {
-    padding: 10px;
-    padding-bottom: 30px;
+    &:active {
+      background-color: $color-grey-05;
+      border-color: #147582;
+    }
   }
 }
 
+.navItem {
+  width: auto;
+}
+
 .mainText {
-  color: #323232;
-  font-weight: bold;
-  margin: 2px;
+  color: $color-primary-grey;
+  line-height: 23px;
   outline: 2px solid transparent;
   padding: 0;
   white-space: nowrap;
   display: inline-block;
   margin: 0;
-  position: relative;
   text-decoration: none;
   border-bottom: none;
   font-size: 1em;
   background-image: none;
+  background-color: transparent;
+  background-size: 100% 1px, 0 1px;
+  background-position: 100% 100%, 1px 100%;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-color: $color-secondary-medium;
+    .mainText {
+      text-decoration: underline;
+    }
+    &:active {
+      background-color: $color-grey-05;
+      border-color: #147582;
+    }
+    &:visited {
+      color: $color-primary-grey;
+    }
+  }
+
   @include mq-min-width(xs) {
+    font-weight: normal;
+  }
+
+  @include mq-min-width(sm) {
     font-weight: normal;
   }
 
@@ -97,8 +116,8 @@
   margin-left: 5px;
   font-size: 12px;
   border-radius: 2px;
-  background-color: #147582;
-  color: white;
+  background-color: $color-primary-accent;
+  color: $color-white;
   padding: 0 3px 0 3px;
   font-size: 12px;
   line-height: 15px;
