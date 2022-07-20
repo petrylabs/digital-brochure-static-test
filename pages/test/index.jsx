@@ -1,4 +1,4 @@
-import TextSection from "../../components/TextSection/index"; 
+import TextSection from "../../components/TextSection/index";
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import Modal from "../../components/Modal";
@@ -8,6 +8,7 @@ import CTA from "../../components/CTA";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import placeholderImage from "./placeholder.jpg";
+import NavCard from "../../components/NavCard";
 
 function TestCopyComponent() {
   return (
@@ -84,8 +85,24 @@ export default function TestPage() {
       <LargeScreenImage src={placeholderImage} width="400" height="300" />
 
       <h2>TextSection</h2>
-      <TextSection titleString={"Get a free car insurance quote and buy online instantly"}
-      copyString={parsedCopyHtml} /> 
+      <TextSection
+        titleString={"Get a free car insurance quote and buy online instantly"}
+        copyString={parsedCopyHtml}
+      />
+
+      <h2>NavCard</h2>
+      <NavCard
+        url="https://www.sonnet.ca/auto-insurance"
+        mainText="Auto"
+        subText="Drive with peace of mind knowing you’re covered."
+        isNew={false}
+      />
+      <NavCard
+        url="https://www.sonnet.ca/pet-insurance"
+        mainText="Pet"
+        subText="Buy insurance online for your cat or dog."
+        isNew={true}
+      />
     </>
   );
 }
