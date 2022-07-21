@@ -27,6 +27,7 @@ https://economical.atlassian.net/browse/SKY-198
 
 1. Clone this repository
 1. Run `npm install`
+1. Add dotCMS creds to the `.env` file
 1. Run `npm run dev` to start a local development server
 1. Open a browser and navigate to `localhost:3000`
 
