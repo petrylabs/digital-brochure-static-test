@@ -1,24 +1,33 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/fonts.scss";
+
 .blogLink {
   width: 100%;
-  display: inline-block;
   text-decoration: none;
+  display: block;
 }
 
-.blogLink :hover {
+.blogLink:hover {
   border: none;
   outline: none;
   text-decoration: none;
+}
+.blogLink:focus {
+  outline: 5px solid $color-primary-accent;
 }
 
 .blogContainer {
   position: relative;
   height: 304px;
-  width: 100%;
-  box-shadow: 0.2px 0.2px 10px #e5e5e5;
+  box-shadow: 0.2px 0.2px 10px $color-grey-06;
 }
 
 .blogContainer:hover {
-  outline: 5px solid #147582;
+  outline: 5px solid $color-primary-accent;
+}
+
+.blogContainer:focus {
+  outline: 5px solid $color-primary-accent;
 }
 
 .blogImage {
@@ -29,12 +38,12 @@
 
 .blogTag {
   position: absolute;
-  background-color: #acdde4;
-  color: #323232;
+  background-color: $color-secondary-medium;
+  color: $color-primary-grey;
   padding: 10px 20px;
   top: 130px;
   font-size: 14px;
-  font-family: "Averta-ExtraBold";
+  font-family: $font-extra-bold;
   font-weight: 800;
   line-height: 23px;
   text-transform: uppercase;
@@ -45,19 +54,18 @@
   padding: 15px;
   .blogTitle {
     position: relative;
-    color: #323232;
+    color: $color-primary-grey;
     text-align: left;
     margin-top: 15px;
     margin-bottom: 40px;
-    font-size: 14px;
+    font-size: 1.313rem;
     line-height: 21px;
   }
 }
 
 .blogMinRead {
   position: absolute;
-  color: #6f6f6f;
-  font-family: "Averta-Regular";
+  color: $color-hint;
   padding-left: 20px;
   bottom: 16px;
   font-size: 12px;

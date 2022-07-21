@@ -9,20 +9,23 @@ import PropTypes from "prop-types";
  */
 
 function BlogCard(props) {
-  const { imgUrl, title, tag, minRead } = props;
+  const { imgUrl, imgAltText, title, tag, minRead, link } = props;
   return (
-    <a href="" className={styles.blogLink}>
+    <a href={link} className={styles.blogLink} ariaLabelledby="blogTitle">
       <div className={styles.blogContainer}>
         <div className={styles.blogImage}>
-          <Image src={imgUrl} alt="" layout="fill" objectFit="cover" />
+          <Image
+            src={imgUrl}
+            alt={imgAltText}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
-        <div className={styles.blogTag}>
-          <span>{tag}</span>
-        </div>
+        <span className={styles.blogTag}>{tag}</span>
         <div className={styles.blogContent}>
-          <div className={styles.blogTitle}>
-            <h4>{title}</h4>
-          </div>
+          <h3 id="blogTitle" className={styles.blogTitle}>
+            {title}
+          </h3>
         </div>
         <span className={styles.blogMinRead}>{minRead}</span>
       </div>
@@ -34,6 +37,9 @@ BlogCard.propTypes = {
   // image url
   imgUrl: PropTypes.string.isRequired,
 
+  // image alt text
+  imgAltText: PropTypes.string.isRequired,
+
   // title for the blog
   title: PropTypes.string.isRequired,
 
@@ -42,6 +48,9 @@ BlogCard.propTypes = {
 
   // min read time
   minRead: PropTypes.string.isRequired,
+
+  // blog link
+  link: PropTypes.string.isRequired,
 };
 
 export default BlogCard;

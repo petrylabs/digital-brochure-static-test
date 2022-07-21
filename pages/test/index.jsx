@@ -1,4 +1,4 @@
-import TextSection from "../../components/TextSection/index"; 
+import TextSection from "../../components/TextSection/index";
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import Modal from "../../components/Modal";
@@ -78,18 +78,24 @@ export default function TestPage() {
           title={"How to compare home insurance quotes"}
           tag={"At Home"}
           minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
         ></BlogCard>
         <BlogCard
           imgUrl={placeholderImage}
           title={"How to compare home insurance quotes"}
           tag={"At Home"}
           minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
         ></BlogCard>
         <BlogCard
           imgUrl={placeholderImage}
           title={"How to compare home insurance quotes"}
           tag={"At Home"}
           minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
         ></BlogCard>
       </ThreeItemLayout>
       <h2>Modal</h2>
@@ -105,8 +111,10 @@ export default function TestPage() {
       <LargeScreenImage src={placeholderImage} width="400" height="300" />
 
       <h2>TextSection</h2>
-      <TextSection titleString={"Get a free car insurance quote and buy online instantly"}
-      copyString={parsedCopyHtml} /> 
+      <TextSection
+        titleString={"Get a free car insurance quote and buy online instantly"}
+        copyString={parsedCopyHtml}
+      />
     </>
   );
 }
