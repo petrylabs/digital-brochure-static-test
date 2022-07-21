@@ -1,17 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
+
 import { getPage } from "../utils/api";
+import { pageSlugs } from "../config";
 
 export async function getStaticPaths() {
-  // TODO: fetch page slugs from dotCMS
-  const pageSlugs = [
-    "auto-insurance",
-    "condo-insurance",
-    "home-insurance",
-    "tenant-insurance",
-  ];
-
   const paths = pageSlugs.map((slug) => ({
     params: {
       slug,
