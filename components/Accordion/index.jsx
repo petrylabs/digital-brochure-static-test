@@ -28,6 +28,9 @@ function Accordion(props) {
       onChange={onChange}
     >
       <AccordionSummary
+        id={`summary${id}`}
+        aria-expanded={expanded}
+        aria-controls={`details${id}`}
         expandIcon={<Chevron />}
         classes={{
           root: styles.summary,
@@ -38,7 +41,7 @@ function Accordion(props) {
       >
         {summary}
       </AccordionSummary>
-      <AccordionDetails classes={{ root: styles.details }}>
+      <AccordionDetails id={`details${id}`} classes={{ root: styles.details }}>
         {details}
       </AccordionDetails>
     </MuiAccordion>
@@ -52,7 +55,7 @@ Accordion.propTypes = {
   /** The open vs. collapsed state of the Accordion */
   expanded: PropTypes.bool,
 
-  /** Unique id for a11y and Accordion control */
+  /** Unique id for Accordion control */
   id: PropTypes.string.isRequired,
 
   /** Action to run on open/close of Accordion */
