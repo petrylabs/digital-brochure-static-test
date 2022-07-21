@@ -65,4 +65,8 @@ Accordion.propTypes = {
   summary: PropTypes.node.isRequired,
 };
 
+Accordion.defaultProps = {
+  expanded: false,
+};
+
 export default Accordion;
