@@ -1,0 +1,65 @@
+.blogLink {
+  width: 100%;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.blogLink :hover {
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.blogContainer {
+  position: relative;
+  height: 304px;
+  width: 100%;
+  box-shadow: 0.2px 0.2px 10px #e5e5e5;
+}
+
+.blogContainer:hover {
+  outline: 5px solid #147582;
+}
+
+.blogImage {
+  width: 100%;
+  height: 153px;
+  position: relative;
+}
+
+.blogTag {
+  position: absolute;
+  background-color: #acdde4;
+  color: #323232;
+  padding: 10px 20px;
+  top: 130px;
+  font-size: 14px;
+  font-family: "Averta-ExtraBold";
+  font-weight: 800;
+  line-height: 23px;
+  text-transform: uppercase;
+}
+
+.blogContent {
+  position: relative;
+  padding: 15px;
+  .blogTitle {
+    position: relative;
+    color: #323232;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+
+.blogMinRead {
+  position: absolute;
+  color: #6f6f6f;
+  font-family: "Averta-Regular";
+  padding-left: 20px;
+  bottom: 16px;
+  font-size: 12px;
+  line-height: 18px;
+}

@@ -7,6 +7,7 @@ import ThreeItemLayout from "../../components/ThreeItemLayout";
 import CTA from "../../components/CTA";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
+import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
 
 function TestCopyComponent() {
@@ -71,6 +72,26 @@ export default function TestPage() {
         <TestCopyComponent />
       </SplitLayout>
 
+      <ThreeItemLayout>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+        ></BlogCard>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+        ></BlogCard>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+        ></BlogCard>
+      </ThreeItemLayout>
       <h2>Modal</h2>
       <CTA type="primary" onClick={() => setIsModalOpen(true)}>
         Open Modal
