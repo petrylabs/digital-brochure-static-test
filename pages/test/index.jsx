@@ -95,13 +95,13 @@ export default function TestPage() {
         url="https://www.sonnet.ca/auto-insurance"
         mainText="Auto"
         subText="Drive with peace of mind knowing you’re covered."
-        isNew={false}
+        isNew=""
       />
       <NavCard
         url="https://www.sonnet.ca/pet-insurance"
         mainText="Pet"
         subText="Buy insurance online for your cat or dog."
-        isNew={true}
+        isNew="New!"
       />
     </>
   );
