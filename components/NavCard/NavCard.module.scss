@@ -3,7 +3,6 @@
 @import "../../scss/globals/fonts.scss";
 
 .navLink {
-  // insert mixin to wipe the style for link from sonnet.css
   border-radius: 10px;
   border: 1px solid transparent;
   padding: 10px;
@@ -16,13 +15,14 @@
   font-size: 14px;
 
   &:hover {
-    text-decoration: none; // remove this line after import mixin
-    span {
-      // classname gets override
-      text-decoration: underline;
-    }
+    text-decoration: none; // Overwrites the default styling for a from sonnet.css
+    color: $color-primary-grey; // Overwrites the default styling for a from sonnet.css
     background-color: $color-secondary-medium;
-    color: $color-primary-grey; // Overrides sonnet.css
+
+    span {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
 
     .newTag,
     .subText {
