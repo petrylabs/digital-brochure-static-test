@@ -9,6 +9,7 @@ import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
+import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
 
@@ -123,6 +124,20 @@ export default function TestPage() {
       <TextSection
         titleString={"Get a free car insurance quote and buy online instantly"}
         copyString={parsedCopyHtml}
+      />
+
+      <h2>NavCard</h2>
+      <NavCard
+        url="https://www.sonnet.ca/auto-insurance"
+        mainText="Auto"
+        subText="Drive with peace of mind knowing you’re covered."
+        isNew=""
+      />
+      <NavCard
+        url="https://www.sonnet.ca/pet-insurance"
+        mainText="Pet"
+        subText="Buy insurance online for your cat or dog."
+        isNew="New!"
       />
     </>
   );
