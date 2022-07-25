@@ -1,4 +1,4 @@
-import TextSection from "../../components/TextSection/index"; 
+import TextSection from "../../components/TextSection/index";
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import Modal from "../../components/Modal";
@@ -7,6 +7,7 @@ import ThreeItemLayout from "../../components/ThreeItemLayout";
 import CTA from "../../components/CTA";
 import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
+import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
@@ -80,6 +81,32 @@ export default function TestPage() {
         <TestCopyComponent />
       </SplitLayout>
 
+      <ThreeItemLayout>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
+        ></BlogCard>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
+        ></BlogCard>
+        <BlogCard
+          imgUrl={placeholderImage}
+          title={"How to compare home insurance quotes"}
+          tag={"At Home"}
+          minRead={"6 min. read"}
+          link={"https://www.sonnet.ca"}
+          imgAltText={""}
+        ></BlogCard>
+      </ThreeItemLayout>
       <h2>Modal</h2>
       <CTA type="primary" onClick={() => setIsModalOpen(true)}>
         Open Modal
@@ -93,8 +120,10 @@ export default function TestPage() {
       <LargeScreenImage src={placeholderImage} width="400" height="300" />
 
       <h2>TextSection</h2>
-      <TextSection titleString={"Get a free car insurance quote and buy online instantly"}
-      copyString={parsedCopyHtml} /> 
+      <TextSection
+        titleString={"Get a free car insurance quote and buy online instantly"}
+        copyString={parsedCopyHtml}
+      />
     </>
   );
 }
