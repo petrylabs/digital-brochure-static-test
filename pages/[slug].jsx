@@ -4,6 +4,7 @@ import PropTypes, { object } from "prop-types";
 
 import { getPage } from "../utils/api";
 import { pageSlugs } from "../config";
+import { imageAlt, imageSrc } from "../utils/images";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -21,14 +22,15 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const { data } = await getPage(slug);
+
   if (!data) {
-    console.log("error loop");
     return {
       redirect: {
         destination: "/",
       },
     };
   }
+
   return {
     props: {
       title: data.title,
@@ -45,19 +47,25 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
+  /** temporary: */
+  const sectionThreeContent = content[2];
+
   return (
     <>
-      {/* CUSTOM PAGE HEAD */}
-
       <Head>
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
-
       <h1>{description}</h1>
+      <pre>{JSON.stringify(sectionThreeContent, null, 2)}</pre>
 
-      <pre>{JSON.stringify(content, null, 2)}</pre>
+      <article>
+        <img
+          src={`https://www.sonnet.ca/dA/${sectionThreeContent.fields["GenericContent.image"][0].identifier}/${sectionThreeContent.fields["GenericContent.image"][0].fileName}`}
+        />
+        <h2>{sectionThreeContent.headline}</h2>
+        {sectionThreeContent.copy}
+      </article>
     </>
   );
 }
