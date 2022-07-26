@@ -1,7 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
+import parse from "html-react-parser";
+
 import { getPage } from "../utils/api";
+import TextSection from "../components/TextSection";
 
 export async function getStaticPaths() {
   // TODO: fetch page slugs from dotCMS
@@ -53,17 +56,14 @@ function LandingPage(props) {
 
   return (
     <>
-      {/* CUSTOM PAGE HEAD */}
-
       <Head>
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
-
       <h1>{description}</h1>
 
-      <pre>{JSON.stringify(content, null, 2)}</pre>
+      {/* Intro */}
+      <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
     </>
   );
 }
