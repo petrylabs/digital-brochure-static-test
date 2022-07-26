@@ -27,7 +27,6 @@ function SplitLayout(props) {
           src={imageSrc(content, "GenericContent.image")}
           alt={imageAlt(content, "GenericContent.image")}
           layout="fill"
-          sizes="50vw"
           objectFit="cover"
         />
       </div>
