@@ -37,7 +37,8 @@ function imageData(contentObj, field) {
  */
 export function imageSrc(contentObj, field) {
   const { identifier, fileName } = imageData(contentObj, field);
-  return `https://www.sonnet.ca/dA/${identifier}/${fileName}`;
+  const cleanFileName = fileName.replace("@", "%40");
+  return `https://www.sonnet.ca/dA/${identifier}/${cleanFileName}`;
 }
 
 /**
