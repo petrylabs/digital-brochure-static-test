@@ -12,15 +12,22 @@ function SplitLayout(props) {
   const { children, contentRight = false, imageSRC } = props;
 
   return (
-    <div className={`${styles["flex-container"]} ${contentRight ? "" : styles["content-left"]}`}>
+    <div
+      className={`${styles["flex-container"]} ${
+        contentRight ? "" : styles["content-left"]
+      }`}
+    >
       <div className={styles["image-column"]}>
-        <div>
-          <Image src={imageSRC} alt="placeholder image" width="100%" height="100%" layout="responsive" objectFit="cover" />
-        </div>
+        <Image
+          src={imageSRC}
+          alt="placeholder image"
+          width="100%"
+          height="100%"
+          layout="responsive"
+          objectFit="cover"
+        />
       </div>
-      <div className={styles["content-column"]}>
-        {children}
-      </div>
+      <div className={styles["content-column"]}>{children}</div>
     </div>
   );
 }
@@ -33,7 +40,8 @@ SplitLayout.propTypes = {
   contentRight: PropTypes.bool,
 
   /** SRC for Image */
-  imageSRC: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  imageSRC: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
 };
 
 export default SplitLayout;
