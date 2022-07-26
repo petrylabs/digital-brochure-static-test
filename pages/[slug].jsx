@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
-import parse from "html-react-parser";
 
 import { getPage } from "../utils/api";
 import { imageAlt, imageSrc } from "../utils/images";
@@ -62,13 +61,7 @@ function LandingPage(props) {
 
       {/* Section 3 */}
       <section>
-        <SplitLayout
-          imageSRC={imageSrc(content[2], "GenericContent.image")}
-          contentRight
-        >
-          <h2>{content[2].headline}</h2>
-          {parse(content[2].copy)}
-        </SplitLayout>
+        <SplitLayout content={content[2]} />
       </section>
     </>
   );
