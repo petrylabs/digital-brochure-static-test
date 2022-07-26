@@ -53,7 +53,7 @@ SplitLayout.propTypes = {
     headline: PropTypes.string,
     copy: PropTypes.string,
     fields: PropTypes.shape({
-      "GenericContent.image": PropTypes.object,
+      "GenericContent.image": PropTypes.array,
     }),
   }).isRequired,
 
