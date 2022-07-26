@@ -13,6 +13,7 @@ function LargeScreenImage(props) {
   const screenWidth = useWindowWidth();
 
   if (screenWidth > 767) {
+    // eslint-disable-next-line jsx-a11y/alt-text
     return <Image {...props} />;
   }
 

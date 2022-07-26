@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import parse from "html-react-parser";
 
 import { imageAlt, imageSrc } from "../../utils/images";
+import LargeScreenImage from "../LargeScreenImage";
 import styles from "./SplitLayout.module.scss";
 
 /**
@@ -12,7 +13,14 @@ import styles from "./SplitLayout.module.scss";
  */
 
 function SplitLayout(props) {
-  const { content, imageRight } = props;
+  const { content, hideImageOnMobile, imageRight } = props;
+
+  const imageProps = {
+    src: imageSrc(content, "GenericContent.image"),
+    alt: imageAlt(content, "GenericContent.image"),
+    layout: "fill",
+    objectFit: "cover",
+  };
 
   return (
     <div
@@ -22,13 +30,12 @@ function SplitLayout(props) {
     >
       {/* IMAGE */}
       <div className={styles.imageCol}>
-        {/* /_next/image?url=https%3A%2F%2Fwww.sonnet.ca%2FdA%2Fa4b641da-cf75-4cd2-84f7-80a652ce8534%2FAUTO_couple_driving_on_the_road%25401x.jpg&w=3840&q=75 */}
-        <Image
-          src={imageSrc(content, "GenericContent.image")}
-          alt={imageAlt(content, "GenericContent.image")}
-          layout="fill"
-          objectFit="cover"
-        />
+        {hideImageOnMobile ? (
+          // eslint-disable-next-line jsx-a11y/alt-text
+          <Image {...imageProps} />
+        ) : (
+          <LargeScreenImage {...imageProps} />
+        )}
       </div>
 
       {/* TEXT CONTENT */}
@@ -50,11 +57,15 @@ SplitLayout.propTypes = {
     }),
   }).isRequired,
 
+  /** Only show image on large screen */
+  hideImageOnMobile: PropTypes.bool,
+
   /** Optional Prop to set content order */
   imageRight: PropTypes.bool,
 };
 
 SplitLayout.defaultProps = {
+  hideImageOnMobile: false,
   imageRight: false,
 };
 
