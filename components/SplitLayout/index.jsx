@@ -31,10 +31,10 @@ function SplitLayout(props) {
       {/* IMAGE */}
       <div className={styles.imageCol}>
         {hideImageOnMobile ? (
+          <LargeScreenImage {...imageProps} />
+        ) : (
           // eslint-disable-next-line jsx-a11y/alt-text
           <Image {...imageProps} />
-        ) : (
-          <LargeScreenImage {...imageProps} />
         )}
       </div>
 
