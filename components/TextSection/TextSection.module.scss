@@ -14,7 +14,7 @@
 }
 
 .header {
-  font-family: Averta-ExtraBold, sans-serif;
+  font-family: $font-extra-bold;
   margin-block-start: 0;
   margin-block-end: 0;
 }
@@ -37,7 +37,7 @@
   p {
     margin-block-start: 0;
     margin-block-end: 0;
-    font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
+    font-family: $font-regular;
   }
 }
 
