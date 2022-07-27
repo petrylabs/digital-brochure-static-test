@@ -64,7 +64,7 @@ function LandingPage(props) {
       <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
 
       {/* Section 3 */}
-      <section>
+      <section className="bg-white">
         <SplitLayout content={content[2]} />
       </section>
     </>
