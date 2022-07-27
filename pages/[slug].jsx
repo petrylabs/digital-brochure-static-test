@@ -1,17 +1,13 @@
 import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
+
 import { getPage } from "../utils/api";
+import { imageAlt, imageSrc } from "../utils/images";
+import { pageSlugs } from "../config";
+import SplitLayout from "../components/SplitLayout";
 
 export async function getStaticPaths() {
-  // TODO: fetch page slugs from dotCMS
-  const pageSlugs = [
-    "auto-insurance",
-    "condo-insurance",
-    "home-insurance",
-    "tenant-insurance",
-  ];
-
   const paths = pageSlugs.map((slug) => ({
     params: {
       slug,
@@ -27,14 +23,15 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const { data } = await getPage(slug);
+
   if (!data) {
-    console.log("error loop");
     return {
       redirect: {
         destination: "/",
       },
     };
   }
+
   return {
     props: {
       title: data.title,
@@ -51,19 +48,21 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
+  /* TEMPORARY: */
+  console.log(content);
+
   return (
     <>
-      {/* CUSTOM PAGE HEAD */}
-
       <Head>
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
-
       <h1>{description}</h1>
 
-      <pre>{JSON.stringify(content, null, 2)}</pre>
+      {/* Section 3 */}
+      <section>
+        <SplitLayout content={content[2]} />
+      </section>
     </>
   );
 }
