@@ -1,9 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
+import parse from "html-react-parser";
 
 import { getPage } from "../utils/api";
-import { imageAlt, imageSrc } from "../utils/images";
+import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 
@@ -59,8 +60,11 @@ function LandingPage(props) {
 
       <h1>{description}</h1>
 
+      {/* Intro */}
+      <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
+
       {/* Section 3 */}
-      <section>
+      <section className="bg-white">
         <SplitLayout content={content[2]} />
       </section>
     </>
