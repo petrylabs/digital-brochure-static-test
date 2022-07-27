@@ -3,3 +3,13 @@ Global styles are mostly being loaded from https://www.sonnet.ca/asset/css/sonne
 within the custon `_document` file.
 Only overrides to those styles should be added here.
 */
+
+@use "sass:map";
+@import "./globals/layout.scss";
+@import "./globals/color.scss";
+
+main {
+  max-width: map.get($breakpoints, "xl");
+  margin-inline: auto;
+  background-color: $color-grey-03;
+}
