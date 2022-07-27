@@ -3,3 +3,9 @@ Global styles are mostly being loaded from https://www.sonnet.ca/asset/css/sonne
 within the custon `_document` file.
 Only overrides to those styles should be added here.
 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

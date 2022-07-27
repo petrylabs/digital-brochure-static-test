@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import "../scss/styles.scss";
 
 /**
@@ -9,9 +10,12 @@ import "../scss/styles.scss";
 
 function CustomApp({ Component, pageProps }) {
   return (
-    <main id="main-content">
-      <Component {...pageProps} />
-    </main>
+    <>
+      <Header />
+      <main id="main-content">
+        <Component {...pageProps} />
+      </main>
+    </>
   );
 }
 

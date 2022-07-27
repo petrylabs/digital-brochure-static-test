@@ -1,0 +1,26 @@
+@use "sass:map";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/color.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: map.get($breakpoints, xl);
+  margin-inline: auto;
+  height: 64px;
+  padding-inline: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-white;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 1px 4px $color-grey-07;
+
+  @include mq-min-width(md) {
+    padding-inline: 37px;
+  }
+}
