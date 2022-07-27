@@ -10,10 +10,22 @@ import styles from "./Header.module.scss";
 function Header() {
   return (
     <header className={styles.header}>
-      <a href="www.sonnet.ca">Sonnet</a>
+      {/* Skip link */}
+      <a
+        href="#main-content"
+        className={`visually-hidden-focusable ${styles.skipNavLink}`}
+      >
+        {/* TODO: populate from CMS */}
+        Skip to main content
+      </a>
 
+      {/* Wordmark / Home link */}
+      <a href="https://www.sonnet.ca">Sonnet</a>
+
+      {/* Main Nav */}
       <div>main nav here</div>
 
+      {/* Secondary Nav */}
       <div>extra links here</div>
     </header>
   );

@@ -1,6 +1,7 @@
 @use "sass:map";
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/a11y.scss";
 
 .header {
   position: fixed;
@@ -21,6 +22,31 @@
   box-shadow: 0 1px 4px $color-grey-07;
 
   @include mq-min-width(md) {
-    padding-inline: 37px;
+    padding-inline: 20px;
+  }
+
+  @include mq-min-width(lg) {
+    padding-inline: 135px;
+  }
+}
+
+.skipNavLink {
+  @include visually-hidden-focusable;
+  @include focus-border;
+
+  position: absolute;
+  top: 5px;
+  left: 0;
+  color: $color-primary-grey;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+
+  @include mq-min-width(md) {
+    left: 20px;
+  }
+
+  @include mq-min-width(lg) {
+    left: 135px;
   }
 }
