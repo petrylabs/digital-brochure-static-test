@@ -1,0 +1,47 @@
+@import "../../scss/globals/color";
+@import "../../scss/globals/layout";
+@import "../../scss/globals/fonts.scss";
+
+.heroContainer {
+  position: relative;
+  border: 5px solid black;
+  background-color: $color-white;
+  height: 625px;
+  max-width: 100%;
+}
+
+.backgroundContainer {
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+
+  picture img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.heroContentContainer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  max-width: 100%;
+  padding: 4em 8em;
+}
+
+.content {
+  margin-top: 22px;
+  width: 60%;
+  h1 {
+  }
+
+  p {
+    margin: 1em 0 2em;
+  }
+}
+
+.buttonGroup {
+  display: inline-block;
+  margin-right: 1.25em;
+}
