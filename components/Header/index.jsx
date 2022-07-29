@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import CTA from "../CTA";
 import styles from "./Header.module.scss";
 
 /**
@@ -13,7 +14,7 @@ function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const screenWidth = useWindowWidth();
-  const isMobile = screenWidth < breakpoints.md;
+  const isMobile = screenWidth < breakpoints.sm;
   const isDesktop = screenWidth >= breakpoints.lg;
 
   return (
@@ -28,7 +29,14 @@ function Header() {
         {/* Wordmark / Home link */}
         <a href="https://www.sonnet.ca">Sonnet</a>
 
-        {!isDesktop && <div>quote cta, menu button</div>}
+        {!isDesktop && (
+          <div className={styles.mobileNavbar}>
+            <CTA type="primary" small={isMobile}>
+              {isMobile ? "Quote" : "Get a Quote"}
+            </CTA>
+            <button type="button">menu</button>
+          </div>
+        )}
 
         {isDesktop && (
           <>
