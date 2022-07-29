@@ -1,4 +1,8 @@
+import React, { useState } from "react";
+
+import ModalContext from "../context/modal";
 import Header from "../components/Header";
+import Modal from "../components/Modal";
 import "../scss/styles.scss";
 
 /**
@@ -9,13 +13,19 @@ import "../scss/styles.scss";
  */
 
 function CustomApp({ Component, pageProps }) {
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+
   return (
-    <>
+    <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
       <Header />
       <main id="main-content">
         <Component {...pageProps} />
       </main>
-    </>
+
+      <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
+        <>Quote modal content!</>
+      </Modal>
+    </ModalContext.Provider>
   );
 }
 

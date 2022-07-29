@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { breakpoints } from "../../config";
+import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
 import styles from "./Header.module.scss";
@@ -17,6 +18,8 @@ function Header() {
   const isMobile = screenWidth < breakpoints.sm;
   const isDesktop = screenWidth >= breakpoints.lg;
 
+  const { setIsQuoteModalOpen } = useContext(ModalContext);
+
   return (
     <header className={styles.header} onMouseLeave={() => setIsExpanded(false)}>
       {/* Skip link */}
@@ -31,7 +34,11 @@ function Header() {
 
         {!isDesktop && (
           <div className={styles.mobileNavbar}>
-            <CTA type="primary" small={isMobile}>
+            <CTA
+              type="primary"
+              small={isMobile}
+              onClick={() => setIsQuoteModalOpen(true)}
+            >
               {isMobile ? "Quote" : "Get a Quote"}
             </CTA>
             <button type="button">menu</button>
