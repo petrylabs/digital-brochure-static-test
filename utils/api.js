@@ -36,7 +36,7 @@ async function get(url) {
  * @returns page data
  */
 export async function getPage(slug) {
-  const pageDataResponse = await get(`${apiUrl}/page/render/${slug}/index`);
+  const pageDataResponse = await get(`${apiUrl}/v1/page/render/${slug}/index`);
   let { data, error } = pageDataResponse;
 
   if (data && data.entity) {
@@ -110,21 +110,71 @@ function getFullContainers(column, containers) {
  * @returns API response with the related content
  */
 export function getContentRelationshipData(identifier) {
-  return get(`${apiUrl}/contentrelationships/id/${identifier}`);
+  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}`);
 }
 
-export const getNav = () => {
-  // add nav items call
-};
-
+/**
+ * Get header data and menu items from API
+ * @returns API response with header data and nav menu items
+ */
 export const getHeader = () => {
-  // add header items call
+  return get(`${apiUrl}/vtl/headermenu`);
 };
 
+/**
+ * Get footer data and menu items from API
+ * @returns API response with footer data and menu items
+ */
 export const getFooter = () => {
-  // add footer items call
+  return get(`${apiUrl}/vtl/footermenu`);
 };
 
-export const getModal = () => {
-  // add modal items call
+/**
+ * Get sign up modal data from API
+ * @returns API response with sign up modal data
+ */
+export const getNewsLetterModal = () => {
+  return get(`${apiUrl}/vtl/newsletterform`);
 };
+
+/**
+ * Get Get a Quote modal data
+ * @returns get a quote modal data
+ */
+export async function getGaqModal() {
+  const modalDataResponse = await get(
+    `${apiUrl}/v1/page/render/modals/lea-get-a-quote`
+  );
+  let { data, error } = modalDataResponse;
+
+  if (data && data.entity) {
+    const { layout, containers, page } = data.entity;
+    const content = getPageContent(layout.body.rows, containers);
+
+    /** Get all related content */
+    const contentRelationships = content.map((item) =>
+      getContentRelationshipData(item.identifier)
+    );
+
+    return Promise.all(contentRelationships).then((relations) => {
+      relations.map((data, i) => {
+        content[i].fields = data.data[0];
+      });
+
+      return {
+        data: {
+          title: page.title,
+          seodescription: page.seodescription,
+          description: page.description,
+          content,
+        },
+        error,
+      };
+    });
+  } else {
+    return {
+      data: null,
+      error,
+    };
+  }
+}
