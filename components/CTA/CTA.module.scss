@@ -8,4 +8,12 @@
   &.secondary {
     @include cta-secondary;
   }
+
+  &.ctaSmall {
+    display: inline-block;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 23px;
+  }
 }
