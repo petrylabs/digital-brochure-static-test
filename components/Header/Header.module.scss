@@ -33,7 +33,7 @@
     left: 20px;
   }
 
-  @include mq-min-width(lg) {
+  @include mq-min-width(xl) {
     left: 135px;
   }
 }
@@ -45,7 +45,7 @@
     padding-inline: 20px;
   }
 
-  @include mq-min-width(lg) {
+  @include mq-min-width(xl) {
     padding-inline: 135px;
   }
 }

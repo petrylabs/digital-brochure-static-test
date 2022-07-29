@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { breakpoints } from "../../config";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import styles from "./Header.module.scss";
 
 /**
@@ -9,6 +11,10 @@ import styles from "./Header.module.scss";
  */
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < breakpoints.md;
+  const isDesktop = screenWidth >= breakpoints.lg;
 
   return (
     <header className={styles.header} onMouseLeave={() => setIsExpanded(false)}>
@@ -22,22 +28,27 @@ function Header() {
         {/* Wordmark / Home link */}
         <a href="https://www.sonnet.ca">Sonnet</a>
 
-        {/* Main Nav */}
-        {/* TODO: replace with desktop nav bar */}
-        <div>
-          <button
-            type="button"
-            onMouseEnter={() => setIsExpanded(true)}
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-controls="expanded-panel"
-            aria-expanded={isExpanded}
-          >
-            nav item
-          </button>
-        </div>
+        {!isDesktop && <div>quote cta, menu button</div>}
 
-        {/* Secondary Nav */}
-        <div>extra links here</div>
+        {isDesktop && (
+          <>
+            {/* TODO: replace with desktop nav bar */}
+            <div>
+              <button
+                type="button"
+                onMouseEnter={() => setIsExpanded(true)}
+                onClick={() => setIsExpanded(!isExpanded)}
+                aria-controls="expanded-panel"
+                aria-expanded={isExpanded}
+              >
+                nav item
+              </button>
+            </div>
+
+            {/* Secondary Nav */}
+            <div>extra links here</div>
+          </>
+        )}
       </div>
 
       {/* Expansion panel */}
