@@ -31,10 +31,10 @@ function PageHero(props) {
     logoImage = null;
   }
 
+  console.log(logoImage);
+
   const isMultipleButtons = Array.isArray(children);
   var buttonGroups;
-  console.log(children);
-  console.log(isMultipleButtons);
   if (isMultipleButtons) {
     buttonGroups = children.filter((child, i) => i < 3);
   }
@@ -70,8 +70,13 @@ function PageHero(props) {
         </picture>
       </div>
 
-      <div className={styles.heroContentContainer}>
+      <div
+        className={`${
+          logoImage ? `${styles.withImage}` : `${styles.heroContentContainer}`
+        } `}
+      >
         <div className={styles.content}>
+          {logoImage ?? <>{logoImage}</>}
           <h1>{mainText}</h1>
           <p>{subText}</p>
           {isMultipleButtons ? (

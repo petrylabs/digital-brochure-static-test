@@ -27,7 +27,19 @@
   right: 0;
   left: 0;
   max-width: 100%;
-  padding: 4em 8em;
+  padding: 60px 135px;
+}
+
+.withImage {
+  position: absolute;
+  right: 0;
+  left: 0;
+  max-width: 100%;
+  padding: 0 135px 60px;
+}
+
+.logoPresent {
+  margin-top: 10px;
 }
 
 .content {
