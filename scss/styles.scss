@@ -5,6 +5,7 @@ Only overrides to those styles should be added here.
 */
 
 @use "sass:map";
+@import "./globals/fonts.scss";
 @import "./globals/layout.scss";
 @import "./globals/color.scss";
 
