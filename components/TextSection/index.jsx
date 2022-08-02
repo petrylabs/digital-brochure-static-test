@@ -1,30 +1,26 @@
-import React from "react"; 
+import React from "react";
 import PropTypes from "prop-types";
-import styles from "./TextSection.module.scss"; 
+import styles from "./TextSection.module.scss";
 
-/** 
-* TextSection 
-* @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179769946/TextSection 
-*/ 
+/**
+ * TextSection
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179769946/TextSection
+ */
 
 function TextSection(props) {
-  const titleString = props.titleString;
-  const copyString = props.copyString;
+  const { title, copy } = props;
 
   return (
-    <div className={styles.spacings}>
-      {titleString.length && <h2 className={styles.header}>{titleString}</h2>}
-      {copyString && <div className={`${styles.content}`}>{copyString}</div>}
-    </div>
+    <section className={styles.section}>
+      {title && <h2 className={styles.heading}>{title}</h2>}
+      {copy}
+    </section>
   );
 }
 
 TextSection.propTypes = {
-  titleString: PropTypes.string,
-  copyString: PropTypes.node
-}
+  title: PropTypes.string,
+  copy: PropTypes.node,
+};
 
-export default TextSection; 
-
- 
- 
+export default TextSection;

@@ -5,7 +5,6 @@ import Modal from "../../components/Modal";
 import InfoCard from "../../components/InfoCard";
 import ThreeItemLayout from "../../components/ThreeItemLayout";
 import CTA from "../../components/CTA";
-import SplitLayout from "../../components/SplitLayout";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
@@ -14,18 +13,6 @@ import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
 import PageHero from "../../components/PageHero";
 
-function TestCopyComponent() {
-  return (
-    <>
-      <h2>sunt aut facere repellat provident</h2>
-      <div>
-        quia et suscipit suscipit recusandae consequuntur expedita et cum
-        reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt
-        rem eveniet architecto
-      </div>
-    </>
-  );
-}
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
 
@@ -135,10 +122,6 @@ export default function TestPage() {
         ></InfoCard>
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
-      <br />
-      <SplitLayout contentRight={true} imageSRC={placeholderImage}>
-        <TestCopyComponent />
-      </SplitLayout>
 
       <ThreeItemLayout>
         <BlogCard
