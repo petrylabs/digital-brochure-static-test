@@ -20,7 +20,7 @@ function PageHero(props) {
         />
         <source media="(max-width: 1023px)" srcSet={imageData.large.logoUrl} />
         <img
-          className="logo-image"
+          className={styles.logoPresent}
           loading="lazy"
           src={imageData.extra_small.logoUrl}
           alt={imageData.extra_small.logoAltText}
@@ -43,14 +43,6 @@ function PageHero(props) {
     <div className={styles.heroContainer}>
       <div className={styles.backgroundContainer}>
         <picture>
-          <source
-            media="(max-width: 575px)"
-            srcSet={imageData.extra_small.styles.backgroundImage}
-          />
-          <source
-            media="(max-width: 767px)"
-            srcSet={imageData.small.styles.backgroundImage}
-          />
           <source
             media="(max-width: 1023px)"
             srcSet={imageData.medium.styles.backgroundImage}
@@ -91,6 +83,22 @@ function PageHero(props) {
             </div>
           )}
         </div>
+      </div>
+      <div className={styles.mobileImageContainer}>
+        <picture>
+          <source
+            media="(max-width: 0px)"
+            srcSet={imageData.extra_small.styles.backgroundImage}
+          />
+          <source
+            media="(max-width: 767px)"
+            srcSet={imageData.small.styles.backgroundImage}
+          />
+          <img
+            alt="mobile hero image"
+            src={imageData.extra_small.styles.backgroundImage}
+          ></img>
+        </picture>
       </div>
     </div>
   );
