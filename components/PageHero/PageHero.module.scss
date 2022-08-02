@@ -86,7 +86,7 @@
   }
 }
 
-@include mq-min-width(320) {
+@include mq-min-width(bsm) {
   .content {
     h1 {
       font-size: 1.563rem;
@@ -100,7 +100,7 @@
   }
 }
 
-@include mq-min-width(700) {
+@include mq-min-width(bmd) {
   .content {
     h1 {
       font-size: 2.063rem;
