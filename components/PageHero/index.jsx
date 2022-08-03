@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import PropTypes from "prop-types";
 import styles from "./PageHero.module.scss";
+import CTA from "../CTA";
+import Modal from "../Modal";
 
 /**
  * PageHero
@@ -8,22 +11,30 @@ import styles from "./PageHero.module.scss";
  */
 
 function PageHero(props) {
-  const { children, mainText, subText, properties } = props;
-  const imageData = JSON.parse(properties);
+  const { content } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
   var logoImage;
-  if (imageData.extra_small.logoUrl || imageData.large.logoUrl) {
+
+  // !Logo
+  if (
+    content.fields["Hero.smScreenLogo"] !== undefined &&
+    content.fields["Hero.lgScreenLogo"] !== undefined
+  ) {
     logoImage = (
       <picture>
         <source
           media="(max-width: 575px)"
-          srcSet={imageData.extra_small.logoUrl}
+          srcSet={content.fields["Hero.smScreenLogo"][0]}
         />
-        <source media="(max-width: 1023px)" srcSet={imageData.large.logoUrl} />
+        <source
+          media="(max-width: 1023px)"
+          srcSet={content.fields["Hero.lgScreenLogo"][0]}
+        />
         <img
           className={styles.logoPresent}
           loading="lazy"
-          src={imageData.extra_small.logoUrl}
-          alt={imageData.extra_small.logoAltText}
+          src={content.fields["Hero.smScreenLogo"][0]}
+          alt={content.fields["Hero.smScreenLogo"][0]}
         />
       </picture>
     );
@@ -31,33 +42,36 @@ function PageHero(props) {
     logoImage = null;
   }
 
-  console.log(logoImage);
-
-  const isMultipleButtons = Array.isArray(children);
-  var buttonGroups;
-  if (isMultipleButtons) {
-    buttonGroups = children.filter((child, i) => i < 3);
-  }
+  // !Button
+  // const isMultipleButtons = Array.isArray(content);
+  // var buttonGroups;
+  // if (isMultipleButtons) {
+  //   buttonGroups = children.filter((child, i) => i < 3);
+  // }
 
   return (
     <div className={styles.heroContainer}>
       <div className={styles.backgroundContainer}>
         <picture>
+          {/* !Image src 
+          /dA/8409150e3a/HERO-P_home@2x.jpg
+          */}
+          <source
+            media="(max-width: 768px)"
+            srcSet={content.fields["Hero.tabletImage"][0].fileAsset}
+          />
           <source
             media="(max-width: 1023px)"
-            srcSet={imageData.medium.styles.backgroundImage}
+            srcSet={content.fields["Hero.desktopImage"][0].fileAsset}
           />
           <source
-            media="(max-width: 1439px)"
-            srcSet={imageData.large.styles.backgroundImage}
+            media="(min-width: 1200px)"
+            srcSet={content.fields["Hero.desktopHdImage"][0].fileAsset}
           />
-          <source
-            media="(min-width: 1440px)"
-            srcSet={imageData.extra_large.styles.backgroundImage}
-          />
-          <img
-            src={imageData.medium.styles.backgroundImage}
+          <Image
+            src={content.fields["Hero.tabletImage"][0].fileAsset}
             alt="hero background img"
+            layout="fill"
           />
         </picture>
       </div>
@@ -69,35 +83,38 @@ function PageHero(props) {
       >
         <div className={styles.content}>
           {logoImage ?? <>{logoImage}</>}
-          <h1>{mainText}</h1>
-          <p>{subText}</p>
+          <h1>{content.headline}</h1>
+          <p>{content.copy}</p>
+          {/* !Button2 
           {isMultipleButtons ? (
             buttonGroups.map((btn, i) => (
               <div className={styles.buttonGroup} key={i}>
                 {btn}
               </div>
             ))
-          ) : (
-            <div className={styles.buttonGroup} key={1}>
-              {children}
-            </div>
-          )}
+          ) : ( */}
+          <div className={styles.buttonGroup} key={1}>
+            <CTA type={content.buttonType} onClick={() => setIsModalOpen(true)}>
+              {content.cta}
+            </CTA>
+            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+              <>Modal content!</>
+            </Modal>
+          </div>
+          {/* )} */}
         </div>
       </div>
       <div className={styles.mobileImageContainer}>
         <picture>
           <source
             media="(max-width: 0px)"
-            srcSet={imageData.extra_small.styles.backgroundImage}
+            srcSet={content.fields["Hero.mobileImage"][0].fileAsset}
           />
-          <source
-            media="(max-width: 767px)"
-            srcSet={imageData.small.styles.backgroundImage}
-          />
-          <img
+          <Image
             alt="mobile hero image"
-            src={imageData.extra_small.styles.backgroundImage}
-          ></img>
+            src={content.fields["Hero.mobileImage"][0].fileAsset}
+            layout="fill"
+          />
         </picture>
       </div>
     </div>
@@ -105,10 +122,7 @@ function PageHero(props) {
 }
 
 PageHero.propTypes = {
-  children: PropTypes.node,
-  mainText: PropTypes.string.isRequired,
-  subText: PropTypes.string.isRequired,
-  properties: PropTypes.string,
+  content: PropTypes.string.isRequired,
 };
 
 export default PageHero;
