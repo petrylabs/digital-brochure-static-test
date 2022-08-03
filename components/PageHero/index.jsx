@@ -16,6 +16,7 @@ function PageHero(props) {
   var logoImage;
 
   // !Logo
+  // there's no logo for the 4 landing pages. So I cannot figure the data structure
   if (
     content.fields["Hero.smScreenLogo"] !== undefined &&
     content.fields["Hero.lgScreenLogo"] !== undefined
@@ -43,6 +44,8 @@ function PageHero(props) {
   }
 
   // !Button
+  // There's only single button on the 4 landing pages.
+  // So I don't know how the data looks like when it has multiple buttons
   // const isMultipleButtons = Array.isArray(content);
   // var buttonGroups;
   // if (isMultipleButtons) {
@@ -54,6 +57,8 @@ function PageHero(props) {
       <div className={styles.backgroundContainer}>
         <picture>
           {/* !Image src 
+          It looks like fileAsset path is not the actual path to the image
+          on the actual page, the images comes from the path looking like this
           /dA/8409150e3a/HERO-P_home@2x.jpg
           */}
           <source
@@ -85,7 +90,8 @@ function PageHero(props) {
           {logoImage ?? <>{logoImage}</>}
           <h1>{content.headline}</h1>
           <p>{content.copy}</p>
-          {/* !Button2 
+          {/* !Button
+           Same issue as Line 46 
           {isMultipleButtons ? (
             buttonGroups.map((btn, i) => (
               <div className={styles.buttonGroup} key={i}>
@@ -108,10 +114,12 @@ function PageHero(props) {
         <picture>
           <source
             media="(max-width: 0px)"
+            // !Image src Same issue as Line 59
             srcSet={content.fields["Hero.mobileImage"][0].fileAsset}
           />
           <Image
             alt="mobile hero image"
+            // !Image src Same issue as Line 59
             src={content.fields["Hero.mobileImage"][0].fileAsset}
             layout="fill"
           />
