@@ -49,7 +49,10 @@ You will need:
 
 ## Git strategy
 
-Following common practice for the Definity team, this project employs [trunk-based development](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development), with the trunk branch being `main`.
+This project follows a simple [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) workflow.
+
+- **Production branch:** `main`
+- **Development branch:** `develop`
 
 Development branches should branch from `develop` and be named according to the corresponding Jira ticket (if any):
 
