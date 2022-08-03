@@ -4,6 +4,7 @@ import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
+import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import styles from "./Header.module.scss";
 
@@ -26,7 +27,7 @@ function Header() {
       <SkipNavLink />
 
       <div className={`${styles.headerContainer} ${styles.headerBar}`}>
-        <a href="https://www.sonnet.ca">Sonnet</a>
+        <HomeLogoLink />
 
         {!isDesktop && (
           <div className={styles.mobileNavbar}>
