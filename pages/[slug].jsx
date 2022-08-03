@@ -52,6 +52,8 @@ function LandingPage(props) {
 
   /* TEMPORARY: */
   console.log(content);
+  console.log(content[0].fields["Hero.desktopHdImage"][0].identifier);
+  console.log(content[2]);
 
   return (
     <>
