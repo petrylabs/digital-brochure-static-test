@@ -1,7 +1,6 @@
 @use "sass:map";
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/color.scss";
-@import "../../scss/globals/a11y.scss";
 
 .header {
   position: fixed;
@@ -17,29 +16,16 @@
   box-shadow: 0 1px 4px $color-grey-07;
 }
 
-.skipNavLink {
-  @include visually-hidden-focusable;
-  @include focus-border;
-
-  position: absolute;
-  top: 5px;
-  left: 0;
-  color: $color-primary-grey;
-  font-size: 12px;
-  line-height: 14px;
-  text-decoration: none;
-
-  @include mq-min-width(md) {
-    left: 20px;
-  }
-
-  @include mq-min-width(xl) {
-    left: 135px;
-  }
-}
-
-.headerContainer {
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
   padding-inline: 30px;
+
+  @include mq-min-width(sm) {
+    height: 64px;
+  }
 
   @include mq-min-width(md) {
     padding-inline: 20px;
@@ -47,17 +33,6 @@
 
   @include mq-min-width(xl) {
     padding-inline: 135px;
-  }
-}
-
-.headerBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 49px;
-
-  @include mq-min-width(sm) {
-    height: 64px;
   }
 }
 
@@ -69,4 +44,13 @@
 .headerExpanded {
   height: 150px;
   border-top: 1px solid lightgrey;
+  padding-inline: 30px;
+
+  @include mq-min-width(md) {
+    padding-inline: 20px;
+  }
+
+  @include mq-min-width(xl) {
+    padding-inline: 135px;
+  }
 }

@@ -4,6 +4,7 @@ import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
+import SkipNavLink from "../SkipNavLink";
 import styles from "./Header.module.scss";
 
 /**
@@ -22,14 +23,9 @@ function Header() {
 
   return (
     <header className={styles.header} onMouseLeave={() => setIsExpanded(false)}>
-      {/* Skip link */}
-      <a href="#main-content" className={styles.skipNavLink}>
-        {/* TODO: populate from CMS */}
-        Skip to main content
-      </a>
+      <SkipNavLink />
 
       <div className={`${styles.headerContainer} ${styles.headerBar}`}>
-        {/* Wordmark / Home link */}
         <a href="https://www.sonnet.ca">Sonnet</a>
 
         {!isDesktop && (
