@@ -17,6 +17,7 @@ function HamburgerButton(props) {
       type="button"
       onClick={() => setIsExpanded(!isExpanded)}
       aria-controls={ariaControls}
+      aria-expanded={isExpanded}
       className={`hamburger hamburger--squeeze js-hamburger ${
         styles.hamburgerCustom
       } ${isExpanded ? "is-active" : ""}`}
