@@ -4,6 +4,7 @@ import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
+import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import styles from "./Header.module.scss";
@@ -23,10 +24,16 @@ function Header() {
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   return (
-    <header className={styles.header} onMouseLeave={() => setIsExpanded(false)}>
+    <header
+      className={styles.header}
+      onMouseLeave={() => {
+        if (isDesktop) setIsExpanded(false);
+      }}
+    >
       <SkipNavLink />
 
-      <div className={`${styles.headerContainer} ${styles.headerBar}`}>
+      {/* HEADER BAR */}
+      <div className={styles.headerBar}>
         <HomeLogoLink />
 
         {!isDesktop && (
@@ -38,7 +45,10 @@ function Header() {
             >
               {isMobile ? "Quote" : "Get a Quote"}
             </CTA>
-            <button type="button">menu</button>
+            <HamburgerButton
+              ariaControls="mobile-nav"
+              state={[isExpanded, setIsExpanded]}
+            />
           </div>
         )}
 
@@ -63,13 +73,19 @@ function Header() {
         )}
       </div>
 
-      {/* Expansion panel */}
+      {/* EXPANSION PANEL */}
       {isExpanded && (
         <div
           id="expanded-panel"
-          className={`${styles.headerContainer} ${styles.headerExpanded}`}
+          className={`${
+            isDesktop ? styles.headerPanelDesktop : styles.headerPanelMobile
+          }`}
         >
-          sub-navigation, search input
+          {isDesktop ? (
+            <>sub-navigation, search input</>
+          ) : (
+            <div id="mobile-nav">mobile nav</div>
+          )}
         </div>
       )}
     </header>

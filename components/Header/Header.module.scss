@@ -41,8 +41,8 @@
   align-items: center;
 }
 
-.headerExpanded {
-  height: 150px;
+.headerPanelDesktop {
+  height: auto;
   border-top: 1px solid lightgrey;
   padding-inline: 30px;
 
@@ -53,4 +53,9 @@
   @include mq-min-width(xl) {
     padding-inline: 135px;
   }
+}
+
+.headerPanelMobile {
+  height: 100vh;
+  transition: height 0.5s ease;
 }
