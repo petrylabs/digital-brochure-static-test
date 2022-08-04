@@ -21,6 +21,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
 - [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding
+- [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wite data
 
 ---
 
@@ -46,6 +47,7 @@ You will need:
 - `/pages`: static page templates
 - `/scss`: style files
 - `/utils`: utility & helper functions
+- `/site-data`: prefetched site wide data for header, footer and modals
 
 ## Git strategy
 
