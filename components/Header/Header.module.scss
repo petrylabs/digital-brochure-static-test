@@ -42,13 +42,8 @@
 }
 
 .headerPanelDesktop {
-  height: auto;
   border-top: 1px solid lightgrey;
-  padding-inline: 30px;
-
-  @include mq-min-width(md) {
-    padding-inline: 20px;
-  }
+  padding-inline: 20px;
 
   @include mq-min-width(xl) {
     padding-inline: 135px;
@@ -56,6 +51,9 @@
 }
 
 .headerPanelMobile {
+  overflow: hidden;
   height: 100vh;
-  transition: height 0.5s ease;
+  transition: max-height 0.5s ease;
+  padding-left: 37px;
+  padding-right: 14px;
 }

@@ -17,10 +17,12 @@ import styles from "./Header.module.scss";
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
   const isDesktop = screenWidth >= breakpoints.lg;
 
+  /* Handling modal display: */
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   return (
@@ -32,19 +34,21 @@ function Header() {
     >
       <SkipNavLink />
 
-      {/* HEADER BAR */}
+      {/* HEADER BAR ----------------------------------------------------------- */}
       <div className={styles.headerBar}>
         <HomeLogoLink />
 
         {!isDesktop && (
           <div className={styles.mobileNavbar}>
-            <CTA
-              type="primary"
-              small={isMobile}
-              onClick={() => setIsQuoteModalOpen(true)}
-            >
-              {isMobile ? "Quote" : "Get a Quote"}
-            </CTA>
+            {!isExpanded && (
+              <CTA
+                type="primary"
+                small={isMobile}
+                onClick={() => setIsQuoteModalOpen(true)}
+              >
+                {isMobile ? "Quote" : "Get a Quote"}
+              </CTA>
+            )}
             <HamburgerButton
               ariaControls="mobile-nav"
               state={[isExpanded, setIsExpanded]}
@@ -73,19 +77,22 @@ function Header() {
         )}
       </div>
 
-      {/* EXPANSION PANEL */}
-      {isExpanded && (
+      {/* EXPANSION PANEL ----------------------------------------------------------- */}
+      {isDesktop && isExpanded && (
+        // TODO: replace with desktop nav
+        <div id="expanded-panel" className={styles.headerPanelDesktop}>
+          sub-navigation, search input
+        </div>
+      )}
+
+      {!isDesktop && (
+        // TODO: replace with mobile/tablet nav
         <div
-          id="expanded-panel"
-          className={`${
-            isDesktop ? styles.headerPanelDesktop : styles.headerPanelMobile
-          }`}
+          id="mobile-nav"
+          className={styles.headerPanelMobile}
+          style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
         >
-          {isDesktop ? (
-            <>sub-navigation, search input</>
-          ) : (
-            <div id="mobile-nav">mobile nav</div>
-          )}
+          mobile nav
         </div>
       )}
     </header>
