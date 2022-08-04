@@ -1,0 +1,9 @@
+@import "../../scss/globals/a11y.scss";
+
+.hamburgerCustom {
+  @include focus-border;
+
+  display: flex; // removes space below spans
+  padding: 3px;
+  margin-left: 30px;
+}

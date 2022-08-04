@@ -8,6 +8,7 @@ Only overrides to those styles should be added here.
 @import "./globals/fonts.scss";
 @import "./globals/layout.scss";
 @import "./globals/color.scss";
+@import "./globals/a11y.scss";
 
 *,
 *::before,
@@ -24,4 +25,8 @@ main {
 /* UTILITY CLASSES */
 .bg-white {
   background-color: #fff;
+}
+
+.visually-hidden {
+  @include visually-hidden;
 }
