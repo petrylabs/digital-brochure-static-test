@@ -2,6 +2,8 @@
  * Utilities for extracting required information from image data returned from API
  */
 
+import { baseUrl } from "../config";
+
 const imageFields = [
   "Hero.desktopImage",
   "Hero.desktopHdImage",
@@ -38,7 +40,7 @@ function imageData(contentObj, field) {
 export function imageSrc(contentObj, field) {
   const { identifier, fileName } = imageData(contentObj, field);
   const cleanFileName = fileName.replace("@", "%40");
-  return `https://www.sonnet.ca/dA/${identifier}/${cleanFileName}`;
+  return `${baseUrl}/dA/${identifier}/${cleanFileName}`;
 }
 
 /**
