@@ -1,6 +1,7 @@
 import React from "react";
 import { arrayOf, bool, func, oneOf, string } from "prop-types";
 
+import headerData from "../../site-data/header.preval";
 import styles from "./HamburgerButton.module.scss";
 
 /**
@@ -28,10 +29,7 @@ function HamburgerButton(props) {
 
       {/* For a11y */}
       <span className="visually-hidden">
-        {/* TODO: update & localize from CMS */}
-        {isExpanded
-          ? "close menu / fermer le menu"
-          : "open menu / ouvrir le menu"}
+        {headerData.data.headerMenu.toggleNavigation}
       </span>
     </button>
   );
