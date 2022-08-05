@@ -41,7 +41,9 @@ export async function getPage(slug) {
 
   if (data && data.entity) {
     const { layout, containers, page } = data.entity;
-    const content = getPageContent(layout.body.rows, containers);
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
 
     /** Get all related content */
     const contentRelationships = content.map((item) => {
@@ -170,7 +172,9 @@ export async function getGaqModal() {
 
   if (data && data.entity) {
     const { layout, containers, page } = data.entity;
-    const content = getPageContent(layout.body.rows, containers);
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
 
     /** Get all related content */
     const contentRelationships = content.map((item) =>
@@ -185,7 +189,6 @@ export async function getGaqModal() {
       return {
         data: {
           title: page.title,
-          seodescription: page.seodescription,
           description: page.description,
           content,
         },
