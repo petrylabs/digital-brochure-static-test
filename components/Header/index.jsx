@@ -29,9 +29,7 @@ function Header() {
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   /* Handle scrolling: */
-  const hasScrolled = useScrolledPast();
-
-  console.log(content);
+  const hasScrolled = useScrolledPast(150);
 
   return (
     <header
