@@ -1,5 +1,5 @@
 import React from "react";
-import { arrayOf, bool, func, oneOf, string } from "prop-types";
+import { array, string } from "prop-types";
 
 import headerData from "../../site-data/header.preval";
 import styles from "./HamburgerButton.module.scss";
@@ -37,7 +37,7 @@ function HamburgerButton(props) {
 
 HamburgerButton.propTypes = {
   ariaControls: string.isRequired,
-  state: arrayOf(oneOf([bool.isRequired, func.isRequired])).isRequired,
+  state: array.isRequired,
 };
 
 export default HamburgerButton;
