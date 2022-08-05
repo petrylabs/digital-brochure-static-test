@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import useScrolledPast from "../../hooks/useScrolledPast";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -24,6 +25,9 @@ function Header() {
 
   /* Handling modal display: */
   const { setIsQuoteModalOpen } = useContext(ModalContext);
+
+  /* Handle scrolling: */
+  const hasScrolled = useScrolledPast();
 
   return (
     <header
@@ -72,7 +76,16 @@ function Header() {
             </div>
 
             {/* Secondary Nav */}
-            <div>extra links here</div>
+            {/* TODO: replace with secondary nav component? */}
+            <div className={styles.secondaryNav}>
+              {hasScrolled ? (
+                <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
+                  Get a Quote
+                </CTA>
+              ) : (
+                <>extra links here</>
+              )}
+            </div>
           </>
         )}
       </div>
