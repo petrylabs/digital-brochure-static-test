@@ -44,13 +44,21 @@ export async function getPage(slug) {
     const content = getPageContent(layout.body.rows, containers);
 
     /** Get all related content */
-    const contentRelationships = content.map((item) =>
-      getContentRelationshipData(item.identifier)
-    );
+    const contentRelationships = content.map((item) => {
+      if (item.contentType === "AccordionWidget") {
+        return getAccordianWidgetData(item.tagsToDisplay);
+      } else {
+        return getContentRelationshipData(item.identifier);
+      }
+    });
 
     return Promise.all(contentRelationships).then((relations) => {
       relations.map((data, i) => {
-        content[i].fields = data.data[0];
+        if (data.data.hasOwnProperty("contentlets")) {
+          content[i].fields = data.data.contentlets;
+        } else {
+          content[i].fields = data.data[0];
+        }
       });
 
       return {
@@ -111,6 +119,19 @@ function getFullContainers(column, containers) {
  */
 export function getContentRelationshipData(identifier) {
   return get(`${apiUrl}/v1/contentrelationships/id/${identifier}`);
+}
+
+/**
+ * Get related accordian widget data
+ * @param {string} tags tags to pull related content
+ * @returns API response with the related content
+ */
+export function getAccordianWidgetData(tagString) {
+  const tags = tagString.split(",");
+  const tagQuery = tags.map((x) => `+FAQ.tags:"${x}"`).join(" ");
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
+  );
 }
 
 /**
