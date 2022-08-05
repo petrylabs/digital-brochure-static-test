@@ -1,16 +1,14 @@
 import React from "react";
 import Head from "next/head";
-import PropTypes from "prop-types";
+import PropTypes, { object } from "prop-types";
+import parse from "html-react-parser";
+
+import { getPage } from "../utils/api";
+import TextSection from "../components/TextSection";
+import { pageSlugs } from "../config";
+import SplitLayout from "../components/SplitLayout";
 
 export async function getStaticPaths() {
-  // TODO: fetch page slugs from dotCMS
-  const pageSlugs = [
-    "auto-insurance",
-    "condo-insurance",
-    "home-insurance",
-    "tenant-insurance",
-  ];
-
   const paths = pageSlugs.map((slug) => ({
     params: {
       slug,
@@ -23,12 +21,24 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps() {
-  // TODO: fetch page data from dotCMS & return as props
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const { data } = await getPage(slug);
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 
   return {
     props: {
-      temporaryPageTitle: "This is a landing page!",
+      title: data.title,
+      seodescription: data.seodescription,
+      description: data.description,
+      content: data.content,
     },
   };
 }
@@ -37,26 +47,35 @@ export async function getStaticProps() {
  * Landing page template
  */
 function LandingPage(props) {
-  const { temporaryPageTitle } = props;
+  const { title, description, seodescription, content } = props;
+
+  /* TEMPORARY: */
+  console.log(content);
 
   return (
     <>
-      {/* CUSTOM PAGE HEAD */}
-
       <Head>
-        <title>Landing page</title>
+        <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
+      <h1>{description}</h1>
 
-      <h1>{temporaryPageTitle}</h1>
+      {/* Intro */}
+      <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
+
+      {/* Section 3 */}
+      <section className="bg-white">
+        <SplitLayout content={content[2]} />
+      </section>
     </>
   );
 }
 
 LandingPage.propTypes = {
-  /** This is just a placeholder prop! To be removed when we have actual props */
-  temporaryPageTitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  seodescription: PropTypes.string.isRequired,
+  content: PropTypes.arrayOf(object),
 };
 
 export default LandingPage;

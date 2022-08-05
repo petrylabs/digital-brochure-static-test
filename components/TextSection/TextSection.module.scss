@@ -1,0 +1,35 @@
+@import "../../scss/globals/variables.scss";
+@import "../../scss/globals/layout.scss";
+
+.section {
+  padding: 40px 30px;
+
+  @include mq-min-width(md) {
+    padding: 40px 37px;
+    text-align: center;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 60px 71px;
+  }
+
+  @include mq-min-width(xl) {
+    padding: 60px 135px;
+  }
+}
+
+.heading {
+  margin-bottom: 15px;
+
+  @include mq-min-width(md) {
+    margin-bottom: 20px;
+  }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 25px;
+  }
+
+  @include mq-min-width(xl) {
+    margin-bottom: 30px;
+  }
+}

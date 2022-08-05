@@ -1,0 +1,81 @@
+@import "../../scss/globals/color";
+@import "../../scss/globals/layout";
+@import "../../scss/globals/variables.scss";
+
+.navLink {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 10px;
+  color: $color-primary-grey;
+  line-height: 20px;
+  outline: 2px solid transparent;
+  display: block;
+  margin: 0;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: none; // Overwrites the default styling for a from sonnet.css
+    color: $color-primary-grey; // Overwrites the default styling for a from sonnet.css
+    background-color: $color-secondary-medium;
+
+    span {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .newTag,
+    .subText {
+      text-decoration: none;
+    }
+  }
+
+  &:active {
+    background-color: $color-grey-05;
+    border-color: $color-primary-accent;
+  }
+
+  &:focus {
+    border-color: $color-primary-accent;
+  }
+
+  @include mq-min-width(xs) {
+    font-family: $font-regular;
+    font-size: 18px;
+  }
+
+  @include mq-min-width(sm) {
+    font-family: $font-extra-bold;
+  }
+}
+
+.newTag {
+  font-family: $font-regular;
+  font-size: 12px;
+  color: $color-white;
+  text-decoration: none;
+  line-height: 15px;
+  border-radius: 2px;
+  background-color: $color-primary-accent;
+  padding: 0 3px 0 3px;
+  margin-left: 5px;
+}
+
+.subText {
+  font-size: 12px;
+  line-height: 20px;
+  color: $color-primary-grey;
+  text-decoration: none;
+}
+
+@include mq-min-width(xs) {
+  .subText {
+    display: none;
+  }
+}
+
+@include mq-min-width(sm) {
+  .subText {
+    display: block;
+  }
+}

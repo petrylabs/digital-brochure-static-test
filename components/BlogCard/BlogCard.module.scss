@@ -1,0 +1,73 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/variables.scss";
+
+.blogLink {
+  width: 100%;
+  text-decoration: none;
+  display: block;
+}
+
+.blogLink:hover {
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+.blogLink:focus {
+  outline: 5px solid $color-primary-accent;
+}
+
+.blogContainer {
+  position: relative;
+  height: 304px;
+  box-shadow: 0.2px 0.2px 10px $color-grey-06;
+}
+
+.blogContainer:hover {
+  outline: 5px solid $color-primary-accent;
+}
+
+.blogContainer:focus {
+  outline: 5px solid $color-primary-accent;
+}
+
+.blogImage {
+  width: 100%;
+  height: 153px;
+  position: relative;
+}
+
+.blogTag {
+  position: absolute;
+  background-color: $color-secondary-medium;
+  color: $color-primary-grey;
+  padding: 10px 20px;
+  top: 130px;
+  font-size: 14px;
+  font-family: $font-extra-bold;
+  font-weight: 800;
+  line-height: 23px;
+  text-transform: uppercase;
+}
+
+.blogContent {
+  position: relative;
+  padding: 15px;
+  .blogTitle {
+    position: relative;
+    color: $color-primary-grey;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 1.313rem;
+    line-height: 21px;
+  }
+}
+
+.blogMinRead {
+  position: absolute;
+  color: $color-hint;
+  padding-left: 20px;
+  bottom: 16px;
+  font-size: 12px;
+  line-height: 18px;
+}
