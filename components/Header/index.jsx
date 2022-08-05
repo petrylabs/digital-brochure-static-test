@@ -4,6 +4,7 @@ import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
+import headerData from "../../site-data/header.preval";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -16,6 +17,7 @@ import styles from "./Header.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header() {
+  const content = headerData.data.headerMenu;
   const [isExpanded, setIsExpanded] = useState(false);
 
   /* Handling screen sizes: */
@@ -28,6 +30,8 @@ function Header() {
 
   /* Handle scrolling: */
   const hasScrolled = useScrolledPast();
+
+  console.log(content);
 
   return (
     <header
@@ -50,7 +54,7 @@ function Header() {
                 small={isMobile}
                 onClick={() => setIsQuoteModalOpen(true)}
               >
-                {isMobile ? "Quote" : "Get a Quote"}
+                {isMobile ? content.gaqSmall : content.gaq}
               </CTA>
             )}
             <HamburgerButton
@@ -80,7 +84,7 @@ function Header() {
             <div className={styles.secondaryNav}>
               {hasScrolled ? (
                 <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
-                  Get a Quote
+                  {content.gaq}
                 </CTA>
               ) : (
                 <>extra links here</>
