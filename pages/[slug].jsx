@@ -67,9 +67,6 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={content[2]} />
       </section>
-
-      {/* temporary, to test page scroll */}
-      <div style={{ height: "200vh" }} />
     </>
   );
 }

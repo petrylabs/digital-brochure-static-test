@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import ModalContext from "../context/modal";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
+import footerData from "../site-data/footer.preval";
 import "../scss/styles.scss";
-import headerData from "../utils/header.preval";
-import footerData from "../utils/footer.preval";
 
 /**
  * Structure for entire app!
