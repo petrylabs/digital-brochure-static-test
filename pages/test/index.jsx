@@ -92,6 +92,7 @@ export default function TestPage() {
           imgAltText={""}
         ></BlogCard>
       </ThreeItemLayout>
+
       <h2>Modal</h2>
       <CTA type="primary" onClick={() => setIsModalOpen(true)}>
         Open Modal

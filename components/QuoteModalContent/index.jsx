@@ -1,5 +1,6 @@
 import React from "react";
 
+import gaqModalData from "../../site-data/gaqModal.preval.js";
 import styles from "./QuoteModalContent.module.scss";
 
 /**
@@ -7,6 +8,9 @@ import styles from "./QuoteModalContent.module.scss";
  * The body of the "Get a quote" modal (displayed inside a `Modal`)
  */
 function QuoteModalContent() {
+  const content = gaqModalData.data;
+
+  console.log(gaqModalData);
   return (
     <>
       <div className={styles.text}>
