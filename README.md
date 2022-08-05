@@ -20,7 +20,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Prettier](https://prettier.io/) for formatting
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
-- [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding
+- [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding.
 - [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wite data
 
 ---
