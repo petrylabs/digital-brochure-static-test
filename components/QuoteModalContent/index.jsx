@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import parse from "html-react-parser";
 
+import { baseUrl } from "../../config.js";
 import gaqModalData from "../../site-data/gaqModal.preval.js";
 import styles from "./QuoteModalContent.module.scss";
 
@@ -8,61 +11,79 @@ import styles from "./QuoteModalContent.module.scss";
  * The body of the "Get a quote" modal (displayed inside a `Modal`)
  */
 function QuoteModalContent() {
-  const content = gaqModalData.data;
+  const content = gaqModalData.data.content;
 
-  console.log(gaqModalData);
+  const menuItem = (i) => content[i].fields["GetAQuoteButtons.menuItem"][0];
+  const iconSrc = (i, name) =>
+    `${baseUrl}/dA/${
+      content[i].fields[`GetAQuoteButtons.${name}`][0].identifier
+    }`;
+
+  console.log(content);
   return (
-    <>
+    <article>
       <div className={styles.text}>
-        <h1>Let&apos;s get insured</h1>
-        <p>
-          It only takes 5 minutes. What type of insurance are you looking for?
-        </p>
+        <h1>{content[0].headline}</h1>
+        {parse(content[0].copy)}
       </div>
 
       <ul className={styles.linksList}>
+        {/* Home & Auto */}
         <li>
-          <a href="#" className={styles.link}>
-            <span className={`${styles.linkHeading} ${styles.linkHeadingDark}`}>
-              Save upto 20%
-            </span>
-            <span className={styles.linkPanel}>
-              {/* icon here */}
-              <span>Home &amp; Auto</span>
-            </span>
+          <a
+            href={menuItem(1).url}
+            className={styles.link}
+            target={menuItem(1).urlTarget}
+          >
+            <div className={`${styles.linkHeading} ${styles.linkHeadingDark}`}>
+              {content[1].buttonHighlightText}
+            </div>
+            <div className={styles.linkPanel}>
+              <img src={iconSrc(1, "lefticonlg")} alt="" />
+              <img src={iconSrc(1, "righticonlg")} alt="" />
+              <div>{menuItem(1).menuItem}</div>
+            </div>
           </a>
         </li>
+
+        {/* Auto */}
         <li>
-          <a href="#" className={styles.link}>
-            <span className={styles.linkPanel}>
-              {/* icon here */}
-              <span>Auto</span>
-            </span>
+          <a
+            href={menuItem(2).url}
+            className={styles.link}
+            target={menuItem(2).urlTarget}
+          >
+            <div className={styles.linkPanel}>
+              <img src={iconSrc(2, "lefticonlg")} alt="" />
+              <div>{menuItem(2).menuItem}</div>
+            </div>
           </a>
         </li>
+
+        {/* Home */}
         <li>
           <a href="#" className={styles.link}>
-            <span className={styles.linkPanel}>
+            <div className={styles.linkPanel}>
               {/* icon here */}
-              <span>Home</span>
-            </span>
+              <div>?</div>
+            </div>
           </a>
         </li>
+
+        {/* Pet */}
         <li>
           <a href="#" className={`${styles.link} ${styles.linkLightBorder}`}>
-            <span
-              className={`${styles.linkHeading} ${styles.linkHeadingLight}`}
-            >
-              NEW! Protect your furry loved one
-            </span>
-            <span className={styles.linkPanel}>
-              {/* icon here */}
-              <span>Pet</span>
-            </span>
+            <div className={`${styles.linkHeading} ${styles.linkHeadingLight}`}>
+              {content[3].buttonHighlightText}
+            </div>
+            <div className={styles.linkPanel}>
+              <img src={iconSrc(3, "lefticonlg")} alt="" />
+              <div>Pet</div>
+            </div>
           </a>
         </li>
       </ul>
-    </>
+    </article>
   );
 }
 
