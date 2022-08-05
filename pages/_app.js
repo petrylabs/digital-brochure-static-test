@@ -4,6 +4,8 @@ import ModalContext from "../context/modal";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
 import "../scss/styles.scss";
+import headerData from "../utils/header.preval";
+import footerData from "../utils/footer.preval";
 
 /**
  * Structure for entire app!
@@ -18,9 +20,13 @@ function CustomApp({ Component, pageProps }) {
   return (
     <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
       <Header />
+
       <main id="main-content">
         <Component {...pageProps} />
       </main>
+
+      {/* Replace with footer component */}
+      <pre>{JSON.stringify(footerData, null, 2)}</pre>
 
       <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
         <>Quote modal content!</>
