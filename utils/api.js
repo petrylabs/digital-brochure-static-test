@@ -166,7 +166,7 @@ export const getNewsLetterModal = () => {
  */
 export async function getGaqModal() {
   const modalDataResponse = await get(
-    `${apiUrl}/v1/page/render/modals/lea-get-a-quote`
+    `${apiUrl}/v1/page/render/modals/get-a-quote-2`
   );
   let { data, error } = modalDataResponse;
 
