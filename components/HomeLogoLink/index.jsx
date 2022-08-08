@@ -14,6 +14,7 @@ function HomeLogoLink() {
   return (
     <a href={content.logoHref}>
       <Image
+        // TODO: Logo in content is white -- can we get the grey one?
         // src={`${baseUrl}${content.logoUrl}`}
         src={`${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`}
         layout="fixed"
@@ -23,6 +24,7 @@ function HomeLogoLink() {
       />
 
       {/* For a11y */}
+      {/* TODO: is this available from CMS? */}
       <span className="visually-hidden">Home / Acceuil</span>
     </a>
   );
