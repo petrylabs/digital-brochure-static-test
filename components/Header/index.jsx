@@ -30,6 +30,7 @@ function Header() {
 
   /* Handle scrolling: */
   const hasScrolled = useScrolledPast(150);
+  console.log(content);
 
   return (
     <header
