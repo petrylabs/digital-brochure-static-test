@@ -1,0 +1,23 @@
+@import "../../scss/globals/a11y.scss";
+@import "../../scss/globals/layout.scss";
+
+.skipNavLink {
+  @include visually-hidden-focusable;
+  @include focus-border;
+
+  position: absolute;
+  top: 5px;
+  left: 0;
+  color: $color-primary-grey;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+
+  @include mq-min-width(md) {
+    left: 20px;
+  }
+
+  @include mq-min-width(xl) {
+    left: 135px;
+  }
+}
