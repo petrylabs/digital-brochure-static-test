@@ -88,3 +88,19 @@
     padding: 30px;
   }
 }
+
+.plus {
+  margin-inline: 10px;
+
+  &::before {
+    content: "\2795";
+  }
+}
+
+.extIcon {
+  svg {
+    position: relative;
+    left: 0.2em;
+    bottom: 0.2em;
+  }
+}
