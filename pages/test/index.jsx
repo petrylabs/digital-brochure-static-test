@@ -19,44 +19,6 @@ const parsedCopy = parse(htmlCopy);
 const copyHtml = `<p>Getting insured has never been easier with Canada&rsquo;s first online car insurance company. If you live in <a href="/auto-insurance/alberta" target="_self" class="" title="Auto Insurance Ontario">Alberta</a>, <a href="/auto-insurance/ontario" target="_self" class="" hidden-title="" title="Auto Insurance Ontario">Ontario</a>, <a href="/auto-insurance/quebec" target="_self" class="" hidden-title="" title="Auto Insurance Qu&eacute;bec">Québec</a>, New Brunswick, Nova Scotia or P.E.I., you can get a quick quote and buy car insurance online in just a few clicks. Get customized coverage, in language you can understand, at a competitive price &ndash; and do it all online. We&rsquo;ve changed car insurance for the better, so you can worry less and live more.</p>`;
 const parsedCopyHtml = parse(copyHtml);
 
-const properties = `
-    {
-        "extra_small":{
-           "logoUrl": "https://test-economical.dotcmscloud.com/dA/2d4022a9de/tp_SonnetxBoom_notagline_bi.svg",
-           "logoAltText": "WealthSimple logo",
-           "styles":{
-              "backgroundImage":"https://test-economical.dotcmscloud.com/contentAsset/raw-data/922ca9cf-202c-48b7-9630-bfa409e53d23/fileAsset?language_id=1  "}
-        },
-        "small":{
-            "logoUrl": "https://test-economical.dotcmscloud.com/dA/2d4022a9de/tp_SonnetxBoom_notagline_bi.svg",
-            "logoAltText": "WealthSimple logo",
-           "styles":{
-              "backgroundImage":"https://test-economical.dotcmscloud.com/dA/39cf9b8cf9/HERO-P_auto@2x.jpg  "
-           }
-        },
-        "medium":{
-            "logoUrl": "https://test-economical.dotcmscloud.com/dA/0bf0bd85b1/hd_SonnetxBoom_notagline_bi.svg",
-            "logoAltText": "WealthSimple logo",
-           "styles":{
-              "backgroundImage":"https://test-economical.dotcmscloud.com/contentAsset/raw-data/ad5e04f1-e82b-450a-ae5f-f10aa767c02e/fileAsset?language_id=1 "
-           }
-        },
-        "large":{
-            "logoUrl": "https://test-economical.dotcmscloud.com/dA/0bf0bd85b1/hd_SonnetxBoom_notagline_bi.svg",
-            "logoAltText": "WealthSimple logo",
-           "styles":{
-              "backgroundImage":"https://test-economical.dotcmscloud.com/contentAsset/raw-data/0808390f-92e3-4655-9dae-2a48d900e6f6/fileAsset?language_id=1 "
-           }
-        },
-        "extra_large":{
-            "logoUrl": "https://test-economical.dotcmscloud.com/dA/0bf0bd85b1/hd_SonnetxBoom_notagline_bi.svg",
-            "logoAltText": "WealthSimple logo",
-           "styles":{
-              "backgroundImage":"https://test-economical.dotcmscloud.com/contentAsset/raw-data/729e08b0-1ab5-4c3b-8bb9-5d62a4e1e953/fileAsset?language_id=1 "
-           }
-        }
-     }`;
-
 /**
  * This is a TEST PAGE for UI components.
  * To be deleted before release.
@@ -67,25 +29,7 @@ export default function TestPage() {
   return (
     <>
       <h1>UI TEST PAGE</h1>
-      <h2>Page hero with 1 button</h2>
-      <PageHero
-        mainText="Get a home insurance quote and buy online"
-        subText="Protect your house, your stuff and yourself with homeowners insurance – in 5 minutes."
-        properties={properties}
-      >
-        <CTA url="https://www.wikipedia.org">primary link</CTA>
-      </PageHero>
-      <h2>Page hero with 2 buttons</h2>
-      <PageHero
-        mainText="Get a home insurance quote and buy online"
-        subText="Protect your house, your stuff and yourself with homeowners insurance – in 5 minutes."
-        properties={properties}
-      >
-        <CTA url="https://www.wikipedia.org">primary link</CTA>
-        <CTA url="https://www.wikipedia.org" type="secondary">
-          secondary link
-        </CTA>
-      </PageHero>
+
       <br />
       <CTA url="https://www.wikipedia.org">primary link</CTA>
       <CTA url="https://www.wikipedia.org" type="secondary">

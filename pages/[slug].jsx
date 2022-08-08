@@ -63,6 +63,8 @@ function LandingPage(props) {
 
       {/* Page Hero */}
       <PageHero content={content[0]} />
+      <br />
+      <br />
       {/* Intro */}
       <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
 

@@ -2,11 +2,21 @@
 @import "../../scss/globals/layout";
 @import "../../scss/globals/fonts.scss";
 
+//   xs: 0,
+//   ssm: 320px,
+//   sm: 576px,
+//   smd: 700px,
+//   md: 768px,
+//   lg: 1024px,
+//   blg: 1200px,
+//   xl: 1440px,
+
+// col-md-12  hero & snt-hero
 .heroContainer {
-  width: 100%;
+  max-width: 1440px;
+  min-height: 400px;
   position: relative;
   overflow: hidden;
-  background-color: $color-white;
 
   @include mq-min-width(md) {
     height: 400px;
@@ -16,17 +26,31 @@
     height: 500px;
   }
 
-  @include mq-min-width(xl) {
+  @include mq-min-width(blg) {
     height: 625px;
   }
 }
 
+// nav-background-container
 .backgroundContainer {
   position: absolute;
+  max-width: 100%;
+  @include mq-min-width(md) {
+    width: 100%;
+    height: 400px;
+  }
+
+  @include mq-min-width(lg) {
+    height: 500px;
+  }
+
+  @include mq-min-width(blg) {
+    height: 625px;
+  }
 }
 
-.heroContentContainer,
-.withImage {
+// spacings & heroContentContainer
+.heroContentContainer {
   position: relative;
   right: 0;
   left: 0;
@@ -42,17 +66,15 @@
     padding: 0 71px 60px;
   }
 
-  @include mq-min-width(mlg) {
-    padding: 0 135px 60px;
+  @include mq-min-width(blg) {
+    padding: 60px 135px 60px;
   }
 }
 
+// content
 .content {
   margin-top: 20px;
-}
-
-.logoPresent {
-  margin-top: 10px;
+  width: 100%;
 }
 
 .buttonGroup {
@@ -61,12 +83,9 @@
 }
 
 .mobileImageContainer {
-  display: block;
-  img {
-    object-fit: cover;
-    width: 100%;
-    top: 0;
-  }
+  position: relative;
+  min-height: 100vw; // forces square image
+
   @include mq-min-width(md) {
     display: none;
   }
@@ -79,7 +98,6 @@
     }
   }
   .content {
-    width: 100%;
     p {
       margin: 15px 0 30px;
     }
@@ -116,15 +134,21 @@
 
 @include mq-min-width(md) {
   .backgroundContainer {
-    height: 400px;
-    width: 100%;
-
     picture img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
     }
+  }
+
+  .whiteGradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, #fff 115%);
   }
 
   .content {
@@ -133,10 +157,6 @@
 }
 
 @include mq-min-width(lg) {
-  .backgroundContainer {
-    height: 500px;
-  }
-
   .content {
     h1 {
       font-size: 38px;
@@ -151,12 +171,10 @@
   }
 }
 
+// 1200px
 @include mq-min-width(blg) {
-  .backgroundContainer {
-    height: 625px;
-  }
-
   .content {
+    margin-top: 22px;
     h1 {
       font-size: 50px;
       line-height: 65px;

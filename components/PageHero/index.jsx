@@ -16,40 +16,44 @@ function PageHero(props) {
   const { content } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const tabletImageProps = {
-    src: imageSrc(content, "Hero.tabletImage"),
-    alt: imageAlt(content, "Hero.tabletImage"),
-    layout: "fill",
-    objectFit: "cover",
+  const tabletLoader = ({ src }) => {
+    return `${imageSrc(content, "Hero.tabletImage")}`;
   };
 
-  const mobileImageProps = {
-    src: imageSrc(content, "Hero.mobileImage"),
-    alt: imageAlt(content, "Hero.mobileImage"),
-    layout: "fill",
-    objectFit: "cover",
+  const mobileLoader = ({ src }) => {
+    return `${imageSrc(content, "Hero.mobileImage")}`;
   };
-
-  console.log(imageSrc(content, "Hero.desktopHdImage"));
 
   return (
     <div className={styles.heroContainer}>
       <div className={styles.backgroundContainer}>
         <picture>
           <source
-            media="(max-width: 768px)"
+            media="(max-width: 1023px)"
             srcSet={imageSrc(content, "Hero.tabletImage")}
           />
           <source
-            media="(max-width: 1023px)"
+            media="(mix-width: 1199px)"
             srcSet={imageSrc(content, "Hero.desktopImage")}
           />
           <source
-            media="(min-width: 1200px)"
+            media="(max-width: 1440px)"
             srcSet={imageSrc(content, "Hero.desktopHdImage")}
           />
-          <Image {...tabletImageProps} />
+          <source
+            media="(min-width: 1440px)"
+            srcSet={imageSrc(content, "Hero.desktopHdImage")}
+          />
+          <Image
+            loader={tabletLoader}
+            src={imageSrc(content, "Hero.tabletImage")}
+            alt={imageAlt(content, "Hero.tabletImage")}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="0px 5px"
+          />
         </picture>
+        <div className={styles.whiteGradient}></div>
       </div>
 
       <div className={styles.heroContentContainer}>
@@ -68,11 +72,12 @@ function PageHero(props) {
       </div>
       <div className={styles.mobileImageContainer}>
         <picture>
-          <source
-            media="(max-width: 0px)"
-            srcSet={imageSrc(content, "Hero.mobileImage")}
+          <Image
+            loader={mobileLoader}
+            src={imageSrc(content, "Hero.mobileImage")}
+            alt={imageAlt(content, "Hero.mobileImage")}
+            layout="fill"
           />
-          <Image {...mobileImageProps} />
         </picture>
       </div>
     </div>
