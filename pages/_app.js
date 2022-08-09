@@ -1,6 +1,10 @@
+import React, { useState } from "react";
+
+import ModalContext from "../context/modal";
+import Header from "../components/Header";
+import Modal from "../components/Modal";
+import footerData from "../site-data/footer.preval";
 import "../scss/styles.scss";
-import headerData from "../utils/header.preval";
-import footerData from "../utils/footer.preval";
 
 /**
  * Structure for entire app!
@@ -10,16 +14,23 @@ import footerData from "../utils/footer.preval";
  */
 
 function CustomApp({ Component, pageProps }) {
-  return (
-    <main id="main-content">
-      {/* Replace with header component */}
-      <pre>{JSON.stringify(headerData, null, 2)}</pre>
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
-      <Component {...pageProps} />
+  return (
+    <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
+      <Header />
+
+      <main id="main-content">
+        <Component {...pageProps} />
+      </main>
 
       {/* Replace with footer component */}
       <pre>{JSON.stringify(footerData, null, 2)}</pre>
-    </main>
+
+      <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
+        <>Quote modal content!</>
+      </Modal>
+    </ModalContext.Provider>
   );
 }
 

@@ -1,0 +1,67 @@
+@use "sass:map";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/color.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: map.get($breakpoints, xl);
+  margin-inline: auto;
+  background-color: $color-white;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 1px 4px $color-grey-07;
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
+  padding-inline: 30px;
+
+  @include mq-min-width(sm) {
+    height: 64px;
+  }
+
+  @include mq-min-width(md) {
+    padding-inline: 20px;
+  }
+
+  @include mq-min-width(xl) {
+    padding-inline: 135px;
+  }
+}
+
+.mobileNavbar {
+  display: flex;
+  align-items: center;
+}
+
+.secondaryNav {
+  width: 150px; // temp
+  text-align: right;
+}
+
+.headerPanelDesktop {
+  border-top: 1px solid lightgrey;
+  padding-inline: 20px;
+
+  @include mq-min-width(xl) {
+    padding-inline: 135px;
+  }
+}
+
+.headerPanelMobile {
+  overflow: hidden;
+  height: 100vh;
+  padding-left: 37px;
+  padding-right: 14px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: max-height 0.5s ease;
+  }
+}

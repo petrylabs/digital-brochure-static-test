@@ -1,5 +1,5 @@
 import preval from "next-plugin-preval";
-import { getHeader } from "./api";
+import { getHeader } from "../utils/api";
 
 async function getHeaderData() {
   const headerData = await getHeader();
