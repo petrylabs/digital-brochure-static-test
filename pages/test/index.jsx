@@ -11,6 +11,7 @@ import placeholderImage from "./placeholder.jpg";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
+import SearchInput from "../../components/SearchInput";
 
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
@@ -29,6 +30,8 @@ export default function TestPage() {
     <>
       <h1>UI TEST PAGE</h1>
 
+      <h2>Search Button</h2>
+      <SearchInput />
       <CTA url="https://www.wikipedia.org">primary link</CTA>
       <CTA url="https://www.wikipedia.org" type="secondary">
         secondary link
