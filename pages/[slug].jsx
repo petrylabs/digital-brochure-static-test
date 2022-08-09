@@ -52,8 +52,6 @@ function LandingPage(props) {
 
   /* TEMPORARY: */
   console.log(content);
-  console.log(content[0].fields["Hero.desktopHdImage"][0].identifier);
-  console.log(content[2]);
 
   return (
     <>
@@ -63,8 +61,6 @@ function LandingPage(props) {
 
       {/* Page Hero */}
       <PageHero content={content[0]} />
-      <br />
-      <br />
       {/* Intro */}
       <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
 

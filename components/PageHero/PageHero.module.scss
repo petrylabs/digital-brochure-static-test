@@ -2,16 +2,6 @@
 @import "../../scss/globals/layout";
 @import "../../scss/globals/fonts.scss";
 
-//   xs: 0,
-//   ssm: 320px,
-//   sm: 576px,
-//   smd: 700px,
-//   md: 768px,
-//   lg: 1024px,
-//   blg: 1200px,
-//   xl: 1440px,
-
-// col-md-12  hero & snt-hero
 .heroContainer {
   max-width: 1440px;
   min-height: 400px;
@@ -31,10 +21,10 @@
   }
 }
 
-// nav-background-container
 .backgroundContainer {
   position: absolute;
   max-width: 100%;
+  margin-top: 10px;
   @include mq-min-width(md) {
     width: 100%;
     height: 400px;
@@ -49,7 +39,6 @@
   }
 }
 
-// spacings & heroContentContainer
 .heroContentContainer {
   position: relative;
   right: 0;
@@ -59,11 +48,11 @@
 
   @include mq-min-width(md) {
     position: absolute;
-    padding: 0 37px 40px;
+    padding: 40px 37px 40px;
   }
 
   @include mq-min-width(lg) {
-    padding: 0 71px 60px;
+    padding: 60px 71px 60px;
   }
 
   @include mq-min-width(blg) {
@@ -71,7 +60,6 @@
   }
 }
 
-// content
 .content {
   margin-top: 20px;
   width: 100%;
@@ -93,7 +81,7 @@
 
 @include mq-min-width(xs) {
   .backgroundContainer {
-    picture img {
+    img {
       display: none;
     }
   }
@@ -171,7 +159,6 @@
   }
 }
 
-// 1200px
 @include mq-min-width(blg) {
   .content {
     margin-top: 22px;

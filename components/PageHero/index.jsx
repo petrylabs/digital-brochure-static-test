@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import styles from "./PageHero.module.scss";
 import CTA from "../CTA";
 import Modal from "../Modal";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 /**
  * PageHero
@@ -15,44 +16,44 @@ import Modal from "../Modal";
 function PageHero(props) {
   const { content } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const screenWidth = useWindowWidth();
 
-  const tabletLoader = ({ src }) => {
-    return `${imageSrc(content, "Hero.tabletImage")}`;
+  const largeImageLoader = ({ src }) => {
+    return `${imageSrc(content, src)}`;
   };
 
   const mobileLoader = ({ src }) => {
-    return `${imageSrc(content, "Hero.mobileImage")}`;
+    return `${imageSrc(content, src)}`;
   };
+
+  let src;
+  if (screenWidth < 768) {
+    // 0 - 767px
+    src = "Hero.mobileImage";
+  } else if (screenWidth < 1024) {
+    // 768 - 1023px
+    src = "Hero.tabletImage";
+  } else if (screenWidth < 1200) {
+    // 1024 - 1199px
+    src = "Hero.desktopImage";
+  } else if (screenWidth >= 1200) {
+    //1200 - 1440px
+    src = "Hero.desktopHdImage";
+  }
+  let imageTag = (
+    <Image
+      loader={largeImageLoader}
+      src={src}
+      alt={imageAlt(content, src)}
+      layout="fill"
+      objectFit="cover"
+    />
+  );
 
   return (
     <div className={styles.heroContainer}>
       <div className={styles.backgroundContainer}>
-        <picture>
-          <source
-            media="(max-width: 1023px)"
-            srcSet={imageSrc(content, "Hero.tabletImage")}
-          />
-          <source
-            media="(mix-width: 1199px)"
-            srcSet={imageSrc(content, "Hero.desktopImage")}
-          />
-          <source
-            media="(max-width: 1440px)"
-            srcSet={imageSrc(content, "Hero.desktopHdImage")}
-          />
-          <source
-            media="(min-width: 1440px)"
-            srcSet={imageSrc(content, "Hero.desktopHdImage")}
-          />
-          <Image
-            loader={tabletLoader}
-            src={imageSrc(content, "Hero.tabletImage")}
-            alt={imageAlt(content, "Hero.tabletImage")}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="0px 5px"
-          />
-        </picture>
+        {imageTag}
         <div className={styles.whiteGradient}></div>
       </div>
 
@@ -74,7 +75,7 @@ function PageHero(props) {
         <picture>
           <Image
             loader={mobileLoader}
-            src={imageSrc(content, "Hero.mobileImage")}
+            src="Hero.mobileImage"
             alt={imageAlt(content, "Hero.mobileImage")}
             layout="fill"
           />
