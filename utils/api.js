@@ -88,11 +88,13 @@ export async function getPage(slug) {
  * @returns
  */
 function getPageContent(rows, containers) {
-  return rows.map((row) => {
-    return row.columns.map((column) => {
-      return getFullContainers(column, containers);
+  let content = [];
+  rows.map((row) => {
+    row.columns.map((column) => {
+      content = [...content, ...getFullContainers(column, containers)];
     })[0];
   });
+  return content;
 }
 
 /**
@@ -105,7 +107,7 @@ function getFullContainers(column, containers) {
   let contentlets;
   column.containers.map((container) => {
     const fullContainer = containers[container.identifier];
-    contentlets = fullContainer.contentlets[`uuid-${container.uuid}`][0];
+    contentlets = fullContainer.contentlets[`uuid-${container.uuid}`];
     return {
       ...fullContainer.container,
       contentlets: fullContainer.contentlets[`uuid-${container.uuid}`],

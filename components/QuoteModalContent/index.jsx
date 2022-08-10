@@ -64,10 +64,14 @@ function QuoteModalContent() {
 
         {/* Home */}
         <li>
-          <a href="#" className={styles.link}>
+          <a
+            href={menuItem(3).url}
+            target={menuItem(3).urlTarget}
+            className={styles.link}
+          >
             <div className={styles.linkPanel}>
-              {/* icon here */}
-              <div>?</div>
+              <img src={iconSrc(3, "lefticonlg")} alt="" />
+              <div>{menuItem(3).menuItem}</div>
             </div>
           </a>
         </li>
@@ -75,17 +79,17 @@ function QuoteModalContent() {
         {/* Pet */}
         <li>
           <a
-            href={menuItem(3).url}
-            target={menuItem(3).urlTarget}
+            href={menuItem(4).url}
+            target={menuItem(4).urlTarget}
             className={`${styles.link} ${styles.linkLightBorder}`}
           >
             <div className={`${styles.linkHeading} ${styles.linkHeadingLight}`}>
-              {content[3].buttonHighlightText}
+              {content[4].buttonHighlightText}
             </div>
             <div className={styles.linkPanel}>
-              <img src={iconSrc(3, "lefticonlg")} alt="" />
+              <img src={iconSrc(4, "lefticonlg")} alt="" />
               <div>
-                {menuItem(3).menuItem}
+                {menuItem(4).menuItem}
                 <span className={styles.extIcon}>
                   <ExternalLinkIcon />
                 </span>
