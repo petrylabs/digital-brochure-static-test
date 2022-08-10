@@ -32,6 +32,7 @@ export default function TestPage() {
 
       <h2>Search Button</h2>
       <SearchInput />
+      <br />
       <CTA url="https://www.wikipedia.org">primary link</CTA>
       <CTA url="https://www.wikipedia.org" type="secondary">
         secondary link
