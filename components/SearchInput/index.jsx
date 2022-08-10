@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { breakpoints } from "../../config";
+import { array, string } from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import styles from "./SearchInput.module.scss";
 
@@ -9,53 +10,45 @@ import styles from "./SearchInput.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43178917935/SearchInput
  */
 
-function SearchInput() {
-  const [isExpanded, setIsExpanded] = useState(false);
+function SearchInput(props) {
+  const { ariaControls, state } = props;
+  const [isExpanded, setIsExpanded] = state;
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
   const isDesktop = screenWidth >= breakpoints.lg;
 
+  // change classname according to class name
+  // desktop
+  // tablet
+  // mobile
+
+  // change className based on the window size mobile, tablet, desktop
+
   return (
     <>
-      <div>
-        {isDesktop && (
-          <div>
-            <button
-              type="button"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-controls="expanded-panel"
-              aria-expanded={isExpanded}
-            >
-              <span className="iconSearch"></span>
-            </button>
-          </div>
-        )}
+      {/* search button */}
+      <div className={styles.searchButton}>
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          onMouseLeave={() => {
+            setIsExpanded(false);
+          }}
+          aria-controls={ariaControls}
+          aria-expanded={isExpanded}
+        >
+          <span className="iconSearch">S</span>
+        </button>
       </div>
-
-      {isDesktop && isExpanded && (
-        <div>
-          <div className={styles.expandedPanel}>
-            {/* arrow image here - tablet size */}
-            <div className={styles.searchInputArea}>
-              {/* search icon image here */}
-              {/* create label here */}
-              <input
-                type="search"
-                role="textbox"
-                aria-autocomplete="both"
-                placeholder="Search"
-                autoComplete="off"
-              />
-            </div>
-            {/* x button image here - desktop size */}
-            <div className={styles.backdrop}></div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
+
+SearchInput.propTypes = {
+  ariaControls: string.isRequired,
+  state: array.isRequired,
+};
 
 export default SearchInput;

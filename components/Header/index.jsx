@@ -20,10 +20,12 @@ import styles from "./Header.module.scss";
 function Header() {
   const content = headerData.data.headerMenu;
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
+  const isTablet = screenWidth < breakpoints.md;
   const isDesktop = screenWidth >= breakpoints.lg;
 
   /* Handling modal display: */
@@ -40,7 +42,6 @@ function Header() {
       }}
     >
       <SkipNavLink />
-
       {/* HEADER BAR ----------------------------------------------------------- */}
       <div className={styles.headerBar}>
         <HomeLogoLink />
@@ -79,7 +80,6 @@ function Header() {
             </div>
 
             {/* Secondary Nav */}
-            <SearchInput />
             {/* TODO: replace with secondary nav component? */}
             <div className={styles.secondaryNav}>
               {hasScrolled ? (
@@ -87,19 +87,46 @@ function Header() {
                   {content.gaq}
                 </CTA>
               ) : (
-                <>extra links here</>
+                <>
+                  <SearchInput
+                    ariaControls="search-panel"
+                    state={[isSearchExpanded, setIsSearchExpanded]}
+                  />
+                </>
               )}
             </div>
           </>
         )}
       </div>
 
-      {/* EXPANSION PANEL ----------------------------------------------------------- */}
+      {/* EXPANSION PANEL --------------------------------------------------------- */}
       {isDesktop && isExpanded && (
         // TODO: replace with desktop nav
         <div id="expanded-panel" className={styles.headerPanelDesktop}>
           sub-navigation, search input
         </div>
+      )}
+
+      {/* EXPANSION PANEl FOR SEARCH PANE ----------------------------------------- */}
+      {isSearchExpanded && (
+        <>
+          <div id="search-panel" className={styles.searchPanelDesktop}>
+            {/* arrow image here - tablet size */}
+            <div className={styles.searchInputArea}>
+              {/* search icon image here */}
+              {/* create label here */}
+              <input
+                type="search"
+                role="textbox"
+                aria-autocomplete="both"
+                placeholder="Search"
+                autoComplete="off"
+              />
+            </div>
+            {/* x button image here - desktop size */}
+            <div className={styles.backdrop}></div>
+          </div>
+        </>
       )}
 
       {!isDesktop && (
@@ -110,6 +137,7 @@ function Header() {
           style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
         >
           mobile nav
+          <SearchInput state={[isExpanded, setIsExpanded]} />
         </div>
       )}
     </header>
