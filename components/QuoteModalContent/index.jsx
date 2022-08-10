@@ -20,7 +20,6 @@ function QuoteModalContent() {
       content[i].fields[`GetAQuoteButtons.${name}`][0].identifier
     }`;
 
-  console.log(content);
   return (
     <article>
       <div className={styles.text}>
