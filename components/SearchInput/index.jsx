@@ -35,20 +35,23 @@ function SearchInput() {
       </div>
 
       {isDesktop && isExpanded && (
-        <div className={styles.expandedPanel}>
-          {/* arrow image here - tablet size */}
-          <div className={styles.searchInputArea}>
-            {/* search icon image here */}
-            {/* create label here */}
-            <input
-              type="search"
-              role="textbox"
-              aria-autocomplete="both"
-              placeholder="Search"
-              autoComplete="off"
-            />
+        <div>
+          <div className={styles.expandedPanel}>
+            {/* arrow image here - tablet size */}
+            <div className={styles.searchInputArea}>
+              {/* search icon image here */}
+              {/* create label here */}
+              <input
+                type="search"
+                role="textbox"
+                aria-autocomplete="both"
+                placeholder="Search"
+                autoComplete="off"
+              />
+            </div>
+            {/* x button image here - desktop size */}
+            <div className={styles.backdrop}></div>
           </div>
-          {/* x button image here - desktop size */}
         </div>
       )}
     </>

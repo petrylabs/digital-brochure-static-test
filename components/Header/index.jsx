@@ -9,6 +9,7 @@ import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
+import SearchInput from "../SearchInput";
 import styles from "./Header.module.scss";
 
 /**
@@ -78,6 +79,7 @@ function Header() {
             </div>
 
             {/* Secondary Nav */}
+            <SearchInput />
             {/* TODO: replace with secondary nav component? */}
             <div className={styles.secondaryNav}>
               {hasScrolled ? (
