@@ -37,7 +37,7 @@ function SearchInput() {
       {isDesktop && isExpanded && (
         <div className={styles.expandedPanel}>
           {/* arrow image here - tablet size */}
-          <div className={styles.searchBox}>
+          <div className={styles.searchInputArea}>
             {/* search icon image here */}
             {/* create label here */}
             <input
