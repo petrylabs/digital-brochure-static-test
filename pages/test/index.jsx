@@ -11,7 +11,6 @@ import placeholderImage from "./placeholder.jpg";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
-import PageHero from "../../components/PageHero";
 
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
