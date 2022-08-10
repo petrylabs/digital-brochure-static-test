@@ -7,6 +7,7 @@ import { getPage } from "../utils/api";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
+import PageHero from "../components/PageHero";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -58,8 +59,8 @@ function LandingPage(props) {
         <title>{title}</title>
       </Head>
 
-      <h1>{description}</h1>
-
+      {/* Page Hero */}
+      <PageHero content={content[0]} />
       {/* Intro */}
       <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
 
