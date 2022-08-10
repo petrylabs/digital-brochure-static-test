@@ -1,0 +1,106 @@
+@import "../../scss/globals/variables.scss";
+@import "../../scss/globals/fonts.scss";
+@import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+
+.text {
+  text-align: center;
+  margin-bottom: 26px;
+
+  h1 {
+    margin-bottom: 10px;
+
+    @include mq-min-width(lg) {
+      margin-bottom: 15px;
+    }
+  }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 30px;
+  }
+}
+
+.linksList {
+  @include unstyle-list;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+
+  li {
+    &:first-child,
+    &:last-child {
+      grid-column: 1 / span 2;
+    }
+  }
+
+  @include mq-min-width(lg) {
+    gap: 30px;
+  }
+}
+
+.link {
+  @include unstyle-link;
+  @include focus-dotted-outline;
+
+  display: block;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 10px #e5e5e5;
+  font-family: $font-extra-bold;
+  font-weight: 500;
+  text-align: center;
+}
+
+.linkLightBorder {
+  border-color: $color-secondary-medium;
+}
+
+.linkHeading {
+  height: 30px;
+  line-height: 30px;
+  margin: -3px -3px 0;
+}
+
+.linkHeadingDark {
+  background-color: $color-primary-accent;
+  color: $color-white;
+}
+
+.linkHeadingLight {
+  background-color: $color-secondary-medium;
+}
+
+.link:hover,
+.linkLightBorder:hover {
+  border-color: $color-primary-accent;
+
+  .linkHeadingLight {
+    background-color: $color-primary-accent;
+    color: $color-white;
+  }
+}
+
+.linkPanel {
+  padding: 26px;
+
+  @include mq-min-width(lg) {
+    padding: 30px;
+  }
+}
+
+.plus {
+  margin-inline: 10px;
+
+  &::before {
+    content: "\2795";
+  }
+}
+
+.extIcon {
+  svg {
+    position: relative;
+    left: 0.2em;
+    bottom: 0.2em;
+  }
+}

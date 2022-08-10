@@ -41,7 +41,9 @@ export async function getPage(slug) {
 
   if (data && data.entity) {
     const { layout, containers, page } = data.entity;
-    const content = getPageContent(layout.body.rows, containers);
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
 
     /** Get all related content */
     const contentRelationships = content.map((item) => {
@@ -86,11 +88,13 @@ export async function getPage(slug) {
  * @returns
  */
 function getPageContent(rows, containers) {
-  return rows.map((row) => {
-    return row.columns.map((column) => {
-      return getFullContainers(column, containers);
+  let content = [];
+  rows.map((row) => {
+    row.columns.map((column) => {
+      content = [...content, ...getFullContainers(column, containers)];
     })[0];
   });
+  return content;
 }
 
 /**
@@ -103,7 +107,7 @@ function getFullContainers(column, containers) {
   let contentlets;
   column.containers.map((container) => {
     const fullContainer = containers[container.identifier];
-    contentlets = fullContainer.contentlets[`uuid-${container.uuid}`][0];
+    contentlets = fullContainer.contentlets[`uuid-${container.uuid}`];
     return {
       ...fullContainer.container,
       contentlets: fullContainer.contentlets[`uuid-${container.uuid}`],
@@ -164,13 +168,15 @@ export const getNewsLetterModal = () => {
  */
 export async function getGaqModal() {
   const modalDataResponse = await get(
-    `${apiUrl}/v1/page/render/modals/lea-get-a-quote`
+    `${apiUrl}/v1/page/render/modals/get-a-quote-2`
   );
   let { data, error } = modalDataResponse;
 
   if (data && data.entity) {
     const { layout, containers, page } = data.entity;
-    const content = getPageContent(layout.body.rows, containers);
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
 
     /** Get all related content */
     const contentRelationships = content.map((item) =>
@@ -185,7 +191,6 @@ export async function getGaqModal() {
       return {
         data: {
           title: page.title,
-          seodescription: page.seodescription,
           description: page.description,
           content,
         },
