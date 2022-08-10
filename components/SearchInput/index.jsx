@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import styles from "./SearchInput.module.scss";
 
 /**
  * Search Input
@@ -23,18 +24,33 @@ function SearchInput() {
           <div>
             <button
               type="button"
-              onMouseEnter={() => setIsExpanded(true)}
               onClick={() => setIsExpanded(!isExpanded)}
               aria-controls="expanded-panel"
               aria-expanded={isExpanded}
             >
-              <div className="iconNavSearch"></div>
+              <span className="iconSearch"></span>
             </button>
           </div>
         )}
       </div>
 
-      {isDesktop && isExpanded && <div id="expanded-panel">search panel</div>}
+      {isDesktop && isExpanded && (
+        <div className={styles.expandedPanel}>
+          {/* arrow image here - tablet size */}
+          <div className={styles.searchBox}>
+            {/* search icon image here */}
+            {/* create label here */}
+            <input
+              type="search"
+              role="textbox"
+              aria-autocomplete="both"
+              placeholder="Search"
+              autoComplete="off"
+            />
+          </div>
+          {/* x button image here - desktop size */}
+        </div>
+      )}
     </>
   );
 }
