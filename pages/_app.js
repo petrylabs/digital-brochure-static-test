@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import ModalContext from "../context/modal";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import footerData from "../site-data/footer.preval";
 import "../scss/styles.scss";
@@ -24,8 +25,7 @@ function CustomApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </main>
 
-      {/* Replace with footer component */}
-      <pre>{JSON.stringify(footerData, null, 2)}</pre>
+      <Footer />
 
       <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
         <>Quote modal content!</>
