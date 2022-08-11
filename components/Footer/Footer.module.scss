@@ -1,0 +1,101 @@
+@import "../../scss/globals/color.scss";
+
+.footer {
+  background-color: $color-white;
+  border-top: 1px solid $color-primary-grey;
+  flex-direction: column;
+  @media (max-width: 1440px) {
+    padding: 3.75em 8.438em;
+  }
+  @media (max-width: 1024px) {
+    padding: 3.75em 4.438em;
+  }
+  @media (max-width: 768px) {
+    padding: 2.5em 2.313em;
+  }
+  @media (max-width: 576px) {
+    padding: 2.5em 1.875em;
+  }
+}
+
+.footerMenu {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+}
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
+  padding-right: 0px;
+  padding-left: 0px;
+  @media (min-width: 576px) {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .navItem {
+    padding-bottom: 0.625em;
+    width: 100%;
+    text-align: left;
+  }
+  .navItem:last-child {
+    padding-bottom: 60px;
+  }
+}
+
+.menuLabel {
+  margin-bottom: 0.938em;
+  font-family: "Averta-ExtraBold", sans-serif;
+  font-weight: 500;
+  @media (min-width: 768px) {
+    margin-bottom: 1.25em;
+  }
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalFooterMenu {
+  border-top: 1px solid $color-hint;
+  border-bottom: 1px solid $color-hint;
+  margin-bottom: 1.875em;
+  padding-top: 10px;
+  display: flex;
+  padding-left: 0;
+  flex: 0 0 100%;
+  max-width: 100%;
+  font-size: 0.75em;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .navItem {
+    padding-bottom: 0.625em;
+    width: 100%;
+    text-align: left;
+    display: inline;
+    padding-right: 30px;
+  }
+}
+
+.legalFooter {
+  p {
+    font-size: 12px;
+    line-height: 1.5;
+    display: table;
+    margin-bottom: 0.475em;
+  }
+}
