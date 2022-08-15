@@ -27,7 +27,7 @@ function SearchInput(props) {
           aria-controls={ariaControls}
           aria-expanded={isExpanded}
         >
-          <span className="icon-font iconNavSearch"></span>
+          <span>S</span>
         </button>
       </div>
     </>
