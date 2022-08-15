@@ -3,11 +3,13 @@ import styles from "./MobileNavBar.module.scss";
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import NavCard from "../NavCard";
+import Accordion from "../Accordion";
 import PropTypes from "prop-types";
 
 function MobileNavBar(props) {
   const { state, content } = props;
   const [isExpanded, setIsExpanded] = state;
+  // create a state for on click on accordion menu
   var menuItems = Object.keys(content).map((key) => [
     key,
     content[key].order,
@@ -33,24 +35,32 @@ function MobileNavBar(props) {
         {sortedMenuItems.map((item, i) => (
           <>
             <div key={i} id={`tablet-tab-${i + 1}`}>
-              <div>{item[0]}</div>
-            </div>
-            <div id={`tablet-tab-${i + 1}-items`}>
-              <div className={styles.tabletColumn}></div>
-              <div className={styles.tabletColumn}></div>
-              <div className={styles.mobileColumn}>
-                {item[2].map(
-                  (subItem, i) =>
-                    !subItem.excludeInMobile && (
-                      <NavCard
-                        url={subItem.url}
-                        mainText={subItem.header}
-                        subText={subItem.subtext}
-                        isNew={subItem.isNew ? "New!" : ""}
-                      />
-                    )
-                )}
-              </div>
+              {/* <div>{item[0]}</div> */}
+
+              <Accordion
+                id={"1"}
+                summary={item[0]}
+                expanded={item[1] < 2 ? true : false}
+                details={
+                  <div id={`tablet-tab-${i + 1}-items`}>
+                    <div className={styles.tabletColumn}></div>
+                    <div className={styles.tabletColumn}></div>
+                    <div className={styles.mobileColumn}>
+                      {item[2].map(
+                        (subItem, i) =>
+                          !subItem.excludeInMobile && (
+                            <NavCard
+                              url={subItem.url}
+                              mainText={subItem.header}
+                              subText={subItem.subtext}
+                              isNew={subItem.isNew ? "New!" : ""}
+                            />
+                          )
+                      )}
+                    </div>
+                  </div>
+                }
+              />
             </div>
           </>
         ))}
