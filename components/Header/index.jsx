@@ -9,6 +9,7 @@ import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
+import MobileNavBar from "../MobileNavBar";
 import styles from "./Header.module.scss";
 
 /**
@@ -19,6 +20,7 @@ import styles from "./Header.module.scss";
 function Header() {
   const content = headerData.data.headerMenu;
   const [isExpanded, setIsExpanded] = useState(false);
+  console.log(content);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -102,13 +104,17 @@ function Header() {
 
       {!isDesktop && (
         // TODO: replace with mobile/tablet nav
-        <div
-          id="mobile-nav"
-          className={styles.headerPanelMobile}
-          style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
-        >
-          mobile nav
-        </div>
+        // <div
+        //   id="mobile-nav"
+        //   className={styles.headerPanelMobile}
+        //   style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
+        // >
+        //   mobile nav
+        // </div>
+        <MobileNavBar
+          state={[isExpanded, setIsExpanded]}
+          content={content.menuItems}
+        />
       )}
     </header>
   );
