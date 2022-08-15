@@ -8,6 +8,7 @@ import CTA from "../../components/CTA";
 import LargeScreenImage from "../../components/LargeScreenImage";
 import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
+import QuoteModalContent from "../../components/QuoteModalContent";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
@@ -100,7 +101,7 @@ export default function TestPage() {
         Open Modal
       </CTA>
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <>Modal content!</>
+        <QuoteModalContent />
       </Modal>
 
       <h2>LargeScreenImage:</h2>
