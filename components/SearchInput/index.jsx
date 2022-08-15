@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { breakpoints } from "../../config";
 import { array, string } from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
@@ -12,19 +12,7 @@ import styles from "./SearchInput.module.scss";
 
 function SearchInput(props) {
   const { ariaControls, state } = props;
-  const [isExpanded, setIsExpanded] = state;
-
-  /* Handling screen sizes: */
-  const screenWidth = useWindowWidth();
-  const isMobile = screenWidth < breakpoints.sm;
-  const isDesktop = screenWidth >= breakpoints.lg;
-
-  // change classname according to class name
-  // desktop
-  // tablet
-  // mobile
-
-  // change className based on the window size mobile, tablet, desktop
+  const [isExpanded, setIsExpanded, isMenuExpanded, setIsMenuExpanded] = state;
 
   return (
     <>
@@ -32,14 +20,14 @@ function SearchInput(props) {
       <div className={styles.searchButton}>
         <button
           type="button"
-          onClick={() => setIsExpanded(!isExpanded)}
-          onMouseLeave={() => {
-            setIsExpanded(false);
+          onClick={() => {
+            setIsExpanded(!isExpanded);
+            setIsMenuExpanded(false);
           }}
           aria-controls={ariaControls}
           aria-expanded={isExpanded}
         >
-          <span className="iconSearch">S</span>
+          <span className="icon-font iconNavSearch"></span>
         </button>
       </div>
     </>

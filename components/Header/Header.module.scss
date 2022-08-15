@@ -69,20 +69,31 @@
 }
 
 .searchPanelDesktop {
+  left: 0;
+  right: 0;
+  padding: 0.625rem 0;
   align-items: center !important;
   justify-content: center !important;
   display: flex !important;
 }
 
+.searchIcon {
+  margin: 0 0.625rem 0 1.25rem;
+}
+
 .searchInputArea {
   display: flex;
-  background-color: $color-white;
+  align-items: center;
   box-sizing: border-box;
+  background-color: $color-white;
   border: 1px solid $color-grey-07;
   border-radius: 25px;
-  position: relative;
   width: 100%;
   max-width: 47rem;
+
+  &:hover {
+    border-color: #147582;
+  }
 
   input {
     border: none;
@@ -95,6 +106,19 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
+
+  input:focus {
+    outline: none;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border: 3px solid #147582;
+  }
 }
 
 .backdrop {
@@ -105,7 +129,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: -1;
+  z-index: 1;
   background-color: rgba(51, 51, 51, 0.75);
   overflow: hidden;
 }
