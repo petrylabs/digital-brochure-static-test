@@ -108,7 +108,6 @@ function Header() {
                       state={[
                         isSearchExpanded,
                         setIsSearchExpanded,
-                        isExpanded,
                         setIsExpanded,
                       ]}
                     />

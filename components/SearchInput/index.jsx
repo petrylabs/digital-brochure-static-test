@@ -1,7 +1,5 @@
 import React from "react";
-import { breakpoints } from "../../config";
 import { array, string } from "prop-types";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import styles from "./SearchInput.module.scss";
 
 /**
@@ -12,7 +10,7 @@ import styles from "./SearchInput.module.scss";
 
 function SearchInput(props) {
   const { ariaControls, state } = props;
-  const [isExpanded, setIsExpanded, isMenuExpanded, setIsMenuExpanded] = state;
+  const [isExpanded, setIsExpanded, setIsMenuExpanded] = state;
 
   return (
     <>
