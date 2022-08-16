@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./MobileNavBar.module.scss";
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import NavCard from "../NavCard";
 import Accordion from "../Accordion";
 import PropTypes from "prop-types";
+import AccordionGroup from "../AccordionGroup";
 
 function MobileNavBar(props) {
-  const { state, content } = props;
-  const [isExpanded, setIsExpanded] = state;
+  const { isExpanded, content } = props;
   // create a state for on click on accordion menu
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+
   var menuItems = Object.keys(content).map((key) => [
     key,
     content[key].order,
@@ -25,6 +27,12 @@ function MobileNavBar(props) {
   const isMobile = screenWidth < breakpoints.sm;
   const isTablet = screenWidth >= breakpoints.lg;
 
+  const changeState = (isOpen) => {
+    console.log("I m on change");
+    console.log(isOpen);
+    //setIsMenuExpanded(isOpen ? true : false);
+  };
+
   return (
     <div
       id="mobile-nav"
@@ -36,31 +44,33 @@ function MobileNavBar(props) {
           <>
             <div key={i} id={`tablet-tab-${i + 1}`}>
               {/* <div>{item[0]}</div> */}
-
-              <Accordion
-                id={"1"}
-                summary={item[0]}
-                expanded={item[1] < 2 ? true : false}
-                details={
-                  <div id={`tablet-tab-${i + 1}-items`}>
-                    <div className={styles.tabletColumn}></div>
-                    <div className={styles.tabletColumn}></div>
-                    <div className={styles.mobileColumn}>
-                      {item[2].map(
-                        (subItem, i) =>
-                          !subItem.excludeInMobile && (
-                            <NavCard
-                              url={subItem.url}
-                              mainText={subItem.header}
-                              subText={subItem.subtext}
-                              isNew={subItem.isNew ? "New!" : ""}
-                            />
-                          )
-                      )}
+              <AccordionGroup>
+                <Accordion
+                  id={item[1] < 2 ? "null" : 1}
+                  summary={item[0]}
+                  expanded={isMenuExpanded}
+                  details={
+                    <div id={`tablet-tab-${i + 1}-items`}>
+                      <div className={styles.tabletColumn}></div>
+                      <div className={styles.tabletColumn}></div>
+                      <div className={styles.mobileColumn}>
+                        {item[2].map(
+                          (subItem, i) =>
+                            !subItem.excludeInMobile && (
+                              <NavCard
+                                url={subItem.url}
+                                mainText={subItem.header}
+                                subText={subItem.subtext}
+                                isNew={subItem.isNew ? "New!" : ""}
+                              />
+                            )
+                        )}
+                      </div>
                     </div>
-                  </div>
-                }
-              />
+                  }
+                  onChange={changeState(isMenuExpanded)}
+                />
+              </AccordionGroup>
             </div>
           </>
         ))}
@@ -70,7 +80,7 @@ function MobileNavBar(props) {
 }
 
 MobileNavBar.propTypes = {
-  state: PropTypes.array.isRequired,
+  isExpanded: PropTypes.bool.isRequired,
   content: PropTypes.object,
 };
 

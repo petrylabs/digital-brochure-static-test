@@ -8,6 +8,7 @@ import React, { Children, cloneElement, isValidElement, useState } from "react";
 function AccordionGroup(props) {
   const { children } = props;
   const accordions = Children.toArray(children);
+  console.log("I am accordiangroup", accordions);
 
   const [openAccordion, setOpenAccordion] = useState(null);
 
@@ -23,9 +24,14 @@ function AccordionGroup(props) {
   return (
     <>
       {Children.map(accordions, (child) => {
-        if (!isValidElement(child)) return null;
+        console.log("child", child);
+        if (!isValidElement(child)) {
+          console.log("I m in if loop");
+          return null;
+        }
 
         const isOpenAccordion = child.props.id === openAccordion;
+        console.log("isOpenAccordion", isOpenAccordion);
 
         /* Replace child with clone that has added props */
         return cloneElement(child, {

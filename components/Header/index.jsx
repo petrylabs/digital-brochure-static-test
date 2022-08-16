@@ -103,18 +103,7 @@ function Header() {
       )}
 
       {!isDesktop && (
-        // TODO: replace with mobile/tablet nav
-        // <div
-        //   id="mobile-nav"
-        //   className={styles.headerPanelMobile}
-        //   style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
-        // >
-        //   mobile nav
-        // </div>
-        <MobileNavBar
-          state={[isExpanded, setIsExpanded]}
-          content={content.menuItems}
-        />
+        <MobileNavBar isExpanded={isExpanded} content={content.menuItems} />
       )}
     </header>
   );
