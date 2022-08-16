@@ -27,12 +27,6 @@ function MobileNavBar(props) {
   const isMobile = screenWidth < breakpoints.sm;
   const isTablet = screenWidth >= breakpoints.lg;
 
-  const changeState = (isOpen) => {
-    console.log("I m on change");
-    console.log(isOpen);
-    //setIsMenuExpanded(isOpen ? true : false);
-  };
-
   return (
     <div
       id="mobile-nav"
@@ -46,7 +40,7 @@ function MobileNavBar(props) {
               {/* <div>{item[0]}</div> */}
               <AccordionGroup>
                 <Accordion
-                  id={item[1] < 2 ? "null" : 1}
+                  id={item[1] < 2 ? null : 1}
                   summary={item[0]}
                   expanded={isMenuExpanded}
                   details={
@@ -68,7 +62,6 @@ function MobileNavBar(props) {
                       </div>
                     </div>
                   }
-                  onChange={changeState(isMenuExpanded)}
                 />
               </AccordionGroup>
             </div>

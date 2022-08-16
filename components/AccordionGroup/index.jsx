@@ -26,12 +26,10 @@ function AccordionGroup(props) {
       {Children.map(accordions, (child) => {
         console.log("child", child);
         if (!isValidElement(child)) {
-          console.log("I m in if loop");
           return null;
         }
 
         const isOpenAccordion = child.props.id === openAccordion;
-        console.log("isOpenAccordion", isOpenAccordion);
 
         /* Replace child with clone that has added props */
         return cloneElement(child, {
