@@ -9,8 +9,6 @@ import AccordionGroup from "../AccordionGroup";
 
 function MobileNavBar(props) {
   const { isExpanded, content } = props;
-  // create a state for on click on accordion menu
-  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   var menuItems = Object.keys(content).map((key) => [
     key,
@@ -20,7 +18,6 @@ function MobileNavBar(props) {
 
   // Sort array based on order number in content
   const sortedMenuItems = menuItems.sort((a, b) => a[1] - b[1]);
-  console.log(sortedMenuItems);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -37,12 +34,10 @@ function MobileNavBar(props) {
         {sortedMenuItems.map((item, i) => (
           <>
             <div key={i} id={`tablet-tab-${i + 1}`}>
-              {/* <div>{item[0]}</div> */}
               <AccordionGroup>
                 <Accordion
                   id={item[1] < 2 ? null : 1}
                   summary={item[0]}
-                  expanded={isMenuExpanded}
                   details={
                     <div id={`tablet-tab-${i + 1}-items`}>
                       <div className={styles.tabletColumn}></div>
