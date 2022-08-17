@@ -5,10 +5,12 @@ const apiUrl = process.env.DOTCMS_HOST;
  * @param {string} url API endpoint
  * @returns API response
  */
-async function get(url) {
+async function get(url, options = {}) {
   try {
     const response = await fetch(url, {
       headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
         // TODO: update below with API key
         Authorization:
           "Basic " +
@@ -16,6 +18,7 @@ async function get(url) {
             `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
           ).toString("base64"),
       },
+      ...options,
     });
 
     if (!response.ok) {
@@ -204,3 +207,26 @@ export async function getGaqModal() {
     };
   }
 }
+
+/**
+ * Get search results from API
+ * @returns API response with search related data
+ */
+export const getSearchResults = () => {
+  var url = new URL(`${apiUrl}/es/search`);
+  var raw = JSON.stringify({
+    query: {
+      query_string: {
+        query: "+(contentType:FAQ contentType:Blog )",
+      },
+    },
+    size: 500,
+    from: 0,
+  });
+  url.search = new URLSearchParams(raw).toString();
+  return get(`${apiUrl}/es/search`, {
+    method: "POST",
+    body: raw,
+    redirect: "follow",
+  });
+};
