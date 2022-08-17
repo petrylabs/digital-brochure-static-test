@@ -18,6 +18,16 @@ import styles from "./Header.module.scss";
  */
 function Header() {
   const content = headerData.data.headerMenu;
+  const navItems = Object.entries(content.menuItems)
+    .sort((a, b) => a[1].order - b[1].order)
+    .map((item) => {
+      return {
+        menuItem: item[0],
+        ...item[1],
+      };
+    });
+  // console.log(navItems);
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   /* Handling screen sizes: */
@@ -64,18 +74,21 @@ function Header() {
 
         {isDesktop && (
           <>
-            {/* TODO: replace with desktop nav bar */}
-            <div>
-              <button
-                type="button"
-                onMouseEnter={() => setIsExpanded(true)}
-                onClick={() => setIsExpanded(!isExpanded)}
-                aria-controls="expanded-panel"
-                aria-expanded={isExpanded}
-              >
-                nav item
-              </button>
-            </div>
+            <nav>
+              {navItems &&
+                navItems.map((item) => (
+                  <button
+                    key={item.order}
+                    type="button"
+                    onMouseEnter={() => setIsExpanded(true)}
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    aria-controls="expanded-panel"
+                    aria-expanded={isExpanded}
+                  >
+                    {item.menuItem}
+                  </button>
+                ))}
+            </nav>
 
             {/* Secondary Nav */}
             {/* TODO: replace with secondary nav component? */}
