@@ -21,6 +21,7 @@ function Header() {
   const content = headerData.data.headerMenu;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [panelHeight, setPanelHeight] = useState("0");
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -37,7 +38,10 @@ function Header() {
     <header
       className={styles.header}
       onMouseLeave={() => {
-        if (isDesktop) setIsExpanded(false);
+        if (isDesktop) {
+          setIsExpanded(false);
+          setPanelHeight("0");
+        }
       }}
     >
       <SkipNavLink />
@@ -66,7 +70,11 @@ function Header() {
 
         {isDesktop && (
           <>
-            <NavDesktop setIsExpanded={setIsExpanded} />
+            <NavDesktop
+              isExpanded={isExpanded}
+              setIsExpanded={setIsExpanded}
+              setPanelHeight={setPanelHeight}
+            />
 
             {/* Secondary Nav */}
             {/* TODO: replace with secondary nav component? */}
@@ -85,7 +93,10 @@ function Header() {
 
       {/* EXPANSION PANEL ----------------------------------------------------------- */}
       {isDesktop && isExpanded && (
-        <div className={styles.headerPanelDesktop}>
+        <div
+          className={styles.headerPanelDesktop}
+          style={{ height: panelHeight }}
+        >
           {/* TODO: add height for submenu */}
           {/* TODO: search input */}
         </div>
