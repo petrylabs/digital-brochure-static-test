@@ -10,6 +10,7 @@ import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import styles from "./Header.module.scss";
+import NavCard from "../NavCard";
 
 /**
  * Header
@@ -26,9 +27,10 @@ function Header() {
         ...item[1],
       };
     });
-  // console.log(navItems);
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [visibleSubmenu, setVisibleSubmenu] = useState(null);
+  const submenuId = "desktop-submenu";
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -45,7 +47,7 @@ function Header() {
     <header
       className={styles.header}
       onMouseLeave={() => {
-        if (isDesktop) setIsExpanded(false);
+        if (isDesktop) setVisibleSubmenu(null);
       }}
     >
       <SkipNavLink />
@@ -80,10 +82,10 @@ function Header() {
                   <button
                     key={item.order}
                     type="button"
-                    onMouseEnter={() => setIsExpanded(true)}
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    aria-controls="expanded-panel"
-                    aria-expanded={isExpanded}
+                    onMouseEnter={() => setVisibleSubmenu(item)}
+                    onClick={() => setVisibleSubmenu(item)}
+                    aria-controls={submenuId}
+                    aria-expanded={!!visibleSubmenu}
                   >
                     {item.menuItem}
                   </button>
@@ -106,10 +108,26 @@ function Header() {
       </div>
 
       {/* EXPANSION PANEL ----------------------------------------------------------- */}
-      {isDesktop && isExpanded && (
-        // TODO: replace with desktop nav
-        <div id="expanded-panel" className={styles.headerPanelDesktop}>
-          sub-navigation, search input
+      {isDesktop && (
+        <div id={submenuId} className={styles.headerPanelDesktop}>
+          {/* SUBMENU */}
+          {!!visibleSubmenu && (
+            <nav
+              className={styles.subNavDesktop}
+              aria-labelledby={visibleSubmenu.menuItem}
+            >
+              {visibleSubmenu.subItems.map((subItem) => (
+                <NavCard
+                  key={subItem.buttonId}
+                  url={subItem.url}
+                  mainText={subItem.header}
+                  subText={subItem.subtext}
+                  isNew={subItem.isNew}
+                />
+              ))}
+            </nav>
+          )}
+          {/* TODO: search input */}
         </div>
       )}
 

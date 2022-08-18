@@ -55,6 +55,11 @@
   }
 }
 
+.subNavDesktop {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
 .headerPanelMobile {
   overflow: hidden;
   height: 100vh;
