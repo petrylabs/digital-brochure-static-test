@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useEffect } from "react";
 
 import headerData from "../../site-data/header.preval";
 import NavCard from "../NavCard";
@@ -10,8 +11,9 @@ import styles from "./NavDesktop.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179966476/NavDesktop
  */
 function NavDesktop(props) {
-  const { isExpanded, setIsExpanded } = props;
+  const { isExpanded, setIsExpanded, setPanelHeight } = props;
 
+  /* Restructure content: */
   const content = headerData.data.headerMenu;
   const navItems = Object.entries(content.menuItems)
     .sort((a, b) => a[1].order - b[1].order)
@@ -22,44 +24,62 @@ function NavDesktop(props) {
       };
     });
 
-  const [visibleSubmenu, setVisibleSubmenu] = useState(null);
+  /* Handle visible submenu: */
+  const [visibleSubmenu, setVisibleSubmenu] = useState(isExpanded);
   const submenuId = "desktop-submenu";
+  const subNavRef = useRef();
+  const handleExpand = (item) => {
+    setVisibleSubmenu(item);
+    setIsExpanded(true);
+  };
+
+  /* Handle submenu height: */
+  useEffect(() => {
+    if (isExpanded) {
+      setPanelHeight(subNavRef.current?.offsetHeight);
+    } else {
+      setPanelHeight(0);
+    }
+  });
 
   return (
-    <nav className={styles.navList}>
-      {navItems.map((item) => (
-        <>
-          <button
-            key={item.order}
-            type="button"
-            onMouseEnter={() => setVisibleSubmenu(item)}
-            onClick={() => setVisibleSubmenu(item)}
-            aria-controls={submenuId}
-            aria-expanded={!!visibleSubmenu}
-          >
-            {item.menuItem}
-          </button>
-
-          {/* SUBMENU */}
-          {visibleSubmenu && item.menuItem === visibleSubmenu.menuItem && (
-            <nav
-              id={submenuId}
-              className={styles.subNavDesktop}
-              aria-labelledby={visibleSubmenu.menuItem}
+    <nav>
+      <ul className={styles.navList}>
+        {navItems.map((item) => (
+          <li key={item.order}>
+            <button
+              type="button"
+              onMouseEnter={() => handleExpand(item)}
+              onClick={() => handleExpand(item)}
+              aria-controls={submenuId}
+              aria-expanded={!!visibleSubmenu}
             >
-              {visibleSubmenu.subItems.map((subItem) => (
-                <NavCard
-                  key={subItem.buttonId}
-                  url={subItem.url}
-                  mainText={subItem.header}
-                  subText={subItem.subtext}
-                  isNew={subItem.isNew}
-                />
-              ))}
-            </nav>
-          )}
-        </>
-      ))}
+              {item.menuItem}
+            </button>
+
+            {/* SUBMENU */}
+            {isExpanded && (
+              <ul
+                ref={subNavRef}
+                id={submenuId}
+                className={styles.subNav}
+                aria-labelledby={visibleSubmenu.menuItem}
+              >
+                {visibleSubmenu.subItems.map((subItem) => (
+                  <li key={subItem.buttonId}>
+                    <NavCard
+                      url={subItem.url}
+                      mainText={subItem.header}
+                      subText={subItem.subtext}
+                      isNew={subItem.isNew}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

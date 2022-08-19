@@ -20,15 +20,16 @@ import styles from "./Header.module.scss";
 function Header() {
   const content = headerData.data.headerMenu;
 
+  /* Handle panel expansion: */
   const [isExpanded, setIsExpanded] = useState(false);
-  const [panelHeight, setPanelHeight] = useState("0");
+  const [panelHeight, setPanelHeight] = useState(0);
 
-  /* Handling screen sizes: */
+  /* Handle screen sizes: */
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
   const isDesktop = screenWidth >= breakpoints.lg;
 
-  /* Handling modal display: */
+  /* Handle modal display: */
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   /* Handle scrolling: */
@@ -40,7 +41,6 @@ function Header() {
       onMouseLeave={() => {
         if (isDesktop) {
           setIsExpanded(false);
-          setPanelHeight("0");
         }
       }}
     >
@@ -97,7 +97,7 @@ function Header() {
           className={styles.headerPanelDesktop}
           style={{ height: panelHeight }}
         >
-          {/* TODO: add height for submenu */}
+          {/* Desktop submenu is positioned absolutely, so this (empty) panel expands to match its height */}
           {/* TODO: search input */}
         </div>
       )}
