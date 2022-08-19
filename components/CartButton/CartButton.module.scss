@@ -1,0 +1,31 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/variables.scss";
+
+.cartButton {
+  position: relative;
+  color: $color-primary-grey;
+  white-space: nowrap;
+  padding: 1px 3px 1px 3px;
+  display: inline-block;
+  border-bottom: 3px solid transparent;
+}
+.cartButton:hover {
+  color: $color-primary-accent;
+  border-bottom: 3px solid $color-primary-accent;
+}
+
+.itemCounter {
+  position: absolute;
+  font-family: $font-extra-bold;
+  top: -6%;
+  right: -18%;
+  height: 16px;
+  width: 16px;
+  border: 1px solid $color-white;
+  background-color: $color-primary;
+  border-radius: 50%;
+  color: $color-primary-grey;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+}
