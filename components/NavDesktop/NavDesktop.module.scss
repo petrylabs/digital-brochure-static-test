@@ -1,4 +1,7 @@
 @import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/buttons.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/a11y.scss";
 
 .navList {
   @include unstyle-list;
@@ -10,6 +13,51 @@
   }
 }
 
+.navButton {
+  @include unstyle-button;
+
+  font-family: $font-extra-bold;
+  margin: 0 20px;
+
+  &:focus {
+    @include focus-border;
+
+    .navButtonFocus {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    .navButtonText {
+      border-color: $color-primary-accent;
+    }
+  }
+
+  &:focus:hover {
+    .navButtonFocus {
+      border-color: $color-primary-accent;
+    }
+  }
+}
+
+.navButtonText,
+.navButtonFocus {
+  border-bottom: 3px solid transparent;
+}
+
+.navButtonFocus {
+  opacity: 0;
+  font-family: $font-regular;
+}
+
+.navButtonActive {
+  .navButtonText,
+  .navButtonFocus {
+    color: $color-primary-accent;
+    border-color: $color-primary-accent;
+  }
+}
+
 .subNav {
   @include unstyle-list;
 
@@ -17,4 +65,6 @@
   width: 715px;
   display: grid;
   grid-template-columns: repeat(2, auto);
+  margin-top: 16px;
+  padding: 20px 0 20px 10px;
 }

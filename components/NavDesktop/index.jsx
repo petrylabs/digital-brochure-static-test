@@ -53,8 +53,14 @@ function NavDesktop(props) {
               onClick={() => handleExpand(item)}
               aria-controls={submenuId}
               aria-expanded={!!visibleSubmenu}
+              className={`${styles.navButton} ${
+                item.menuItem === visibleSubmenu.menuItem
+                  ? styles.navButtonActive
+                  : ""
+              }`}
             >
-              {item.menuItem}
+              <span className={styles.navButtonText}>{item.menuItem}</span>
+              <span className={styles.navButtonFocus}>+</span>
             </button>
 
             {/* SUBMENU */}
