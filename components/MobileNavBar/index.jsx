@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styles from "./MobileNavBar.module.scss";
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import NavCard from "../NavCard";
-import Accordion from "../Accordion";
+import {
+  Accordion as MuiAccordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
 import PropTypes from "prop-types";
-import AccordionGroup from "../AccordionGroup";
+import Chevron from "../../icons/Chevron";
+import SearchIcon from "../../icons/SearchIcon";
+import ModalContext from "../../context/modal";
 
 function MobileNavBar(props) {
-  const { isExpanded, content } = props;
+  const { isExpanded, content, gaqButton, loginString, toggleLanguage } = props;
 
   var menuItems = Object.keys(content).map((key) => [
     key,
@@ -22,31 +28,62 @@ function MobileNavBar(props) {
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
-  const isTablet = screenWidth >= breakpoints.lg;
+
+  /* Handling modal display: */
+  const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   return (
     <div
-      id="mobile-nav"
-      className={styles.headerPanelMobile}
+      id="side-nav"
+      className={styles.sidePanel}
       style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
     >
-      <div id="tablet-items-container">
+      <div id="nav-items-container" className={styles.navItemsContainer}>
         {sortedMenuItems.map((item, i) => (
-          <>
-            <div key={i} id={`tablet-tab-${i + 1}`}>
-              <AccordionGroup>
-                <Accordion
-                  id={item[1] < 2 ? null : 1}
-                  summary={item[0]}
-                  details={
-                    <div id={`tablet-tab-${i + 1}-items`}>
-                      <div className={styles.tabletColumn}></div>
-                      <div className={styles.tabletColumn}></div>
-                      <div className={styles.mobileColumn}>
+          <div key={i}>
+            <MuiAccordion
+              id={`accordian-item-${i + 1}`}
+              defaultExpanded={item[1] < 2 ? true : false}
+              disableGutters
+              TransitionProps={{ timeout: 0 }}
+              classes={{ root: styles.accordionNavitems }}
+            >
+              <AccordionSummary
+                id={`summary${i + 1}`}
+                expandIcon={item[1] < 2 ? '' : <Chevron />}
+                classes={{
+                  root: styles.summaryNavitems,
+                  expanded: styles.summaryExpandedNavitems,
+                  expandIconWrapper: styles.summaryIconNavitems,
+                }}
+              >
+                {item[0]}
+              </AccordionSummary>
+              <AccordionDetails id={`details${i + 1}`} classes={{ root: styles.detailsNavitems }}>
+                {
+                  <>
+                    {!isMobile && (
+                      <div id={`accordian-item-${i + 1}-items`} className={styles.itemsColumn}>
                         {item[2].map(
-                          (subItem, i) =>
+                          (subItem, j) => (
+                            <NavCard
+                              key={j}
+                              url={subItem.url}
+                              mainText={subItem.header}
+                              subText={subItem.subtext}
+                              isNew={subItem.isNew ? "New!" : ""}
+                            />
+                          )
+                        )}
+                      </div>
+                    )}
+                    {isMobile && (
+                      <div d={`accordian-item-${i + 1}-items`}>
+                        {item[2].map(
+                          (subItem, j) =>
                             !subItem.excludeInMobile && (
                               <NavCard
+                                key={j}
                                 url={subItem.url}
                                 mainText={subItem.header}
                                 subText={subItem.subtext}
@@ -55,21 +92,55 @@ function MobileNavBar(props) {
                             )
                         )}
                       </div>
-                    </div>
-                  }
-                />
-              </AccordionGroup>
-            </div>
-          </>
+                    )}
+                  </>
+                }
+              </AccordionDetails>
+            </MuiAccordion>
+          </div>
         ))}
+
+        <div className={styles.buttonContentContainer}>
+          <div className={styles.actionsNav}>
+            <div className={styles.actionNavitems}>
+              <button
+                type="button"
+                className={styles.searchButton}
+              >
+                <SearchIcon />
+              </button>
+              {toggleLanguage === "Français" ? (
+                <a href='' className={styles.sideNavActionsLink}>
+                  Fr
+                </a>
+              ) :
+                <a href='' className={styles.sideNavActionsLink}>
+                  En
+                </a>
+              }
+              <a href='https://secure.sonnet.ca/#/login?lang=en' className={styles.sideNavActionsLink} target="_self">
+                {loginString}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.buttonContainer} key={1}>
+          <button type="button" className={styles.buttonGaq} onClick={() => setIsQuoteModalOpen(true)}>
+            {gaqButton}
+          </button>
+        </div>
       </div>
-    </div>
+    </div >
   );
 }
 
 MobileNavBar.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   content: PropTypes.object,
+  gaqButton: PropTypes.string,
+  loginString: PropTypes.string,
+  toggleLanguage: PropTypes.string,
 };
 
 export default MobileNavBar;

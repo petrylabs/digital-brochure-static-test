@@ -13,11 +13,6 @@ function AccordionGroup(props) {
 
   /* Open new item, or close if open item is clicked again */
   const handleAccordionClick = (id) => {
-    if (id === null) {
-      id = 2;
-      setOpenAccordion(2);
-    }
-
     if (id === openAccordion) {
       setOpenAccordion(null);
     } else {
