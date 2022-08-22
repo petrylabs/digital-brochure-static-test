@@ -20,7 +20,6 @@ import styles from "./Header.module.scss";
 function Header() {
   const content = headerData.data.headerMenu;
   const [isExpanded, setIsExpanded] = useState(false);
-  console.log(content);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
