@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 
 import headerData from "../../site-data/header.preval";
+import { evenIndexBeforeOdd } from "../../utils/array";
 import NavCard from "../NavCard";
 import styles from "./NavDesktop.module.scss";
 
@@ -16,13 +17,15 @@ function NavDesktop(props) {
   /* Restructure content: */
   const content = headerData.data.headerMenu;
   const navItems = Object.entries(content.menuItems)
-    .sort((a, b) => a[1].order - b[1].order)
+    .sort((a, b) => a[1].order - b[1].order) // re-order by `order` property
     .map((item) => {
       return {
         menuItem: item[0],
         ...item[1],
+        subItems: evenIndexBeforeOdd(item[1].subItems), // reorder by column
       };
     });
+  console.log(navItems);
 
   /* Handle visible submenu: */
   const [visibleSubmenu, setVisibleSubmenu] = useState(isExpanded);
@@ -45,7 +48,7 @@ function NavDesktop(props) {
   return (
     <nav>
       <ul className={styles.navList}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <li key={item.order}>
             <button
               type="button"
@@ -64,15 +67,18 @@ function NavDesktop(props) {
             </button>
 
             {/* SUBMENU */}
-            {isExpanded && (
+            {isExpanded && item.menuItem === visibleSubmenu.menuItem && (
               <ul
                 ref={subNavRef}
                 id={submenuId}
                 className={styles.subNav}
                 aria-labelledby={visibleSubmenu.menuItem}
+                style={{
+                  gridTemplateRows: `repeat(${index === 0 ? 4 : 2}, auto)`,
+                }}
               >
                 {visibleSubmenu.subItems.map((subItem) => (
-                  <li key={subItem.buttonId}>
+                  <li key={subItem.buttonId} className={styles.subItem}>
                     <NavCard
                       url={subItem.url}
                       mainText={subItem.header}
