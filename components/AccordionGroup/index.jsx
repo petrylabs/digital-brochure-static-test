@@ -5,10 +5,10 @@ import React, { Children, cloneElement, isValidElement, useState } from "react";
  * Controls a set of Accordion components, so that only one is open at a time
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179409491/Accordion
  */
-
 function AccordionGroup(props) {
   const { children } = props;
   const accordions = Children.toArray(children);
+  
   const [openAccordion, setOpenAccordion] = useState(null);
 
   /* Open new item, or close if open item is clicked again */
