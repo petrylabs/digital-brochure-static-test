@@ -11,12 +11,7 @@ async function get(url, options = {}) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // TODO: update below with API key
-        Authorization:
-          "Basic " +
-          Buffer.from(
-            `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
-          ).toString("base64"),
+        Authorization: `Bearer ${process.env.API_KEY}`,
       },
       ...options,
     });
