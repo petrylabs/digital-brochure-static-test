@@ -13,8 +13,8 @@ function NavCard(props) {
   return (
     <a href={url} className={styles.navLink}>
       <span>{mainText}</span>
-      {/* Use ternary operator to make sure it won't display 0 in case it validates to false */}
-      {isNew.length ? <span className={styles.newTag}>{isNew}</span> : ""}
+      {/* TODO: translation */}
+      {isNew && <span className={styles.newTag}>New!</span>}
       <p className={styles.subText}>{subText}</p>
     </a>
   );
@@ -24,7 +24,7 @@ NavCard.propTypes = {
   url: PropTypes.string,
   mainText: PropTypes.string,
   subText: PropTypes.string,
-  isNew: PropTypes.string,
+  isNew: PropTypes.bool,
 };
 
 export default NavCard;

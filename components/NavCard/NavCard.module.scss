@@ -3,16 +3,16 @@
 @import "../../scss/globals/variables.scss";
 
 .navLink {
+  display: block;
   border-radius: 10px;
   border: 1px solid transparent;
   padding: 10px;
-  color: $color-primary-grey;
-  line-height: 20px;
   outline: 2px solid transparent;
-  display: block;
   margin: 0;
-  text-decoration: none;
+  line-height: 20px;
   font-size: 14px;
+  color: $color-primary-grey;
+  text-decoration: none;
 
   &:hover {
     text-decoration: none; // Overwrites the default styling for a from sonnet.css
