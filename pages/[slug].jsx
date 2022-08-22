@@ -50,9 +50,6 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
-  /* TEMPORARY: */
-  console.log(content);
-
   return (
     <>
       <Head>
@@ -61,6 +58,7 @@ function LandingPage(props) {
 
       {/* Page Hero */}
       <PageHero content={content[0]} />
+
       {/* Intro */}
       <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
 
