@@ -25,7 +25,6 @@ function NavDesktop(props) {
         subItems: evenIndexBeforeOdd(item[1].subItems), // reorder by column
       };
     });
-  console.log(navItems);
 
   /* Handle visible submenu: */
   const [visibleSubmenu, setVisibleSubmenu] = useState(isExpanded);
