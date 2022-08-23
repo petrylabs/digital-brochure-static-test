@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import TestimonialCarousel from "../components/TestimonialCarousel";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -50,9 +51,6 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
-  /* TEMPORARY: */
-  console.log(content);
-
   return (
     <>
       <Head>
@@ -68,6 +66,9 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={content[2]} />
       </section>
+
+      {/* Testimonial carousel */}
+      <TestimonialCarousel content={content[12]} />
     </>
   );
 }
