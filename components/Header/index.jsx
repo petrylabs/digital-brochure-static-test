@@ -102,7 +102,7 @@ function Header() {
       )}
 
       {!isDesktop && (
-        <MobileNavBar isExpanded={isExpanded} content={content.menuItems} gaqButton={content.gaq} loginString={content.loginStr} toggleLanguage={content.toggleLanguage} />
+        <MobileNavBar isExpanded={isExpanded} content={content}/>
       )}
     </header>
   );

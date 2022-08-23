@@ -14,12 +14,12 @@ import SearchIcon from "../../icons/SearchIcon";
 import ModalContext from "../../context/modal";
 
 function MobileNavBar(props) {
-  const { isExpanded, content, gaqButton, loginString, toggleLanguage } = props;
+  const { isExpanded, content } = props;
 
-  var menuItems = Object.keys(content).map((key) => [
+  var menuItems = Object.keys(content.menuItems).map((key) => [
     key,
-    content[key].order,
-    content[key].subItems,
+    content.menuItems[key].order,
+    content.menuItems[key].subItems,
   ]);
 
   // Sort array based on order number in content
@@ -34,11 +34,10 @@ function MobileNavBar(props) {
 
   return (
     <div
-      id="side-nav"
-      className={styles.sidePanel}
+      className={styles.mobileTabletNavBar}
       style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
     >
-      <div id="nav-items-container" className={styles.navItemsContainer}>
+      <nav className={styles.navItemsContainer}>
         {sortedMenuItems.map((item, i) => (
           <div key={i}>
             <MuiAccordion
@@ -63,7 +62,7 @@ function MobileNavBar(props) {
                 {
                   <>
                     {!isMobile && (
-                      <div id={`accordian-item-${i + 1}-items`} className={styles.itemsColumn}>
+                      <div className={styles.itemsColumn}>
                         {item[2].map(
                           (subItem, j) => (
                             <NavCard
@@ -71,14 +70,14 @@ function MobileNavBar(props) {
                               url={subItem.url}
                               mainText={subItem.header}
                               subText={subItem.subtext}
-                              isNew={subItem.isNew ? "New!" : ""}
+                              isNew={subItem.isNew ? true : false}
                             />
                           )
                         )}
                       </div>
                     )}
                     {isMobile && (
-                      <div d={`accordian-item-${i + 1}-items`}>
+                      <div className={styles.mobileDetails}>
                         {item[2].map(
                           (subItem, j) =>
                             !subItem.excludeInMobile && (
@@ -87,7 +86,7 @@ function MobileNavBar(props) {
                                 url={subItem.url}
                                 mainText={subItem.header}
                                 subText={subItem.subtext}
-                                isNew={subItem.isNew ? "New!" : ""}
+                                isNew={subItem.isNew  ? true : false}
                               />
                             )
                         )}
@@ -109,7 +108,7 @@ function MobileNavBar(props) {
               >
                 <SearchIcon />
               </button>
-              {toggleLanguage === "Français" ? (
+              {content.toggleLanguage === "Français" ? (
                 <a href='' className={styles.sideNavActionsLink}>
                   Fr
                 </a>
@@ -118,29 +117,26 @@ function MobileNavBar(props) {
                   En
                 </a>
               }
-              <a href='https://secure.sonnet.ca/#/login?lang=en' className={styles.sideNavActionsLink} target="_self">
-                {loginString}
+              <a href={content.loginLink} className={styles.sideNavActionsLink} target="_self">
+                {content.loginStr}
               </a>
             </div>
           </div>
         </div>
 
-        <div className={styles.buttonContainer} key={1}>
+        <div className={styles.buttonContainer}>
           <button type="button" className={styles.buttonGaq} onClick={() => setIsQuoteModalOpen(true)}>
-            {gaqButton}
+            {content.gaq}
           </button>
         </div>
-      </div>
-    </div >
+      </nav>
+    </div>
   );
 }
 
 MobileNavBar.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   content: PropTypes.object,
-  gaqButton: PropTypes.string,
-  loginString: PropTypes.string,
-  toggleLanguage: PropTypes.string,
 };
 
 export default MobileNavBar;
