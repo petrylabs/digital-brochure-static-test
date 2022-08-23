@@ -136,7 +136,7 @@ function MobileNavBar(props) {
 
 MobileNavBar.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
-  content: PropTypes.object,
+  content: PropTypes.object.isRequired,
 };
 
 export default MobileNavBar;
