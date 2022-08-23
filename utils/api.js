@@ -47,6 +47,8 @@ export async function getPage(slug) {
     const contentRelationships = content.map((item) => {
       if (item.contentType === "AccordionWidget") {
         return getAccordianWidgetData(item.tagsToDisplay);
+      } else if (item.contentType === "TestimonialCarouselWidget") {
+        return getTestimonialWidgetData(item.tag);
       } else {
         return getContentRelationshipData(item.identifier);
       }
@@ -133,6 +135,19 @@ export function getAccordianWidgetData(tagString) {
   const tagQuery = tags.map((x) => `+FAQ.tags:"${x}"`).join(" ");
   return get(
     `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
+  );
+}
+
+/**
+ * Get related testimonial widget data
+ * @param {string} tags tags to pull related content
+ * @returns API response with the related content
+ */
+export function getTestimonialWidgetData(tagString) {
+  const tags = tagString.split(",");
+  const tagQuery = tags.map((x) => `+Testimonial.tags:"${x}"`).join(" ");
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:Testimonial ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
   );
 }
 
