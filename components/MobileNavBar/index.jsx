@@ -70,7 +70,7 @@ function MobileNavBar(props) {
                               url={subItem.url}
                               mainText={subItem.header}
                               subText={subItem.subtext}
-                              isNew={subItem.isNew ? true : false}
+                              isNew={subItem.isNew}
                             />
                           )
                         )}
@@ -86,7 +86,7 @@ function MobileNavBar(props) {
                                 url={subItem.url}
                                 mainText={subItem.header}
                                 subText={subItem.subtext}
-                                isNew={subItem.isNew  ? true : false}
+                                isNew={subItem.isNew}
                               />
                             )
                         )}
