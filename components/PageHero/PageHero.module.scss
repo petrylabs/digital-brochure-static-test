@@ -41,23 +41,20 @@
 }
 
 .heroContentContainer {
+  @include container;
+
   position: relative;
   right: 0;
   left: 0;
   max-width: 100%;
-  padding: 0 30px 40px;
+  padding-top: 0;
 
   @include mq-min-width(md) {
     position: absolute;
-    padding: 40px 37px 40px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px 71px 60px;
   }
 
   @include mq-min-width(blg) {
-    padding: 60px 135px 60px;
+    padding: 60px 135px;
   }
 }
 

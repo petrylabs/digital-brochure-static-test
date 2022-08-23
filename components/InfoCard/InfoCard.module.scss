@@ -1,5 +1,6 @@
 @import "/scss/globals/color.scss";
 @import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
 
 .icon {
   height: 80px;
@@ -24,16 +25,9 @@
 }
 
 .h3 {
+  @include heading-margin;
+
   text-align: center;
-  @include mq-min-width(xl) {
-    margin-bottom: 30px;
-  }
-  @include mq-min-width(lg) {
-    margin-bottom: 25px;
-  }
-  @include mq-min-width(md) {
-    margin-bottom: 20px;
-  }
 }
 
 .content {
