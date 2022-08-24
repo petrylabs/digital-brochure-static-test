@@ -15,8 +15,6 @@ function TestimonialCarousel(props) {
   const slides = content.fields;
   const headlineId = "headline-id";
 
-  console.log(content);
-
   /* Handle slides: */
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const lastSlideIndex = slides.length - 1;
