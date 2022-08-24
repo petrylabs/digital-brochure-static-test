@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import parse from "html-react-parser";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
-import Chevron from "../../icons/Chevron";
 import styles from "./TestimonialCarousel.module.scss";
 
 /**
@@ -12,8 +12,10 @@ import styles from "./TestimonialCarousel.module.scss";
 function TestimonialCarousel(props) {
   const { content } = props;
   const { headline } = content;
+  const slides = content.fields;
   const headlineId = "headline-id";
-  const slides = [1, 2];
+
+  console.log(content);
 
   /* Handle slides: */
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -55,10 +57,9 @@ function TestimonialCarousel(props) {
             }`}
           >
             <blockquote className={styles.quote}>
-              This is a quote about my wonderful car insurance!
-              {i === 0 && <div>here is some extra text</div>}
+              {parse(slide.testimonial)}
             </blockquote>
-            <cite className={styles.cite}>Bob the Builder, Tilting, NL</cite>
+            <cite className={styles.cite}>{slide.title}</cite>
           </div>
         ))}
       </div>
