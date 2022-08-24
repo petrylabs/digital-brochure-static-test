@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import useWindowWidth from "../../hooks/useWindowWidth";
+import Chevron from "../../icons/Chevron";
 import styles from "./TestimonialCarousel.module.scss";
 
 /**
@@ -9,18 +11,27 @@ import styles from "./TestimonialCarousel.module.scss";
  */
 function TestimonialCarousel(props) {
   const { content } = props;
-  const { headline } = content?.fields;
+  const { headline } = content;
   const headlineId = "headline-id";
   const slides = [1, 2];
 
   /* Handle slides: */
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const lastSlideIndex = slides.length - 1;
   const handleNext = () => {
-    setActiveSlideIndex((prevActiveSlide) => prevActiveSlide + 1);
+    const newActiveSlide =
+      activeSlideIndex === lastSlideIndex ? 0 : activeSlideIndex + 1;
+    setActiveSlideIndex(newActiveSlide);
   };
-  const handleBack = () => {
-    setActiveSlideIndex((prevActiveSlide) => prevActiveSlide - 1);
+  const handlePrev = () => {
+    const newActiveSlide =
+      activeSlideIndex === 0 ? lastSlideIndex : activeSlideIndex - 1;
+    setActiveSlideIndex(newActiveSlide);
   };
+
+  /* Handle screen size: */
+  const screenSize = useWindowWidth();
+  const showPrevNext = screenSize > 480; // magic number; doesn't match any breakpoint
 
   return (
     <section
@@ -30,7 +41,7 @@ function TestimonialCarousel(props) {
     >
       <h2 id={headlineId}>{headline}</h2>
 
-      {/* Slides: */}
+      {/* SLIDES: */}
       <div className={styles.slides}>
         {slides.map((slide, i) => (
           <div
@@ -52,18 +63,49 @@ function TestimonialCarousel(props) {
         ))}
       </div>
 
-      {/* Slide controls: */}
-      <div className={styles.controls}>
-        {slides.map((slide, i) => (
+      {/* SLIDE CONTROLS: */}
+      <div
+        className={`${styles.controls} ${
+          showPrevNext ? styles.controlsRight : ""
+        }`}
+      >
+        {showPrevNext && (
           <button
-            key={`k${i}`}
             type="button"
-            onClick={() => setActiveSlideIndex(i)}
+            onClick={() => handlePrev()}
+            className={`${styles.prevnext} ${styles.prev}`}
           >
             {/* TODO: translate */}
-            <span className="visually-hidden">Slide {i + 1}</span>
+            <span className="visually-hidden">Previous</span>
           </button>
-        ))}
+        )}
+
+        <div className={styles.dots}>
+          {slides.map((slide, i) => (
+            <button
+              key={`k${i}`}
+              type="button"
+              onClick={() => setActiveSlideIndex(i)}
+              className={`${styles.dot} ${
+                activeSlideIndex === i ? styles.active : ""
+              }`}
+            >
+              {/* TODO: translate */}
+              <span className="visually-hidden">Slide {i + 1}</span>
+            </button>
+          ))}
+        </div>
+
+        {showPrevNext && (
+          <button
+            type="button"
+            onClick={() => handleNext()}
+            className={`${styles.prevnext} ${styles.next}`}
+          >
+            {/* TODO: translate */}
+            <span className="visually-hidden">Next</span>
+          </button>
+        )}
       </div>
     </section>
   );

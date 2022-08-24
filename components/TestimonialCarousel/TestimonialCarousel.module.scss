@@ -1,11 +1,17 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/typography.scss";
+@import "../../scss/globals/buttons.scss";
 
 .section {
   @include container;
 
   background-color: $color-primary-accent;
   color: $color-white;
+
+  h2 {
+    @include heading-margin;
+  }
 }
 
 .slides {
@@ -20,5 +26,89 @@
 
   &.active {
     visibility: visible;
+  }
+}
+
+.cite {
+  font-size: 0.875rem;
+  line-height: 23px;
+
+  @include mq-min-width(ssm) {
+    font-size: 0.75rem;
+    line-height: 21px;
+  }
+
+  @include mq-min-width(smd) {
+    font-size: 0.875rem;
+    line-height: 23px;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+
+  &.controlsRight {
+    justify-content: right;
+  }
+}
+
+.dots {
+  display: inline-flex;
+  gap: 15px;
+}
+
+.dot {
+  @include unstyle-button;
+
+  box-sizing: content-box;
+  width: 6px;
+  height: 6px;
+  border: 3px solid $color-white;
+  border-radius: 50%;
+  background: transparent;
+
+  &.active {
+    background: $color-white;
+  }
+}
+
+.prevnext {
+  @include unstyle-button;
+
+  position: relative;
+  box-sizing: content-box;
+  height: 45px;
+  width: 45px;
+  color: $color-white;
+  border: 3px solid $color-white;
+  border-radius: 50%;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-style: solid;
+    border-width: 0 3px 3px 0;
+    border-color: $color-white;
+  }
+
+  &.prev {
+    margin-right: 20px;
+    &::after {
+      transform: rotate(135deg) translate(-14%, 55%);
+      transform-origin: center;
+    }
+  }
+
+  &.next {
+    margin-left: 20px;
+    &::after {
+      transform: rotate(-45deg) translate(-14%, -80%);
+      transform-origin: center;
+    }
   }
 }
