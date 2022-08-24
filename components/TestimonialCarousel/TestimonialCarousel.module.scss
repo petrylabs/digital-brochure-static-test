@@ -1,0 +1,24 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+
+.section {
+  @include container;
+
+  background-color: $color-primary-accent;
+  color: $color-white;
+}
+
+.slides {
+  display: grid;
+  align-items: center;
+}
+
+.slide {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+  }
+}
