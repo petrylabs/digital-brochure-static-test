@@ -4,7 +4,6 @@ import ModalContext from "../context/modal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
-import footerData from "../site-data/footer.preval";
 import "../scss/styles.scss";
 
 /**

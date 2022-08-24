@@ -12,6 +12,7 @@ import QuoteModalContent from "../../components/QuoteModalContent";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
+import { searchData } from "../../utils";
 
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
@@ -26,6 +27,7 @@ const parsedCopyHtml = parse(copyHtml);
 export default function TestPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [search, setSearch] = useState("");
   return (
     <>
       <h1>UI TEST PAGE</h1>
@@ -116,13 +118,24 @@ export default function TestPage() {
         url="https://www.sonnet.ca/auto-insurance"
         mainText="Auto"
         subText="Drive with peace of mind knowing you’re covered."
-        isNew=""
       />
       <NavCard
         url="https://www.sonnet.ca/pet-insurance"
         mainText="Pet"
         subText="Buy insurance online for your cat or dog."
-        isNew="New!"
+        isNew
+      />
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(event) => {
+          setSearch(event.target.value);
+        }}
+        onKeyPress={(event) => {
+          if (event.key === "Enter") {
+            console.log(searchData(search));
+          }
+        }}
       />
     </>
   );
