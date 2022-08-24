@@ -10,8 +10,7 @@ import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import styles from "./Header.module.scss";
-import CartButton from "../CartButton";
-import { getCookie } from "../../utils";
+import CartLink from "../CartLink";
 
 /**
  * Header
@@ -21,7 +20,6 @@ import { getCookie } from "../../utils";
 function Header() {
   const content = headerData.data.headerMenu;
   const [isExpanded, setIsExpanded] = useState(false);
-  const cartCount = getCookie("cart_number_of_quotes");
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -88,7 +86,7 @@ function Header() {
                   {content.gaq}
                 </CTA>
               ) : (
-                <div>{cartCount && <CartButton count={cartCount} />}</div>
+                <CartLink />
               )}
             </div>
           </>
