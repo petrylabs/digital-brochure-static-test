@@ -31,7 +31,6 @@ export default function TestPage() {
   return (
     <>
       <h1>UI TEST PAGE</h1>
-
       <br />
       <CTA url="https://www.wikipedia.org">primary link</CTA>
       <CTA url="https://www.wikipedia.org" type="secondary">
