@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import BlogFaqSection from "../components/BlogFaqSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 
 export async function getStaticPaths() {
@@ -97,7 +98,9 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Last Section (13) */}
+
+      {/* Blog and FAQ section */}
+      <BlogFaqSection content={commonContent[13]} />
     </>
   );
 }
