@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import Chevron from "../../icons/Chevron";
-import SearchIcon from "../../icons/SearchIcon";
+import SearchButton from "../SearchButton";
 import ModalContext from "../../context/modal";
 
 function MobileNavBar(props) {
-  const { isExpanded, content } = props;
+  const { isExpanded, content, ariaControls, isSearchExpanded, onClick } =
+    props;
 
   var menuItems = Object.keys(content.menuItems).map((key) => [
     key,
@@ -49,7 +50,7 @@ function MobileNavBar(props) {
             >
               <AccordionSummary
                 id={`summary${i + 1}`}
-                expandIcon={item[1] < 2 ? '' : <Chevron />}
+                expandIcon={item[1] < 2 ? "" : <Chevron />}
                 classes={{
                   root: styles.summaryNavitems,
                   expanded: styles.summaryExpandedNavitems,
@@ -58,22 +59,23 @@ function MobileNavBar(props) {
               >
                 {item[0]}
               </AccordionSummary>
-              <AccordionDetails id={`details${i + 1}`} classes={{ root: styles.detailsNavitems }}>
+              <AccordionDetails
+                id={`details${i + 1}`}
+                classes={{ root: styles.detailsNavitems }}
+              >
                 {
                   <>
                     {!isMobile && (
                       <div className={styles.itemsColumn}>
-                        {item[2].map(
-                          (subItem, j) => (
-                            <NavCard
-                              key={j}
-                              url={subItem.url}
-                              mainText={subItem.header}
-                              subText={subItem.subtext}
-                              isNew={subItem.isNew}
-                            />
-                          )
-                        )}
+                        {item[2].map((subItem, j) => (
+                          <NavCard
+                            key={j}
+                            url={subItem.url}
+                            mainText={subItem.header}
+                            subText={subItem.subtext}
+                            isNew={subItem.isNew}
+                          />
+                        ))}
                       </div>
                     )}
                     {isMobile && (
@@ -102,22 +104,28 @@ function MobileNavBar(props) {
         <div className={styles.buttonContentContainer}>
           <div className={styles.actionsNav}>
             <div className={styles.actionNavitems}>
-              <button
-                type="button"
-                className={styles.searchButton}
-              >
-                <SearchIcon />
+              <button type="button" className={styles.searchButton}>
+                {/* <SearchIcon /> */}
+                <SearchButton
+                  ariaControls={ariaControls}
+                  state={isSearchExpanded}
+                  onClick={onClick}
+                />
               </button>
               {content.toggleLanguage === "Français" ? (
-                <a href='' className={styles.sideNavActionsLink}>
+                <a href="" className={styles.sideNavActionsLink}>
                   Fr
                 </a>
-              ) :
-                <a href='' className={styles.sideNavActionsLink}>
+              ) : (
+                <a href="" className={styles.sideNavActionsLink}>
                   En
                 </a>
-              }
-              <a href={content.loginLink} className={styles.sideNavActionsLink} target="_self">
+              )}
+              <a
+                href={content.loginLink}
+                className={styles.sideNavActionsLink}
+                target="_self"
+              >
                 {content.loginStr}
               </a>
             </div>
@@ -125,7 +133,11 @@ function MobileNavBar(props) {
         </div>
 
         <div className={styles.buttonContainer}>
-          <button type="button" className={styles.buttonGaq} onClick={() => setIsQuoteModalOpen(true)}>
+          <button
+            type="button"
+            className={styles.buttonGaq}
+            onClick={() => setIsQuoteModalOpen(true)}
+          >
             {content.gaq}
           </button>
         </div>
@@ -137,6 +149,9 @@ function MobileNavBar(props) {
 MobileNavBar.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   content: PropTypes.object.isRequired,
+  ariaControls: PropTypes.string.isRequired,
+  isSearchExpanded: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MobileNavBar;
