@@ -15,6 +15,7 @@ function BlogCard(props) {
       <div className={styles.blogContainer}>
         <div className={styles.blogImage}>
           <Image
+            loader={() => imgUrl}
             src={imgUrl}
             alt={imgAltText}
             layout="fill"

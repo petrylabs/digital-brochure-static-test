@@ -16,6 +16,7 @@ function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
 
   const imageProps = {
+    loader: () => `${imageSrc(content, "GenericContent.image")}`,
     src: imageSrc(content, "GenericContent.image"),
     alt: imageAlt(content, "GenericContent.image"),
     layout: "fill",

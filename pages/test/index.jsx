@@ -105,7 +105,12 @@ export default function TestPage() {
 
       <h2>LargeScreenImage:</h2>
       <p>The image below will only be shown on screens &gt; 767px wide.</p>
-      <LargeScreenImage src={placeholderImage} width="400" height="300" />
+      <LargeScreenImage
+        loader={() => placeholderImage}
+        src={placeholderImage}
+        width="400"
+        height="300"
+      />
 
       <h2>TextSection</h2>
       <TextSection

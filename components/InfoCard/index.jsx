@@ -15,7 +15,13 @@ function InfoCard(props) {
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
     >
       <div className={styles.icon}>
-        <Image src={iconUrl} alt="" width={45} height={45} />
+        <Image
+          loader={() => iconUrl}
+          src={iconUrl}
+          alt=""
+          width={45}
+          height={45}
+        />
       </div>
       <h3 className={styles.h3}>{title}</h3>
       <div className={styles.content}>{content}</div>

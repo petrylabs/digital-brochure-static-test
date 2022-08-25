@@ -16,6 +16,9 @@ function HomeLogoLink() {
       <Image
         // TODO: Logo in content is white -- can we get the grey one?
         // src={`${baseUrl}${content.logoUrl}`}
+        loader={() =>
+          `${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`
+        }
         src={`${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`}
         layout="fixed"
         width={100}
