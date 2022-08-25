@@ -15,6 +15,7 @@ import CloseIcon from "../../icons/CloseIcon";
 import Chevron from "../../icons/Chevron";
 import MobileNavBar from "../MobileNavBar";
 import styles from "./Header.module.scss";
+import CartLink from "../CartLink";
 
 /**
  * Header
@@ -117,6 +118,7 @@ function Header() {
                         state={isSearchExpanded}
                         onClick={deskTopSearchButton}
                       />
+                      <CartLink />
                     </>
                   )}
                 </div>
