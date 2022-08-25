@@ -218,21 +218,14 @@ function Header() {
             )}
           </div>
         )}
-
         {!isDesktop && (
-          // TODO: replace with mobile/tablet nav
-          <div
-            id="mobile-nav"
-            className={styles.headerPanelMobile}
-            style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
-          >
-            mobile nav
-            <SearchButton
-              ariaControls="tablet-search-bar"
-              state={isMobileSearchExpanded}
-              onClick={mobileSearchButton}
-            />
-          </div>
+          <MobileNavBar
+            isExpanded={isExpanded}
+            content={content}
+            ariaControls="tablet-search-bar"
+            isSearchExpanded={isMobileSearchExpanded}
+            onClick={mobileSearchButton}
+          />
         )}
       </header>
 
