@@ -26,7 +26,7 @@ const imageFields = [
  */
 function imageData(contentObj, field) {
   if (imageFields.includes(field)) {
-    return contentObj.fields[field][0];
+    return contentObj.fields[field]?.[0];
   } else console.error(`The provided field '${field}' is not an image field`);
 }
 
@@ -54,3 +54,8 @@ export function imageAlt(contentObj, field) {
   const { altText } = imageData(contentObj, field);
   return altText;
 }
+
+/**
+ * Custom image loader for `Image` component
+ */
+export const customLoader = ({ src }) => src;
