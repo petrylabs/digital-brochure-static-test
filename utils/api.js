@@ -5,10 +5,12 @@ const apiUrl = process.env.DOTCMS_HOST;
  * @param {string} url API endpoint
  * @returns API response
  */
-async function get(url) {
+async function get(url, options = {}) {
   try {
     const response = await fetch(url, {
       headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
         // TODO: update below with API key
         Authorization:
           "Basic " +
@@ -16,6 +18,7 @@ async function get(url) {
             `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
           ).toString("base64"),
       },
+      ...options,
     });
 
     if (!response.ok) {
@@ -49,6 +52,8 @@ export async function getPage(slug) {
     const contentRelationships = content.map((item) => {
       if (item.contentType === "AccordionWidget") {
         return getAccordianWidgetData(item.tagsToDisplay);
+      } else if (item.contentType === "TestimonialCarouselWidget") {
+        return getTestimonialWidgetData(item.tag);
       } else {
         return getContentRelationshipData(item.identifier);
       }
@@ -139,6 +144,19 @@ export function getAccordianWidgetData(tagString) {
 }
 
 /**
+ * Get related testimonial widget data
+ * @param {string} tags tags to pull related content
+ * @returns API response with the related content
+ */
+export function getTestimonialWidgetData(tagString) {
+  const tags = tagString.split(",");
+  const tagQuery = tags.map((x) => `+Testimonial.tags:"${x}"`).join(" ");
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:Testimonial ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
+  );
+}
+
+/**
  * Get header data and menu items from API
  * @returns API response with header data and nav menu items
  */
@@ -204,3 +222,26 @@ export async function getGaqModal() {
     };
   }
 }
+
+/**
+ * Get search results from API
+ * @returns API response with search related data
+ */
+export const getSearchResults = () => {
+  var url = new URL(`${apiUrl}/es/search`);
+  var raw = JSON.stringify({
+    query: {
+      query_string: {
+        query: "+(contentType:FAQ contentType:Blog )",
+      },
+    },
+    size: 500,
+    from: 0,
+  });
+  url.search = new URLSearchParams(raw).toString();
+  return get(`${apiUrl}/es/search`, {
+    method: "POST",
+    body: raw,
+    redirect: "follow",
+  });
+};

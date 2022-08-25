@@ -13,6 +13,7 @@ import SearchButton from "../SearchButton";
 import SearchIcon from "../../icons/SearchIcon";
 import CloseIcon from "../../icons/CloseIcon";
 import Chevron from "../../icons/Chevron";
+import MobileNavBar from "../MobileNavBar";
 import styles from "./Header.module.scss";
 
 /**
