@@ -69,7 +69,11 @@ function LandingPage(props) {
       </section>
 
       {/* Blog and FAQ section */}
-      <BlogFaqSection content={content[13]} />
+      <BlogFaqSection
+        content={content[13]}
+        blogs={[content[14], content[15], content[16]]}
+        faq={content[17]}
+      />
     </>
   );
 }
