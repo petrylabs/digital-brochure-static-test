@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 import styles from "./TestimonialCarousel.module.scss";
@@ -11,8 +12,8 @@ import styles from "./TestimonialCarousel.module.scss";
  */
 function TestimonialCarousel(props) {
   const { content } = props;
-  const { headline } = content;
-  const slides = content.fields;
+  const { headline, fields } = content;
+  const slides = fields;
   const headlineId = "headline-id";
 
   /* Handle slides: */
@@ -109,5 +110,12 @@ function TestimonialCarousel(props) {
     </section>
   );
 }
+
+TestimonialCarousel.propTypes = {
+  content: PropTypes.shape({
+    headline: PropTypes.string.isRequired,
+    fields: PropTypes.array.isRequired,
+  }).isRequired,
+};
 
 export default TestimonialCarousel;
