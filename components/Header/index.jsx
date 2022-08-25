@@ -9,6 +9,7 @@ import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
+import MobileNavBar from "../MobileNavBar";
 import styles from "./Header.module.scss";
 import CartLink from "../CartLink";
 
@@ -102,14 +103,7 @@ function Header() {
       )}
 
       {!isDesktop && (
-        // TODO: replace with mobile/tablet nav
-        <div
-          id="mobile-nav"
-          className={styles.headerPanelMobile}
-          style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
-        >
-          mobile nav
-        </div>
+        <MobileNavBar isExpanded={isExpanded} content={content}/>
       )}
     </header>
   );
