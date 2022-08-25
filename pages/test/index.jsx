@@ -6,7 +6,6 @@ import InfoCard from "../../components/InfoCard";
 import ThreeItemLayout from "../../components/ThreeItemLayout";
 import CTA from "../../components/CTA";
 import LargeScreenImage from "../../components/LargeScreenImage";
-import BlogCard from "../../components/BlogCard";
 import placeholderImage from "./placeholder.jpg";
 import QuoteModalContent from "../../components/QuoteModalContent";
 import NavCard from "../../components/NavCard";
@@ -69,32 +68,6 @@ export default function TestPage() {
         <div>This child will not be displayed!</div>
       </ThreeItemLayout>
 
-      <ThreeItemLayout>
-        <BlogCard
-          imgUrl={placeholderImage}
-          title={"How to compare home insurance quotes"}
-          tag={"At Home"}
-          minRead={"6 min. read"}
-          link={"https://www.sonnet.ca"}
-          imgAltText={""}
-        ></BlogCard>
-        <BlogCard
-          imgUrl={placeholderImage}
-          title={"How to compare home insurance quotes"}
-          tag={"At Home"}
-          minRead={"6 min. read"}
-          link={"https://www.sonnet.ca"}
-          imgAltText={""}
-        ></BlogCard>
-        <BlogCard
-          imgUrl={placeholderImage}
-          title={"How to compare home insurance quotes"}
-          tag={"At Home"}
-          minRead={"6 min. read"}
-          link={"https://www.sonnet.ca"}
-          imgAltText={""}
-        ></BlogCard>
-      </ThreeItemLayout>
       <h2>Modal</h2>
       <CTA type="primary" onClick={() => setIsModalOpen(true)}>
         Open Modal
