@@ -67,6 +67,7 @@ function PageHero(props) {
       {screenWidth < breakpoints.md && (
         <div className={styles.mobileImageContainer}>
           <Image
+            loader={() => imageSrc(content, "Hero.mobileImage")}
             src={imageSrc(content, "Hero.mobileImage")}
             alt={imageAlt(content, "Hero.mobileImage")}
             layout="fill"
