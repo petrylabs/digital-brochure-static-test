@@ -51,6 +51,14 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
+  /* Filter out Nissan section for auto page only: */
+  const nissanSection = content.find((section) =>
+    section?.headline?.includes("Nissan")
+  );
+  const commonContent = content.filter(
+    (section) => !section?.headline?.includes("Nissan")
+  );
+
   return (
     <>
       <Head>
@@ -58,21 +66,24 @@ function LandingPage(props) {
       </Head>
 
       {/* Page Hero */}
-      <PageHero content={content[0]} />
+      <PageHero content={commonContent[0]} />
 
       {/* Intro */}
-      <TextSection title={content[1].headline} copy={parse(content[1].copy)} />
+      <TextSection
+        title={commonContent[1].headline}
+        copy={parse(commonContent[1].copy)}
+      />
 
       {/* Section 3 */}
       <section className="bg-white">
-        <SplitLayout content={content[2]} />
+        <SplitLayout content={commonContent[2]} />
       </section>
 
       {/* Blog and FAQ section */}
       <BlogFaqSection
-        content={content[13]}
-        blogs={[content[14], content[15], content[16]]}
-        faq={content[17]}
+        content={commonContent[12]}
+        blogs={[commonContent[13], commonContent[14], commonContent[15]]}
+        faq={commonContent[16]}
       />
     </>
   );
