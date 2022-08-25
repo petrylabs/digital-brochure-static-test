@@ -5,6 +5,7 @@ import ThreeItemLayout from "../ThreeItemLayout";
 import Accordion from "../Accordion";
 import AccordionGroup from "../AccordionGroup";
 import BlogCard from "../BlogCard";
+import styles from "./BlogFaqSection.module.scss";
 
 /**
  * BlogFaqSection
@@ -17,10 +18,11 @@ function BlogFaqSection(props) {
   const accordionItems = faq.fields;
 
   return (
-    <section className="bg-white">
-      <h2>{headline}</h2>
-
-      {parse(copy)}
+    <section className={styles.section}>
+      <div className={styles.content}>
+        <h2>{headline}</h2>
+        {parse(copy)}
+      </div>
 
       {/* BLOGS */}
       <ThreeItemLayout>
@@ -30,16 +32,18 @@ function BlogFaqSection(props) {
       </ThreeItemLayout>
 
       {/* FAQ */}
-      <AccordionGroup>
-        {accordionItems.map((item) => (
-          <Accordion
-            key={item.identifier}
-            id={item.identifier}
-            details={parse(item.metaDescription)}
-            summary={parse(item.metaTitle)}
-          />
-        ))}
-      </AccordionGroup>
+      <div className={styles.accordions}>
+        <AccordionGroup>
+          {accordionItems.map((item) => (
+            <Accordion
+              key={item.identifier}
+              id={item.identifier}
+              details={parse(item.metaDescription)}
+              summary={parse(item.metaTitle)}
+            />
+          ))}
+        </AccordionGroup>
+      </div>
     </section>
   );
 }
