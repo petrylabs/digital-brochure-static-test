@@ -11,6 +11,7 @@ import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import MobileNavBar from "../MobileNavBar";
 import styles from "./Header.module.scss";
+import CartLink from "../CartLink";
 
 /**
  * Header
@@ -86,7 +87,7 @@ function Header() {
                   {content.gaq}
                 </CTA>
               ) : (
-                <>extra links here</>
+                <CartLink />
               )}
             </div>
           </>
