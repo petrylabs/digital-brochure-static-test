@@ -5,4 +5,9 @@ module.exports = withNextPluginPreval({
   images: {
     domains: ["www.sonnet.ca"],
   },
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
+  },
 });
