@@ -1,5 +1,6 @@
 import React from "react";
-import { array, string } from "prop-types";
+import PropTypes from "prop-types";
+import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchButton.module.scss";
 
 /**
@@ -8,30 +9,31 @@ import styles from "./SearchButton.module.scss";
  */
 
 function SearchButton(props) {
-  const { ariaControls, state } = props;
-  const [isSearchExpanded, setIsSearchExpanded, setIsMenuExpanded] = state;
+  const { ariaControls, state, onClick } = props;
 
   return (
+    // <div className={styles.searchButton}>
     <button
       type="button"
-      onClick={() => {
-        setIsSearchExpanded(!isSearchExpanded);
-        setIsMenuExpanded(false);
-      }}
+      onClick={() => onClick()}
       aria-controls={ariaControls}
-      aria-expanded={isSearchExpanded}
-      className={`${styles.searchButton} ${
-        isSearchExpanded ? "is-active" : ""
-      }`}
+      aria-expanded={state}
+      className={styles.searchButton}
     >
-      <span>S</span>
+      <SearchIcon width="16px" height="16px" />
     </button>
+    // </div>
   );
 }
 
 SearchButton.propTypes = {
-  ariaControls: string.isRequired,
-  state: array.isRequired,
+  ariaControls: PropTypes.string.isRequired,
+  state: PropTypes.array.isRequired,
+  onClick: PropTypes.func,
+};
+
+SearchButton.defaultProps = {
+  onClick: () => {},
 };
 
 export default SearchButton;

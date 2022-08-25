@@ -9,6 +9,12 @@
   margin: unset;
 }
 
+@mixin focus-button {
+  outline: none;
+  border-radius: 5px;
+  border-color: $color-primary-accent;
+}
+
 /* Private mixin for shared/common CTA styles */
 @mixin _make-cta($color, $bgcolor) {
   @include unstyle-button;

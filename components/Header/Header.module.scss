@@ -1,6 +1,7 @@
 @use "sass:map";
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/buttons";
 
 .header {
   position: fixed;
@@ -68,41 +69,59 @@
   }
 }
 
-.searchPaneMobile {
-  height: 100vh;
-  background: $color-white;
-}
-
-.searchPanelDesktop,
-.searchPanelMobile {
+// background
+.tabletSearchContainer {
+  display: block;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  background-color: $color-white;
+  overflow: hidden;
+  height: 100%;
+}
+
+.searchPaneDesktop,
+.searchPaneTablet {
   align-items: center !important;
   justify-content: center !important;
   display: flex !important;
 }
 
-.searchPanelMobile {
-  border: 1px solid #e5e5e5;
+.searchPaneDesktop {
+  padding: 10px 0;
 }
 
-.searchIcon {
-  margin: 0 10px 0 20px;
+.searchPaneTablet {
+  border: 1px solid #e5e5e5;
+  padding: 15px 30px;
+  @include mq-min-width(sm) {
+    padding: 15px;
+  }
+}
+
+.SearchContainer {
+  margin-left: 5px;
+  width: 100%;
+  max-width: 752px;
+  background: $color-white;
 }
 
 .searchInputArea {
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
   background-color: $color-white;
   border: 1px solid $color-grey-07;
   border-radius: 25px;
-  width: 100%;
-  max-width: 752px;
 
   &:hover {
-    border-color: #147582;
+    border: 1px solid $color-primary-accent;
+  }
+
+  &:focus-within {
+    box-sizing: border-box;
+    border: 3px solid $color-primary-accent;
+    margin: -2px;
   }
 
   input {
@@ -110,24 +129,86 @@
     border-radius: 0;
     background-color: transparent;
     box-sizing: border-box;
-    width: 100%;
+    width: 93%;
     height: 40px;
-    font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 20px;
-  }
-
-  input:focus {
-    outline: none;
+    padding: 1px 2px;
   }
 
   textarea:focus,
   input:focus {
     outline: none;
   }
+}
+
+.search {
+  display: flex;
+}
+
+.searchLogo {
+  line-height: 2.525rem;
+  margin: 0 10px 0 18px;
+
+  svg {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    width: 18px;
+    height: 20px;
+  }
+}
+
+.closeButton {
+  @include unstyle-button;
+  top: 17px;
+  right: 17px;
+  color: $color-black;
+  outline: none;
+  position: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 3px !important;
+  width: 25px;
+  height: 25px;
+
+  svg {
+    height: 14px;
+    width: 14px;
+    path {
+      stroke: $color-black;
+      stroke-width: 3;
+    }
+  }
 
   &:hover {
-    border: 3px solid #147582;
+    color: $color-links;
+  }
+
+  &:focus {
+    @include focus-button;
+  }
+}
+
+.chevronButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 3px;
+  svg {
+    height: 23px;
+    path {
+      stroke: $color-black;
+      stroke-width: 2.5;
+    }
+  }
+
+  &:focus {
+    @include focus-button;
   }
 }
 

@@ -10,6 +10,9 @@ import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import SearchButton from "../SearchButton";
+import SearchIcon from "../../icons/SearchIcon";
+import CloseIcon from "../../icons/CloseIcon";
+import Chevron from "../../icons/Chevron";
 import styles from "./Header.module.scss";
 
 /**
@@ -37,6 +40,16 @@ function Header() {
   const menuHandler = () => {
     setIsExpanded(true);
     setIsSearchExpanded(false);
+  };
+
+  const deskTopSearchButton = () => {
+    setIsSearchExpanded(!isSearchExpanded); // button can on/off for search pane
+    setIsExpanded(false); // for nav items
+  };
+
+  const mobileSearchButton = () => {
+    setIsMobileSearchExpanded(!isMobileSearchExpanded);
+    setIsExpanded(false); // for nav items
   };
 
   return (
@@ -97,44 +110,56 @@ function Header() {
                       {content.gaq}
                     </CTA>
                   ) : (
-                    <SearchButton
-                      ariaControls="search-panel"
-                      state={[
-                        isSearchExpanded,
-                        setIsSearchExpanded,
-                        setIsExpanded,
-                      ]}
-                    />
+                    <>
+                      <SearchButton
+                        ariaControls="search-panel"
+                        state={isSearchExpanded}
+                        onClick={deskTopSearchButton}
+                      />
+                    </>
                   )}
                 </div>
               </>
             )}
           </div>
         ) : (
-          <div className={styles.searchPaneMobile}>
-            <div id="tablet-search-bar" className={styles.searchPanelMobile}>
-              {/* arrow image here - tablet size */}
+          <div id="tablet-search-bar" className={styles.tabletSearchContainer}>
+            <div className={styles.searchPaneTablet}>
               {!isDesktop && (
-                <span onClick={() => setIsMobileSearchExpanded(false)}>
-                  &#60;
-                </span>
+                <button
+                  className={styles.chevronButton}
+                  onClick={() => setIsMobileSearchExpanded(false)}
+                >
+                  <Chevron direction="left" size="25px" />
+                </button>
               )}
-              <div className={styles.searchInputArea}>
-                <span className={styles.searchIcon}>S</span>
-                <input
-                  id="search"
-                  type="search"
-                  role="textbox"
-                  aria-autocomplete="both"
-                  aria-controls="search-listbox"
-                  // search-listbox is searchResult cmpt
-                  placeholder="Search"
-                  autoComplete="off"
-                />
+              <div className={styles.SearchContainer}>
+                <div className={styles.searchInputArea} tabIndex="0">
+                  <div className={styles.search}>
+                    <span className={styles.searchLogo}>
+                      <SearchIcon />
+                    </span>
+                    <input
+                      id="search"
+                      type="search"
+                      role="textbox"
+                      aria-autocomplete="both"
+                      aria-controls="search-listbox"
+                      // search-listbox is searchResult cmpt
+                      placeholder="Search"
+                      autoComplete="off"
+                      autoFocus
+                    />
+                  </div>
+                </div>
               </div>
-              {/* x button image here - desktop size */}
               {isDesktop && (
-                <span onClick={() => setIsMobileSearchExpanded(false)}>x</span>
+                <button
+                  className={styles.closeButton}
+                  onClick={() => setIsMobileSearchExpanded(false)}
+                >
+                  <CloseIcon />
+                </button>
               )}
             </div>
           </div>
@@ -150,27 +175,45 @@ function Header() {
 
         {/* EXPANSION PANEl FOR SEARCH PANE ----------------------------------------- */}
         {isSearchExpanded && (
-          <div id="search-panel" className={styles.searchPanelDesktop}>
-            {/* arrow image here - tablet size */}
+          <div id="search-panel" className={styles.searchPaneDesktop}>
             {isTablet && (
-              <span onClick={() => setIsSearchExpanded(false)}>&#60;</span>
+              <button
+                className={styles.chevronButton}
+                onClick={() => setIsSearchExpanded(false)}
+              >
+                <Chevron direction="left" size="25px" />
+              </button>
             )}
-            <div className={styles.searchInputArea}>
-              <span className={styles.searchIcon}>S</span>
-              <input
-                id="search"
-                type="search"
-                role="textbox"
-                aria-autocomplete="both"
-                aria-controls="search-listbox"
-                // search-listbox is searchResult cmpt
-                placeholder="Search"
-                autoComplete="off"
-              />
+            <div className={styles.SearchContainer}>
+              <div
+                id="desktopSearchInputArea"
+                className={styles.searchInputArea}
+              >
+                <div className={styles.search}>
+                  <span className={styles.searchLogo}>
+                    <SearchIcon />
+                  </span>
+                  <input
+                    id="search"
+                    type="search"
+                    role="textbox"
+                    aria-autocomplete="both"
+                    aria-controls="search-listbox"
+                    // search-listbox is searchResult cmpt
+                    placeholder="Search"
+                    autoComplete="off"
+                    autoFocus
+                  />
+                </div>
+              </div>
             </div>
-            {/* x button image here - desktop size */}
             {isDesktop && (
-              <span onClick={() => setIsSearchExpanded(false)}> x </span>
+              <button
+                className={styles.closeButton}
+                onClick={() => setIsSearchExpanded(false)}
+              >
+                <CloseIcon />
+              </button>
             )}
           </div>
         )}
@@ -185,11 +228,8 @@ function Header() {
             mobile nav
             <SearchButton
               ariaControls="tablet-search-bar"
-              state={[
-                isMobileSearchExpanded,
-                setIsMobileSearchExpanded,
-                setIsExpanded,
-              ]}
+              state={isMobileSearchExpanded}
+              onClick={mobileSearchButton}
             />
           </div>
         )}

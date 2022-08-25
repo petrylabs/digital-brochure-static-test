@@ -1,13 +1,31 @@
 @use "sass:map";
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/buttons";
 
 .searchButton {
-  background: $color-white;
-  display: inline-block;
-  button {
-    border: 1px solid transparent;
-    background: transparent;
+  @include unstyle-button;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 3px;
+  margin: 2px;
+  font-size: x-small;
+
+  svg {
+    line-height: initial;
+  }
+
+  &:hover {
+    svg {
+      path {
+        fill: $color-primary-accent;
+      }
+    }
+  }
+
+  &:focus {
     outline: none;
+    border-radius: 5px;
+    border-color: $color-primary-accent;
   }
 }

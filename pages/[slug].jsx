@@ -51,7 +51,7 @@ function LandingPage(props) {
   const { title, description, seodescription, content } = props;
 
   /* TEMPORARY: */
-  console.log(content);
+  //console.log(content);
 
   return (
     <>
