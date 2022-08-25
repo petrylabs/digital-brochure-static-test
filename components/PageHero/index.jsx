@@ -1,12 +1,12 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { imageAlt, imageSrc } from "../../utils/images";
 import PropTypes from "prop-types";
-import styles from "./PageHero.module.scss";
-import CTA from "../CTA";
-import Modal from "../Modal";
+
+import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import { imageAlt, imageSrc } from "../../utils/images";
+import CTA from "../CTA";
+import styles from "./PageHero.module.scss";
 
 /**
  * PageHero
@@ -15,7 +15,6 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 
 function PageHero(props) {
   const { content } = props;
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const screenWidth = useWindowWidth();
 
   const largeImageLoader = ({ src }) => {
@@ -50,6 +49,9 @@ function PageHero(props) {
     />
   );
 
+  /* Handling modal display: */
+  const { setIsQuoteModalOpen } = useContext(ModalContext);
+
   return (
     <div className={styles.heroContainer}>
       <div className={styles.backgroundContainer}>
@@ -62,12 +64,12 @@ function PageHero(props) {
           <h1>{content.headline}</h1>
           <p>{content.copy}</p>
           <div className={styles.buttonGroup} key={1}>
-            <CTA type={content.buttonType} onClick={() => setIsModalOpen(true)}>
+            <CTA
+              type={content.buttonType}
+              onClick={() => setIsQuoteModalOpen(true)}
+            >
               {content.cta}
             </CTA>
-            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-              <>Modal content!</>
-            </Modal>
           </div>
         </div>
       </div>
