@@ -19,7 +19,7 @@ function BlogCard(props) {
 
   /* Where does this actually come from? */
   /* TODO: translate */
-  const tag = Object.keys(category[0]).includes("auto")
+  const tag = Object.keys(category?.[0]).includes("auto")
     ? "On the road"
     : "At home";
 
