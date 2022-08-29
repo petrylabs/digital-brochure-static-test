@@ -8,7 +8,7 @@ import React, { Children, cloneElement, isValidElement, useState } from "react";
 function AccordionGroup(props) {
   const { children } = props;
   const accordions = Children.toArray(children);
-
+  
   const [openAccordion, setOpenAccordion] = useState(null);
 
   /* Open new item, or close if open item is clicked again */

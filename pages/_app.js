@@ -4,7 +4,7 @@ import ModalContext from "../context/modal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
-import footerData from "../site-data/footer.preval";
+import QuoteModalContent from "../components/QuoteModalContent";
 import "../scss/styles.scss";
 
 /**
@@ -28,7 +28,7 @@ function CustomApp({ Component, pageProps }) {
       <Footer />
 
       <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
-        <>Quote modal content!</>
+        <QuoteModalContent />
       </Modal>
     </ModalContext.Provider>
   );
