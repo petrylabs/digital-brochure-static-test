@@ -54,3 +54,8 @@ export function imageAlt(contentObj, field) {
   const { altText } = imageData(contentObj, field);
   return altText;
 }
+
+/**
+ * Custom image loader for `Image` component
+ */
+export const customLoader = ({ src }) => src;

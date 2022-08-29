@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./BlogCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { customLoader } from "../../utils/images";
 
 /**
  * BlogCard
@@ -15,6 +16,7 @@ function BlogCard(props) {
       <div className={styles.blogContainer}>
         <div className={styles.blogImage}>
           <Image
+            loader={customLoader}
             src={imgUrl}
             alt={imgAltText}
             layout="fill"
