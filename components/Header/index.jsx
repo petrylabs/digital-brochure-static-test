@@ -11,13 +11,13 @@ import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
-import SearchButton from "../SearchButton";
 import NavMobile from "../NavMobile";
 import NavDesktop from "../NavDesktop";
 import CartLink from "../CartLink";
 import SearchInput from "../SearchInput";
 
 import styles from "./Header.module.scss";
+import NavSecondary from "../NavSecondary";
 
 /**
  * Header
@@ -110,16 +110,10 @@ function Header() {
                       {content.gaq}
                     </CTA>
                   ) : (
-                    <>
-                      {/* TODO: replace with secondary nav component? */}
-                      <SearchButton
-                        ariaControls="search-panel"
-                        state={isSearchExpanded}
-                        onClick={deskTopSearchButton}
-                      />
-                      <CartLink />
-                    </>
+                    <NavSecondary searchToggleFn={deskTopSearchButton} />
                   )}
+
+                  <CartLink />
                 </div>
               </>
             )}

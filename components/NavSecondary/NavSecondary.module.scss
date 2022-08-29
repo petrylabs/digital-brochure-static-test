@@ -1,0 +1,55 @@
+@import "../../scss/globals/variables";
+@import "../../scss/globals/mixins";
+@import "../../scss/globals/buttons";
+@import "../../scss/globals/layout";
+@import "../../scss/globals/color";
+@import "../../scss/globals/a11y";
+
+.nav {
+  display: inline-flex;
+  align-items: center;
+}
+
+.searchButton {
+  @include unstyle-button;
+
+  padding: 3px;
+
+  &:hover {
+    svg {
+      path {
+        fill: $color-primary-accent;
+      }
+    }
+  }
+  &:focus {
+    @include focus-border;
+  }
+}
+
+.link {
+  @include unstyle-link;
+
+  padding-inline: 18px;
+  font-family: $font-extra-bold;
+  font-size: 18px;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-primary-accent;
+    text-decoration: underline 3px;
+  }
+  &:focus {
+    @include focus-border;
+  }
+
+  @include mq-min-width(sm) {
+    font-size: 16px;
+  }
+}
+
+.loginLink {
+  @include mq-min-width(lg) {
+    border-left: 1px solid $color-grey-06;
+  }
+}

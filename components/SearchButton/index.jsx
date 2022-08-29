@@ -24,7 +24,7 @@ function SearchButton(props) {
 }
 
 SearchButton.propTypes = {
-  ariaControls: PropTypes.string.isRequired,
+  // ariaControls: PropTypes.string.isRequired,
   state: PropTypes.array.isRequired,
   onClick: PropTypes.func,
 };

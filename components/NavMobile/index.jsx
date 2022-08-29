@@ -11,8 +11,8 @@ import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import Chevron from "../../icons/Chevron";
 import NavCard from "../NavCard";
-import SearchButton from "../SearchButton";
 import styles from "./NavMobile.module.scss";
+import NavSecondary from "../NavSecondary";
 
 /**
  * NavMobile
@@ -92,27 +92,11 @@ function NavMobile(props) {
         ))}
 
         <div className={styles.buttonContentContainer}>
-          <div className={styles.actionsNav}>
-            <div className={styles.actionNavitems}>
-              <button type="button" className={styles.searchButton}>
-                <SearchButton
-                  ariaControls={ariaControls}
-                  state={isSearchExpanded}
-                  onClick={onClick}
-                />
-              </button>
-              <a href="" className={styles.sideNavActionsLink}>
-                {content.toggleLanguage === "Français" ? "Fr" : "En"}
-              </a>
-              <a
-                href={content.loginLink}
-                className={styles.sideNavActionsLink}
-                target="_self"
-              >
-                {content.loginStr}
-              </a>
-            </div>
-          </div>
+          <NavSecondary
+            ariaControls={ariaControls}
+            ariaExpanded={isSearchExpanded}
+            searchToggleFn={onClick}
+          />
         </div>
 
         <div className={styles.buttonContainer}>
