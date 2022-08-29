@@ -12,7 +12,7 @@ import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
 import SkipNavLink from "../SkipNavLink";
 import SearchButton from "../SearchButton";
-import MobileNavBar from "../MobileNavBar";
+import NavMobile from "../NavMobile";
 import NavDesktop from "../NavDesktop";
 import CartLink from "../CartLink";
 import SearchInput from "../SearchInput";
@@ -75,7 +75,7 @@ function Header() {
             <HomeLogoLink />
 
             {!isDesktop && (
-              <div className={styles.mobileNavbar}>
+              <div className={styles.NavMobile}>
                 {!isSubmenuExpanded && (
                   <CTA
                     type="primary"
@@ -152,7 +152,7 @@ function Header() {
         )}
 
         {!isDesktop && (
-          <MobileNavBar
+          <NavMobile
             isExpanded={isSubmenuExpanded}
             content={content}
             ariaControls="tablet-search-bar"

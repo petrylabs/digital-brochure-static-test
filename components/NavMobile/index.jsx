@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
-import styles from "./MobileNavBar.module.scss";
-import { breakpoints } from "../../config";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import NavCard from "../NavCard";
 import {
   Accordion as MuiAccordion,
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import Chevron from "../../icons/Chevron";
-import SearchButton from "../SearchButton";
-import ModalContext from "../../context/modal";
 
-function MobileNavBar(props) {
+import { breakpoints } from "../../config";
+import ModalContext from "../../context/modal";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import Chevron from "../../icons/Chevron";
+import NavCard from "../NavCard";
+import SearchButton from "../SearchButton";
+import styles from "./NavMobile.module.scss";
+
+/**
+ * NavMobile
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179081764/NavMobile
+ */
+function NavMobile(props) {
   const { isExpanded, content, ariaControls, isSearchExpanded, onClick } =
     props;
 
@@ -43,7 +48,7 @@ function MobileNavBar(props) {
           <div key={i}>
             <MuiAccordion
               id={`accordian-item-${i + 1}`}
-              defaultExpanded={item[1] < 2 ? true : false}
+              defaultExpanded={item[1] < 2}
               disableGutters
               TransitionProps={{ timeout: 0 }}
               classes={{ root: styles.accordionNavitems }}
@@ -59,43 +64,28 @@ function MobileNavBar(props) {
               >
                 {item[0]}
               </AccordionSummary>
+
               <AccordionDetails
                 id={`details${i + 1}`}
                 classes={{ root: styles.detailsNavitems }}
               >
-                {
-                  <>
-                    {!isMobile && (
-                      <div className={styles.itemsColumn}>
-                        {item[2].map((subItem, j) => (
-                          <NavCard
-                            key={j}
-                            url={subItem.url}
-                            mainText={subItem.header}
-                            subText={subItem.subtext}
-                            isNew={subItem.isNew}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    {isMobile && (
-                      <div className={styles.mobileDetails}>
-                        {item[2].map(
-                          (subItem, j) =>
-                            !subItem.excludeInMobile && (
-                              <NavCard
-                                key={j}
-                                url={subItem.url}
-                                mainText={subItem.header}
-                                subText={subItem.subtext}
-                                isNew={subItem.isNew}
-                              />
-                            )
-                        )}
-                      </div>
-                    )}
-                  </>
-                }
+                <div
+                  className={
+                    isMobile ? styles.mobileDetails : styles.itemsColumn
+                  }
+                >
+                  {item[2].map((subItem, j) => {
+                    return isMobile && subItem.excludeInMobile ? null : (
+                      <NavCard
+                        key={j}
+                        url={subItem.url}
+                        mainText={subItem.header}
+                        subText={subItem.subtext}
+                        isNew={subItem.isNew}
+                      />
+                    );
+                  })}
+                </div>
               </AccordionDetails>
             </MuiAccordion>
           </div>
@@ -105,22 +95,15 @@ function MobileNavBar(props) {
           <div className={styles.actionsNav}>
             <div className={styles.actionNavitems}>
               <button type="button" className={styles.searchButton}>
-                {/* <SearchIcon /> */}
                 <SearchButton
                   ariaControls={ariaControls}
                   state={isSearchExpanded}
                   onClick={onClick}
                 />
               </button>
-              {content.toggleLanguage === "Français" ? (
-                <a href="" className={styles.sideNavActionsLink}>
-                  Fr
-                </a>
-              ) : (
-                <a href="" className={styles.sideNavActionsLink}>
-                  En
-                </a>
-              )}
+              <a href="" className={styles.sideNavActionsLink}>
+                {content.toggleLanguage === "Français" ? "Fr" : "En"}
+              </a>
               <a
                 href={content.loginLink}
                 className={styles.sideNavActionsLink}
@@ -146,7 +129,7 @@ function MobileNavBar(props) {
   );
 }
 
-MobileNavBar.propTypes = {
+NavMobile.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   content: PropTypes.object.isRequired,
   ariaControls: PropTypes.string.isRequired,
@@ -154,4 +137,4 @@ MobileNavBar.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default MobileNavBar;
+export default NavMobile;
