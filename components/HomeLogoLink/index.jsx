@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import headerData from "../../site-data/header.preval";
 import { baseUrl } from "../../config";
+import { customLoader } from "../../utils/images";
 
 /**
  * HomeLogoLink
@@ -16,9 +17,7 @@ function HomeLogoLink() {
       <Image
         // TODO: Logo in content is white -- can we get the grey one?
         // src={`${baseUrl}${content.logoUrl}`}
-        loader={() =>
-          `${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`
-        }
+        loader={customLoader}
         src={`${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`}
         layout="fixed"
         width={100}

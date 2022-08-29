@@ -3,7 +3,7 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import parse from "html-react-parser";
 
-import { imageAlt, imageSrc } from "../../utils/images";
+import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import LargeScreenImage from "../LargeScreenImage";
 import styles from "./SplitLayout.module.scss";
 
@@ -16,7 +16,7 @@ function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
 
   const imageProps = {
-    loader: () => `${imageSrc(content, "GenericContent.image")}`,
+    loader: customLoader,
     src: imageSrc(content, "GenericContent.image"),
     alt: imageAlt(content, "GenericContent.image"),
     layout: "fill",

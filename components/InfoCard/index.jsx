@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./InfoCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { customLoader } from "../../utils/images";
 
 /**
  * InfoCard
@@ -16,7 +17,7 @@ function InfoCard(props) {
     >
       <div className={styles.icon}>
         <Image
-          loader={() => iconUrl}
+          loader={customLoader}
           src={iconUrl}
           alt=""
           width={45}
