@@ -15,11 +15,6 @@
   font-family: $font-regular;
   font-size: 18px;
 
-  @include mq-min-width(sm) {
-    font-family: $font-extra-bold;
-    font-size: 16px;
-  }
-
   &:hover {
     text-decoration: none; // Overwrites the default styling for a from sonnet.css
     color: $color-primary-grey; // Overwrites the default styling for a from sonnet.css
@@ -44,6 +39,15 @@
   &:focus {
     border-color: $color-primary-accent;
   }
+
+  @include mq-min-width(sm) {
+    font-family: $font-extra-bold;
+    font-size: 16px;
+  }
+
+  @include mq-min-width(lg) {
+    min-height: 60px;
+  }
 }
 
 .newTag {
@@ -63,16 +67,9 @@
   line-height: 20px;
   color: $color-primary-grey;
   text-decoration: none;
-}
+  display: none;
 
-@include mq-min-width(xs) {
-  .subText {
-    display: none;
-  }
-}
-
-@include mq-min-width(sm) {
-  .subText {
+  @include mq-min-width(sm) {
     display: block;
   }
 }
