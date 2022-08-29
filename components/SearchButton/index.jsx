@@ -4,15 +4,13 @@ import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchButton.module.scss";
 
 /**
- * Search Input
- * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43178917935/SearchInput
+ * Search Button
  */
 
 function SearchButton(props) {
   const { ariaControls, state, onClick } = props;
 
   return (
-    // <div className={styles.searchButton}>
     <button
       type="button"
       onClick={() => onClick()}
@@ -22,7 +20,6 @@ function SearchButton(props) {
     >
       <SearchIcon width="16px" height="16px" />
     </button>
-    // </div>
   );
 }
 
