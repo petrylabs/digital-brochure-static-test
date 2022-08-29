@@ -8,7 +8,7 @@ import styles from "./SearchInput.module.scss";
 function SearchInput() {
   return (
     <div className={styles.searchContainer}>
-      <div id="desktopSearchInputArea" className={styles.searchInputArea}>
+      <div className={styles.searchInputArea}>
         <div className={styles.search}>
           <span className={styles.searchLogo}>
             <SearchIcon />
