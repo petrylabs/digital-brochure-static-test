@@ -13,7 +13,7 @@
   }
 }
 
-.navButton {
+.navItem {
   @include unstyle-button;
 
   font-family: $font-extra-bold;
@@ -22,37 +22,38 @@
   &:focus {
     @include focus-border;
 
-    .navButtonFocus {
+    .navItemFocus {
       opacity: 1;
     }
   }
 
   &:hover {
-    .navButtonText {
+    .navItemText {
       border-color: $color-primary-accent;
     }
   }
 
   &:focus:hover {
-    .navButtonFocus {
+    .navItemFocus {
       border-color: $color-primary-accent;
     }
   }
 }
 
-.navButtonText,
-.navButtonFocus {
+.navItemText,
+.navItemFocus {
   border-bottom: 3px solid transparent;
+  padding-block: 2px;
 }
 
-.navButtonFocus {
+.navItemFocus {
   opacity: 0;
   font-family: $font-regular;
 }
 
-.navButtonActive {
-  .navButtonText,
-  .navButtonFocus {
+.navItemActive {
+  .navItemText,
+  .navItemFocus {
     color: $color-primary-accent;
     border-color: $color-primary-accent;
   }

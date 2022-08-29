@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import headerData from "../../site-data/header.preval";
 import { evenIndexBeforeOdd } from "../../utils/array";
@@ -55,14 +54,14 @@ function NavDesktop(props) {
               onClick={() => handleExpand(item)}
               aria-controls={submenuId}
               aria-expanded={!!visibleSubmenu}
-              className={`${styles.navButton} ${
+              className={`${styles.navItem} ${
                 item.menuItem === visibleSubmenu.menuItem
-                  ? styles.navButtonActive
+                  ? styles.navItemActive
                   : ""
               }`}
             >
-              <span className={styles.navButtonText}>{item.menuItem}</span>
-              <span className={styles.navButtonFocus}>+</span>
+              <span className={styles.navItemText}>{item.menuItem}</span>
+              <span className={styles.navItemFocus}>+</span>
             </button>
 
             {/* SUBMENU */}

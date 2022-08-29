@@ -49,7 +49,7 @@
 }
 
 .headerPanelDesktop {
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid $color-grey-03;
   padding-inline: 20px;
 
   @include mq-min-width(xl) {

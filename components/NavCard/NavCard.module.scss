@@ -6,13 +6,19 @@
   display: block;
   border-radius: 10px;
   border: 1px solid transparent;
-  padding: 10px;
   outline: 2px solid transparent;
+  padding: 10px;
   margin: 0;
   line-height: 20px;
-  font-size: 14px;
   color: $color-primary-grey;
   text-decoration: none;
+  font-family: $font-regular;
+  font-size: 18px;
+
+  @include mq-min-width(sm) {
+    font-family: $font-extra-bold;
+    font-size: 16px;
+  }
 
   &:hover {
     text-decoration: none; // Overwrites the default styling for a from sonnet.css
@@ -38,22 +44,13 @@
   &:focus {
     border-color: $color-primary-accent;
   }
-
-  @include mq-min-width(xs) {
-    font-family: $font-regular;
-    font-size: 18px;
-  }
-
-  @include mq-min-width(sm) {
-    font-family: $font-extra-bold;
-  }
 }
 
 .newTag {
   font-family: $font-regular;
-  font-size: 12px;
   color: $color-white;
   text-decoration: none;
+  font-size: 12px;
   line-height: 15px;
   border-radius: 2px;
   background-color: $color-primary-accent;
