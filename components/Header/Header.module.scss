@@ -13,7 +13,7 @@
   max-width: map.get($breakpoints, xl);
   margin-inline: auto;
   background-color: $color-white;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 30px 30px;
   box-shadow: 0 1px 4px $color-grey-07;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .secondaryNav {
-  width: 150px; // temp
+  width: 175px;
   text-align: right;
   flex-direction: row;
 }
