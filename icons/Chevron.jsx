@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Chevron({ direction }) {
+function Chevron({ direction, size }) {
   const rotation = {
     down: 0,
     left: 90,
@@ -11,8 +11,8 @@ function Chevron({ direction }) {
 
   return (
     <svg
-      width="15px"
-      height="15px"
+      width={size}
+      height={size}
       viewBox="0 0 45 45"
       xmlns="http://www.w3.org/2000/svg"
       style={{
@@ -28,10 +28,12 @@ function Chevron({ direction }) {
 
 Chevron.propTypes = {
   direction: PropTypes.oneOf(["up", "down", "left", "right"]),
+  size: PropTypes.string,
 };
 
 Chevron.defaultProps = {
   direction: "down",
+  size: "15px",
 };
 
 export default Chevron;

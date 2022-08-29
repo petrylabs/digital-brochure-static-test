@@ -12,7 +12,7 @@ import QuoteModalContent from "../../components/QuoteModalContent";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
-import { searchData } from "../../utils";
+import { searchData, getCookie } from "../../utils";
 
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
@@ -31,7 +31,6 @@ export default function TestPage() {
   return (
     <>
       <h1>UI TEST PAGE</h1>
-
       <br />
       <CTA url="https://www.wikipedia.org">primary link</CTA>
       <CTA url="https://www.wikipedia.org" type="secondary">
@@ -113,6 +112,8 @@ export default function TestPage() {
         copyString={parsedCopyHtml}
       />
 
+      <h2>Shopping cart value</h2>
+      {getCookie("cart_number_of_quotes")}
       <h2>NavCard</h2>
       <NavCard
         url="https://www.sonnet.ca/auto-insurance"
