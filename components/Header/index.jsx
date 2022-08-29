@@ -17,6 +17,7 @@ import MobileNavBar from "../MobileNavBar";
 import NavDesktop from "../NavDesktop";
 import styles from "./Header.module.scss";
 import CartLink from "../CartLink";
+import SearchInput from "../SearchInput";
 
 /**
  * Header
@@ -67,6 +68,7 @@ function Header() {
         }}
       >
         <SkipNavLink />
+
         {/* HEADER BAR ----------------------------------------------------------- */}
         {!isMobileSearchExpanded ? (
           <div id="header-bar" className={styles.headerBar}>
@@ -133,34 +135,8 @@ function Header() {
                   <Chevron direction="left" size="25px" />
                 </button>
               )}
-              <div className={styles.SearchContainer}>
-                <div className={styles.searchInputArea} tabIndex="0">
-                  <div className={styles.search}>
-                    <span className={styles.searchLogo}>
-                      <SearchIcon />
-                    </span>
-                    <input
-                      id="search"
-                      type="search"
-                      role="textbox"
-                      aria-autocomplete="both"
-                      aria-controls="search-listbox"
-                      // search-listbox is searchResult cmpt
-                      placeholder="Search"
-                      autoComplete="off"
-                      autoFocus
-                    />
-                  </div>
-                </div>
-              </div>
-              {isDesktop && (
-                <button
-                  className={styles.closeButton}
-                  onClick={() => setIsMobileSearchExpanded(false)}
-                >
-                  <CloseIcon />
-                </button>
-              )}
+
+              <SearchInput />
             </div>
           </div>
         )}
@@ -172,7 +148,6 @@ function Header() {
             style={{ height: panelHeight }}
           >
             {/* Desktop submenu is positioned absolutely, so this (empty) panel expands to match its height */}
-            {/* TODO: search input */}
           </div>
         )}
 
@@ -187,29 +162,8 @@ function Header() {
                 <Chevron direction="left" size="25px" />
               </button>
             )}
-            <div className={styles.SearchContainer}>
-              <div
-                id="desktopSearchInputArea"
-                className={styles.searchInputArea}
-              >
-                <div className={styles.search}>
-                  <span className={styles.searchLogo}>
-                    <SearchIcon />
-                  </span>
-                  <input
-                    id="search"
-                    type="search"
-                    role="textbox"
-                    aria-autocomplete="both"
-                    aria-controls="search-listbox"
-                    // search-listbox is searchResult cmpt
-                    placeholder="Search"
-                    autoComplete="off"
-                    autoFocus
-                  />
-                </div>
-              </div>
-            </div>
+            <SearchInput />
+
             {isDesktop && (
               <button
                 className={styles.closeButton}
@@ -220,6 +174,7 @@ function Header() {
             )}
           </div>
         )}
+
         {!isDesktop && (
           <MobileNavBar
             isExpanded={isExpanded}
@@ -231,9 +186,9 @@ function Header() {
         )}
       </header>
 
+      {/* Overlay/Backdrop */}
       {isSearchExpanded && (
         <div
-          id="backdrop"
           className={styles.backdrop}
           onClick={() => {
             setIsSearchExpanded(false);
