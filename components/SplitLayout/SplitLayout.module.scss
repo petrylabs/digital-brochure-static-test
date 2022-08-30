@@ -17,10 +17,14 @@
   }
 }
 
-.contentCol,
-.imageCol {
-  flex: 1;
+.flexContainer > div {
+  flex: 50%;
 }
+
+// .contentCol,
+// .imageCol {
+//   //flex: 1;
+// }
 
 .imageCol {
   position: relative;
