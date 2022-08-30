@@ -17,6 +17,8 @@ function BlogFaqSection(props) {
 
   const accordionItems = faq.fields;
 
+  console.log(faq);
+
   return (
     <section className={styles.section}>
       <div className={styles.content}>
@@ -38,8 +40,8 @@ function BlogFaqSection(props) {
             <Accordion
               key={item.identifier}
               id={item.identifier}
-              details={parse(item.metaDescription)}
-              summary={parse(item.metaTitle)}
+              details={parse(item.answer)}
+              summary={parse(item.question)}
             />
           ))}
         </AccordionGroup>
