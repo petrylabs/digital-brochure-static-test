@@ -33,8 +33,8 @@ function BlogCard(props) {
         <div className={styles.blogImage}>
           <Image
             loader={customLoader}
-            src={imageSrc(content, "Blog.blogArticleImage")}
-            alt={imageAlt(content, "Blog.blogArticleImage")}
+            src={imageSrc(content, "Blog.image")}
+            alt={imageAlt(content, "Blog.image")}
             layout="fill"
             objectFit="cover"
           />
