@@ -1,0 +1,16 @@
+/* Responsive spacing below h2 */
+@mixin heading-margin() {
+  margin-bottom: 15px;
+
+  @include mq-min-width(md) {
+    margin-bottom: 20px;
+  }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 25px;
+  }
+
+  @include mq-min-width(xl) {
+    margin-bottom: 30px;
+  }
+}
