@@ -1,0 +1,72 @@
+@import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/buttons.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/a11y.scss";
+
+.navList {
+  @include unstyle-list;
+
+  position: relative;
+
+  li {
+    display: inline;
+  }
+}
+
+.navItem {
+  @include unstyle-button;
+
+  font-family: $font-extra-bold;
+  margin: 0 20px;
+
+  &:focus {
+    @include focus-border;
+
+    .navItemFocus {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    .navItemText {
+      border-color: $color-primary-accent;
+    }
+  }
+
+  &:focus:hover {
+    .navItemFocus {
+      border-color: $color-primary-accent;
+    }
+  }
+}
+
+.navItemText,
+.navItemFocus {
+  border-bottom: 3px solid transparent;
+  padding-block: 2px;
+}
+
+.navItemFocus {
+  opacity: 0;
+  font-family: $font-regular;
+}
+
+.navItemActive {
+  .navItemText,
+  .navItemFocus {
+    color: $color-primary-accent;
+    border-color: $color-primary-accent;
+  }
+}
+
+.subNav {
+  @include unstyle-list;
+
+  position: absolute;
+  width: 715px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-auto-flow: column;
+  margin-top: 16px;
+  padding: 20px 0 20px 10px;
+}

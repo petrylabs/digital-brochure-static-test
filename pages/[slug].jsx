@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import TestimonialCarousel from "../components/TestimonialCarousel";
 import BlogFaqSection from "../components/BlogFaqSection";
 
 export async function getStaticPaths() {
@@ -78,6 +79,9 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={commonContent[2]} />
       </section>
+
+      {/* Testimonial carousel */}
+      <TestimonialCarousel content={commonContent[11]} />
 
       {/* Blog and FAQ section */}
       <BlogFaqSection

@@ -3,7 +3,7 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 
 import { baseUrl } from "../../config";
-import { imageAlt, imageSrc } from "../../utils/images";
+import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import styles from "./BlogCard.module.scss";
 
 /**
@@ -31,7 +31,7 @@ function BlogCard(props) {
       <div className={styles.blogContainer}>
         <div className={styles.blogImage}>
           <Image
-            loader={({ src }) => src}
+            loader={customLoader}
             src={imageSrc(content, "Blog.blogArticleImage")}
             alt={imageAlt(content, "Blog.blogArticleImage")}
             layout="fill"

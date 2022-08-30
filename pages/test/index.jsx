@@ -11,7 +11,7 @@ import QuoteModalContent from "../../components/QuoteModalContent";
 import NavCard from "../../components/NavCard";
 import Accordion from "../../components/Accordion";
 import AccordionGroup from "../../components/AccordionGroup";
-import { searchData, getCookie } from "../../utils";
+import { searchData, getCookie, customLoader } from "../../utils";
 
 const htmlCopy = `<p>Do you lease or finance your vehicle? Having both comprehensive and collision coverage may actually be required by your lender. <snt-link href=\"https://www.sonnet.ca/blog/auto/insurance/lease-finance-insurance\" target=\"_self\"><a href=\"https://www.sonnet.ca/blog/lease-finance-insurance\" title=\"Find out more about insuring a leased or financed car\">Find out more about insuring a leased or financed car</a></snt-link>.</p>`;
 const parsedCopy = parse(htmlCopy);
@@ -77,7 +77,12 @@ export default function TestPage() {
 
       <h2>LargeScreenImage:</h2>
       <p>The image below will only be shown on screens &gt; 767px wide.</p>
-      <LargeScreenImage src={placeholderImage} width="400" height="300" />
+      <LargeScreenImage
+        loader={customLoader}
+        src={placeholderImage}
+        width="400"
+        height="300"
+      />
 
       <h2>TextSection</h2>
       <TextSection

@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import parse from "html-react-parser";
+
 import styles from "./NavCard.module.scss";
 
 /**
@@ -13,9 +15,9 @@ function NavCard(props) {
   return (
     <a href={url} className={styles.navLink}>
       <span>{mainText}</span>
-      {/* Use ternary operator to make sure it won't display 0 in case it validates to false */}
-      {isNew ? <span className={styles.newTag}>New!</span> : ""}
-      <p className={styles.subText}>{subText}</p>
+      {/* TODO: translation */}
+      {isNew && <span className={styles.newTag}>New!</span>}
+      <p className={styles.subText}>{parse(subText)}</p>
     </a>
   );
 }

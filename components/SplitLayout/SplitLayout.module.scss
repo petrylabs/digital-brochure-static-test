@@ -1,4 +1,5 @@
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/typography.scss";
 
 .flexContainer {
   display: flex;
@@ -32,33 +33,9 @@
 }
 
 .contentCol {
-  padding: 40px 30px;
+  @include container;
 
   h2 {
-    margin-bottom: 15px;
-  }
-
-  @include mq-min-width(md) {
-    padding: 40px 37px;
-
-    h2 {
-      margin-bottom: 20px;
-    }
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px 71px;
-
-    h2 {
-      margin-bottom: 25px;
-    }
-  }
-
-  @include mq-min-width(xl) {
-    padding: 60px 135px;
-
-    h2 {
-      margin-bottom: 30px;
-    }
+    @include heading-margin;
   }
 }

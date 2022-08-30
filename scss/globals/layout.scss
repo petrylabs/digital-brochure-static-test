@@ -18,6 +18,23 @@ $breakpoints: (
   }
 }
 
+/* Container that handles inline pdding responsively */
+@mixin container() {
+  padding: 40px 30px;
+
+  @include mq-min-width(md) {
+    padding-inline: 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 60px 71px;
+  }
+
+  @include mq-min-width(xl) {
+    padding-inline: 135px;
+  }
+}
+
 // $viewport-xs: "extra-small";
 // $viewport-sm: "small";
 // $viewport-md: "medium";
