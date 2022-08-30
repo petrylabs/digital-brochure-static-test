@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import { imageAlt, imageSrc } from "../../utils/images";
+import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import CTA from "../CTA";
 import styles from "./PageHero.module.scss";
 
@@ -67,6 +67,7 @@ function PageHero(props) {
       {screenWidth < breakpoints.md && (
         <div className={styles.mobileImageContainer}>
           <Image
+            loader={customLoader}
             src={imageSrc(content, "Hero.mobileImage")}
             alt={imageAlt(content, "Hero.mobileImage")}
             layout="fill"
