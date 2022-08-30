@@ -51,7 +51,7 @@ export async function getPage(slug) {
     /** Get all related content */
     const contentRelationships = content.map((item) => {
       if (item.contentType === "AccordionWidget") {
-        return getAccordianWidgetData(item.tagsToDisplay);
+        return getAccordianWidgetData(item.tagsToDisplay, item.languageId);
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
       } else {
@@ -131,21 +131,23 @@ export function getContentRelationshipData(identifier) {
 }
 
 /**
- * Get related accordian widget data
- * @param {string} tags tags to pull related content
+ * Get related accordion widget data
+ * @param {string} tagString tags to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with the related content
  */
-export function getAccordianWidgetData(tagString) {
+export function getAccordianWidgetData(tagString, languageId) {
   const tags = tagString.split(",");
   const tagQuery = tags.map((x) => `+FAQ.tags:"${x}"`).join(" ");
   return get(
-    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
+    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +languageId:${languageId} +deleted:false +working:true/orderby/score,modDate desc`
   );
 }
 
 /**
  * Get related testimonial widget data
- * @param {string} tags tags to pull related content
+ * @param {string} tagString tags to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with the related content
  */
 export function getTestimonialWidgetData(tagString, languageId) {
