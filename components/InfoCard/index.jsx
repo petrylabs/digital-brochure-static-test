@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./InfoCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { customLoader } from "../../utils/images";
 
 /**
  * InfoCard
@@ -15,7 +16,13 @@ function InfoCard(props) {
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
     >
       <div className={styles.icon}>
-        <Image src={iconUrl} alt="" width={45} height={45} />
+        <Image
+          loader={customLoader}
+          src={iconUrl}
+          alt=""
+          width={45}
+          height={45}
+        />
       </div>
       <h3 className={styles.h3}>{title}</h3>
       <div className={styles.content}>{content}</div>

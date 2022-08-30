@@ -4,5 +4,7 @@ const withNextPluginPreval = createNextPluginPreval();
 module.exports = withNextPluginPreval({
   images: {
     domains: ["www.sonnet.ca"],
+    loader: "custom",
   },
+  basePath: "/out",
 });
