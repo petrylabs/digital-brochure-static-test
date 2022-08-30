@@ -15,13 +15,34 @@ import styles from "./SplitLayout.module.scss";
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
 
-  const imageProps = {
-    loader: customLoader,
-    src: imageSrc(content, "GenericContent.image"),
-    alt: imageAlt(content, "GenericContent.image"),
-    layout: "fill",
-    objectFit: "cover",
-  };
+  // const imageProps = {
+  //   loader: customLoader,
+  //   src: imageSrc(content, "GenericContent.image"),
+  //   alt: imageAlt(content, "GenericContent.image"),
+  //   layout: "fill",
+  //   objectFit: "cover",
+  // };
+
+  console.log(content);
+
+  let imageProps;
+  if (content.fields.hasOwnProperty("GenericContent.image")) {
+    imageProps = {
+      loader: customLoader,
+      src: imageSrc(content, "GenericContent.image"),
+      alt: imageAlt(content, "GenericContent.image"),
+      layout: "fill",
+      objectFit: "cover",
+    };
+  } else {
+    imageProps = {
+      loader: customLoader,
+      src: imageSrc(content, "Feature.featureImage"),
+      alt: imageAlt(content, "Feature.featureImage"),
+      layout: "fill",
+      objectFit: "cover",
+    };
+  }
 
   return (
     <div
