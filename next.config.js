@@ -6,5 +6,5 @@ module.exports = withNextPluginPreval({
     domains: ["www.sonnet.ca"],
     loader: "custom",
   },
-  basePath: "/out",
+  // basePath: "/out",
 });
