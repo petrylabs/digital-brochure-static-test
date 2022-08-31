@@ -81,6 +81,9 @@ function LandingPage(props) {
 
       {/* Testimonial carousel */}
       <TestimonialCarousel content={commonContent[11]} />
+
+      {/* Section 12 */}
+      <SplitLayout content={content[17]} hideImageOnMobile={true} />
     </>
   );
 }
