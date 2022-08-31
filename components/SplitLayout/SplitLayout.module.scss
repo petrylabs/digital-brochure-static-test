@@ -35,7 +35,6 @@
 }
 
 .contentCol {
-  background-color: $color-grey-03;
   @include container;
   h2 {
     @include heading-margin;

@@ -82,7 +82,7 @@ function LandingPage(props) {
       {/* Why buy Section (5) */}
       {/* Partnership Section (6) */}
       {/* Section 7 */}
-      <section className="bg-white">
+      <section>
         <SplitLayout
           content={content[8]}
           hideImageOnMobile={true}
