@@ -60,7 +60,7 @@ function SplitLayout(props) {
           <div className={styles.content}>{content.copy}</div>
         )}
         {/* {parse(content.copy)} */}
-        <div className={styles.themeLink}>
+        <div className={styles.ctaLink}>
           <a href={content.url}>
             <span>{content.cta}</span>
           </a>

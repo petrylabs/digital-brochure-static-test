@@ -31,7 +31,8 @@
   }
 }
 
-@mixin theme-link {
+/* CTA link */
+@mixin cta-link {
   margin-top: 30px;
   a {
     font-family: $font-extra-bold;
