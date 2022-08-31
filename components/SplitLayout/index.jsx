@@ -15,7 +15,6 @@ import styles from "./SplitLayout.module.scss";
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
 
-  console.log("type", content.copy.substr(0, 3));
   let imageProps;
   if (content.fields.hasOwnProperty("GenericContent.image")) {
     imageProps = {
