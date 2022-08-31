@@ -1,5 +1,8 @@
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/typography.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
 
 .flexContainer {
   display: flex;
@@ -19,13 +22,8 @@
 }
 
 .flexContainer > div {
-  flex: 50%;
+  flex: 0 0 50%;
 }
-
-// .contentCol,
-// .imageCol {
-//   //flex: 1;
-// }
 
 .imageCol {
   position: relative;
@@ -37,9 +35,20 @@
 }
 
 .contentCol {
+  background-color: $color-grey-03;
   @include container;
-
   h2 {
     @include heading-margin;
   }
+}
+
+.content {
+  font-size: 14px;
+  @include mq-min-width(lg) {
+    font-size: 16px;
+  }
+}
+
+.themeLink {
+  @include theme-link;
 }
