@@ -44,6 +44,7 @@ function PageHero(props) {
             alt={imageAlt(content, src)}
             layout="fill"
             objectFit="cover"
+            priority
           />
           <div className={styles.whiteGradient} />
         </div>
