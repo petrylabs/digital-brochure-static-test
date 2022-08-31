@@ -33,9 +33,32 @@
   input:focus {
     outline: none;
   }
+  &WithResults {
+    @extend .searchInputArea;
+    border-radius: 25px 25px 0px 0px;
+
+    &:focus-within {
+      border: 1px solid $color-grey-07;
+      margin: -2px;
+    }
+    &:hover {
+      border: 1px solid $color-grey-07;
+    }
+  }
 }
 
 .search {
+  display: flex;
+  position: relative;
+  background-color: $color-white;
+  border-radius: 25px;
+  &WithResults {
+    @extend .search;
+    border-radius: 25px 25px 0px 0px;
+  }
+}
+
+.searchTablet {
   display: flex;
 }
 

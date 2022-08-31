@@ -130,7 +130,6 @@ function Header() {
                   <Chevron direction="left" size="25px" />
                 </button>
               )}
-
               <SearchInput />
             </div>
           </div>
@@ -159,7 +158,6 @@ function Header() {
         {isDesktop && isSearchExpanded && (
           <div id="search-panel" className={styles.searchPaneDesktop}>
             <SearchInput />
-
             <button
               className={styles.closeButton}
               onClick={() => setIsSearchExpanded(false)}

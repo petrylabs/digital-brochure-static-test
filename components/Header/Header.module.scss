@@ -81,6 +81,9 @@
   align-items: center !important;
   justify-content: center !important;
   display: flex !important;
+  div {
+    flex-grow: 1;
+  }
 }
 
 .searchPaneDesktop {

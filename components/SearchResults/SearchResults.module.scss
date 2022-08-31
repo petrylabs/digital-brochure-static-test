@@ -1,0 +1,73 @@
+@import "../../scss/globals/color.scss";
+
+.searchResultTablet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: fixed;
+  top: 74px;
+  left: 0;
+  height: 100vh;
+  padding: 0;
+  overflow-y: auto;
+  cursor: pointer;
+  .searchResultItem {
+    padding: 1px;
+    border-bottom: 1px solid $color-grey-06;
+    .searchResultItemLink {
+      padding: 20px 30px;
+      text-decoration: none;
+      color: $color-primary-grey;
+      font-size: 14px;
+      display: block;
+    }
+    .searchResultItemLink:hover {
+      color: $color-links;
+      text-decoration: underline;
+    }
+  }
+  .searchResultItem:hover {
+    border-color: $color-secondary-light;
+    background-color: $color-secondary-light;
+  }
+}
+
+.searchResult {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid $color-grey-07;
+  border-top: none;
+  border-radius: 0px 0px 25px 25px;
+  background-color: $color-white;
+  list-style: none;
+  cursor: pointer;
+  ::before {
+    position: absolute;
+    content: " ";
+    height: 1px;
+    margin-right: auto;
+    margin-left: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: calc(100% - 2rem);
+    background-color: $color-primary-accent;
+  }
+  .searchResultItem {
+    padding: 0.3125rem 0.625rem;
+    font-size: 14px;
+    border-bottom: 1px solid $color-grey-06;
+  }
+  .searchResultItemLink {
+    text-decoration: none;
+    color: $color-primary-grey;
+    font-size: 14px;
+    line-height: 23px;
+    display: block;
+  }
+  .searchResultItem:hover {
+    background-color: $color-grey-03;
+  }
+}
