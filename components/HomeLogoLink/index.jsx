@@ -23,6 +23,7 @@ function HomeLogoLink() {
         width={100}
         height={20}
         alt=""
+        priority
       />
 
       {/* For a11y */}
