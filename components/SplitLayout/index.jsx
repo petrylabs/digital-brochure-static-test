@@ -14,21 +14,23 @@ import styles from "./SplitLayout.module.scss";
 
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
-
+  const imageString = content.fields.hasOwnProperty("GenericContent.image")
+    ? "GenericContent.image"
+    : "Feature.featureImage";
   let imageProps;
   if (content.fields.hasOwnProperty("GenericContent.image")) {
     imageProps = {
       loader: customLoader,
-      src: imageSrc(content, "GenericContent.image"),
-      alt: imageAlt(content, "GenericContent.image"),
+      src: imageSrc(content, imageString),
+      alt: imageAlt(content, imageString),
       layout: "fill",
       objectFit: "cover",
     };
   } else {
     imageProps = {
       loader: customLoader,
-      src: imageSrc(content, "Feature.featureImage"),
-      alt: imageAlt(content, "Feature.featureImage"),
+      src: imageSrc(content, imageString),
+      alt: imageAlt(content, imageString),
       layout: "fill",
       objectFit: "cover",
     };
@@ -53,12 +55,7 @@ function SplitLayout(props) {
       {/* TEXT CONTENT */}
       <div className={styles.contentCol}>
         <h2>{content.headline}</h2>
-        {content.copy.substr(0, 3) == "<p>" ? (
-          <>{parse(content.copy)}</>
-        ) : (
-          <div className={styles.content}>{content.copy}</div>
-        )}
-        {/* {parse(content.copy)} */}
+        <div className={styles.content}>{parse(content.copy)}</div>
         <div className={styles.ctaLink}>
           <a href={content.url}>
             <span>{content.cta}</span>
