@@ -17,24 +17,14 @@ function SplitLayout(props) {
   const imageString = content.fields.hasOwnProperty("GenericContent.image")
     ? "GenericContent.image"
     : "Feature.featureImage";
-  let imageProps;
-  if (content.fields.hasOwnProperty("GenericContent.image")) {
-    imageProps = {
-      loader: customLoader,
-      src: imageSrc(content, imageString),
-      alt: imageAlt(content, imageString),
-      layout: "fill",
-      objectFit: "cover",
-    };
-  } else {
-    imageProps = {
-      loader: customLoader,
-      src: imageSrc(content, imageString),
-      alt: imageAlt(content, imageString),
-      layout: "fill",
-      objectFit: "cover",
-    };
-  }
+
+  const imageProps = {
+    loader: customLoader,
+    src: imageSrc(content, imageString),
+    alt: imageAlt(content, imageString),
+    layout: "fill",
+    objectFit: "cover",
+  };
 
   return (
     <div
