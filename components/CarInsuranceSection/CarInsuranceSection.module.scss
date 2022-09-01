@@ -1,0 +1,82 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+
+.section {
+  background: $color-grey-03; 
+}
+
+.content {
+  padding: 40px 30px 13px;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+
+    @include mq-min-width(md) {
+      margin-bottom: 20px;
+    }
+
+    @include mq-min-width(lg) {
+      margin-bottom: 25px;
+    }
+
+    @include mq-min-width(xl) {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.row {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.columnLeft {
+  display: block;
+  width: 100%;
+  flex: 0 0 50%;
+}
+
+.columnRight {
+  display: block;
+  width: 100%;
+  flex: 0 0 50%;
+}
+
+.spacings {
+  padding: 26px 30px 13px;
+
+  h3 {
+    @include mq-min-width(sm) {
+      text-align: left;
+      font-size: 19px;
+      line-height: 24px;
+    }
+
+    @include mq-min-width(md) {
+      text-align: center;
+      font-size: 19px;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    @include mq-min-width(lg) {
+      text-align: center;
+      font-size: 21px;
+      line-height: 26px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.spacingsAccordianLeft {
+  padding: 13px 13px 40px 37px;
+}
+
+.spacingsAccordianRight {
+  padding: 13px 37px 40px 13px;
+}

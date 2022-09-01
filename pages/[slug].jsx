@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import CarInsuranceSection from "../components/CarInsuranceSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -68,6 +69,12 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={content[2]} />
       </section>
+
+      {/*Car Insurance Section 4*/}
+      <CarInsuranceSection
+        content={content[3]}
+        leftRightAccordianContent={content[4].fields}
+      />
     </>
   );
 }
