@@ -86,6 +86,9 @@ function LandingPage(props) {
         <SplitLayout content={commonContent[7]} hideImageOnMobile imageRight />
       </section>
       {/* How much Section (8) */}
+      <section className="bg-white">
+        <SplitLayout content={commonContent[8]} />
+      </section>
       {/* How can I save Section (9) */}
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />

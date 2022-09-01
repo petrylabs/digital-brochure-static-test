@@ -33,7 +33,11 @@ function SplitLayout(props) {
       }`}
     >
       {/* IMAGE */}
-      <div className={styles.imageCol}>
+      <div
+        className={`${styles.imageCol} ${
+          hideImageOnMobile && styles.hideImage
+        }`}
+      >
         {hideImageOnMobile ? (
           <LargeScreenImage {...imageProps} />
         ) : (
@@ -46,11 +50,13 @@ function SplitLayout(props) {
       <div className={styles.contentCol}>
         <h2>{content.headline}</h2>
         <div className={styles.content}>{parse(content.copy)}</div>
-        <div className={styles.ctaLink}>
-          <a href={content.url}>
-            <span>{content.cta}</span>
-          </a>
-        </div>
+        {content?.cta && (
+          <div className={styles.ctaLink}>
+            <a href={content.url}>
+              <span>{content.cta}</span>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
