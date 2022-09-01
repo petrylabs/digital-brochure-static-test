@@ -78,12 +78,20 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={commonContent[2]} />
       </section>
-
-      {/* Testimonial carousel */}
+      {/* Section 4 */}
+      {/* Why buy Section (5) */}
+      {/* Partnership Section (6) */}
+      {/* Section 7 */}
+      <section>
+        <SplitLayout content={content[8]} hideImageOnMobile={true} imageRight />
+      </section>
+      {/* How much Section (8) */}
+      {/* How can I save Section (9) */}
+      {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
-
+      {/* Blog/FAQ Section (11) */}
       {/* Section 12 */}
-      <SplitLayout content={commonContent[17]} hideImageOnMobile={true} />
+      {/* Last Section (13) */}
     </>
   );
 }
