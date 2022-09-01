@@ -83,11 +83,7 @@ function LandingPage(props) {
       {/* Partnership Section (6) */}
       {/* Section 7 */}
       <section>
-        <SplitLayout
-          content={content[8]}
-          hideImageOnMobile={true}
-          imageRight={true}
-        />
+        <SplitLayout content={content[8]} hideImageOnMobile={true} imageRight />
       </section>
       {/* How much Section (8) */}
       {/* How can I save Section (9) */}
