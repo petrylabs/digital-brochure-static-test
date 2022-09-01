@@ -2,81 +2,132 @@
 @import "/scss/globals/layout.scss";
 
 .section {
-  background: $color-grey-03; 
+  background: $color-grey-03;
 }
 
 .content {
-  padding: 40px 30px 13px;
+  @include mq-min-width(sm) {
+    padding: 40px 30px 13px;
+    text-align: left;
+  }
 
   @include mq-min-width(md) {
+    padding: 40px 37px 13px;
     text-align: center;
   }
 
-  h2 {
-    margin-bottom: 15px;
+  @include mq-min-width(lg) {
+    padding: 60px 71px 13px;
+    text-align: center;
+  }
+}
 
-    @include mq-min-width(md) {
-      margin-bottom: 20px;
-    }
+.contentCopy {
+  @include mq-min-width(sm) {
+    padding-top: 15px;
+  }
 
-    @include mq-min-width(lg) {
-      margin-bottom: 25px;
-    }
+  @include mq-min-width(md) {
+    padding-top: 20px;
+  }
 
-    @include mq-min-width(xl) {
-      margin-bottom: 30px;
-    }
+  @include mq-min-width(lg) {
+    padding-top: 25px;
   }
 }
 
 .row {
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 20fr));
 }
 
-.columnLeft {
+.columnsAlignment {
   display: block;
   width: 100%;
   flex: 0 0 50%;
 }
 
-.columnRight {
-  display: block;
-  width: 100%;
-  flex: 0 0 50%;
-}
+.spacingsLeft {
+  @include mq-min-width(sm) {
+    padding: 13px 30px;
+  }
 
-.spacings {
-  padding: 26px 30px 13px;
+  @include mq-min-width(md) {
+    padding: 26px 13px 13px 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 26px 15px 15px 71px;
+  }
 
   h3 {
     @include mq-min-width(sm) {
       text-align: left;
-      font-size: 19px;
-      line-height: 24px;
     }
 
     @include mq-min-width(md) {
       text-align: center;
-      font-size: 19px;
-      line-height: 24px;
-      white-space: nowrap;
     }
 
     @include mq-min-width(lg) {
       text-align: center;
-      font-size: 21px;
-      line-height: 26px;
-      white-space: nowrap;
+    }
+  }
+}
+
+.spacingsRight {
+  @include mq-min-width(sm) {
+    padding: 13px 30px;
+  }
+
+  @include mq-min-width(md) {
+    padding: 26px 37px 13px 13px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 26px 71px 15px 15px;
+  }
+
+  h3 {
+    @include mq-min-width(sm) {
+      text-align: left;
+    }
+
+    @include mq-min-width(md) {
+      text-align: center;
+    }
+
+    @include mq-min-width(lg) {
+      text-align: center;
     }
   }
 }
 
 .spacingsAccordianLeft {
-  padding: 13px 13px 40px 37px;
+  @include mq-min-width(sm) {
+    padding: 13px 30px;
+  }
+
+  @include mq-min-width(md) {
+    padding: 13px 13px 40px 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 13px 15px 60px 71px;
+  }
 }
 
 .spacingsAccordianRight {
-  padding: 13px 37px 40px 13px;
+  @include mq-min-width(sm) {
+    padding: 13px 30px 40px;
+  }
+
+  @include mq-min-width(md) {
+    padding: 13px 37px 40px 13px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 13px 71px 60px 15px;
+  }
 }

@@ -14,10 +14,21 @@ $accordion-border: 0.25px solid $color-grey-10;
   position: relative;
   background-color: $color-white;
   padding: 17px 24px 16px 30px;
-  font-size: 14px;
-  line-height: 21px;
   font-family: $font-extra-bold;
   font-weight: 500;
+  line-height: 21px;
+
+  @include mq-min-width(sm) {
+    font-size: 14px;
+  }
+
+  @include mq-min-width(md) {
+    font-size: 14px;
+  }
+
+  @include mq-min-width(lg) {
+    font-size: 16px;
+  }
 
   &:focus {
     background-color: $color-white;

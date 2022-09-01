@@ -30,15 +30,15 @@ function CarInsuranceSection(props) {
         <section className={styles.section}>
             <div className={styles.content}>
                 <h2>{headline}</h2>
-                {parse(copy)}
+                <div className={styles.contentCopy}>{parse(copy)}</div>
             </div>
 
             {/* Rendering for Desktop and Tablet */}
             {isTablet && (
                 <div className={styles.row}>
                     {/* Left accordion items */}
-                    <div className={styles.columnLeft}>
-                        <div className={styles.spacings}>
+                    <div className={styles.columnsAlignment}>
+                        <div className={styles.spacingsLeft}>
                             <h3>{leftAccordionTitle[0].headline}</h3>
                         </div>
                         <div className={styles.spacingsAccordianLeft}>
@@ -56,8 +56,8 @@ function CarInsuranceSection(props) {
                     </div>
 
                     {/* Right accordion items */}
-                    <div className={styles.columnRight}>
-                        <div className={styles.spacings}>
+                    <div className={styles.columnsAlignment}>
+                        <div className={styles.spacingsRight}>
                             <h3>{rightAccordionTitle[0].headline}</h3>
                         </div>
                         <div className={styles.spacingsAccordianRight}>
@@ -80,10 +80,10 @@ function CarInsuranceSection(props) {
             {!isTablet && (
                 <>
                     {/* Left accordion items */}
-                    <div className={styles.spacings}>
+                    <div className={styles.spacingsLeft}>
                         <h3>{leftAccordionTitle[0].headline}</h3>
                     </div>
-                    <div className={styles.spacings}>
+                    <div className={styles.spacingsAccordianLeft}>
                         <AccordionGroup>
                             {leftAccordionItems.map((item) => (
                                 <Accordion
@@ -97,10 +97,10 @@ function CarInsuranceSection(props) {
                     </div>
 
                     {/* Right accordion items */}
-                    <div className={styles.spacings}>
+                    <div className={styles.spacingsRight}>
                         <h3>{rightAccordionTitle[0].headline}</h3>
                     </div>
-                    <div className={styles.spacings}>
+                    <div className={styles.spacingsAccordianRight}>
                         <AccordionGroup>
                             {rightAccordionItems.map((item) => (
                                 <Accordion
