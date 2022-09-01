@@ -72,6 +72,7 @@ function PageHero(props) {
             src={imageSrc(content, "Hero.mobileImage")}
             alt={imageAlt(content, "Hero.mobileImage")}
             layout="fill"
+            priority
           />
         </div>
       )}
