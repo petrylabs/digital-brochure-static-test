@@ -1,4 +1,8 @@
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables.scss";
+@import "../../scss/globals/typography.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
 
 .flexContainer {
   display: flex;
@@ -17,48 +21,35 @@
   }
 }
 
-.contentCol,
-.imageCol {
-  flex: 1;
+.flexContainer > div {
+  flex: 0 0 50%;
 }
 
 .imageCol {
   position: relative;
   min-height: 100vw; // forces square image
+  display: none;
 
   @include mq-min-width(md) {
     min-height: unset;
+    display: block;
   }
 }
 
 .contentCol {
-  padding: 40px 30px;
-
+  @include container;
   h2 {
-    margin-bottom: 15px;
+    @include heading-margin;
   }
+}
 
-  @include mq-min-width(md) {
-    padding: 40px 37px;
-
-    h2 {
-      margin-bottom: 20px;
-    }
-  }
-
+.content {
+  font-size: 14px;
   @include mq-min-width(lg) {
-    padding: 60px 71px;
-
-    h2 {
-      margin-bottom: 25px;
-    }
+    font-size: 16px;
   }
+}
 
-  @include mq-min-width(xl) {
-    padding: 60px 135px;
-
-    h2 {
-      margin-bottom: 30px;
-    }
-  }
+.ctaLink {
+  @include cta-link;
 }

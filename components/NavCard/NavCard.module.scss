@@ -3,16 +3,17 @@
 @import "../../scss/globals/variables.scss";
 
 .navLink {
+  display: block;
   border-radius: 10px;
   border: 1px solid transparent;
-  padding: 10px;
-  color: $color-primary-grey;
-  line-height: 20px;
   outline: 2px solid transparent;
-  display: block;
+  padding: 10px;
   margin: 0;
+  line-height: 20px;
+  color: $color-primary-grey;
   text-decoration: none;
-  font-size: 14px;
+  font-family: $font-regular;
+  font-size: 18px;
 
   &:hover {
     text-decoration: none; // Overwrites the default styling for a from sonnet.css
@@ -39,21 +40,21 @@
     border-color: $color-primary-accent;
   }
 
-  @include mq-min-width(xs) {
-    font-family: $font-regular;
-    font-size: 18px;
-  }
-
   @include mq-min-width(sm) {
     font-family: $font-extra-bold;
+    font-size: 16px;
+  }
+
+  @include mq-min-width(lg) {
+    min-height: 75px;
   }
 }
 
 .newTag {
   font-family: $font-regular;
-  font-size: 12px;
   color: $color-white;
   text-decoration: none;
+  font-size: 12px;
   line-height: 15px;
   border-radius: 2px;
   background-color: $color-primary-accent;
@@ -66,16 +67,9 @@
   line-height: 20px;
   color: $color-primary-grey;
   text-decoration: none;
-}
+  display: none;
 
-@include mq-min-width(xs) {
-  .subText {
-    display: none;
-  }
-}
-
-@include mq-min-width(sm) {
-  .subText {
+  @include mq-min-width(sm) {
     display: block;
   }
 }
