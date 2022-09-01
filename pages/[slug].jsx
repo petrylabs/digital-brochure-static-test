@@ -83,7 +83,7 @@ function LandingPage(props) {
       {/* Partnership Section (6) */}
       {/* Section 7 */}
       <section>
-        <SplitLayout content={content[8]} hideImageOnMobile={true} imageRight />
+        <SplitLayout content={commonContent[7]} hideImageOnMobile imageRight />
       </section>
       {/* How much Section (8) */}
       {/* How can I save Section (9) */}
@@ -91,6 +91,9 @@ function LandingPage(props) {
       <TestimonialCarousel content={commonContent[11]} />
       {/* Blog/FAQ Section (11) */}
       {/* Section 12 */}
+      <section>
+        <SplitLayout content={commonContent[17]} hideImageOnMobile />
+      </section>
       {/* Last Section (13) */}
     </>
   );
