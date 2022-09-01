@@ -14,7 +14,6 @@ import styles from "./SplitLayout.module.scss";
 
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
-  const hasCTA = content.hasOwnProperty("cta");
   const imageString = content.fields.hasOwnProperty("GenericContent.image")
     ? "GenericContent.image"
     : "Feature.featureImage";
@@ -51,7 +50,7 @@ function SplitLayout(props) {
       <div className={styles.contentCol}>
         <h2>{content.headline}</h2>
         <div className={styles.content}>{parse(content.copy)}</div>
-        {hasCTA && (
+        {content?.cta && (
           <div className={styles.ctaLink}>
             <a href={content.url}>
               <span>{content.cta}</span>
