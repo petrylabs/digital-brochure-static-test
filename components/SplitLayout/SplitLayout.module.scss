@@ -28,9 +28,11 @@
 .imageCol {
   position: relative;
   min-height: 100vw; // forces square image
+  display: none;
 
   @include mq-min-width(md) {
     min-height: unset;
+    display: block;
   }
 }
 
