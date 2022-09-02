@@ -1,5 +1,8 @@
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/typography.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
 
 .flexContainer {
   display: flex;
@@ -18,24 +21,35 @@
   }
 }
 
-.contentCol,
-.imageCol {
-  flex: 1;
+.flexContainer > div {
+  flex: 0 0 50%;
 }
 
 .imageCol {
   position: relative;
   min-height: 100vw; // forces square image
+  display: none;
 
   @include mq-min-width(md) {
     min-height: unset;
+    display: block;
   }
 }
 
 .contentCol {
   @include container;
-
   h2 {
     @include heading-margin;
   }
+}
+
+.content {
+  font-size: 14px;
+  @include mq-min-width(lg) {
+    font-size: 16px;
+  }
+}
+
+.ctaLink {
+  @include cta-link;
 }

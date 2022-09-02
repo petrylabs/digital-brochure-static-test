@@ -31,6 +31,48 @@
   }
 }
 
+/* CTA link */
+@mixin cta-link {
+  margin-top: 30px;
+  a {
+    font-family: $font-extra-bold;
+    font-size: 14px;
+    text-decoration: none;
+    color: $color-primary-grey;
+    background-color: transparent; // Sonnet team has this for removing the gray background on active links in IE 10.
+    background-repeat: no-repeat;
+    background-size: 0 3px;
+    transition: background-size 0.6s;
+    padding-bottom: 3px;
+
+    &:focus,
+    &:hover {
+      color: $color-primary-accent;
+      text-decoration: none;
+      background-image: linear-gradient(transparent, transparent),
+        linear-gradient($color-primary-accent, $color-primary-accent);
+      background-size: 100% 3px;
+      background-position: 100% 100%, 0 100%;
+    }
+
+    span {
+      background-image: linear-gradient(
+        $color-primary-grey,
+        $color-primary-grey
+      );
+      background-size: 100% 3px, 0 3px;
+      background-position: 100% 100%, 0 100%;
+      background-repeat: no-repeat;
+      padding-bottom: 3px;
+
+      &:hover,
+      &:focus {
+        background-size: 0 1px;
+      }
+    }
+  }
+}
+
 /*
 Mixins below are imported from the UI framework repo.
 Uncomment as necessary.
