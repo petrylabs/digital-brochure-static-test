@@ -60,8 +60,6 @@ function LandingPage(props) {
     (section) => !section?.headline?.includes("Nissan")
   );
 
-  console.log(commonContent[5]);
-
   return (
     <>
       <Head>

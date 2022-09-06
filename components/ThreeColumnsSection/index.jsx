@@ -25,19 +25,14 @@ function ThreeColumnsSection(props) {
     }
   });
 
-  // 1. check which landing
-  console.log(content);
+  // 1. check which landing page it is
   const pageTitle = content.title.substring(0, content.title.indexOf(" "));
-  console.log(pageTitle);
-  console.log("object for the Landing page", imgDate[pageTitle]);
-  // 2. check which section
+  // 2. check which section is rendered
   const isWhyBuySection = headline.includes("Why buy");
-  console.log("isWhyBuy section? ", isWhyBuySection);
-  // 3. map iconImages array in the section
+  // 3. create iconUrls array that has only iconUrls for the section and used on line 47
   const iconUrls = isWhyBuySection
     ? imgDate[pageTitle].WhyBuySection
     : imgDate[pageTitle].HowCanISection;
-  console.log(iconUrls);
 
   return (
     <section className={className}>
