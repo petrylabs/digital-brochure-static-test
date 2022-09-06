@@ -9,6 +9,7 @@ import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import PartnershipSection from "../components/PartnershipSection"
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -81,6 +82,7 @@ function LandingPage(props) {
       {/* Section 4 */}
       {/* Why buy Section (5) */}
       {/* Partnership Section (6) */}
+      <PartnershipSection content={nissanSection} />
       {/* Section 7 */}
       <section>
         <SplitLayout content={commonContent[7]} hideImageOnMobile imageRight />
