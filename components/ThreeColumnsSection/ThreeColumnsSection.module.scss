@@ -1,0 +1,53 @@
+@import "../../scss/globals/variables.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/typography.scss";
+@import "../../scss/globals/color.scss";
+
+.textContainer {
+  padding-bottom: 13px !important;
+  @include container;
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+  a {
+    text-decoration: none;
+    color: $color-primary-accent;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(
+      $color-primary-accent,
+      $color-primary-accent
+    );
+    background-position: 0 100%;
+    padding-bottom: 1px;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    height: 1px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: $color-links;
+      visibility: hidden;
+    }
+
+    &:hover {
+      color: $color-links;
+      background-image: linear-gradient(transparent, transparent);
+    }
+
+    &:hover:before {
+      visibility: visible;
+      width: 100%;
+      transition: all 0.2s ease-in;
+    }
+  }
+}
+
+.heading {
+  @include heading-margin;
+}
