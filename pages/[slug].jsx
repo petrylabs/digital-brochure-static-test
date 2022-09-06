@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 
 export async function getStaticPaths() {
@@ -59,6 +60,8 @@ function LandingPage(props) {
     (section) => !section?.headline?.includes("Nissan")
   );
 
+  console.log(commonContent[5]);
+
   return (
     <>
       <Head>
@@ -80,6 +83,11 @@ function LandingPage(props) {
       </section>
       {/* Section 4 */}
       {/* Why buy Section (5) */}
+      <ThreeColumnsSection
+        titleBlock={commonContent[5]}
+        content={commonContent[6]}
+        className="bg-white"
+      />
       {/* Partnership Section (6) */}
       {/* Section 7 */}
       <section>
@@ -87,6 +95,10 @@ function LandingPage(props) {
       </section>
       {/* How much Section (8) */}
       {/* How can I save Section (9) */}
+      <ThreeColumnsSection
+        titleBlock={commonContent[9]}
+        content={commonContent[10]}
+      />
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
       {/* Blog/FAQ Section (11) */}
