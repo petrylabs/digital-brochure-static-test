@@ -25,6 +25,15 @@
   }
 }
 
+.imageMobile {
+  position: relative;
+  height: 100vw;
+
+  @include mq-min-width(md) {
+    height: unset;
+  }
+}
+
 .heading {
   @include heading-margin;
 }

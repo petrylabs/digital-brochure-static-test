@@ -31,9 +31,8 @@ function PartnershipSection(props) {
                     loader={customLoader}
                     src={imageSrc(content, imageString)}
                     alt={imageAlt(content, imageString)}
-                    layout="responsive"
-                    width={100}
-                    height={100}
+                    layout="fill"
+                    objectFit="cover"
                 />
             </div>
         </section>
