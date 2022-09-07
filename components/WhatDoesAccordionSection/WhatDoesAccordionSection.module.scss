@@ -1,5 +1,6 @@
 @import "/scss/globals/color.scss";
 @import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
 
 .section {
   background: $color-grey-03;
@@ -18,34 +19,24 @@
 
   @include mq-min-width(lg) {
     padding: 60px 71px 13px;
-    text-align: center;
   }
 }
 
-.contentCopy {
-  @include mq-min-width(sm) {
-    padding-top: 15px;
-  }
+.heading {
+  @include heading-margin;
+}
+
+.rowColumnFlexBox {
+  display: flex;
+  flex-direction: column;
 
   @include mq-min-width(md) {
-    padding-top: 20px;
+    flex-direction: row;
   }
-
-  @include mq-min-width(lg) {
-    padding-top: 25px;
-  }
-}
-
-.row {
-  display: grid;
-  grid-gap: 0px;
-  grid-template-columns: repeat(2, minmax(0, 20fr));
 }
 
 .columnsAlignment {
-  display: block;
   width: 100%;
-  flex: 0 0 50%;
 }
 
 .spacingsLeft {
@@ -67,10 +58,6 @@
     }
 
     @include mq-min-width(md) {
-      text-align: center;
-    }
-
-    @include mq-min-width(lg) {
       text-align: center;
     }
   }
@@ -95,10 +82,6 @@
     }
 
     @include mq-min-width(md) {
-      text-align: center;
-    }
-
-    @include mq-min-width(lg) {
       text-align: center;
     }
   }

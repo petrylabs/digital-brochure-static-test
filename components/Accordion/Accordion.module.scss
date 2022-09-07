@@ -22,15 +22,7 @@ $accordion-border: 0.25px solid $color-grey-10;
     font-size: 14px;
   }
 
-  @include mq-min-width(md) {
-    font-size: 14px;
-  }
-
   @include mq-min-width(lg) {
-    font-size: 16px;
-  }
-
-  @include mq-min-width(blg) {
     font-size: 16px;
   }
 
