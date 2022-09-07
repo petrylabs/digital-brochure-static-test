@@ -9,7 +9,7 @@ import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import CarInsuranceSection from "../components/CarInsuranceSection";
+import WhatDoesAccordionSection from "../components/WhatDoesAccordionSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -80,7 +80,7 @@ function LandingPage(props) {
         <SplitLayout content={commonContent[2]} />
       </section>
       {/* Section 4 */}
-      <CarInsuranceSection
+      <WhatDoesAccordionSection
         content={content[3]}
         leftRightAccordianContent={content[4].fields}
       />

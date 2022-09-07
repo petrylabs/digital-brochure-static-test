@@ -2,16 +2,19 @@ import React from "react";
 import parse from "html-react-parser";
 import Accordion from "../Accordion";
 import AccordionGroup from "../AccordionGroup";
-import styles from "./CarInsuranceSection.module.scss";
+import styles from "./WhatDoesAccordionSection.module.scss";
 import PropTypes from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 
 /**
- * CarInsuranceSection
- * Section displaying what does car insurance cover in canada in an accordion
+ * WhatDoesAccordionSection
+ * Section displaying what does car insurance cover in canada for auto-insurance page.
+ * Section displaying what does tenant insurance cover in canada for tenant-insurance page.
+ * Section displaying what does home insurance cover in canada for home-insurance page. 
+ * Section displaying what does condo insurance cover in canada for condo-insurance page. 
  */
-function CarInsuranceSection(props) {
+function WhatDoesAccordionSection(props) {
     const { content, leftRightAccordianContent } = props;
     const { copy, headline } = content;
 
@@ -119,7 +122,7 @@ function CarInsuranceSection(props) {
     );
 }
 
-CarInsuranceSection.propTypes = {
+WhatDoesAccordionSection.propTypes = {
     content: PropTypes.shape({
         headline: PropTypes.string,
         copy: PropTypes.string,
@@ -133,4 +136,4 @@ CarInsuranceSection.propTypes = {
     }).isRequired,
 };
 
-export default CarInsuranceSection;
+export default WhatDoesAccordionSection;

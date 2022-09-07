@@ -30,6 +30,14 @@ $accordion-border: 0.25px solid $color-grey-10;
     font-size: 16px;
   }
 
+  @include mq-min-width(blg) {
+    font-size: 16px;
+  }
+
+  @include mq-min-width(xl) {
+    font-size: 21px;
+  }
+
   &:focus {
     background-color: $color-white;
   }
