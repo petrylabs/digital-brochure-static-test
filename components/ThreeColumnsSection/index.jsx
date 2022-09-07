@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import InfoCard from "../InfoCard";
 import ThreeItemLayout from "../ThreeItemLayout";
 import { replaceToLink } from "../../utils/string";
-import imgDate from "../../icons/icons.json";
+import iconImageData from "../../icons/icons.json";
 import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 
 /**
@@ -31,8 +31,8 @@ function ThreeColumnsSection(props) {
   const isWhyBuySection = headline.includes("Why buy");
   // 3. create iconUrls array that has only iconUrls for the section and used on line 47
   const iconUrls = isWhyBuySection
-    ? imgDate[pageTitle].WhyBuySection
-    : imgDate[pageTitle].HowCanISection;
+    ? iconImageData[pageTitle].WhyBuySection
+    : iconImageData[pageTitle].HowCanISection;
 
   return (
     <section className={className}>
@@ -41,15 +41,17 @@ function ThreeColumnsSection(props) {
         {alteredCopy && <>{parse(alteredCopy)}</>}
       </div>
       <ThreeItemLayout>
-        {threeColumns.map((item, i) => (
-          // eslint-disable-next-line react/jsx-key
-          <InfoCard
-            iconUrl={iconUrls[i].largeIconUrl}
-            title={item[1][0].headline}
-            content={parse(item[1][0].copy)}
-            withBorder={isWhyBuySection && true}
-          />
-        ))}
+        {threeColumns.map((item, i) => {
+          return (
+            <InfoCard
+              key={item[1][0].identifier}
+              iconUrl={iconUrls[i].largeIconUrl}
+              title={item[1][0].headline}
+              content={parse(item[1][0].copy)}
+              withBorder={isWhyBuySection}
+            />
+          );
+        })}
       </ThreeItemLayout>
     </section>
   );
