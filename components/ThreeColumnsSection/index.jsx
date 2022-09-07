@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import parse from "html-react-parser";
 import InfoCard from "../InfoCard";
 import ThreeItemLayout from "../ThreeItemLayout";
-import { replaceToLink } from "../../utils/string";
+import { replaceSntLinkToAtag } from "../../utils/string";
 import iconImageData from "../../icons/icons.json";
 import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 
@@ -14,11 +14,11 @@ import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
  */
 
 function ThreeColumnsSection(props) {
-  const { titleBlock, content, className } = props;
-  const { headline, copy } = titleBlock;
-  const { fields } = content;
+  const { introContent, columnContent, className } = props;
+  const { headline, copy } = introContent;
+  const { fields, title } = columnContent;
 
-  const alteredCopy = copy ? replaceToLink(copy) : "";
+  const alteredCopy = copy ? replaceSntLinkToAtag(copy) : "";
   const threeColumns = Object.entries(fields).filter((item) => {
     if (item[0].includes("ThreeColumnWidget.generic")) {
       return item;
@@ -26,7 +26,7 @@ function ThreeColumnsSection(props) {
   });
 
   // 1. check which landing page it is
-  const pageTitle = content.title.substring(0, content.title.indexOf(" "));
+  const pageTitle = title.substring(0, title.indexOf(" "));
   // 2. check which section is rendered
   const isWhyBuySection = headline.includes("Why buy");
   // 3. create iconUrls array that has only iconUrls for the section and used on line 47
@@ -58,11 +58,11 @@ function ThreeColumnsSection(props) {
 }
 
 ThreeColumnsSection.propTypes = {
-  titleBlock: PropTypes.shape({
+  introContent: PropTypes.shape({
     headline: PropTypes.string.isRequired,
     copy: PropTypes.string,
   }).isRequired,
-  content: PropTypes.shape({
+  columnContent: PropTypes.shape({
     fields: PropTypes.object.isRequired,
   }).isRequired,
   className: PropTypes.string.isRequired,

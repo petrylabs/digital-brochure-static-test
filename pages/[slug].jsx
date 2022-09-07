@@ -82,8 +82,8 @@ function LandingPage(props) {
       {/* Section 4 */}
       {/* Why buy Section (5) */}
       <ThreeColumnsSection
-        titleBlock={commonContent[5]}
-        content={commonContent[6]}
+        introContent={commonContent[5]}
+        columnContent={commonContent[6]}
         className="bg-white"
       />
       {/* Partnership Section (6) */}
@@ -97,8 +97,8 @@ function LandingPage(props) {
       </section>
       {/* How can I save Section (9) */}
       <ThreeColumnsSection
-        titleBlock={commonContent[9]}
-        content={commonContent[10]}
+        introContent={commonContent[9]}
+        columnContent={commonContent[10]}
       />
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
