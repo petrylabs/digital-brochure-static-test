@@ -42,6 +42,7 @@ export async function getStaticProps({ params }) {
       seodescription: data.seodescription,
       description: data.description,
       content: data.content,
+      slug,
     },
   };
 }
@@ -50,7 +51,9 @@ export async function getStaticProps({ params }) {
  * Landing page template
  */
 function LandingPage(props) {
-  const { title, description, seodescription, content } = props;
+  const { title, description, seodescription, content, slug } = props;
+
+  const autoInsurancePage = slug === 'auto-insurance' ? 'autoInsurance' : '';
 
   /* Filter out Nissan section for auto page only: */
   const nissanSection = content.find((section) =>
@@ -82,7 +85,7 @@ function LandingPage(props) {
       {/* Section 4 */}
       {/* Why buy Section (5) */}
       {/* Partnership Section (6) */}
-      <PartnershipSection content={nissanSection} />
+      {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
       {/* Section 7 */}
       <section>
         <SplitLayout content={commonContent[7]} hideImageOnMobile imageRight />
@@ -109,6 +112,7 @@ LandingPage.propTypes = {
   description: PropTypes.string.isRequired,
   seodescription: PropTypes.string.isRequired,
   content: PropTypes.arrayOf(object),
+  slug: PropTypes.string.isRequired,
 };
 
 export default LandingPage;
