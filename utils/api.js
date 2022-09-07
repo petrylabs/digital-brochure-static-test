@@ -51,7 +51,11 @@ export async function getPage(slug) {
     /** Get all related content */
     const contentRelationships = content.map((item) => {
       if (item.contentType === "AccordionWidget") {
-        return getAccordianWidgetData(item.tagsToDisplay, item.languageId);
+        return getAccordianWidgetData(
+          item.tagsToDisplay,
+          item.languageId,
+          item.numberOfRowsToDisplay
+        );
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
       } else {
@@ -136,11 +140,11 @@ export function getContentRelationshipData(identifier) {
  * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with the related content
  */
-export function getAccordianWidgetData(tagString, languageId) {
+export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
   const tags = tagString.split(",");
   const tagQuery = tags.map((x) => `+FAQ.tags:"${x}"`).join(" ");
   return get(
-    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +languageId:${languageId} +deleted:false +working:true/orderby/score,modDate desc`
+    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +languageId:${languageId} +deleted:false +working:true/limit/${numberOfItems}/orderby/score,modDate desc`
   );
 }
 
