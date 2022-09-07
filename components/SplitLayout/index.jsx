@@ -51,9 +51,9 @@ function SplitLayout(props) {
         <h2>{content.headline}</h2>
         <div className={styles.content}>{parse(content.copy)}</div>
         {content?.cta && (
-          <div className={styles.ctaLink}>
-            <a href={content.url}>
-              <span>{content.cta}</span>
+          <div className={styles.ctaLinkWrapper}>
+            <a href={content.url} className={styles.ctaLink}>
+              {content.cta}
             </a>
           </div>
         )}

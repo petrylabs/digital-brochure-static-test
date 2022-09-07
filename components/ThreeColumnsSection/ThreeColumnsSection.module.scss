@@ -2,6 +2,7 @@
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/typography.scss";
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
 
 .textContainer {
   padding-bottom: 13px !important;
@@ -10,41 +11,14 @@
     text-align: center;
   }
   a {
-    text-decoration: none;
-    color: $color-primary-accent;
-    position: relative;
-    width: 100%;
-    background-image: linear-gradient(
+    @include cta-animated-link(
       $color-primary-accent,
-      $color-primary-accent
+      $color-links,
+      100% 1px,
+      all 0.2s ease-in,
+      1px,
+      1px
     );
-    background-position: 0 100%;
-    padding-bottom: 1px;
-    background-repeat: no-repeat;
-    background-size: 100% 1px;
-    height: 1px;
-
-    &:before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background-color: $color-links;
-      visibility: hidden;
-    }
-
-    &:hover {
-      color: $color-links;
-      background-image: linear-gradient(transparent, transparent);
-    }
-
-    &:hover:before {
-      visibility: visible;
-      width: 100%;
-      transition: all 0.2s ease-in;
-    }
   }
 }
 
