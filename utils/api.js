@@ -127,7 +127,7 @@ function getFullContainers(column, containers) {
  * @returns API response with the related content
  */
 export function getContentRelationshipData(identifier) {
-  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}`);
+  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}/depth/3`);
 }
 
 /**
