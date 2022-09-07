@@ -38,7 +38,7 @@ function ThreeColumnsSection(props) {
     <section className={className}>
       <div className={styles.textContainer}>
         <h2 className={styles.heading}>{headline}</h2>
-        {alteredCopy && <>{parse(alteredCopy)}</>}
+        {parse(alteredCopy)}
       </div>
       <ThreeItemLayout>
         {threeColumns.map((item, i) => {
