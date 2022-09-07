@@ -9,8 +9,7 @@ import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 
 /**
  * ThreeColumnsSection(WhyBuySection, How can I save)
- * @docs https://economical.atlassian.net/browse/SKY-208
- * @docs https://economical.atlassian.net/browse/SKY-213
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43278467425/ThreeColumnsSection
  */
 
 function ThreeColumnsSection(props) {
