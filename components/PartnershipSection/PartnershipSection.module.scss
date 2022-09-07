@@ -1,52 +1,30 @@
 @import "/scss/globals/color.scss";
 @import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
 
 .spacings {
   padding: 13px 0;
   background-color: $color-secondary-light;
-}
-
-.twoColumn {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  @include mq-min-width(md) {
+    flex-direction: row;
+  }
   overflow: hidden;
 }
 
-.columnsAlign {
-  width: 50%;
-  flex: 0 0 50%;
-  padding-bottom: unset;
-}
-
 .contentContainer {
-  @include mq-min-width(sm) {
-    padding: 40px 37px;
-  }
-
-  @include mq-min-width(md) {
-    padding: 40px 37px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px 71px;
-  }
+  @include container;
 }
 
-.contentCopy {
-  @include mq-min-width(sm) {
-    margin-top: 15px;
-  }
-
-  @include mq-min-width(md) {
-    margin-top: 20px;
-  }
-
-  @include mq-min-width(lg) {
-    margin-top: 25px;
-  }
-}
-
+.contentContainer,
 .imageMobile {
-  width: 100%;
+  @include mq-min-width(md) {
+    width: 50%;
+  }
+}
+
+.heading {
+  @include heading-margin;
 }
