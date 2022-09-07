@@ -11,7 +11,6 @@ import styles from "./BlogCard.module.scss";
  * Receives contentType: `Blog` and displays content in a linked card
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179311185/BlogCard
  */
-
 function BlogCard(props) {
   const { content } = props;
   const { category, headline, timeToRead, url } = content;

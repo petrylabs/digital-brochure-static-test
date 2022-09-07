@@ -16,9 +16,6 @@ function BlogFaqSection(props) {
   const { copy, headline } = content;
 
   const accordionItems = faq.fields;
-
-  console.log(faq);
-
   return (
     <section className={styles.section}>
       <div className={styles.content}>
