@@ -1,0 +1,47 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+
+.section {
+  background: $color-white;
+  padding: 40px 30px;
+
+  @include mq-min-width(md) {
+    padding-inline: 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 60px 71px;
+  }
+
+  @include mq-min-width(xl) {
+    padding-inline: 135px;
+  }
+}
+
+.content {
+  margin-bottom: 26px;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+
+    @include mq-min-width(md) {
+      margin-bottom: 20px;
+    }
+
+    @include mq-min-width(lg) {
+      margin-bottom: 25px;
+    }
+
+    @include mq-min-width(xl) {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.accordions {
+  margin-top: 53px;
+}
