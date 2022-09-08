@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import loadable from "@loadable/component";
 
 import ModalContext from "../context/modal";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Modal from "../components/Modal";
-import QuoteModalContent from "../components/QuoteModalContent";
 import "../scss/styles.scss";
+
+const Footer = loadable(() => import("../components/Footer"));
+const Modal = loadable(() => import("../components/Modal"));
+const QuoteModalContent = loadable(() =>
+  import("../components/QuoteModalContent")
+);
 
 /**
  * Structure for entire app!
