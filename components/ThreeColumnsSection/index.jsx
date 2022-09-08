@@ -36,10 +36,10 @@ function ThreeColumnsSection(props) {
   return (
     <section className={className}>
       <div className={styles.textContainer}>
-        <h2 className={styles.heading}>{headline}</h2>
+        <h2>{headline}</h2>
         {parse(alteredCopy)}
       </div>
-      <ThreeItemLayout>
+      <ThreeItemLayout variableGap>
         {threeColumns.map((item, i) => {
           return (
             <InfoCard

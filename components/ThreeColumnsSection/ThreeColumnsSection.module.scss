@@ -20,8 +20,8 @@
       1px
     );
   }
-}
 
-.heading {
-  @include heading-margin;
+  h2 {
+    @include heading-margin;
+  }
 }
