@@ -1,93 +1,83 @@
+@use "sass:map";
+@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/mixins.scss";
 
 .footer {
   background-color: $color-white;
   border-top: 1px solid $color-primary-grey;
-  flex-direction: column;
-  @media (max-width: 1440px) {
-    padding: 3.75em 8.438em;
-  }
-  @media (max-width: 1024px) {
-    padding: 3.75em 4.438em;
-  }
-  @media (max-width: 768px) {
-    padding: 2.5em 2.313em;
-  }
-  @media (max-width: 576px) {
-    padding: 2.5em 1.875em;
-  }
+}
+
+.container {
+  @include container;
+  max-width: map.get($breakpoints, "xl");
+  margin: 0 auto;
 }
 
 .footerMenu {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-  flex-wrap: wrap;
-  font-size: 0.875rem;
+  @include mq-min-width(sm) {
+    display: flex;
+  }
 }
 
 .col {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  position: relative;
-  padding-right: 0px;
-  padding-left: 0px;
-  @media (min-width: 576px) {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-  }
-  .navItem {
-    padding-bottom: 0.625em;
-    width: 100%;
-    text-align: left;
-  }
-  .navItem:last-child {
-    padding-bottom: 60px;
+  @include mq-min-width(sm) {
+    flex: 1;
   }
 }
 
 .menuLabel {
   margin-bottom: 0.938em;
-  font-family: "Averta-ExtraBold", sans-serif;
-  font-weight: 500;
-  @media (min-width: 768px) {
+
+  @include mq-min-width(md) {
     margin-bottom: 1.25em;
   }
 }
 
 .menuItems {
-  display: flex;
-  flex-direction: column;
+  @include unstyle-list;
+  font-size: 14px;
+
+  .navItem {
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navItem:last-child {
+    padding-bottom: 40px;
+
+    @include mq-min-width(lg) {
+      padding-bottom: 60px;
+    }
+  }
 }
 
 .horizontalFooterMenu {
+  @include unstyle-list;
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid $color-hint;
   border-bottom: 1px solid $color-hint;
   margin-bottom: 1.875em;
   padding-top: 10px;
-  display: flex;
-  padding-left: 0;
-  flex: 0 0 100%;
-  max-width: 100%;
-  font-size: 0.75em;
-  display: flex;
-  list-style: none;
-  align-items: center;
-  @media (max-width: 576px) {
-    flex-direction: column;
-    align-items: baseline;
+
+  @include mq-min-width(sm) {
+    flex-direction: row;
+    align-items: center;
   }
 
   .navItem {
-    padding-bottom: 0.625em;
+    padding-bottom: 10px;
     width: 100%;
-    text-align: left;
-    display: inline;
     padding-right: 30px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .navItem:last-child {
+    font-family: $font-extra-bold;
   }
 }
 
@@ -95,7 +85,6 @@
   p {
     font-size: 12px;
     line-height: 1.5;
-    display: table;
     margin-bottom: 0.475em;
   }
 }
