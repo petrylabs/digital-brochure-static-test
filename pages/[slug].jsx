@@ -8,6 +8,7 @@ import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
+import BlogFaqSection from "../components/BlogFaqSection";
 import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 
@@ -79,7 +80,9 @@ function LandingPage(props) {
       <section className="bg-white">
         <SplitLayout content={commonContent[2]} />
       </section>
+
       {/* Section 4 */}
+
       {/* Why buy Section (5) */}
       <ThreeColumnsSection
         introContent={commonContent[5]}
@@ -87,14 +90,17 @@ function LandingPage(props) {
         className="bg-white"
       />
       {/* Partnership Section (6) */}
+
       {/* Section 7 */}
       <section>
         <SplitLayout content={commonContent[7]} hideImageOnMobile imageRight />
       </section>
+
       {/* How much Section (8) */}
       <section className="bg-white">
         <SplitLayout content={commonContent[8]} />
       </section>
+
       {/* How can I save Section (9) */}
       <ThreeColumnsSection
         introContent={commonContent[9]}
@@ -102,12 +108,18 @@ function LandingPage(props) {
       />
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
+
       {/* Blog/FAQ Section (11) */}
+      <BlogFaqSection
+        content={commonContent[12]}
+        blogs={[commonContent[13], commonContent[14], commonContent[15]]}
+        faq={commonContent[16]}
+      />
+
       {/* Section 12 */}
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Last Section (13) */}
     </>
   );
 }

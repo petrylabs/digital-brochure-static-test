@@ -1,6 +1,4 @@
-@import "../../scss/globals/layout.scss";
-
-// TODO: Update with variables
+@import "../../scss/globals/layout";
 
 .list {
   list-style: none;
@@ -8,16 +6,20 @@
   margin: 0;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-gap: 26px;
-  @include container;
-  padding-top: 13px !important;
+  grid-gap: 30px;
 
-  @media (min-width: 768px) {
+  &.variableGap {
+    grid-gap: 26px;
+    @include container;
+    padding-top: 13px !important;
+  }
+
+  @include mq-min-width(md) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-gap: 30px;
   }
 
-  @media (min-width: 1025px) {
+  @include mq-min-width(lg) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
