@@ -7,7 +7,6 @@ import styles from "./HamburgerButton.module.scss";
 /**
  * HamburgerButton
  * Animated "hamburger" menu button for mobile & tablet navigation.
- * Uses styling/animation classes included in `sonnet.css`
  */
 function HamburgerButton(props) {
   const { ariaControls, state } = props;
@@ -19,12 +18,10 @@ function HamburgerButton(props) {
       onClick={() => setIsExpanded(!isExpanded)}
       aria-controls={ariaControls}
       aria-expanded={isExpanded}
-      className={`hamburger hamburger--squeeze js-hamburger ${
-        styles.hamburgerCustom
-      } ${isExpanded ? "is-active" : ""}`}
+      className={`${styles.hamburger} ${isExpanded ? styles.active : ""}`}
     >
-      <span className="hamburger-box">
-        <span className="hamburger-inner" />
+      <span className={styles.hamburgerBox}>
+        <span className={styles.hamburgerInner} />
       </span>
 
       {/* For a11y */}
