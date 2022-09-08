@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import styles from "./ThreeItemLayout.module.scss";
 
 /**
@@ -7,11 +9,11 @@ import styles from "./ThreeItemLayout.module.scss";
  */
 
 function ThreeItemLayout(props) {
-  const { children } = props;
+  const { children, variableGap } = props;
   const threeItems = children.filter((child, i) => i < 3);
 
   return (
-    <ul className={styles.list}>
+    <ul className={`${styles.list} ${variableGap ? styles.variableGap : ""}`}>
       {threeItems &&
         threeItems.map((item, i) => (
           <li key={i} className={styles.listItem}>
@@ -21,5 +23,13 @@ function ThreeItemLayout(props) {
     </ul>
   );
 }
+
+ThreeItemLayout.propTyoes = {
+  /* Elements between component tags */
+  children: PropTypes.node.isRequired,
+
+  /* Whether gap between items is narrower on small screens */
+  variableGap: PropTypes.bool,
+};
 
 export default ThreeItemLayout;
