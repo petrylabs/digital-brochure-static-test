@@ -8,7 +8,7 @@ import iconImageData from "../../icons/icons.json";
 import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 
 /**
- * ThreeColumnsSection(WhyBuySection, How can I save)
+ * ThreeColumnsSection(For WhyBuySection, How can I save)
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43278467425/ThreeColumnsSection
  */
 
@@ -57,12 +57,15 @@ function ThreeColumnsSection(props) {
 }
 
 ThreeColumnsSection.propTypes = {
+  /** Intro content object: headline and copy if available*/
   introContent: PropTypes.shape({
     headline: PropTypes.string.isRequired,
     copy: PropTypes.string,
   }).isRequired,
+  /** Column content object: the contents goes into the InfoCard*/
   columnContent: PropTypes.shape({
     fields: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
   className: PropTypes.string.isRequired,
 };
