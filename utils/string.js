@@ -2,5 +2,5 @@
  * Replaces <snt-link> in copy(string) with <a> tag
  **/
 export function replaceSntLinkToAtag(copy) {
-  return copy.replaceAll("snt-link", "a");
+  return copy.replace("snt-link", "a").replace("snt-link", "a");
 }
