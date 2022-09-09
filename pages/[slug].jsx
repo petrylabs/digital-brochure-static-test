@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
 import parse from "html-react-parser";
-
 import { getPage } from "../utils/api";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
@@ -10,7 +9,6 @@ import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import WhatDoesAccordionSection from "../components/WhatDoesAccordionSection";
 import CTAReminderSection from "../components/CTAReminderSection";
 
 export async function getStaticPaths() {
@@ -114,8 +112,7 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Last Section (13) */}
-      {/* Get a Quote Section */}
+      {/* Get a Quote Section (13) */}
       <CTAReminderSection content={content[0]} />
     </>
   );
