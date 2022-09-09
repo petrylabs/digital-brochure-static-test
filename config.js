@@ -7,6 +7,9 @@ export const pageSlugs = [
   "tenant-insurance",
 ];
 
+/** For Google Tag Manager */
+export const GTMContainerId = "GTM-TF8DP3";
+
 /** Minimum pixel width for each screen size */
 export const breakpoints = {
   xs: 0,
