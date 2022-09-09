@@ -10,6 +10,7 @@ import PageHero from "../components/PageHero";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import CTAReminderSection from "../components/CTAReminderSection";
+import PartnershipSection from "../components/PartnershipSection"
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -42,6 +43,7 @@ export async function getStaticProps({ params }) {
       seodescription: data.seodescription,
       description: data.description,
       content: data.content,
+      slug,
     },
   };
 }
@@ -50,7 +52,9 @@ export async function getStaticProps({ params }) {
  * Landing page template
  */
 function LandingPage(props) {
-  const { title, description, seodescription, content } = props;
+  const { title, description, seodescription, content, slug } = props;
+
+  const autoInsurancePage = slug === ('auto-insurance' || 'assurance-auto');
 
   /* Filter out Nissan section for auto page only: */
   const nissanSection = content.find((section) =>
@@ -85,6 +89,7 @@ function LandingPage(props) {
       {/* Why buy Section (5) */}
 
       {/* Partnership Section (6) */}
+      {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
 
       {/* Section 7 */}
       <section>
@@ -123,6 +128,7 @@ LandingPage.propTypes = {
   description: PropTypes.string.isRequired,
   seodescription: PropTypes.string.isRequired,
   content: PropTypes.arrayOf(object),
+  slug: PropTypes.string.isRequired,
 };
 
 export default LandingPage;
