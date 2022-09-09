@@ -187,7 +187,7 @@ export const getFooter = () => {
  * Get sign up modal data from API
  * @returns API response with sign up modal data
  */
-export const getNewsLetterModal = () => {
+export const getSignUpModal = () => {
   return get(`${apiUrl}/vtl/newsletterform`);
 };
 
@@ -256,4 +256,8 @@ export const getSearchResults = (languageId) => {
     body: raw,
     redirect: "follow",
   });
+};
+
+export const getRecaptchaSiteKey = () => {
+  return get(`${apiUrl}/vtl/googleRecaptchaKey`);
 };
