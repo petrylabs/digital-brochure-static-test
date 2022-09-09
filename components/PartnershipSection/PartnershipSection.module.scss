@@ -1,6 +1,7 @@
 @import "/scss/globals/color.scss";
 @import "/scss/globals/layout.scss";
 @import "/scss/globals/typography.scss";
+@import "../../scss/globals/mixins.scss";
 
 .spacings {
   padding: 13px 0;
@@ -16,6 +17,17 @@
 
 .contentContainer {
   @include container;
+
+  a{
+    @include cta-animated-link(
+      $color-primary-accent,
+      $color-links,
+      100% 1px,
+      all 0.2s ease-in,
+      1px,
+      1px
+    );
+  }
 }
 
 .contentContainer,
