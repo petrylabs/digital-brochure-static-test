@@ -58,6 +58,8 @@ export async function getPage(slug) {
         );
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
+      } else if (item.contentType === "ThreeColumnWidget") {
+        return getThreeColumnWidgetData(item.identifier, item.languageId);
       } else {
         return getContentRelationshipData(item.identifier);
       }
@@ -132,6 +134,18 @@ function getFullContainers(column, containers) {
  */
 export function getContentRelationshipData(identifier) {
   return get(`${apiUrl}/v1/contentrelationships/id/${identifier}/depth/3`);
+}
+
+/**
+ * Get related three column widget data with icons
+ * @param {string} identifier identifier to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
+ * @returns API response with the related content
+ */
+export function getThreeColumnWidgetData(identifier, languageId) {
+  return get(
+    `${apiUrl}/content/depth/3/language/${languageId}/id/${identifier}`
+  );
 }
 
 /**
