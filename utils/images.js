@@ -26,7 +26,7 @@ const imageFields = [
  */
 function imageData(contentObj, field) {
   if (imageFields.includes(field)) {
-    return contentObj.fields[field][0];
+    return contentObj.fields[field]?.[0];
   } else console.error(`The provided field '${field}' is not an image field`);
 }
 
