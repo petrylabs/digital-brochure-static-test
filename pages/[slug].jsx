@@ -2,14 +2,15 @@ import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
 import parse from "html-react-parser";
-
 import { getPage } from "../utils/api";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import BlogFaqSection from "../components/BlogFaqSection";
+import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import CTAReminderSection from "../components/CTAReminderSection";
 import PartnershipSection from "../components/PartnershipSection"
 
 export async function getStaticPaths() {
@@ -87,7 +88,11 @@ function LandingPage(props) {
       {/* Section 4 */}
 
       {/* Why buy Section (5) */}
-
+      <ThreeColumnsSection
+        introContent={commonContent[5]}
+        columnContent={commonContent[6]}
+        className="bg-white"
+      />
       {/* Partnership Section (6) */}
       {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
 
@@ -102,7 +107,10 @@ function LandingPage(props) {
       </section>
 
       {/* How can I save Section (9) */}
-
+      <ThreeColumnsSection
+        introContent={commonContent[9]}
+        columnContent={commonContent[10]}
+      />
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
 
@@ -117,6 +125,8 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
+      {/* Get a Quote Section (13) */}
+      <CTAReminderSection content={content[0]} />
     </>
   );
 }

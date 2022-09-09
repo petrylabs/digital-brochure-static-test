@@ -31,7 +31,8 @@
   }
 }
 
-/* CTA link */
+/* Gives an a tag animation that changes its undeline colour to another colour gradually. 
+** Apply this mixin to <a> tag. */
 @mixin cta-animated-link(
   $colour,
   $hoverColour,
@@ -50,6 +51,7 @@
   padding-bottom: $paddingBottom;
   background-repeat: no-repeat;
   background-size: $bgSize;
+
   &:before {
     content: "";
     position: absolute;
@@ -60,11 +62,13 @@
     background-color: $hoverColour;
     visibility: hidden;
   }
+
   &:hover {
     color: $hoverColour;
     text-decoration: none;
     background-image: linear-gradient(transparent, transparent);
   }
+
   &:hover:before {
     visibility: visible;
     width: 100%;
