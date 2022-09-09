@@ -28,15 +28,13 @@ function SplitLayout(props) {
 
   return (
     <div
-      className={`${styles.flexContainer} ${
-        imageRight ? styles.imageRight : ""
-      }`}
+      className={`${styles.flexContainer} ${imageRight ? styles.imageRight : ""
+        }`}
     >
       {/* IMAGE */}
       <div
-        className={`${styles.imageCol} ${
-          hideImageOnMobile && styles.hideImage
-        }`}
+        className={`${styles.imageCol} ${hideImageOnMobile && styles.hideImage
+          }`}
       >
         {hideImageOnMobile ? (
           <LargeScreenImage {...imageProps} />
