@@ -23,8 +23,8 @@ function InfoCard(props) {
           loader={customLoader}
           src={src}
           alt={alt}
-          width={45}
-          height={45}
+          width={30}
+          height={30}
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>
