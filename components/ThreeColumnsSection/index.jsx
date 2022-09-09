@@ -4,7 +4,8 @@ import parse from "html-react-parser";
 import InfoCard from "../InfoCard";
 import ThreeItemLayout from "../ThreeItemLayout";
 import { replaceSntLinkToAtag } from "../../utils/string";
-import iconImageData from "../../icons/icons.json";
+import { breakpoints } from "../../config";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 
 /**
@@ -15,23 +16,21 @@ import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
 function ThreeColumnsSection(props) {
   const { introContent, columnContent, className } = props;
   const { headline, copy } = introContent;
-  const { fields, title } = columnContent;
+  const { fields } = columnContent;
 
   const alteredCopy = copy ? replaceSntLinkToAtag(copy) : "";
-  const threeColumns = Object.entries(fields).filter((item) => {
-    if (item[0].includes("ThreeColumnWidget.generic")) {
+  const threeColumns = Object.entries(fields[0]).filter((item) => {
+    if (item.toString().includes("generic")) {
       return item;
     }
   });
 
-  // 1. check which landing page it is
-  const pageTitle = title.substring(0, title.indexOf(" "));
-  // 2. check which section is rendered
+  /* Handle screen sizes: */
+  const screenWidth = useWindowWidth();
+  const isDesktop = screenWidth >= breakpoints.lg;
+
+  // check which section is rendered to apply certain css
   const isWhyBuySection = headline.includes("Why buy");
-  // 3. create iconUrls array that has only iconUrls for the section and used on line 47
-  const iconUrls = isWhyBuySection
-    ? iconImageData[pageTitle].WhyBuySection
-    : iconImageData[pageTitle].HowCanISection;
 
   return (
     <section className={className}>
@@ -41,12 +40,16 @@ function ThreeColumnsSection(props) {
       </div>
       <ThreeItemLayout variableGap>
         {threeColumns.map((item, i) => {
+          const smallIconUrl = item[1].iconSmall.fileAsset
+            ? item[1].iconSmall.fileAsset
+            : item[1].icon.fileAsset;
           return (
             <InfoCard
-              key={item[1][0].identifier}
-              iconUrl={iconUrls[i].largeIconUrl}
-              title={item[1][0].headline}
-              content={parse(item[1][0].copy)}
+              key={item[1].identifier}
+              iconUrl={isDesktop ? item[1].icon.fileAsset : smallIconUrl}
+              title={item[1].headline}
+              alt={item[1].icon.altText}
+              content={parse(item[1].copy)}
               withBorder={isWhyBuySection}
             />
           );
@@ -64,8 +67,7 @@ ThreeColumnsSection.propTypes = {
   }).isRequired,
   /** Column content object: the contents goes into the InfoCard*/
   columnContent: PropTypes.shape({
-    fields: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
+    fields: PropTypes.array.isRequired,
   }).isRequired,
   className: PropTypes.string.isRequired,
 };
