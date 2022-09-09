@@ -6,8 +6,7 @@ import CTAReminderSection from "../components/CTAReminderSection";
  * This is the site homepage.
  */
 
-
-export async function getStaticProps({}) {
+export async function getStaticProps({ }) {
   const { data } = await getPage();
 
   if (!data) {
@@ -18,6 +17,7 @@ export async function getStaticProps({}) {
 
   return {
     props: {
+      title: data.title,
       content: data.content,
     },
   };
@@ -25,14 +25,14 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
 
-  const { content } = props;
+  const { title, content } = props;
 
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
 
       <Head>
-        <title>Home page</title>
+        <title>{title}</title>
       </Head>
 
       {/* PAGE TEMPLATE */}
