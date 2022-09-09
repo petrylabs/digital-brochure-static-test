@@ -10,6 +10,7 @@ import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import WhatDoesAccordionSection from "../components/WhatDoesAccordionSection";
+import CTAReminderSection from "../components/CTAReminderSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -103,6 +104,8 @@ function LandingPage(props) {
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
       {/* Last Section (13) */}
+      {/* Get a Quote Section */}
+      <CTAReminderSection content={content[0]} />
     </>
   );
 }
