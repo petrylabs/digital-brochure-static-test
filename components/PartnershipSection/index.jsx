@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
+import { replaceSntLinkToAtag } from "../../utils/string";
 
 /**
  * PartnershipSection
@@ -15,6 +16,7 @@ function PartnershipSection(props) {
     const { content } = props;
 
     const screenWidth = useWindowWidth();
+    const alteredCopy = content.copy ? replaceSntLinkToAtag(content.copy) : "";
 
     const imageString = screenWidth < breakpoints.lg
         ? "GenericContent.imageSmall"
@@ -24,7 +26,7 @@ function PartnershipSection(props) {
         <section className={styles.spacings}>
             <div className={styles.contentContainer}>
                 <h2 className={styles.heading}>{content.headline}</h2>
-                {parse(content.copy)}
+                {parse(alteredCopy)}
             </div>
             <div className={styles.imageMobile}>
                 <Image
