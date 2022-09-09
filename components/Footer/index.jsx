@@ -13,6 +13,18 @@ import styles from "./Footer.module.scss";
 function Footer() {
   const content = footerData.data.footerMenu;
 
+  /* Some main nav links have `name` property that doesn't match what's on screen... */
+  const modifyMenu = (menu) => {
+    if (menu.category === "Social") {
+      /* Remove "Sonnet " from link name */
+      return menu.menuItems.map((item) => {
+        return { ...item, name: item.name.substring(7) };
+      });
+    } else {
+      return menu.menuItems;
+    }
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -22,7 +34,7 @@ function Footer() {
             <nav key={i} className={styles.col}>
               <p className={`h5 ${styles.menuLabel}`}>{menu.category}</p>
               <ul className={styles.menuItems}>
-                {menu.menuItems.map((item, i) => (
+                {modifyMenu(menu).map((item, i) => (
                   <li key={i} className={styles.navItem}>
                     <FooterLink href={item.url} title={item.name} />
                   </li>
