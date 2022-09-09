@@ -22,9 +22,21 @@ function FooterLink(props) {
         target={isExternalLink ? "_blank" : "_self"}
         rel="noreferrer"
       >
-        {title}
+        <span className={styles.linkText}>{title}</span>
+        {isExternalLink && (
+          <>
+            {/* TODO: translate */}
+            <span className="visually-hidden">This is an external link</span>
+            <span
+              className={styles.icon}
+              title="This is an external link"
+              aria-hidden
+            >
+              <ExternalLinkIcon />
+            </span>
+          </>
+        )}
       </a>
-      {isExternalLink && <ExternalLinkIcon />}
     </>
   );
 }
