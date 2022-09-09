@@ -81,7 +81,7 @@ function PageHero(props) {
 }
 
 PageHero.propTypes = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.object.isRequired,
 };
 
 export default PageHero;
