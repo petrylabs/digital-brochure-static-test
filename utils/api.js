@@ -39,7 +39,10 @@ async function get(url, options = {}) {
  * @returns page data
  */
 export async function getPage(slug) {
-  const pageDataResponse = await get(`${apiUrl}/v1/page/render/${slug}/index`);
+  const url = slug
+    ? `${apiUrl}/v1/page/render/${slug}/index`
+    : `${apiUrl}/v1/page/render/index`;
+  const pageDataResponse = await get(url);
   let { data, error } = pageDataResponse;
 
   if (data && data.entity) {
