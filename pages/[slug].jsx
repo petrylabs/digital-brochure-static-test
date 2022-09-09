@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
 import parse from "html-react-parser";
-
 import { getPage } from "../utils/api";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
@@ -10,7 +9,7 @@ import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import WhatDoesAccordionSection from "../components/WhatDoesAccordionSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -82,7 +81,7 @@ function LandingPage(props) {
       </section>
 
       {/* Section 4 */}
-      <WhatDoesAccordionSection
+      <TwoAccordionSection
         content={content[3]}
         leftRightAccordianContent={content[4].fields}
       />
