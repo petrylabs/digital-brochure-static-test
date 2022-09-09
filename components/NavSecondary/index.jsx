@@ -45,7 +45,7 @@ function NavSecondary(props) {
   );
 }
 
-NavSecondary.PropTypes = {
+NavSecondary.propTypes = {
   ariaControls: PropTypes.string,
   ariaExpanded: PropTypes.bool,
   searchToggleFn: PropTypes.func,

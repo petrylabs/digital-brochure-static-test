@@ -34,7 +34,7 @@ function Accordion(props) {
         expandIcon={<Chevron />}
         classes={{
           root: styles.summary,
-          content: styles.summaryContent,
+          content: `h4 ${styles.summaryContent}`,
           expanded: styles.summaryExpanded,
           expandIconWrapper: styles.summaryIcon,
         }}

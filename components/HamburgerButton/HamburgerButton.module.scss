@@ -1,16 +1,107 @@
 @import "../../scss/globals/a11y.scss";
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/buttons.scss";
 
-.hamburgerCustom {
+/*
+ * Modified from "Hamburgers", found in `sonnet.css`
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+
+.hamburger {
+  @include unstyle-button;
   @include focus-border;
 
   display: flex; // removes space below spans
   padding: 3px;
   margin-left: 15px;
   margin-right: 12px; // 42px - 30px parent padding
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
 
   @include mq-min-width(sm) {
     margin-left: 30px;
     margin-right: 19px; // 49px - 30px parent padding
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.active {
+    &:hover {
+      opacity: 1;
+    }
+
+    .hamburgerInner {
+      background-color: #323232;
+      transform: rotate(45deg);
+      transition-delay: 0.12s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      &::before {
+        background-color: #323232;
+        top: 0;
+        opacity: 0;
+        transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+      }
+
+      &::after {
+        background-color: #323232;
+        bottom: 0;
+        transform: rotate(-90deg);
+        transition: bottom 0.075s ease,
+          transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
+  }
+}
+
+.hamburgerBox {
+  width: 20px;
+  height: 21px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburgerInner,
+.hamburgerInner::before,
+.hamburgerInner::after {
+  width: 20px;
+  height: 3px;
+  background-color: #323232;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.hamburgerInner {
+  display: block;
+  top: 50%;
+  margin-top: -1.5px;
+  transition-duration: 0.075s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &::before {
+    top: -9px;
+    transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+  }
+
+  &::after {
+    bottom: -9px;
+    transition: bottom 0.075s 0.12s ease,
+      transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
 }

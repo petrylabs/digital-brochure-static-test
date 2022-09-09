@@ -44,6 +44,7 @@ function PageHero(props) {
             alt={imageAlt(content, src)}
             layout="fill"
             objectFit="cover"
+            priority
           />
           <div className={styles.whiteGradient} />
         </div>
@@ -71,6 +72,7 @@ function PageHero(props) {
             src={imageSrc(content, "Hero.mobileImage")}
             alt={imageAlt(content, "Hero.mobileImage")}
             layout="fill"
+            priority
           />
         </div>
       )}
@@ -79,7 +81,7 @@ function PageHero(props) {
 }
 
 PageHero.propTypes = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.object.isRequired,
 };
 
 export default PageHero;
