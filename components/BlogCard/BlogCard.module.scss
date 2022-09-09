@@ -69,7 +69,7 @@
     font-size: 1rem;
   }
 
-  @include mq-min-width(lg) {
+  @include mq-min-width(xl) {
     font-size: 1.313rem;
     line-height: 26px;
   }

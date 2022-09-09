@@ -24,11 +24,13 @@ function BlogFaqSection(props) {
       </div>
 
       {/* BLOGS */}
-      <ThreeItemLayout>
-        {blogs.map((blog, i) => (
-          <BlogCard key={i} content={blog} />
-        ))}
-      </ThreeItemLayout>
+      <div className={styles.blogContainer}>
+        <ThreeItemLayout>
+          {blogs.map((blog, i) => (
+            <BlogCard key={i} content={blog} />
+          ))}
+        </ThreeItemLayout>
+      </div>
 
       {/* FAQ */}
       <div className={styles.accordions}>
