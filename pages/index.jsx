@@ -35,8 +35,6 @@ export default function IndexPage(props) {
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
-
       {/* When it comes to section */}
       <section className="bg-white">
         <SplitLayout content={content[16]} imageRight />
