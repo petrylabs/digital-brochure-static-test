@@ -3,6 +3,7 @@ import styles from "./InfoCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { customLoader } from "../../utils/images";
+import { baseUrl } from "../../config.js";
 
 /**
  * InfoCard
@@ -10,7 +11,9 @@ import { customLoader } from "../../utils/images";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, content, withBorder = false } = props;
+  const { iconUrl, title, alt, content, withBorder = false } = props;
+  const src = baseUrl + iconUrl;
+
   return (
     <div
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
@@ -18,10 +21,10 @@ function InfoCard(props) {
       <div className={styles.icon}>
         <Image
           loader={customLoader}
-          src={iconUrl}
-          alt=""
-          width={45}
-          height={45}
+          src={src}
+          alt={alt}
+          width={30}
+          height={30}
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>
@@ -35,6 +38,8 @@ InfoCard.propTypes = {
   iconUrl: PropTypes.string.isRequired,
   // title of the card
   title: PropTypes.string.isRequired,
+  // alt text of the icon
+  alt: PropTypes.string.isRequired,
   // content copy of card consisting of HTML element
   content: PropTypes.node.isRequired,
   // optional prop to add border around the card
