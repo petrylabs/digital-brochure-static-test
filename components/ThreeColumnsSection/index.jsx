@@ -33,7 +33,7 @@ function ThreeColumnsSection(props) {
   const isWhyBuySection = headline.includes("Why buy");
 
   return (
-    <section className={className}>
+    <section className={`${styles.section} ${className}`}>
       <div className={styles.textContainer}>
         <h2>{headline}</h2>
         {parse(alteredCopy)}

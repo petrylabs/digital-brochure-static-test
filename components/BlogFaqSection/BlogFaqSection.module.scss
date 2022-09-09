@@ -4,11 +4,11 @@
 
 .section {
   background: $color-white;
+  @include container;
 }
 
 .content {
-  @include container;
-  padding-bottom: 13px !important;
+  padding-bottom: 13px;
 
   @include mq-min-width(md) {
     text-align: center;
@@ -19,7 +19,14 @@
   }
 }
 
+.blogContainer {
+  padding-bottom: 40px;
+
+  @include mq-min-width(lg) {
+    padding-bottom: 60px;
+  }
+}
+
 .accordions {
-  @include container();
-  padding-top: 13px !important;
+  padding-top: 13px;
 }

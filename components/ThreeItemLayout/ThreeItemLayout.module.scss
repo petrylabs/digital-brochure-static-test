@@ -8,15 +8,13 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
   grid-gap: 30px;
 
-  @include container;
-  padding-top: 13px !important;
-
   &.variableGap {
     grid-gap: 26px;
     @include mq-min-width(md) {
       grid-gap: 30px;
     }
   }
+  padding-top: 13px;
 
   @include mq-min-width(md) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
