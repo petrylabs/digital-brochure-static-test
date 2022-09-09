@@ -10,8 +10,6 @@ export async function getStaticProps({ params }) {
   // const { slug } = params;
   const { data } = await getPage();
 
-  console.log("data", data);
-
   // TO DO: create 404 and redirect to it
   // if (!data) {
   //   return {
@@ -33,7 +31,6 @@ export async function getStaticProps({ params }) {
 
 export default function IndexPage(props) {
   const { content } = props;
-  console.log(content);
 
   return (
     <>
@@ -41,7 +38,7 @@ export default function IndexPage(props) {
       <Head>
         <title>Home page</title>
       </Head>
-      <h1>Hello world</h1>
+
       {/* PAGE TEMPLATE */}
       <section className="bg-white">
         <SplitLayout content={content[16]} imageRight />
