@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import parse from "html-react-parser";
 
 import footerData from "../../site-data/footer.preval";
-import NavItem from "../NavItem";
+import FooterLink from "../FooterLink";
 import styles from "./Footer.module.scss";
 
 /**
@@ -24,7 +24,7 @@ function Footer() {
               <ul className={styles.menuItems}>
                 {menu.menuItems.map((item, i) => (
                   <li key={i} className={styles.navItem}>
-                    <NavItem href={item.url} title={item.name} />
+                    <FooterLink href={item.url} title={item.name} />
                   </li>
                 ))}
               </ul>
@@ -36,12 +36,12 @@ function Footer() {
         <ul className={styles.horizontalFooterMenu}>
           {content.footerHorizontalMenu.map((item, i) => (
             <li key={i} className={styles.navItem}>
-              <NavItem href={item.url} title={item.name} />
+              <FooterLink href={item.url} title={item.name} />
             </li>
           ))}
           <li className={styles.navItem}>
             {/* TODO: translate */}
-            <NavItem
+            <FooterLink
               href={"https://www.sonnet.ca/fr"}
               title={"Français"}
               style={{ fontFamily: "Averta-ExtraBold" }}
@@ -59,7 +59,7 @@ function Footer() {
                   const { name, attribs } = domNode;
                   if (name === "snt-link") {
                     return (
-                      <NavItem
+                      <FooterLink
                         href={attribs.href}
                         title={attribs.title}
                         style={{ color: "#147582" }}

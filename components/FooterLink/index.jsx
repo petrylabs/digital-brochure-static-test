@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./NavItem.module.scss";
+import styles from "./FooterLink.module.scss";
 import isExternal from "../../utils/link";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import PropTypes from "prop-types";
 
 /**
- * NavItem
- * NavItem; component to render internal and external navigation links
+ * FooterLink
+ * FooterLink; component to render internal and external navigation links
  */
-function NavItem(props) {
+function FooterLink(props) {
   const { href, title, style, externalLink } = props;
   const isExternalLink =
     externalLink == undefined ? isExternal(href) : externalLink;
@@ -29,7 +29,7 @@ function NavItem(props) {
   );
 }
 
-NavItem.propTypes = {
+FooterLink.propTypes = {
   // nav item href
   href: PropTypes.string.isRequired,
 
@@ -43,4 +43,4 @@ NavItem.propTypes = {
   externalLink: PropTypes.bool,
 };
 
-export default NavItem;
+export default FooterLink;
