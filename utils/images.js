@@ -5,16 +5,15 @@
 import { baseUrl } from "../config";
 
 const imageFields = [
-  "Hero.desktopImage",
-  "Hero.desktopHdImage",
-  "Hero.tabletImage",
-  "Hero.mobileImage",
-  "GenericContent.image",
-  "GenericContent.imageSmall",
-  "Feature.featureImage",
-  "Feature.featureImageSmall",
-  "Blog.image",
-  "Blog.blogArticleImage",
+  "desktopImage",
+  "desktopHdImage",
+  "tabletImage",
+  "mobileImage",
+  "image",
+  "imageSmall",
+  "featureImage",
+  "featureImageSmall",
+  "blogArticleImage",
 ];
 
 /**
@@ -26,7 +25,8 @@ const imageFields = [
  */
 function imageData(contentObj, field) {
   if (imageFields.includes(field)) {
-    return contentObj.fields[field]?.[0];
+    const test = contentObj.fields[0][field];
+    return contentObj.fields[0][field];
   } else console.error(`The provided field '${field}' is not an image field`);
 }
 
