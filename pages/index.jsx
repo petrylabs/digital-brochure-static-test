@@ -40,13 +40,13 @@ console.log(content);
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
+      {/* PAGE TEMPLATE */}  
 
       {/* Page hero */}
-      <PageHero content={content[0]} />
+      <PageHero content={ content[0]} />
 
       {/* Blog Section */}
-      <BlogFaqSection content={content[9]} blogs={[content[10],content[11],content[12]]}></BlogFaqSection>
+      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
 
       {/* "When it comes to..." section */}
       <section className="bg-white">
