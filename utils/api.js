@@ -64,7 +64,7 @@ export async function getPage(slug) {
       } else if (item.contentType === "ThreeColumnWidget") {
         return getThreeColumnWidgetData(item.identifier, item.languageId);
       } else {
-        return getContentRelationshipData(item.identifier);
+        return getContentRelationshipData(item.identifier, item.languageId);
       }
     });
 
@@ -135,8 +135,10 @@ function getFullContainers(column, containers) {
  * @param {string} identifier unique identifier (id) of the current piece of content
  * @returns API response with the related content
  */
-export function getContentRelationshipData(identifier) {
-  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}/depth/3`);
+export function getContentRelationshipData(identifier, languageId) {
+  return get(
+    `${apiUrl}/v1/contentrelationships/id/${identifier}?depth=3&languageId=${languageId}`
+  );
 }
 
 /**
