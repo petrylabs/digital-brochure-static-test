@@ -7,10 +7,8 @@
 }
 
 .content {
-  @include mq-min-width(sm) {
-    padding: 40px 30px 13px;
-    text-align: left;
-  }
+  padding: 40px 30px 13px;
+  text-align: left;
 
   @include mq-min-width(md) {
     padding: 40px 37px 13px;
@@ -40,9 +38,7 @@
 }
 
 .spacingsLeft {
-  @include mq-min-width(sm) {
-    padding: 13px 30px;
-  }
+  padding: 13px 30px;
 
   @include mq-min-width(md) {
     padding: 26px 13px 13px 37px;
@@ -53,9 +49,7 @@
   }
 
   h3 {
-    @include mq-min-width(sm) {
-      text-align: left;
-    }
+    text-align: left;
 
     @include mq-min-width(md) {
       text-align: center;
@@ -64,9 +58,7 @@
 }
 
 .spacingsRight {
-  @include mq-min-width(sm) {
-    padding: 13px 30px;
-  }
+  padding: 13px 30px;
 
   @include mq-min-width(md) {
     padding: 26px 37px 13px 13px;
@@ -77,9 +69,7 @@
   }
 
   h3 {
-    @include mq-min-width(sm) {
-      text-align: left;
-    }
+    text-align: left;
 
     @include mq-min-width(md) {
       text-align: center;
@@ -88,9 +78,7 @@
 }
 
 .spacingsAccordianLeft {
-  @include mq-min-width(sm) {
-    padding: 13px 30px;
-  }
+  padding: 13px 30px;
 
   @include mq-min-width(md) {
     padding: 13px 13px 40px 37px;
@@ -102,10 +90,8 @@
 }
 
 .spacingsAccordianRight {
-  @include mq-min-width(sm) {
-    padding: 13px 30px 40px;
-  }
-
+  padding: 13px 30px 40px;
+  
   @include mq-min-width(md) {
     padding: 13px 37px 40px 13px;
   }
