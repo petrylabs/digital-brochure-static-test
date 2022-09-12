@@ -1,0 +1,64 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
+
+.section {
+  background: $color-white;
+}
+
+.content {
+  padding: 40px 30px 13px;
+  text-align: left;
+
+  @include mq-min-width(md) {
+    padding: 40px 37px 13px;
+    text-align: center;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 60px 71px 13px;
+  }
+}
+
+.heading {
+  @include heading-margin;
+}
+
+.rowColumnFlexBox {
+  display: flex;
+  flex-direction: column;
+  padding-top: 13px;
+
+  @include mq-min-width(md) {
+    flex-direction: row;
+  }
+}
+
+.columnsAlignment {
+  flex: 0 0 50%;
+  max-width: 100%;
+}
+
+.spacingsAccordianLeft {
+  padding: 13px 30px 0px;
+
+  @include mq-min-width(md) {
+    padding: 13px 26px 40px 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 13px 28px 60px 71px;
+  }
+}
+
+.spacingsAccordianRight {
+  padding: 0px 30px 40px;
+
+  @include mq-min-width(md) {
+    padding: 13px 37px 40px 26px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 13px 71px 60px 28px;
+  }
+}

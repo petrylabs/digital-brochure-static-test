@@ -4,6 +4,7 @@ import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
+import TwoAccordionHomeSection from "../components/TwoAccordionHomeSection"
 
 /**
  * This is the site homepage.
@@ -41,6 +42,12 @@ export default function IndexPage(props) {
 
       {/* Page hero */}
       <PageHero content={content[0]} />
+
+      {/* Canadian insurance accordion section*/}
+      <TwoAccordionHomeSection
+        content={content[14]}
+        leftRightAccordianContent={content[15].fields}
+      />
 
       {/* "When it comes to..." section */}
       <section className="bg-white">
