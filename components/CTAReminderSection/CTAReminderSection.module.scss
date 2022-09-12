@@ -1,0 +1,22 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables";
+
+.getQuoteSection {
+  background-color: $color-primary;
+  @include container;
+  text-align: left;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+}
+
+.buttonContainerGaq {
+  margin-top: 30px;
+
+  @include mq-min-width(md) {
+    display: inline-block;
+    text-align: center;
+  }
+}

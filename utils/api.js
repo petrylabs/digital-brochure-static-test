@@ -39,7 +39,10 @@ async function get(url, options = {}) {
  * @returns page data
  */
 export async function getPage(slug) {
-  const pageDataResponse = await get(`${apiUrl}/v1/page/render/${slug}/index`);
+  const url = slug
+    ? `${apiUrl}/v1/page/render/${slug}/index`
+    : `${apiUrl}/v1/page/render/index`;
+  const pageDataResponse = await get(url);
   let { data, error } = pageDataResponse;
 
   if (data && data.entity) {
@@ -58,8 +61,10 @@ export async function getPage(slug) {
         );
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
+      } else if (item.contentType === "ThreeColumnWidget") {
+        return getThreeColumnWidgetData(item.identifier, item.languageId);
       } else {
-        return getContentRelationshipData(item.identifier);
+        return getContentRelationshipData(item.identifier, item.languageId);
       }
     });
 
@@ -130,8 +135,22 @@ function getFullContainers(column, containers) {
  * @param {string} identifier unique identifier (id) of the current piece of content
  * @returns API response with the related content
  */
-export function getContentRelationshipData(identifier) {
-  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}`);
+export function getContentRelationshipData(identifier, languageId) {
+  return get(
+    `${apiUrl}/v1/contentrelationships/id/${identifier}?depth=3&languageId=${languageId}`
+  );
+}
+
+/**
+ * Get related three column widget data with icons
+ * @param {string} identifier identifier to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
+ * @returns API response with the related content
+ */
+export function getThreeColumnWidgetData(identifier, languageId) {
+  return get(
+    `${apiUrl}/content/depth/3/language/${languageId}/id/${identifier}`
+  );
 }
 
 /**

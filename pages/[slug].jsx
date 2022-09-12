@@ -8,9 +8,11 @@ import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
 import PageHero from "../components/PageHero";
 import BlogFaqSection from "../components/BlogFaqSection";
+import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import CTAReminderSection from "../components/CTAReminderSection";
+import PartnershipSection from "../components/PartnershipSection";
 import TwoAccordionSection from "../components/TwoAccordionSection";
-import PartnershipSection from "../components/PartnershipSection"
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -89,8 +91,13 @@ function LandingPage(props) {
         content={content[3]}
         leftRightAccordianContent={content[4].fields}
       />
-      {/* Why buy Section (5) */}
 
+      {/* Why buy Section (5) */}
+      <ThreeColumnsSection
+        introContent={commonContent[5]}
+        columnContent={commonContent[6]}
+        className="bg-white"
+      />
       {/* Partnership Section (6) */}
       {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
 
@@ -105,7 +112,10 @@ function LandingPage(props) {
       </section>
 
       {/* How can I save Section (9) */}
-
+      <ThreeColumnsSection
+        introContent={commonContent[9]}
+        columnContent={commonContent[10]}
+      />
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
 
@@ -120,6 +130,8 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
+      {/* Get a Quote Section (13) */}
+      <CTAReminderSection content={content[0]} />
     </>
   );
 }
