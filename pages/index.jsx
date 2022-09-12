@@ -6,6 +6,7 @@ import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
 import  ThreeItemLayout from "../components/ThreeItemLayout";
 import BlogCard from "../components/BlogCard";
+import BlogFaqSection from "../components/BlogFaqSection";
 
 /**
  * This is the site homepage.
@@ -45,15 +46,7 @@ console.log(content);
       <PageHero content={content[0]} />
 
       {/* Blog Section */}
-      <section>
-        <h2>{content[9].headline}</h2>
-        <ThreeItemLayout>
-          <BlogCard content={content[10]}/>
-          <BlogCard content={content[11]}/>
-          <BlogCard content={content[12]}/>
-          
-        </ThreeItemLayout>
-      </section>
+      <BlogFaqSection content={content[9]} blogs={[content[10],content[11],content[12]]}></BlogFaqSection>
 
       {/* "When it comes to..." section */}
       <section className="bg-white">
