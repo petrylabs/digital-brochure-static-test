@@ -15,12 +15,12 @@ function BlogFaqSection(props) {
   const { content, blogs, faq } = props;
   const { copy, headline } = content;
 
-  const accordionItems = faq.fields;
+  const accordionItems = faq?.fields;
   return (
     <section className={styles.section}>
       <div className={styles.content}>
         <h2>{headline}</h2>
-        {parse(copy)}
+        {copy && parse(copy)}
       </div>
 
       {/* BLOGS */}
@@ -33,7 +33,8 @@ function BlogFaqSection(props) {
       </div>
 
       {/* FAQ */}
-      <div className={styles.accordions}>
+      {faq && (
+        <div className={styles.accordions}>
         <AccordionGroup>
           {accordionItems.map((item) => (
             <Accordion
@@ -45,6 +46,8 @@ function BlogFaqSection(props) {
           ))}
         </AccordionGroup>
       </div>
+      )}
+      
     </section>
   );
 }
