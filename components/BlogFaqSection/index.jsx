@@ -9,6 +9,7 @@ import styles from "./BlogFaqSection.module.scss";
 
 /**
  * BlogFaqSection
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43286036647/BlogFaqSection
  * Section displaying blog posts and some FAQ in an accordion
  */
 function BlogFaqSection(props) {
