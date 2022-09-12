@@ -21,7 +21,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
 - [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding.
-- [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wite data
+- [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wide data
 
 ---
 
@@ -35,7 +35,13 @@ You will need:
 
 1. Clone this repository using SSH
 1. Run `npm install` in the project directory
-1. Add your dotCMS credentials to the `.env` file
+1. Create a `.env` file and add the following code (with your own dotCMS access credentials):
+   ```
+   NODE_ENV=production
+   DOTCMS_HOST=https://dev-economical.dotcmscloud.com/api
+   DOTCMS_USERNAME=
+   DOTCMS_PASSWORD=
+   ```
 1. Run `npm run dev` to start a local development server
 1. Open a browser and navigate to `localhost:3000`
 
@@ -64,11 +70,19 @@ Development branches should branch from `develop` and be named according to the 
 e.g. SKY-230_set-up-readme
 ```
 
+## Pages
+
+- `_document`: The custom document, which allows us to handle certain scripts and parameters
+- `_app`: The custom App, which handles the common layout across pages (header, footer, etc)
+- `[slug].jsx`: The template for 4 of the landing pages (see `config.js` for the page slugs). Responsible for fetching data for each landing page and generating the static HTML file
+- `index.jsx`: The template for the homepage. Responsible for fetching homepage data and generating the HTML file
+- `test/index.jsx`: A temporary page, used during development for creating and rendering UI components in isolation.
+
 ## Styling
 
-- Global styles are imported from `https://www.sonnet.ca/asset/css/sonnet.css` in the custom `_document` file.
 - All styles are written in [SCSS](https://sass-lang.com/documentation/syntax#scss)
 - Common SCSS definitions (variables, mixins, etc.) are located in the `/scss` folder.
+- Global styles are found in `/scss/styles.scss`
 - Component-specific styles are kept in SCSS files in each component folder.
 - Component styles are leveraging [CSS Modules](https://github.com/css-modules/css-modules) and using the `styles.camelCase` format.
 
@@ -86,7 +100,7 @@ Breakpoints are defined in `/scss/global/layout.scss`. Helper mixins for using t
 
 ### MUI components
 
-Material UI (MUI) is being selectively used in some of the more complex components to bootstrap some certain behaviour/interaction patterns.
+Material UI (MUI) is being selectively used in some of the more complex components to bootstrap certain behaviour/interaction patterns.
 
 To maintain consistent styling patterns within the app (i.e. relying on CSS Modules), any MUI components used are styled using that component's CSS API and providing classes as a prop. See example below.
 
@@ -94,21 +108,6 @@ To maintain consistent styling patterns within the app (i.e. relying on CSS Modu
 <Modal classes={{ root: styles.root }}>{/* modal content */}</Modal>
 ```
 
-## Pages
-
-- `_document`: The custom document, which allows us to handle certain scripts and parameters
-- `_app`: The custom App, which handles the common layout across pages (header, footer, etc)
-- `[slug].jsx`: The template for 4 of the landing pages (see `config.js` for the page slugs). Responsible for fetching data for each landing page and generating the static HTML file
-- `index.jsx`: The template for the homepage. Responsible for fetching homepage data and generating the HTML file
-- `test/index.jsx`: A temporary page, used during development for creating and rendering UI components in isolation.
-
 ## Deployment
 
-### Build
-
-1. Run `npm start`
-1. Next.js will build and export your pages into the `out` folder and serve them on `localhost:5000`.
-
-### Host
-
-Built files will be hosted in dotCMS. Details TBC.
+A build process is run locally on a developer's machine and the output is hosted on dotCMS. For full details, see the [deployment docs](https://economical.atlassian.net/wiki/spaces/SKT/pages/43259985982/DotCMS+deployment)

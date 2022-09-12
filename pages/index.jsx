@@ -1,6 +1,8 @@
 import Head from "next/head";
+
 import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
+import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
 
 /**
@@ -12,7 +14,7 @@ export async function getStaticProps({}) {
 
   if (!data) {
     return {
-      // Todo: add the modal for 404 page
+      // Todo: redirect to 404 page
     };
   }
 
@@ -37,11 +39,15 @@ export default function IndexPage(props) {
 
       {/* PAGE TEMPLATE */}
 
-      {/* When it comes to section */}
+      {/* Page hero */}
+      <PageHero content={content[0]} />
+
+      {/* "When it comes to..." section */}
       <section className="bg-white">
         <SplitLayout content={content[16]} imageRight />
       </section>
-      {/* Get a Quote Section */}
+
+      {/* CTA reminder */}
       <CTAReminderSection content={content[0]} />
     </>
   );
