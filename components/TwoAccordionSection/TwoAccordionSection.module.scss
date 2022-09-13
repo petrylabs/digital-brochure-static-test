@@ -19,36 +19,41 @@
   @include heading-margin;
 }
 
-.rowColumnLandingFlex {
+.rowColumnLandingFlex,
+.rowColumnHomeFlex {
   display: flex;
   flex-direction: column;
   margin-top: 26px;
-  gap: 13px;
 
   @include mq-min-width(md) {
     flex-direction: row;
-    gap: 26px;
   }
 
   @include mq-min-width(lg) {
     margin-top: 28px;
+  }
+}
+
+.rowColumnLandingFlex {
+  gap: 13px;
+
+  @include mq-min-width(md) {
+    gap: 26px;
+  }
+
+  @include mq-min-width(lg) {
     gap: 30px;
   }
 }
 
 .rowColumnHomeFlex {
-  display: flex;
-  flex-direction: column;
-  margin-top: 26px;
   gap: 0px;
 
   @include mq-min-width(md) {
-    flex-direction: row;
     gap: 52px;
   }
 
   @include mq-min-width(lg) {
-    margin-top: 28px;
     gap: 56px;
   }
 }
