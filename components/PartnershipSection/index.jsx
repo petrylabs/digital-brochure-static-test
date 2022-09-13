@@ -13,39 +13,37 @@ import { replaceSntLinkToAtag } from "../../utils/string";
  * Section displaying what does car insurance cover in canada in an accordion
  */
 function PartnershipSection(props) {
-    const { content } = props;
+  const { content } = props;
 
-    const screenWidth = useWindowWidth();
-    const alteredCopy = content.copy ? replaceSntLinkToAtag(content.copy) : "";
+  const screenWidth = useWindowWidth();
+  const alteredCopy = content.copy ? replaceSntLinkToAtag(content.copy) : "";
 
-    const imageString = screenWidth < breakpoints.lg
-        ? "GenericContent.imageSmall"
-        : "GenericContent.image";
+  const imageString = screenWidth < breakpoints.lg ? "imageSmall" : "image";
 
-    return (
-        <section className={styles.spacings}>
-            <div className={styles.contentContainer}>
-                <h2 className={styles.heading}>{content.headline}</h2>
-                {parse(alteredCopy)}
-            </div>
-            <div className={styles.imageMobile}>
-                <Image
-                    loader={customLoader}
-                    src={imageSrc(content, imageString)}
-                    alt={imageAlt(content, imageString)}
-                    layout="fill"
-                    objectFit="cover"
-                />
-            </div>
-        </section>
-    );
+  return (
+    <section className={styles.spacings}>
+      <div className={styles.contentContainer}>
+        <h2 className={styles.heading}>{content.headline}</h2>
+        {parse(alteredCopy)}
+      </div>
+      <div className={styles.imageMobile}>
+        <Image
+          loader={customLoader}
+          src={imageSrc(content, imageString)}
+          alt={imageAlt(content, imageString)}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
+    </section>
+  );
 }
 
 PartnershipSection.propTypes = {
-    content: PropTypes.shape({
-        headline: PropTypes.string,
-        copy: PropTypes.string,
-    }).isRequired,
+  content: PropTypes.shape({
+    headline: PropTypes.string,
+    copy: PropTypes.string,
+  }).isRequired,
 };
 
 export default PartnershipSection;
