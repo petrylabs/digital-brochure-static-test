@@ -5,7 +5,7 @@ import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
-import TwoAccordionHomeSection from "../components/TwoAccordionHomeSection"
+import TwoAccordionSection from "../components/TwoAccordionSection"
 
 /**
  * This is the site homepage.
@@ -47,7 +47,7 @@ export default function IndexPage(props) {
       <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
 
       {/* Canadian insurance accordion section*/}
-      <TwoAccordionHomeSection
+      <TwoAccordionSection
         content={content[14]}
         leftRightAccordianContent={content[15].fields}
       />
