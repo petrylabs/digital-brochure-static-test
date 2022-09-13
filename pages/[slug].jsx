@@ -64,7 +64,6 @@ function LandingPage(props) {
   const commonContent = content.filter(
     (section) => !section?.headline?.includes("Nissan")
   );
-  console.log(content);
 
   return (
     <>
