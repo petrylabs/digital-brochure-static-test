@@ -55,7 +55,6 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
-  console.log(content);
   const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
 
   /* Filter out Nissan section for auto page only: */
