@@ -4,6 +4,9 @@ import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
+import  ThreeItemLayout from "../components/ThreeItemLayout";
+import BlogCard from "../components/BlogCard";
+import BlogFaqSection from "../components/BlogFaqSection";
 
 /**
  * This is the site homepage.
@@ -28,7 +31,6 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
@@ -37,10 +39,13 @@ export default function IndexPage(props) {
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
+      {/* PAGE TEMPLATE */}  
 
       {/* Page hero */}
-      <PageHero content={content[0]} />
+      <PageHero content={ content[0]} />
+
+      {/* Blog Section */}
+      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
 
       {/* "When it comes to..." section */}
       <section className="bg-white">
