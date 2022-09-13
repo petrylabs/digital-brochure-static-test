@@ -16,11 +16,11 @@ function TwoAccordionSection(props) {
     const { content, leftRightAccordianContent } = props;
     const { copy, headline } = content;
 
-    const leftAccordionItems = leftRightAccordianContent['TwoColumnGenericAccordion.leftColumn'];
-    const leftAccordionTitle = leftRightAccordianContent['TwoColumnGenericAccordion.leftTitle'];
+    const leftAccordionItems = leftRightAccordianContent[0].leftColumn;
+    const leftAccordionTitle = leftRightAccordianContent[0].leftTitle;
 
-    const rightAccordionItems = leftRightAccordianContent['TwoColumnGenericAccordion.rightColumn'];
-    const rightAccordionTitle = leftRightAccordianContent['TwoColumnGenericAccordion.rightTitle'];
+    const rightAccordionItems = leftRightAccordianContent[0].rightColumn;
+    const rightAccordionTitle = leftRightAccordianContent[0].rightTitle;
 
     return (
         <section className={styles.section}>
@@ -33,7 +33,7 @@ function TwoAccordionSection(props) {
                 {/* Left accordion items */}
                 <div className={styles.columnsAlignment}>
                     <div className={styles.spacingsLeft}>
-                        <h3>{leftAccordionTitle[0].headline}</h3>
+                        <h3>{leftAccordionTitle.headline}</h3>
                     </div>
                     <div className={styles.spacingsAccordianLeft}>
                         <AccordionGroup>
@@ -52,7 +52,7 @@ function TwoAccordionSection(props) {
                 {/* Right accordion items */}
                 <div className={styles.columnsAlignment}>
                     <div className={styles.spacingsRight}>
-                        <h3>{rightAccordionTitle[0].headline}</h3>
+                        <h3>{rightAccordionTitle.headline}</h3>
                     </div>
                     <div className={styles.spacingsAccordianRight}>
                         <AccordionGroup>
@@ -79,10 +79,10 @@ TwoAccordionSection.propTypes = {
     }).isRequired,
 
     leftRightAccordianContent: PropTypes.shape({
-        'TwoColumnGenericAccordion.leftColumn': PropTypes.array,
-        'TwoColumnGenericAccordion.leftTitle': PropTypes.array,
-        'TwoColumnGenericAccordion.rightColumn': PropTypes.array,
-        'TwoColumnGenericAccordion.rightTitle': PropTypes.array,
+        leftColumn: PropTypes.array,
+        leftTitle: PropTypes.object,
+        rightColumn: PropTypes.array,
+        rightTitle: PropTypes.object,
     }).isRequired,
 };
 
