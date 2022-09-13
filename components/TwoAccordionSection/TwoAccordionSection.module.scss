@@ -6,17 +6,12 @@
   background: $color-grey-03;
 }
 
-.content {
-  padding: 40px 30px 13px;
+.container {
+  @include container;
   text-align: left;
 
   @include mq-min-width(md) {
-    padding: 40px 37px 13px;
     text-align: center;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px 71px 13px;
   }
 }
 
@@ -27,76 +22,35 @@
 .rowColumnFlexBox {
   display: flex;
   flex-direction: column;
+  margin-top: 26px;
+  gap: 13px; 
 
   @include mq-min-width(md) {
     flex-direction: row;
-  }
-}
-
-.columnsAlignment {
-  width: 100%;
-}
-
-.spacingsLeft {
-  padding: 13px 30px;
-
-  @include mq-min-width(md) {
-    padding: 26px 13px 13px 37px;
+    gap: 26px;
   }
 
   @include mq-min-width(lg) {
-    padding: 26px 15px 15px 71px;
-  }
-
-  h3 {
-    text-align: left;
-
-    @include mq-min-width(md) {
-      text-align: center;
-    }
+    margin-top: 28px;
+    gap: 30px;
   }
 }
 
-.spacingsRight {
-  padding: 13px 30px;
+.accordionHeading {
+  text-align: left;
+  padding-top: 13px;
+  padding-bottom: 26px;
 
   @include mq-min-width(md) {
-    padding: 26px 37px 13px 13px;
+    text-align: center;
   }
 
   @include mq-min-width(lg) {
-    padding: 26px 71px 15px 15px;
-  }
-
-  h3 {
-    text-align: left;
-
-    @include mq-min-width(md) {
-      text-align: center;
-    }
+    text-align: center;
+    padding-bottom: 28px;
   }
 }
 
-.spacingsAccordianLeft {
-  padding: 13px 30px;
-
-  @include mq-min-width(md) {
-    padding: 13px 13px 40px 37px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 13px 15px 60px 71px;
-  }
-}
-
-.spacingsAccordianRight {
-  padding: 13px 30px 40px;
-  
-  @include mq-min-width(md) {
-    padding: 13px 37px 40px 13px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 13px 71px 60px 15px;
-  }
+.accordionGroup {
+  flex: 1;
 }

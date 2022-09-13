@@ -24,18 +24,14 @@ function TwoAccordionSection(props) {
 
     return (
         <section className={styles.section}>
-            <div className={styles.content}>
+            <div className={styles.container}>
                 <h2 className={styles.heading}>{headline}</h2>
                 {parse(copy)}
-            </div>
 
-            <div className={styles.rowColumnFlexBox}>
-                {/* Left accordion items */}
-                <div className={styles.columnsAlignment}>
-                    <div className={styles.spacingsLeft}>
-                        <h3>{leftAccordionTitle.headline}</h3>
-                    </div>
-                    <div className={styles.spacingsAccordianLeft}>
+                <div className={styles.rowColumnFlexBox}>
+                    <div className={styles.accordionGroup}>
+                        {/* Left accordion items */}
+                        <h3 className={styles.accordionHeading}>{leftAccordionTitle.headline}</h3>
                         <AccordionGroup>
                             {leftAccordionItems.map((item) => (
                                 <Accordion
@@ -47,14 +43,10 @@ function TwoAccordionSection(props) {
                             ))}
                         </AccordionGroup>
                     </div>
-                </div>
 
-                {/* Right accordion items */}
-                <div className={styles.columnsAlignment}>
-                    <div className={styles.spacingsRight}>
-                        <h3>{rightAccordionTitle.headline}</h3>
-                    </div>
-                    <div className={styles.spacingsAccordianRight}>
+                    {/* Right accordion items */}
+                    <div className={styles.accordionGroup}>
+                        <h3 className={styles.accordionHeading}>{rightAccordionTitle.headline}</h3>
                         <AccordionGroup>
                             {rightAccordionItems.map((item) => (
                                 <Accordion
