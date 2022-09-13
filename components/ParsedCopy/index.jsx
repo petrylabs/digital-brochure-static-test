@@ -9,26 +9,29 @@ import styles from "./ParsedCopy.module.scss";
  * Parses HTML copy strings from dotCMS and replaces <snt-link> components
  */
 function ParsedCopy(props) {
-  const { copy } = props;
+  const { copy, animatedLinks } = props;
 
-  const parsedCopy = parse(copy, {
-    replace: (node) => {
-      if (node.attribs && node.name === "snt-link") {
-        const props = attributesToProps(node.attribs);
-        return (
-          <a className={styles.sntLink} {...props}>
-            {domToReact(node.children)}
-          </a>
-        );
+  const parsingOptions = animatedLinks
+    ? {
+        replace: (node) => {
+          if (node.attribs && node.name === "snt-link") {
+            const props = attributesToProps(node.attribs);
+            return (
+              <a className={styles.sntLink} {...props}>
+                {domToReact(node.children)}
+              </a>
+            );
+          }
+        },
       }
-    },
-  });
+    : null;
 
-  return <>{parsedCopy}</>;
+  return <>{parse(copy, parsingOptions)}</>;
 }
 
 ParsedCopy.propTypes = {
-  copy: PropTypes.string,
+  copy: PropTypes.string.isRequired,
+  animatedLinks: PropTypes.bool,
 };
 
 export default ParsedCopy;
