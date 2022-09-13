@@ -44,6 +44,11 @@ export default function IndexPage(props) {
       {/* Page hero */}
       <PageHero content={ content[0]} />
 
+      {/* "Switch and Save" section */}
+      <section className="bg-white">
+        <SplitLayout content={content[4]} hideImageOnMobile imageRight />
+      </section>
+
       {/* Blog Section */}
       <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
 
