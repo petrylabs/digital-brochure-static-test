@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 /**
  * TwoAccordionSection
+ * Section displaying canada insurance that fits your needs for home page. 
  * Section displaying what does car insurance cover in canada for auto-insurance page.
  * Section displaying what does tenant insurance cover in canada for tenant-insurance page.
  * Section displaying what does home insurance cover in canada for home-insurance page. 
@@ -28,10 +29,10 @@ function TwoAccordionSection(props) {
                 <h2 className={styles.heading}>{headline}</h2>
                 {parse(copy)}
 
-                <div className={styles.rowColumnFlexBox}>
+                <div className={leftAccordionTitle ? styles.rowColumnLandingFlex : styles.rowColumnHomeFlex}>
                     <div className={styles.accordionGroup}>
                         {/* Left accordion items */}
-                        <h3 className={styles.accordionHeading}>{leftAccordionTitle.headline}</h3>
+                        {leftAccordionTitle && (<h3 className={styles.accordionHeading}>{leftAccordionTitle.headline}</h3>)}
                         <AccordionGroup>
                             {leftAccordionItems.map((item) => (
                                 <Accordion
@@ -46,7 +47,7 @@ function TwoAccordionSection(props) {
 
                     {/* Right accordion items */}
                     <div className={styles.accordionGroup}>
-                        <h3 className={styles.accordionHeading}>{rightAccordionTitle.headline}</h3>
+                        {rightAccordionTitle && (<h3 className={styles.accordionHeading}>{rightAccordionTitle.headline}</h3>)}
                         <AccordionGroup>
                             {rightAccordionItems.map((item) => (
                                 <Accordion
@@ -70,12 +71,7 @@ TwoAccordionSection.propTypes = {
         copy: PropTypes.string,
     }).isRequired,
 
-    leftRightAccordianContent: PropTypes.shape({
-        leftColumn: PropTypes.array,
-        leftTitle: PropTypes.object,
-        rightColumn: PropTypes.array,
-        rightTitle: PropTypes.object,
-    }).isRequired,
+    leftRightAccordianContent: PropTypes.array.isRequired,
 };
 
 export default TwoAccordionSection;

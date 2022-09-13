@@ -98,6 +98,7 @@ function LandingPage(props) {
         columnContent={commonContent[6]}
         className="bg-white"
       />
+      
       {/* Partnership Section (6) */}
       {autoInsurancePage && <PartnershipSection content={nissanSection} />}
 
