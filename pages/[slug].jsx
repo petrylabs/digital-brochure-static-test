@@ -11,7 +11,7 @@ import BlogFaqSection from "../components/BlogFaqSection";
 import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import CTAReminderSection from "../components/CTAReminderSection";
-import PartnershipSection from "../components/PartnershipSection"
+import PartnershipSection from "../components/PartnershipSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -55,7 +55,7 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
-  const autoInsurancePage = slug === ('auto-insurance' || 'assurance-auto');
+  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
 
   /* Filter out Nissan section for auto page only: */
   const nissanSection = content.find((section) =>
@@ -95,7 +95,7 @@ function LandingPage(props) {
       />
       
       {/* Partnership Section (6) */}
-      {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
+      {autoInsurancePage && <PartnershipSection content={nissanSection} />}
 
       {/* Section 7 */}
       <section>

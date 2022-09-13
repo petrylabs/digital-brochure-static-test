@@ -4,6 +4,7 @@ import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
+import BlogFaqSection from "../components/BlogFaqSection";
 import TwoAccordionHomeSection from "../components/TwoAccordionHomeSection"
 
 /**
@@ -29,7 +30,6 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
@@ -38,10 +38,13 @@ export default function IndexPage(props) {
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
+      {/* PAGE TEMPLATE */}  
 
       {/* Page hero */}
       <PageHero content={content[0]} />
+
+      {/* Blog Section */}
+      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
 
       {/* Canadian insurance accordion section*/}
       <TwoAccordionHomeSection
