@@ -1,4 +1,5 @@
 import Head from "next/head";
+import parse from "html-react-parser";
 
 import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
@@ -7,6 +8,11 @@ import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TwoAccordionSection from "../components/TwoAccordionSection";
 import SignUpSection from "../components/SignUpSection";
+import InfoCard from "../components/InfoCard";
+import LargeScreenImage from "../components/LargeScreenImage";
+import { searchData, getCookie, customLoader } from "../utils";
+import ThreeItemLayout from "../components/ThreeItemLayout";
+
 
 /**
  * This is the site homepage.
@@ -31,6 +37,7 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
+  console.log(content);
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
@@ -48,6 +55,32 @@ export default function IndexPage(props) {
       <section className="bg-white">
         <SplitLayout content={content[4]} hideImageOnMobile imageRight />
       </section>
+
+      {/* Section 6 */}
+      <section>        
+          <ThreeItemLayout>       
+            <InfoCard 
+              title={content[6].headline} 
+              iconUrl={content[6].fields[0].icon.url} 
+              alt={content[6].fields[0].icon.altText} 
+              content={parse(content[6].copy)}
+              withBorder={true}/>
+              
+            <InfoCard 
+              title={content[7].headline} 
+              iconUrl={content[7].fields[0].icon.url} 
+              alt={content[7].fields[0].icon.altText} 
+              content={parse(content[7].copy)} 
+              withBorder={true}/>
+
+            <LargeScreenImage 
+              src={content[8].fileAsset} 
+              width="400"
+              height="300"
+              loader={customLoader}/>      
+          </ThreeItemLayout>        
+      </section>
+
 
       {/* Blog Section */}
       <BlogFaqSection
