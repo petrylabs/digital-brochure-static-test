@@ -1,0 +1,56 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
+
+.section {
+  background: $color-grey-03;
+}
+
+.container {
+  @include container;
+  text-align: left;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+}
+
+.heading {
+  @include heading-margin;
+}
+
+.rowColumnFlexBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+  gap: 13px; 
+
+  @include mq-min-width(md) {
+    flex-direction: row;
+    gap: 26px;
+  }
+
+  @include mq-min-width(lg) {
+    margin-top: 28px;
+    gap: 30px;
+  }
+}
+
+.accordionHeading {
+  text-align: left;
+  padding-top: 13px;
+  padding-bottom: 26px;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+
+  @include mq-min-width(lg) {
+    text-align: center;
+    padding-bottom: 28px;
+  }
+}
+
+.accordionGroup {
+  flex: 1;
+}

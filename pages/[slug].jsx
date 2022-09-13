@@ -12,6 +12,7 @@ import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PartnershipSection from "../components/PartnershipSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -86,6 +87,10 @@ function LandingPage(props) {
       </section>
 
       {/* Section 4 */}
+      <TwoAccordionSection
+        content={content[3]}
+        leftRightAccordianContent={content[4].fields}
+      />
 
       {/* Why buy Section (5) */}
       <ThreeColumnsSection
