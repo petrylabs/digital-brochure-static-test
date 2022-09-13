@@ -73,11 +73,7 @@ SplitLayout.propTypes = {
     copy: PropTypes.string,
     url: PropTypes.string,
     cta: PropTypes.string,
-    fields: PropTypes.arrayOf(
-      PropTypes.shape({
-        image: PropTypes.array,
-      })
-    ),
+    fields: PropTypes.array,
   }).isRequired,
 
   /** Only show image on large screen */
