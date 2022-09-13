@@ -61,8 +61,6 @@ export async function getPage(slug) {
         );
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
-      } else if (item.contentType === "ThreeColumnWidget") {
-        return getThreeColumnWidgetData(item.identifier, item.languageId);
       } else {
         return getContentRelationshipData(item.identifier, item.languageId);
       }
@@ -136,18 +134,6 @@ function getFullContainers(column, containers) {
  * @returns API response with the related content
  */
 export function getContentRelationshipData(identifier, languageId) {
-  return get(
-    `${apiUrl}/v1/contentrelationships/id/${identifier}?depth=3&languageId=${languageId}`
-  );
-}
-
-/**
- * Get related three column widget data with icons
- * @param {string} identifier identifier to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
- * @returns API response with the related content
- */
-export function getThreeColumnWidgetData(identifier, languageId) {
   return get(
     `${apiUrl}/content/depth/3/language/${languageId}/id/${identifier}`
   );
@@ -223,12 +209,12 @@ export async function getGaqModal() {
 
     /** Get all related content */
     const contentRelationships = content.map((item) =>
-      getContentRelationshipData(item.identifier)
+      getContentRelationshipData(item.identifier, item.languageId)
     );
 
     return Promise.all(contentRelationships).then((relations) => {
       relations.map((data, i) => {
-        content[i].fields = data.data[0];
+        content[i].fields = data.data.contentlets[0];
       });
 
       return {

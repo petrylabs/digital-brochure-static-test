@@ -25,11 +25,11 @@ function PageHero(props) {
   const screenWidth = useWindowWidth();
   let src;
   if (screenWidth < breakpoints.lg) {
-    src = "Hero.tabletImage";
+    src = "tabletImage";
   } else if (screenWidth < breakpoints.blg) {
-    src = "Hero.desktopImage";
+    src = "desktopImage";
   } else if (screenWidth >= breakpoints.blg) {
-    src = "Hero.desktopHdImage";
+    src = "desktopHdImage";
   }
 
   /* Handling modal display: */
@@ -67,8 +67,8 @@ function PageHero(props) {
         <div className={styles.mobileImageContainer}>
           <Image
             loader={customLoader}
-            src={imageSrc(content, "Hero.mobileImage")}
-            alt={imageAlt(content, "Hero.mobileImage")}
+            src={imageSrc(content, "mobileImage")}
+            alt={imageAlt(content, "mobileImage")}
             layout="fill"
             priority
           />

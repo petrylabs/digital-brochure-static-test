@@ -16,9 +16,9 @@ function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
   const { headline, copy, url, cta } = content;
 
-  const imageString = content.fields.hasOwnProperty("GenericContent.image")
-    ? "GenericContent.image"
-    : "Feature.featureImage";
+  const imageString = content.fields[0].hasOwnProperty("image")
+    ? "image"
+    : "featureImage";
   const alteredCopy = copy ? replaceSntLinkToAtag(copy) : "";
 
   const imageProps = {
@@ -72,9 +72,11 @@ SplitLayout.propTypes = {
     copy: PropTypes.string,
     url: PropTypes.string,
     cta: PropTypes.string,
-    fields: PropTypes.shape({
-      "GenericContent.image": PropTypes.array,
-    }),
+    fields: PropTypes.arrayOf(
+      PropTypes.shape({
+        image: PropTypes.array,
+      })
+    ),
   }).isRequired,
 
   /** Only show image on large screen */
