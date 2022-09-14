@@ -84,41 +84,34 @@ function Footer({ pageFooterData }) {
           </li>
         </ul>
 
-        {/* Primary legal content */}
+        {/* Legal footer */}
         <div className={styles.legalFooter}>
           {formatLegalFooter(content?.legalFooter[0]?.copy)}
-        </div>
 
-        {/* Expanding legal content */}
-        <div id="legal-footer">
-          <button
-            className={styles.legalAccordianButton}
-            aria-expanded={showLegalFooter}
-            onClick={() => setShowLegalFooter(!showLegalFooter)}
-          >
-            <span
-              className={`${styles.legalAccordianIcon} ${
+          {/* Expanding legal content */}
+          <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
+            <summary
+              className={`${styles.legalDetailsButton} ${
                 showLegalFooter
-                  ? styles.legalAccordianIconMinus
-                  : styles.legalAccordianIconPlus
+                  ? styles.legalDetailsShow
+                  : styles.legalDetailsHide
               }`}
-            ></span>
-            <span className={styles.legalAccordianButtonText}>
+            >
               {/* TODO: translate */}
-              {showLegalFooter ? "Hide Legal" : "View Legal"}
-            </span>
-          </button>
+              <span>{showLegalFooter ? "Hide Legal" : "View Legal"}</span>
+            </summary>
 
-          {showLegalFooter && (
-            <div className={styles.legalFooter} aria-labelledby="legal-footer">
-              {content.accordionLegalFooter.map((item, i) => (
-                <Fragment key={i}>{formatLegalFooter(item.copy)}</Fragment>
-              ))}
-              {pageFooterData.map((item, i) => (
-                <Fragment key={i}>{formatLegalFooter(item.copy)}</Fragment>
-              ))}
-            </div>
-          )}
+            {content.accordionLegalFooter.map((item) => (
+              <Fragment key={item.identifier}>
+                {formatLegalFooter(item.copy)}
+              </Fragment>
+            ))}
+            {pageFooterData.map((item) => (
+              <Fragment key={item.identifier}>
+                {formatLegalFooter(item.copy)}
+              </Fragment>
+            ))}
+          </details>
         </div>
       </div>
     </footer>

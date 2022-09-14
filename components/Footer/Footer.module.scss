@@ -86,7 +86,7 @@
   }
 }
 
-/* PRIMARY LEGAL */
+/* LEGAL FOOTER */
 
 .legalFooter {
   p {
@@ -100,19 +100,21 @@
   color: $color-primary-accent;
 }
 
-.legalAccordianButton {
-  border: 1px solid;
-  border-color: transparent;
-  font-family: $font-regular;
-  background-color: $color-white;
-  margin-bottom: 0.475em;
-  padding-left: 0;
+.legalDetailsButton {
+  cursor: pointer;
+  display: inline-flex;
   align-items: center;
+  border: 1px solid transparent;
+  font-family: $font-regular;
+  padding: 3px;
+  margin-bottom: 0.475em;
+  font-size: 12px;
 
-  .legalAccordianButtonText {
-    margin-left: 5px;
-    text-decoration: underline transparent;
-    font-size: 12px;
+  &:hover {
+    color: $color-primary-accent;
+    span {
+      text-decoration: underline;
+    }
   }
 
   &:focus {
@@ -120,31 +122,20 @@
   }
 }
 
-.legalAccordianButton:hover {
-  .legalAccordianButtonText {
-    text-decoration: underline $color-primary-accent;
-    color: $color-primary-accent;
-  }
-  .legalAccordianIcon {
-    color: $color-primary-accent;
-  }
-}
-
-.legalAccordianIcon {
-  margin: 0;
-  position: relative;
-  font-family: "icomoon";
-  padding-left: 1px;
-}
-
-.legalAccordianIconMinus {
+.legalDetailsShow,
+.legalDetailsHide {
   &::before {
-    content: "\e939";
+    display: inline-block;
+    margin-right: 8px;
+    font-family: "icomoon";
+    font-size: 0.9375rem;
   }
 }
 
-.legalAccordianIconPlus {
-  &::before {
-    content: "\e9a5";
-  }
+.legalDetailsShow::before {
+  content: "\e939";
+}
+
+.legalDetailsHide::before {
+  content: "\e9a5";
 }
