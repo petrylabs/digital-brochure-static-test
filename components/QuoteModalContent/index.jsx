@@ -14,9 +14,9 @@ import styles from "./QuoteModalContent.module.scss";
 function QuoteModalContent() {
   const content = gaqModalData.data.content;
 
-  const menuItem = (i) => content[i].fields;
+  const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
-    `${baseUrl}/dA/${content[i].fields[`${name}`].identifier}`;
+    `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
 
   return (
     <article>

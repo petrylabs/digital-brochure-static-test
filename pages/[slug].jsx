@@ -98,7 +98,7 @@ function LandingPage(props) {
       {/* Section 4 */}
       <TwoAccordionSection
         content={content[3]}
-        leftRightAccordianContent={content[4].fields}
+        leftRightAccordianContent={content[4]?.fields}
       />
 
       {/* Why buy Section (5) */}
