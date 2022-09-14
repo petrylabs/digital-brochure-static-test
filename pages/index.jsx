@@ -4,9 +4,8 @@ import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
-import  ThreeItemLayout from "../components/ThreeItemLayout";
-import BlogCard from "../components/BlogCard";
 import BlogFaqSection from "../components/BlogFaqSection";
+import TwoAccordionSection from "../components/TwoAccordionSection"
 
 /**
  * This is the site homepage.
@@ -42,10 +41,21 @@ export default function IndexPage(props) {
       {/* PAGE TEMPLATE */}  
 
       {/* Page hero */}
-      <PageHero content={ content[0]} />
+      <PageHero content={content[0]} />
+
+      {/* "Switch and Save" section */}
+      <section className="bg-white">
+        <SplitLayout content={content[4]} hideImageOnMobile imageRight />
+      </section>
 
       {/* Blog Section */}
       <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
+
+      {/* Canadian insurance accordion section*/}
+      <TwoAccordionSection
+        content={content[14]}
+        leftRightAccordianContent={content[15].fields}
+      />
 
       {/* "When it comes to..." section */}
       <section className="bg-white">
