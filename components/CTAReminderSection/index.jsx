@@ -1,26 +1,23 @@
 import React, { useContext } from "react";
-import styles from "./CTAReminderSection.module.scss";
-import parse from "html-react-parser";
+import PropTypes from "prop-types";
+
 import ModalContext from "../../context/modal";
 import CTA from "../CTA";
-import PropTypes from "prop-types";
+import styles from "./CTAReminderSection.module.scss";
 
 /**
  * GetQuote
- * Get Quote Section for the home page and the landing pages. 
+ * Get Quote Section for the home page and the landing pages.
  */
 function CTAReminderSection(props) {
-  const content = props.content;
+  const { content } = props;
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   return (
     <section className={styles.getQuoteSection}>
-      <h2>{parse(content.copy)}</h2>
+      <h2>{content.headline}</h2>
       <div className={styles.buttonContainerGaq}>
-        <CTA
-          type="secondary"
-          onClick={() => setIsQuoteModalOpen(true)}
-        >
+        <CTA type="secondary" onClick={() => setIsQuoteModalOpen(true)}>
           {content.cta}
         </CTA>
       </div>
@@ -29,7 +26,9 @@ function CTAReminderSection(props) {
 }
 
 CTAReminderSection.propTypes = {
-  content: PropTypes.object.isRequired,
+  content: PropTypes.shape({
+    headline: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CTAReminderSection;

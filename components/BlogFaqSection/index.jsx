@@ -1,9 +1,9 @@
 import React from "react";
-import parse from "html-react-parser";
 
 import ThreeItemLayout from "../ThreeItemLayout";
 import Accordion from "../Accordion";
 import AccordionGroup from "../AccordionGroup";
+import ParsedCopy from "../ParsedCopy";
 import BlogCard from "../BlogCard";
 import styles from "./BlogFaqSection.module.scss";
 
@@ -15,13 +15,13 @@ import styles from "./BlogFaqSection.module.scss";
 function BlogFaqSection(props) {
   const { content, blogs, faq } = props;
   const { copy, headline } = content;
-
   const accordionItems = faq?.fields;
+
   return (
     <section className={styles.section}>
       <div className={styles.content}>
         <h2>{headline}</h2>
-        {copy && parse(copy)}
+        {copy && <ParsedCopy copy={copy} />}
       </div>
 
       {/* BLOGS */}
@@ -36,19 +36,18 @@ function BlogFaqSection(props) {
       {/* FAQ */}
       {faq && (
         <div className={styles.accordions}>
-        <AccordionGroup>
-          {accordionItems.map((item) => (
-            <Accordion
-              key={item.identifier}
-              id={item.identifier}
-              details={parse(item.answer)}
-              summary={parse(item.question)}
-            />
-          ))}
-        </AccordionGroup>
-      </div>
+          <AccordionGroup>
+            {accordionItems.map((item) => (
+              <Accordion
+                key={item.identifier}
+                id={item.identifier}
+                details={<ParsedCopy copy={item.answer} />}
+                summary={<ParsedCopy copy={item.question} />}
+              />
+            ))}
+          </AccordionGroup>
+        </div>
       )}
-      
     </section>
   );
 }

@@ -78,7 +78,7 @@ function LandingPage(props) {
       {/* Intro */}
       <TextSection
         title={commonContent[1].headline}
-        copy={parse(commonContent[1].copy)}
+        copy={commonContent[1].copy}
       />
 
       {/* Section 3 */}
@@ -98,7 +98,7 @@ function LandingPage(props) {
         columnContent={commonContent[6]}
         className="bg-white"
       />
-      
+
       {/* Partnership Section (6) */}
       {autoInsurancePage && <PartnershipSection content={nissanSection} />}
 
@@ -117,6 +117,7 @@ function LandingPage(props) {
         introContent={commonContent[9]}
         columnContent={commonContent[10]}
       />
+
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
 
@@ -131,8 +132,9 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Get a Quote Section (13) */}
-      <CTAReminderSection content={content[0]} />
+
+      {/* CTA Reminder */}
+      <CTAReminderSection content={content[18]} />
     </>
   );
 }

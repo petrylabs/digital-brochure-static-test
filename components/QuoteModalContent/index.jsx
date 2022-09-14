@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import parse from "html-react-parser";
 
 import { baseUrl } from "../../config.js";
 import gaqModalData from "../../site-data/gaqModal.preval.js";
-import styles from "./QuoteModalContent.module.scss";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
+import ParsedCopy from "../ParsedCopy/index.jsx";
+import styles from "./QuoteModalContent.module.scss";
 
 /**
  * QuoteModalContent
@@ -24,7 +24,7 @@ function QuoteModalContent() {
     <article>
       <div className={styles.text}>
         <h1>{content[0].headline}</h1>
-        {parse(content[0].copy)}
+        <ParsedCopy copy={content[0].copy} />
       </div>
 
       <ul className={styles.linksList}>

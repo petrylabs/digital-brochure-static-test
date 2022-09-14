@@ -17,17 +17,6 @@
 
 .contentContainer {
   @include container;
-
-  a{
-    @include cta-animated-link(
-      $color-primary-accent,
-      $color-links,
-      100% 1px,
-      all 0.2s ease-in,
-      1px,
-      1px
-    );
-  }
 }
 
 .contentContainer,

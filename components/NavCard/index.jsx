@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
 
 import styles from "./NavCard.module.scss";
 
@@ -15,17 +14,19 @@ function NavCard(props) {
   return (
     <a href={url} className={styles.navLink}>
       <span>{mainText}</span>
+
       {/* TODO: translation */}
       {isNew && <span className={styles.newTag}>New!</span>}
-      <p className={styles.subText}>{parse(subText)}</p>
+
+      <p className={styles.subText}>{subText}</p>
     </a>
   );
 }
 
 NavCard.propTypes = {
-  url: PropTypes.string,
-  mainText: PropTypes.string,
-  subText: PropTypes.string,
+  url: PropTypes.string.isRequired,
+  mainText: PropTypes.string.isRequired,
+  subText: PropTypes.string.isRequired,
   isNew: PropTypes.bool,
 };
 
