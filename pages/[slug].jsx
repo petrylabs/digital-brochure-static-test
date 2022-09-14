@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
 import parse from "html-react-parser";
 import { getPage } from "../utils/api";
+import PageFooterContext from "../context/pageFooter";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
@@ -56,7 +57,17 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
+  const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
+
   const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
+
+  const legalFooterContent = content.filter(
+    (x) => x.contentType === "LegalFooter"
+  );
+
+  useEffect(() => {
+    setPageFooterData(legalFooterContent);
+  }, [content]);
 
   /* Filter out Nissan section for auto page only: */
   const nissanSection = content.find((section) =>

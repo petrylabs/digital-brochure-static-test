@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import loadable from "@loadable/component";
 
 import ModalContext from "../context/modal";
+import PageFooterContext from "../context/pageFooter";
 import Header from "../components/Header";
 import "../scss/styles.scss";
 
@@ -20,21 +21,27 @@ const QuoteModalContent = loadable(() =>
 
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
 
   return (
-    <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
-      <Header />
+    <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
+      <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
+        <Header />
 
-      <main id="main-content">
-        <Component {...pageProps} />
-      </main>
+        <main id="main-content">
+          <Component {...pageProps} />
+        </main>
 
-      <Footer />
+        <Footer pageFooterData={pageFooterData} />
 
-      <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
-        <QuoteModalContent />
-      </Modal>
-    </ModalContext.Provider>
+        <Modal
+          open={isQuoteModalOpen}
+          onClose={() => setIsQuoteModalOpen(false)}
+        >
+          <QuoteModalContent />
+        </Modal>
+      </ModalContext.Provider>
+    </PageFooterContext.Provider>
   );
 }
 
