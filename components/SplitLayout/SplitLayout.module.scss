@@ -36,6 +36,7 @@
 
 .hideImage {
   display: none;
+
   @include mq-min-width(md) {
     display: block;
   }
@@ -43,6 +44,7 @@
 
 .contentCol {
   @include container;
+
   h2 {
     @include heading-margin;
   }
@@ -50,6 +52,7 @@
 
 .content {
   font-size: 14px;
+
   @include mq-min-width(lg) {
     font-size: 16px;
   }

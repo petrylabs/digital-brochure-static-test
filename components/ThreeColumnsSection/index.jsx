@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
-import InfoCard from "../InfoCard";
-import ThreeItemLayout from "../ThreeItemLayout";
-import { replaceSntLinkToAtag } from "../../utils/string";
+
 import { breakpoints } from "../../config";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import styles from "../ThreeColumnsSection/ThreeColumnsSection.module.scss";
+import InfoCard from "../InfoCard";
+import ThreeItemLayout from "../ThreeItemLayout";
+import ParsedCopy from "../ParsedCopy";
+import styles from "./ThreeColumnsSection.module.scss";
 
 /**
  * ThreeColumnsSection(For WhyBuySection, How can I save)
@@ -18,7 +18,6 @@ function ThreeColumnsSection(props) {
   const { headline, copy } = introContent;
   const { fields } = columnContent;
 
-  const alteredCopy = copy ? replaceSntLinkToAtag(copy) : "";
   const threeColumns = Object.entries(fields[0]).filter((item) => {
     if (item.toString().includes("generic")) {
       return item;
@@ -36,8 +35,9 @@ function ThreeColumnsSection(props) {
     <section className={`${styles.section} ${className}`}>
       <div className={styles.textContainer}>
         <h2>{headline}</h2>
-        {parse(alteredCopy)}
+        {copy && <ParsedCopy copy={copy} animatedLinks />}
       </div>
+
       <ThreeItemLayout variableGap>
         {threeColumns.map((item, i) => {
           const smallIconUrl = item[1].iconSmall.fileAsset
@@ -49,7 +49,7 @@ function ThreeColumnsSection(props) {
               iconUrl={isDesktop ? item[1].icon.fileAsset : smallIconUrl}
               title={item[1].headline}
               alt={item[1].icon.altText}
-              content={parse(item[1].copy)}
+              content={item[1].copy}
               withBorder={isWhyBuySection}
             />
           );

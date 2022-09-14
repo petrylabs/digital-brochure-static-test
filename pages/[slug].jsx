@@ -11,7 +11,8 @@ import BlogFaqSection from "../components/BlogFaqSection";
 import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import CTAReminderSection from "../components/CTAReminderSection";
-import PartnershipSection from "../components/PartnershipSection"
+import PartnershipSection from "../components/PartnershipSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -55,7 +56,7 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
-  const autoInsurancePage = slug === ('auto-insurance' || 'assurance-auto');
+  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
 
   /* Filter out Nissan section for auto page only: */
   const nissanSection = content.find((section) =>
@@ -77,7 +78,7 @@ function LandingPage(props) {
       {/* Intro */}
       <TextSection
         title={commonContent[1].headline}
-        copy={parse(commonContent[1].copy)}
+        copy={commonContent[1].copy}
       />
 
       {/* Section 3 */}
@@ -86,6 +87,10 @@ function LandingPage(props) {
       </section>
 
       {/* Section 4 */}
+      <TwoAccordionSection
+        content={content[3]}
+        leftRightAccordianContent={content[4].fields}
+      />
 
       {/* Why buy Section (5) */}
       <ThreeColumnsSection
@@ -93,8 +98,9 @@ function LandingPage(props) {
         columnContent={commonContent[6]}
         className="bg-white"
       />
+
       {/* Partnership Section (6) */}
-      {autoInsurancePage && (<PartnershipSection content={nissanSection} />)}
+      {autoInsurancePage && <PartnershipSection content={nissanSection} />}
 
       {/* Section 7 */}
       <section>
@@ -111,6 +117,7 @@ function LandingPage(props) {
         introContent={commonContent[9]}
         columnContent={commonContent[10]}
       />
+
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
 
@@ -125,8 +132,9 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Get a Quote Section (13) */}
-      <CTAReminderSection content={content[0]} />
+
+      {/* CTA Reminder */}
+      <CTAReminderSection content={content[18]} />
     </>
   );
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
 
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import LargeScreenImage from "../LargeScreenImage";
+import ParsedCopy from "../ParsedCopy";
 import styles from "./SplitLayout.module.scss";
 
 /**
@@ -14,9 +14,11 @@ import styles from "./SplitLayout.module.scss";
 
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
-  const imageString = content.fields.hasOwnProperty("GenericContent.image")
-    ? "GenericContent.image"
-    : "Feature.featureImage";
+  const { headline, copy, url, cta } = content;
+
+  const imageString = content.fields[0].hasOwnProperty("image")
+    ? "image"
+    : "featureImage";
 
   const imageProps = {
     loader: customLoader,
@@ -28,13 +30,15 @@ function SplitLayout(props) {
 
   return (
     <div
-      className={`${styles.flexContainer} ${imageRight ? styles.imageRight : ""
-        }`}
+      className={`${styles.flexContainer} ${
+        imageRight ? styles.imageRight : ""
+      }`}
     >
       {/* IMAGE */}
       <div
-        className={`${styles.imageCol} ${hideImageOnMobile && styles.hideImage
-          }`}
+        className={`${styles.imageCol} ${
+          hideImageOnMobile && styles.hideImage
+        }`}
       >
         {hideImageOnMobile ? (
           <LargeScreenImage {...imageProps} />
@@ -46,12 +50,14 @@ function SplitLayout(props) {
 
       {/* TEXT CONTENT */}
       <div className={styles.contentCol}>
-        <h2>{content.headline}</h2>
-        <div className={styles.content}>{parse(content.copy)}</div>
+        <h2>{headline}</h2>
+        <div className={styles.content}>
+          <ParsedCopy copy={copy} animatedLinks />
+        </div>
         {content?.cta && (
           <div className={styles.ctaLinkWrapper}>
-            <a href={content.url} className={styles.ctaLink}>
-              {content.cta}
+            <a href={url} className={styles.ctaLink}>
+              {cta}
             </a>
           </div>
         )}
@@ -63,11 +69,11 @@ function SplitLayout(props) {
 SplitLayout.propTypes = {
   /** Content object: */
   content: PropTypes.shape({
-    headline: PropTypes.string,
+    headline: PropTypes.string.isRequired,
     copy: PropTypes.string,
-    fields: PropTypes.shape({
-      "GenericContent.image": PropTypes.array,
-    }),
+    url: PropTypes.string,
+    cta: PropTypes.string,
+    fields: PropTypes.array,
   }).isRequired,
 
   /** Only show image on large screen */

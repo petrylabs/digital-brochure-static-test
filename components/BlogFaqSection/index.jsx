@@ -1,26 +1,27 @@
 import React from "react";
-import parse from "html-react-parser";
 
 import ThreeItemLayout from "../ThreeItemLayout";
 import Accordion from "../Accordion";
 import AccordionGroup from "../AccordionGroup";
+import ParsedCopy from "../ParsedCopy";
 import BlogCard from "../BlogCard";
 import styles from "./BlogFaqSection.module.scss";
 
 /**
  * BlogFaqSection
+ * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43286036647/BlogFaqSection
  * Section displaying blog posts and some FAQ in an accordion
  */
 function BlogFaqSection(props) {
   const { content, blogs, faq } = props;
   const { copy, headline } = content;
+  const accordionItems = faq?.fields;
 
-  const accordionItems = faq.fields;
   return (
     <section className={styles.section}>
       <div className={styles.content}>
         <h2>{headline}</h2>
-        {parse(copy)}
+        {copy && <ParsedCopy copy={copy} />}
       </div>
 
       {/* BLOGS */}
@@ -33,18 +34,20 @@ function BlogFaqSection(props) {
       </div>
 
       {/* FAQ */}
-      <div className={styles.accordions}>
-        <AccordionGroup>
-          {accordionItems.map((item) => (
-            <Accordion
-              key={item.identifier}
-              id={item.identifier}
-              details={parse(item.answer)}
-              summary={parse(item.question)}
-            />
-          ))}
-        </AccordionGroup>
-      </div>
+      {faq && (
+        <div className={styles.accordions}>
+          <AccordionGroup>
+            {accordionItems.map((item) => (
+              <Accordion
+                key={item.identifier}
+                id={item.identifier}
+                details={<ParsedCopy copy={item.answer} />}
+                summary={<ParsedCopy copy={item.question} />}
+              />
+            ))}
+          </AccordionGroup>
+        </div>
+      )}
     </section>
   );
 }

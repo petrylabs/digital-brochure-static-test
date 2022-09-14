@@ -1,9 +1,11 @@
 import React from "react";
-import styles from "./InfoCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import { customLoader } from "../../utils/images";
+
 import { baseUrl } from "../../config.js";
+import { customLoader } from "../../utils/images";
+import ParsedCopy from "../ParsedCopy";
+import styles from "./InfoCard.module.scss";
 
 /**
  * InfoCard
@@ -28,7 +30,9 @@ function InfoCard(props) {
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>
-      <div className={styles.content}>{content}</div>
+      <div className={styles.content}>
+        <ParsedCopy copy={content} />
+      </div>
     </div>
   );
 }
@@ -40,8 +44,8 @@ InfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   // alt text of the icon
   alt: PropTypes.string.isRequired,
-  // content copy of card consisting of HTML element
-  content: PropTypes.node.isRequired,
+  // content copy of card
+  content: PropTypes.string.isRequired,
   // optional prop to add border around the card
   withBorder: PropTypes.bool,
 };
