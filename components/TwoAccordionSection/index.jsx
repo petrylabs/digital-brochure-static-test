@@ -1,5 +1,5 @@
 import React from "react";
-import parse from "html-react-parser";
+import ParsedCopy from "../ParsedCopy";
 import Accordion from "../Accordion";
 import AccordionGroup from "../AccordionGroup";
 import styles from "./TwoAccordionSection.module.scss";
@@ -27,7 +27,7 @@ function TwoAccordionSection(props) {
         <section className={styles.section}>
             <div className={styles.container}>
                 <h2 className={styles.heading}>{headline}</h2>
-                {parse(copy)}
+                <ParsedCopy copy={copy} />
 
                 <div className={leftAccordionTitle ? styles.rowColumnLandingFlex : styles.rowColumnHomeFlex}>
                     <div className={styles.accordionGroup}>
@@ -38,8 +38,8 @@ function TwoAccordionSection(props) {
                                 <Accordion
                                     key={item.identifier}
                                     id={item.identifier}
-                                    details={parse(item.copy)}
-                                    summary={parse(item.headline)}
+                                    details={<ParsedCopy copy={item.copy} />}
+                                    summary={<ParsedCopy copy={item.headline} />}
                                 />
                             ))}
                         </AccordionGroup>
@@ -53,8 +53,8 @@ function TwoAccordionSection(props) {
                                 <Accordion
                                     key={item.identifier}
                                     id={item.identifier}
-                                    details={parse(item.copy)}
-                                    summary={parse(item.headline)}
+                                    details={<ParsedCopy copy={item.copy} />}
+                                    summary={<ParsedCopy copy={item.headline} />}
                                 />
                             ))}
                         </AccordionGroup>

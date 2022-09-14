@@ -11,6 +11,12 @@ const QuoteModalContent = loadable(() =>
   import("../components/QuoteModalContent")
 );
 
+//Todo: added this as a dummy modal will replace it once the actual modal is ready.
+//Tested the same the modal is opening.
+function SignUpModal() {
+  return <div>hello World</div>;
+}
+
 /**
  * Structure for entire app!
  *
@@ -20,9 +26,17 @@ const QuoteModalContent = loadable(() =>
 
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   return (
-    <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
+    <ModalContext.Provider
+      value={{
+        isQuoteModalOpen,
+        setIsQuoteModalOpen,
+        isSignUpModalOpen,
+        setIsSignUpModalOpen,
+      }}
+    >
       <Header />
 
       <main id="main-content">
@@ -33,6 +47,13 @@ function CustomApp({ Component, pageProps }) {
 
       <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
         <QuoteModalContent />
+      </Modal>
+
+      <Modal
+        open={isSignUpModalOpen}
+        onClose={() => setIsSignUpModalOpen(false)}
+      >
+        <SignUpModal />
       </Modal>
     </ModalContext.Provider>
   );
