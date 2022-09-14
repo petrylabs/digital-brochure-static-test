@@ -15,7 +15,7 @@ function LargeScreenImage(props) {
 
   if (screenWidth >= breakpoint) {
     // eslint-disable-next-line jsx-a11y/alt-text
-    return <Image {...props} />;
+    return <div style={{position:"relative",height:"100%", width:"100%"}}><Image {...props} /></div>;
   }
 
   return null;

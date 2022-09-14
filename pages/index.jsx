@@ -80,8 +80,8 @@ export default function IndexPage(props) {
 
             <LargeScreenImage 
               src={`${baseUrl}${content[8].fileAsset}`} 
-              width="400"
-              height="300"
+              layout = "fill"
+              objectFit = "cover"
               loader={customLoader}
               breakpoint={breakpoints.lg}
               />
