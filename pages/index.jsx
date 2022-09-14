@@ -65,14 +65,16 @@ export default function IndexPage(props) {
               iconUrl={content[6].fields[0].icon.url}              
               alt={content[6].fields[0].icon.altText} 
               content={content[6].copy}
-              withBorder={true}/>
+              withBorder={true}
+            />
               
             <InfoCard 
               title={content[7].headline} 
               iconUrl={content[7].fields[0].icon.url}             
               alt={content[7].fields[0].icon.altText} 
               content={content[7].copy} 
-              withBorder={true}/>
+              withBorder={true}
+            />
 
             <LargeScreenImage 
               src={`${baseUrl}${content[8].fileAsset}`} 
@@ -80,7 +82,7 @@ export default function IndexPage(props) {
               objectFit = "cover"
               loader={customLoader}
               breakpoint={breakpoints.lg}
-              />
+            />
                  
           </ThreeItemLayout>        
       </section>
