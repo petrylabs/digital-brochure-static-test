@@ -10,8 +10,9 @@ import TwoAccordionSection from "../components/TwoAccordionSection";
 import SignUpSection from "../components/SignUpSection";
 import InfoCard from "../components/InfoCard";
 import LargeScreenImage from "../components/LargeScreenImage";
-import { searchData, getCookie, customLoader } from "../utils";
 import ThreeItemLayout from "../components/ThreeItemLayout";
+import { searchData, getCookie, customLoader } from "../utils";
+import { baseUrl, breakpoints } from "../config";
 
 
 /**
@@ -61,7 +62,9 @@ export default function IndexPage(props) {
           <ThreeItemLayout>       
             <InfoCard 
               title={content[6].headline} 
-              iconUrl={content[6].fields[0].icon.url} 
+              iconUrl={content[6].fields[0].icon.url}
+              iconHeight={content[6].fields[0].icon.height}
+              iconWidth={content[6].fields[0].icon.width} 
               alt={content[6].fields[0].icon.altText} 
               content={parse(content[6].copy)}
               withBorder={true}/>
@@ -69,15 +72,20 @@ export default function IndexPage(props) {
             <InfoCard 
               title={content[7].headline} 
               iconUrl={content[7].fields[0].icon.url} 
+              iconHeight={content[7].fields[0].icon.height}
+              iconWidth={content[7].fields[0].icon.width}
               alt={content[7].fields[0].icon.altText} 
               content={parse(content[7].copy)} 
               withBorder={true}/>
 
             <LargeScreenImage 
-              src={content[8].fileAsset} 
+              src={`${baseUrl}${content[8].fileAsset}`} 
               width="400"
               height="300"
-              loader={customLoader}/>      
+              loader={customLoader}
+              breakpoint={breakpoints.lg}
+              />
+                 
           </ThreeItemLayout>        
       </section>
 
