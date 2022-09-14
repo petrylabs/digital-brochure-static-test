@@ -62,20 +62,16 @@ export default function IndexPage(props) {
           <ThreeItemLayout>       
             <InfoCard 
               title={content[6].headline} 
-              iconUrl={content[6].fields[0].icon.url}
-              iconHeight={content[6].fields[0].icon.height}
-              iconWidth={content[6].fields[0].icon.width} 
+              iconUrl={content[6].fields[0].icon.url}              
               alt={content[6].fields[0].icon.altText} 
-              content={parse(content[6].copy)}
+              content={content[6].copy}
               withBorder={true}/>
               
             <InfoCard 
               title={content[7].headline} 
-              iconUrl={content[7].fields[0].icon.url} 
-              iconHeight={content[7].fields[0].icon.height}
-              iconWidth={content[7].fields[0].icon.width}
+              iconUrl={content[7].fields[0].icon.url}             
               alt={content[7].fields[0].icon.altText} 
-              content={parse(content[7].copy)} 
+              content={content[7].copy} 
               withBorder={true}/>
 
             <LargeScreenImage 
