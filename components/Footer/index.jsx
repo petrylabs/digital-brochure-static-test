@@ -14,13 +14,7 @@ const formatLegalFooter = (copy) => {
     replace: (domNode) => {
       const { name, attribs } = domNode;
       if (name === "snt-link") {
-        return (
-          <FooterLink
-            classes={styles.legalNavItem}
-            href={attribs.href}
-            title={attribs.title}
-          />
-        );
+        return <FooterLink href={attribs.href} title={attribs.title} />;
       }
     },
   });
