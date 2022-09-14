@@ -38,7 +38,6 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-  console.log(content);
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
