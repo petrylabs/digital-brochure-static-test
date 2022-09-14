@@ -104,21 +104,22 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  border: 1px solid transparent;
   font-family: $font-regular;
   padding: 3px;
   margin-bottom: 0.475em;
   font-size: 12px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $color-primary-accent;
+
     span {
       text-decoration: underline;
     }
   }
 
   &:focus {
-    border-color: $color-primary-accent;
+    outline: 1px solid $color-primary-accent;
   }
 }
 

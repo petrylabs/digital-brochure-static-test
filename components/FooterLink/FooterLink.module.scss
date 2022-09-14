@@ -23,7 +23,8 @@
   left: 0.3em;
 }
 
-.link:hover {
+.link:hover,
+.link:focus {
   color: $color-primary-accent;
 
   .linkText {
@@ -42,4 +43,9 @@
   .icon {
     color: $color-primary-grey;
   }
+}
+
+.link:focus {
+  outline: 1px solid $color-primary-accent;
+  outline-offset: 2px;
 }
