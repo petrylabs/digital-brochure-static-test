@@ -269,3 +269,6 @@ cite {
 .visually-hidden {
   @include visually-hidden;
 }
+.container {
+  @include container;
+}

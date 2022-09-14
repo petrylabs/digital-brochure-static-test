@@ -58,7 +58,7 @@ export default function IndexPage(props) {
       </section>
 
       {/* Section 6 */}
-      <section>        
+      <section className="container bg-white">        
           <ThreeItemLayout>       
             <InfoCard 
               title={content[6].headline} 
