@@ -15,7 +15,7 @@ function SignUpSection(props) {
 
   return (
     <section className={styles.container}>
-      <h4 className={styles.headline}>{content.headline}</h4>
+      <h2 className={`h4 ${styles.heading}`}>{content.headline}</h2>
       <div className={styles.buttonContainer}>
         <CTA type="secondary" onClick={() => setIsSignUpModalOpen(true)}>
           {content.cta}
