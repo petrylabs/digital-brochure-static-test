@@ -57,19 +57,17 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
+  /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
-
-  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
-
   const legalFooterContent = content.filter(
     (x) => x.contentType === "LegalFooter"
   );
-
   useEffect(() => {
     setPageFooterData(legalFooterContent);
-  }, [content]);
+  }, [content, setPageFooterData, legalFooterContent]);
 
   /* Filter out Nissan section for auto page only: */
+  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
   const nissanSection = content.find((section) =>
     section?.headline?.includes("Nissan")
   );
