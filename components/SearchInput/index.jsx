@@ -6,6 +6,7 @@ import styles from "./SearchInput.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 import { searchData } from "../../utils";
+import { Backdrop } from "@mui/material";
 
 /**
  * SearchInput
@@ -27,48 +28,55 @@ function SearchInput({}) {
   }, [searchTerm]);
 
   return (
-    <div className={styles.searchContainer}>
-      <div
-        className={
-          searchResult.length > 0
-            ? styles.searchInputAreaWithResults
-            : styles.searchInputArea
-        }
+    <>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
       >
-        <div
-          className={`${
-            isDesktop
-              ? searchResult.length > 0
-                ? styles.searchWithResults
-                : styles.search
-              : styles.searchTablet
-          }`}
-        >
-          <span className={styles.searchLogo}>
-            <SearchIcon />
-          </span>
-          <input
-            id="search"
-            type="search"
-            role="textbox"
-            aria-autocomplete="both"
-            aria-controls="search-listbox"
-            // search-listbox is searchResult cmpt
-            placeholder="Search"
-            autoComplete="off"
-            autoFocus
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-          {searchResult.length > 0 && (
-            <SearchResults
-              results={searchResult}
-              searchTerm={searchTerm}
-              isDesktop={isDesktop}
-            ></SearchResults>
-          )}
+        <div className={styles.searchContainer}>
+          <div
+            className={`${
+              isDesktop && searchResult.length > 0
+                ? styles.searchInputAreaWithResults
+                : styles.searchInputArea
+            }  `}
+          >
+            <div
+              className={`${
+                isDesktop
+                  ? searchResult.length > 0
+                    ? styles.searchWithResults
+                    : styles.search
+                  : styles.searchTablet
+              }`}
+            >
+              <span className={styles.searchLogo}>
+                <SearchIcon />
+              </span>
+              <input
+                id="search"
+                type="search"
+                role="textbox"
+                aria-autocomplete="both"
+                aria-controls="search-listbox"
+                // search-listbox is searchResult cmpt
+                placeholder="Search"
+                autoComplete="off"
+                autoFocus
+                onChange={(event) => setSearchTerm(event.target.value)}
+              />
+              {searchResult.length > 0 && (
+                <SearchResults
+                  results={searchResult}
+                  searchTerm={searchTerm}
+                  isDesktop={isDesktop}
+                ></SearchResults>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </Backdrop>
+    </>
   );
 }
 
