@@ -17,6 +17,7 @@ function SearchInput({}) {
   const isDesktop = screenWidth >= breakpoints.lg;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const showResults = searchResult.length > 0;
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -31,12 +32,12 @@ function SearchInput({}) {
     <>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={true}
+        open={showResults}
       >
         <div className={styles.searchContainer}>
           <div
             className={`${
-              isDesktop && searchResult.length > 0
+              isDesktop && showResults
                 ? styles.searchInputAreaWithResults
                 : styles.searchInputArea
             }  `}
@@ -44,7 +45,7 @@ function SearchInput({}) {
             <div
               className={`${
                 isDesktop
-                  ? searchResult.length > 0
+                  ? showResults
                     ? styles.searchWithResults
                     : styles.search
                   : styles.searchTablet
@@ -65,7 +66,7 @@ function SearchInput({}) {
                 autoFocus
                 onChange={(event) => setSearchTerm(event.target.value)}
               />
-              {searchResult.length > 0 && (
+              {showResults && (
                 <SearchResults
                   results={searchResult}
                   searchTerm={searchTerm}
