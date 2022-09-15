@@ -65,6 +65,36 @@ export default function IndexPage(props) {
       {/* Trust Pilot Section */}
       <TrustPilot />
 
+      {/* "Buy Insurance Securely" section */}
+      <section className="bg-white">
+        <SplitLayout content={content[2]} imageRight />
+        <div className="container" style={{ paddingBottom: "13px" }}>
+          <ThreeItemLayout>
+            <InfoCard
+              title={content[3].fields[0].generic1.headline}
+              iconUrl={content[3].fields[0].generic1.icon.url}
+              alt={content[3].fields[0].generic1.icon.altText}
+              content={content[3].fields[0].generic1.copy}
+              withBorder
+            />
+            <InfoCard
+              title={content[3].fields[0].generic2.headline}
+              iconUrl={content[3].fields[0].generic2.icon.url}
+              alt={content[3].fields[0].generic2.icon.altText}
+              content={content[3].fields[0].generic2.copy}
+              withBorder
+            />
+            <InfoCard
+              title={content[3].fields[0].generic3.headline}
+              iconUrl={content[3].fields[0].generic3.icon.url}
+              alt={content[3].fields[0].generic3.icon.altText}
+              content={content[3].fields[0].generic3.copy}
+              withBorder
+            />
+          </ThreeItemLayout>
+        </div>
+      </section>
+
       {/* "Switch and Save" section */}
       <section className="bg-white">
         <SplitLayout content={content[4]} hideImageOnMobile imageRight />
