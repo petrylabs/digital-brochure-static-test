@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import { searchData } from "../../utils";
 import styles from "./SearchResults.module.scss";
 
 /**
- * SearchInput
- * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43178917935/SearchInput
+ * SearchResults
  */
-function SearchResults({ results, searchTerm, isDesktop }) {
+function SearchResults({ searchTerm, isDesktop }) {
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const searchResultData = searchData(searchTerm);
+    if (searchResultData) {
+      setSearchResults(searchResultData.slice(0, 10));
+    }
+  }, [searchTerm]);
+
   const highlight = (title) => {
     let search = searchTerm;
     search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
@@ -17,9 +27,9 @@ function SearchResults({ results, searchTerm, isDesktop }) {
     }
   };
 
-  return (
+  return searchResults.length > 0 ? (
     <ul className={isDesktop ? styles.searchResult : styles.searchResultTablet}>
-      {results.map((item, i) => (
+      {searchResults.map((item, i) => (
         <li key={i} className={styles.searchResultItem}>
           <a href={item.url} className={styles.searchResultItemLink}>
             {highlight(item.title)}
@@ -27,7 +37,7 @@ function SearchResults({ results, searchTerm, isDesktop }) {
         </li>
       ))}
     </ul>
-  );
+  ) : null;
 }
 
 export default SearchResults;
