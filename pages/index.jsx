@@ -6,12 +6,13 @@ import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TwoAccordionSection from "../components/TwoAccordionSection"
+import SignUpSection from "../components/SignUpSection"
 
 /**
  * This is the site homepage.
  */
 
-export async function getStaticProps({}) {
+export async function getStaticProps({ }) {
   const { data } = await getPage();
 
   if (!data) {
@@ -38,7 +39,7 @@ export default function IndexPage(props) {
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}  
+      {/* PAGE TEMPLATE */}
 
       {/* Page hero */}
       <PageHero content={content[0]} />
@@ -49,7 +50,10 @@ export default function IndexPage(props) {
       </section>
 
       {/* Blog Section */}
-      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]}/>
+      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]} />
+
+      {/* Sign up section */}
+      <SignUpSection content={content[13]} />
 
       {/* Canadian insurance accordion section*/}
       <TwoAccordionSection
