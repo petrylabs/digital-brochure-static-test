@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
-import parse from "html-react-parser";
 import { getPage } from "../utils/api";
 import PageFooterContext from "../context/pageFooter";
 import TextSection from "../components/TextSection";

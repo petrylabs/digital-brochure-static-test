@@ -21,24 +21,39 @@ const QuoteModalContent = loadable(() =>
 
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
 
   return (
     <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
-      <ModalContext.Provider value={{ isQuoteModalOpen, setIsQuoteModalOpen }}>
+      <ModalContext.Provider
+        value={{
+          isQuoteModalOpen,
+          setIsQuoteModalOpen,
+          isSignUpModalOpen,
+          setIsSignUpModalOpen,
+        }}
+      >
         <Header />
 
         <main id="main-content">
           <Component {...pageProps} />
         </main>
 
-        <Footer pageFooterData={pageFooterData} />
+        <Footer />
 
         <Modal
           open={isQuoteModalOpen}
           onClose={() => setIsQuoteModalOpen(false)}
         >
           <QuoteModalContent />
+        </Modal>
+
+        <Modal
+          open={isSignUpModalOpen}
+          onClose={() => setIsSignUpModalOpen(false)}
+        >
+          <div>hello World</div>
         </Modal>
       </ModalContext.Provider>
     </PageFooterContext.Provider>
