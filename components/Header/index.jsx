@@ -18,6 +18,7 @@ import SearchInput from "../SearchInput";
 
 import styles from "./Header.module.scss";
 import NavSecondary from "../NavSecondary";
+import SearchPanel from "../SearchPanel";
 
 /**
  * Header
@@ -120,19 +121,10 @@ function Header() {
           </div>
         ) : (
           // TODO: move this out of header bar
-          <div id="tablet-search-bar" className={styles.tabletSearchContainer}>
-            <div className={styles.searchPaneTablet}>
-              {!isDesktop && (
-                <button
-                  className={styles.chevronButton}
-                  onClick={() => setIsMobileSearchExpanded(false)}
-                >
-                  <Chevron direction="left" size="25px" />
-                </button>
-              )}
-              <SearchInput />
-            </div>
-          </div>
+          <SearchPanel
+            isActive={isMobileSearchExpanded}
+            setIsActive={setIsMobileSearchExpanded}
+          />
         )}
 
         {/* EXPANSION PANEL ----------------------------------------------------------- */}
@@ -148,23 +140,18 @@ function Header() {
           <NavMobile
             isExpanded={isSubmenuExpanded}
             content={content}
-            ariaControls="tablet-search-bar"
+            ariaControls="search-panel"
             isSearchExpanded={isMobileSearchExpanded}
             onClick={mobileSearchButton}
           />
         )}
 
         {/* Search */}
-        {isDesktop && isSearchExpanded && (
-          <div id="search-panel" className={styles.searchPaneDesktop}>
-            <SearchInput />
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsSearchExpanded(false)}
-            >
-              <CloseIcon />
-            </button>
-          </div>
+        {isSearchExpanded && (
+          <SearchPanel
+            isActive={isSearchExpanded}
+            setIsActive={setIsSearchExpanded}
+          />
         )}
       </header>
 

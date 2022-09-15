@@ -5,7 +5,6 @@ import SearchResults from "../SearchResults";
 import styles from "./SearchInput.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
-// import { Backdrop } from "@mui/material";
 
 /**
  * SearchInput
@@ -19,12 +18,8 @@ function SearchInput() {
 
   return (
     <>
-      {/* <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={showResults}
-      > */}
-      <div className={styles.searchContainer}>
-        {/* <div
+      {/* <div className={styles.searchContainer}> */}
+      {/* <div
             className={`${
               isDesktop && showResults
                 ? styles.searchInputAreaWithResults
@@ -40,27 +35,26 @@ function SearchInput() {
                   : styles.searchTablet
               }`}
             > */}
-        <span className={styles.searchLogo}>
-          <SearchIcon />
-        </span>
-        <input
-          id="search"
-          type="search"
-          role="textbox"
-          aria-autocomplete="both"
-          aria-controls="search-listbox"
-          // search-listbox is searchResult cmpt
-          placeholder="Search"
-          autoComplete="off"
-          autoFocus
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
+      <span className={styles.searchLogo}>
+        <SearchIcon />
+      </span>
+      <input
+        id="search"
+        type="search"
+        role="textbox"
+        aria-autocomplete="both"
+        aria-controls="search-listbox"
+        // search-listbox is searchResult cmpt
+        placeholder="Search"
+        autoComplete="off"
+        autoFocus
+        onChange={(event) => setSearchTerm(event.target.value)}
+      />
 
-        <SearchResults searchTerm={searchTerm} isDesktop={isDesktop} />
-        {/* </div>
+      <SearchResults searchTerm={searchTerm} isDesktop={isDesktop} />
+      {/* </div>
           </div> */}
-      </div>
-      {/* </Backdrop> */}
+      {/* </div> */}
     </>
   );
 }

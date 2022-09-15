@@ -1,0 +1,86 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/buttons";
+
+.searchContainer {
+  width: 100%;
+  max-width: 752px;
+  margin-left: 5px;
+}
+
+.tabletSearchContainer {
+  position: fixed;
+  background-color: $color-white;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.searchPaneDesktop,
+.searchPaneTablet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    flex-grow: 1;
+  }
+}
+
+.searchPaneDesktop {
+  padding: 10px 0;
+}
+
+.searchPaneTablet {
+  border: 1px solid $color-grey-06;
+  padding: 15px 30px;
+
+  @include mq-min-width(sm) {
+    padding: 15px;
+  }
+}
+
+.chevronButton {
+  @include unstyle-button;
+
+  display: flex;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 3px;
+
+  svg {
+    height: 23px;
+    path {
+      stroke: $color-black;
+      stroke-width: 2.5;
+    }
+  }
+
+  &:focus {
+    @include focus-button;
+  }
+}
+.closeButton {
+  @include unstyle-button;
+  position: inherit;
+  display: flex;
+  border: 1px solid transparent;
+  padding: 3px;
+
+  svg {
+    height: 14px;
+    width: 14px;
+    path {
+      stroke: $color-black;
+      stroke-width: 3;
+    }
+  }
+
+  &:hover {
+    color: $color-links;
+  }
+
+  &:focus {
+    @include focus-button;
+  }
+}
