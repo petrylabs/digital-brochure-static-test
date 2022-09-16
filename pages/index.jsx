@@ -76,7 +76,6 @@ export default function IndexPage(props) {
             content={content[6].copy}
             withBorder={true}
           />
-
           <InfoCard
             title={content[7].headline}
             iconUrl={content[7].fields[0].icon.url}
@@ -84,41 +83,12 @@ export default function IndexPage(props) {
             content={content[7].copy}
             withBorder={true}
           />
-
           <LargeScreenImage
             src={`${baseUrl}${content[8].fileAsset}`}
             layout="fill"
             objectFit="cover"
             loader={customLoader}
             breakpoint={breakpoints.lg}
-          />
-        </ThreeItemLayout>
-      </section>
-
-      {/* Section 6 */}
-      <section>
-        <ThreeItemLayout>
-          <InfoCard
-            title={content[6].headline}
-            iconUrl={content[6].fields[0].icon.url}
-            alt={content[6].fields[0].icon.altText}
-            content={content[6].copy}
-            withBorder={true}
-          />
-
-          <InfoCard
-            title={content[7].headline}
-            iconUrl={content[7].fields[0].icon.url}
-            alt={content[7].fields[0].icon.altText}
-            content={content[7].copy}
-            withBorder={true}
-          />
-
-          <LargeScreenImage
-            src={content[8].fileAsset}
-            width="400"
-            height="300"
-            loader={customLoader}
           />
         </ThreeItemLayout>
       </section>
