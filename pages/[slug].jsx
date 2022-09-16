@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
-import parse from "html-react-parser";
 import { getPage } from "../utils/api";
+import PageFooterContext from "../context/pageFooter";
 import TextSection from "../components/TextSection";
 import { pageSlugs } from "../config";
 import SplitLayout from "../components/SplitLayout";
@@ -12,6 +12,7 @@ import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import CTAReminderSection from "../components/CTAReminderSection";
 import PartnershipSection from "../components/PartnershipSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
 
 export async function getStaticPaths() {
   const paths = pageSlugs.map((slug) => ({
@@ -55,9 +56,17 @@ export async function getStaticProps({ params }) {
 function LandingPage(props) {
   const { title, description, seodescription, content, slug } = props;
 
-  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
+  /* Handle page footer content: */
+  const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
+  const legalFooterContent = content.filter(
+    (x) => x.contentType === "LegalFooter"
+  );
+  useEffect(() => {
+    setPageFooterData(legalFooterContent);
+  }, [content, setPageFooterData, legalFooterContent]);
 
   /* Filter out Nissan section for auto page only: */
+  const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");
   const nissanSection = content.find((section) =>
     section?.headline?.includes("Nissan")
   );
@@ -77,7 +86,7 @@ function LandingPage(props) {
       {/* Intro */}
       <TextSection
         title={commonContent[1].headline}
-        copy={parse(commonContent[1].copy)}
+        copy={commonContent[1].copy}
       />
 
       {/* Section 3 */}
@@ -86,6 +95,10 @@ function LandingPage(props) {
       </section>
 
       {/* Section 4 */}
+      <TwoAccordionSection
+        content={content[3]}
+        leftRightAccordianContent={content[4]?.fields}
+      />
 
       {/* Why buy Section (5) */}
       <ThreeColumnsSection
@@ -93,6 +106,7 @@ function LandingPage(props) {
         columnContent={commonContent[6]}
         className="bg-white"
       />
+
       {/* Partnership Section (6) */}
       {autoInsurancePage && <PartnershipSection content={nissanSection} />}
 
@@ -111,6 +125,7 @@ function LandingPage(props) {
         introContent={commonContent[9]}
         columnContent={commonContent[10]}
       />
+
       {/* Testimonial carousel Section (10) */}
       <TestimonialCarousel content={commonContent[11]} />
 
@@ -125,8 +140,9 @@ function LandingPage(props) {
       <section>
         <SplitLayout content={commonContent[17]} hideImageOnMobile />
       </section>
-      {/* Get a Quote Section (13) */}
-      <CTAReminderSection content={content[0]} />
+
+      {/* CTA Reminder */}
+      <CTAReminderSection content={content[18]} />
     </>
   );
 }

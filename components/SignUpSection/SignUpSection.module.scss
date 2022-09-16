@@ -1,0 +1,40 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables";
+
+.container {
+  background-color: $color-primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 30px;
+
+  @include mq-min-width(md) {
+    flex-direction: row;
+    padding: 15px 37px;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 15px 71px;
+  }
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 15px;
+
+  @include mq-min-width(md) {
+    margin-right: 30px;
+    margin-bottom: 0px;
+  }
+}
+
+.buttonContainer {
+  white-space: nowrap;
+  width: 100%;
+
+  @include mq-min-width(md) {
+    width: unset; 
+  }
+}

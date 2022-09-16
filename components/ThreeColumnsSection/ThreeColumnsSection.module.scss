@@ -1,7 +1,5 @@
-@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/typography.scss";
-@import "../../scss/globals/color.scss";
 @import "../../scss/globals/mixins.scss";
 
 .section {
@@ -10,18 +8,9 @@
 
 .textContainer {
   padding-bottom: 13px;
+
   @include mq-min-width(md) {
     text-align: center;
-  }
-  a {
-    @include cta-animated-link(
-      $color-primary-accent,
-      $color-links,
-      100% 1px,
-      all 0.2s ease-in,
-      1px,
-      1px
-    );
   }
 
   h2 {

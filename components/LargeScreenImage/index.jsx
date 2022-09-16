@@ -10,11 +10,12 @@ import useWindowWidth from "../../hooks/useWindowWidth";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43178852455/LargeScreenImage
  */
 function LargeScreenImage(props) {
+  const {breakpoint} = props;
   const screenWidth = useWindowWidth();
 
-  if (screenWidth > 767) {
+  if (screenWidth >= breakpoint) {
     // eslint-disable-next-line jsx-a11y/alt-text
-    return <Image {...props} />;
+    return <div style={{position:"relative",height:"100%", width:"100%"}}><Image {...props} /></div>;
   }
 
   return null;
@@ -22,6 +23,10 @@ function LargeScreenImage(props) {
 
 LargeScreenImage.propTypes = {
   src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  breakpoint: PropTypes.number
 };
+LargeScreenImage.defaultProps = {
+  breakpoint: 767
+}
 
 export default LargeScreenImage;
