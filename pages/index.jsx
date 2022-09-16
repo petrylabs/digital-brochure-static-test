@@ -46,7 +46,7 @@ export default function IndexPage(props) {
   );
   useEffect(() => {
     setPageFooterData(legalFooterContent);
-  }, [content, setPageFooterData, legalFooterContent]);
+  }, []); // empty array, to run once after component mounts
 
   return (
     <>
