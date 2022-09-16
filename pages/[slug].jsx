@@ -63,7 +63,7 @@ function LandingPage(props) {
   );
   useEffect(() => {
     setPageFooterData(legalFooterContent);
-  }, [content, setPageFooterData, legalFooterContent]);
+  }, []); // empty array, to run once after component mounts
 
   /* Filter out Nissan section for auto page only: */
   const autoInsurancePage = slug === ("auto-insurance" || "assurance-auto");

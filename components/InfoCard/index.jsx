@@ -25,13 +25,13 @@ function InfoCard(props) {
           loader={customLoader}
           src={src}
           alt={alt}
-          width={30}
-          height={30}
+          width={45}
+          height={45}
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>
       <div className={styles.content}>
-        <ParsedCopy copy={content} />
+        <ParsedCopy copy={content} animatedLinks />
       </div>
     </div>
   );
