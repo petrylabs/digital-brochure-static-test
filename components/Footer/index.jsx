@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import parse from "html-react-parser";
 
 import footerData from "../../site-data/footer.preval";
 import FooterLink from "../FooterLink";
 import styles from "./Footer.module.scss";
+import PageFooterContext from "../../context/pageFooter";
 
 /**
  * Replace <snt-link> with <FooterLink /> in copy
@@ -25,10 +26,12 @@ const formatLegalFooter = (copy) => {
  * Page footer; container for navigation elements
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179049009/Footer
  */
-function Footer({ pageFooterData }) {
+function Footer() {
   const content = footerData.data.footerMenu;
   const [showLegalFooter, setShowLegalFooter] = useState(false);
+  const { pageFooterData } = useContext(PageFooterContext);
 
+  console.log("pageFooterData ", pageFooterData);
   /* Some main nav links have `name` property that doesn't match what's on screen... */
   const modifyMenu = (menu) => {
     if (menu.category === "Social") {
@@ -100,7 +103,7 @@ function Footer({ pageFooterData }) {
                 {formatLegalFooter(item.copy)}
               </Fragment>
             ))}
-            {pageFooterData.map((item) => (
+            {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
                 {formatLegalFooter(item.copy)}
               </Fragment>

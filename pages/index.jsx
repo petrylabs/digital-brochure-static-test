@@ -1,3 +1,4 @@
+import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
 import { getPage } from "../utils/api";
@@ -7,6 +8,7 @@ import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
 import TwoAccordionSection from "../components/TwoAccordionSection";
 import SignUpSection from "../components/SignUpSection";
+import PageFooterContext from "../context/pageFooter";
 
 /**
  * This is the site homepage.
@@ -31,6 +33,16 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
+
+  /* Handle page footer content: */
+  const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
+  const legalFooterContent = content.filter(
+    (x) => x.contentType === "LegalFooter"
+  );
+  useEffect(() => {
+    setPageFooterData(legalFooterContent);
+  }, [content, setPageFooterData, legalFooterContent]);
+
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
