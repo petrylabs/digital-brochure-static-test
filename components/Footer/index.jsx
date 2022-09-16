@@ -31,7 +31,6 @@ function Footer() {
   const [showLegalFooter, setShowLegalFooter] = useState(false);
   const { pageFooterData } = useContext(PageFooterContext);
 
-  console.log("pageFooterData ", pageFooterData);
   /* Some main nav links have `name` property that doesn't match what's on screen... */
   const modifyMenu = (menu) => {
     if (menu.category === "Social") {
