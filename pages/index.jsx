@@ -48,6 +48,8 @@ export default function IndexPage(props) {
     setPageFooterData(legalFooterContent);
   }, []); // empty array, to run once after component mounts
 
+  console.log(content);
+
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
@@ -114,7 +116,7 @@ export default function IndexPage(props) {
       </section>
 
       {/* CTA reminder */}
-      <CTAReminderSection content={content[0]} />
+      <CTAReminderSection content={content[17]} />
     </>
   );
 }
