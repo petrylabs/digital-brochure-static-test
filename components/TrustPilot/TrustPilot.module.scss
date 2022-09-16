@@ -1,0 +1,7 @@
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/color.scss";
+
+.spacings {
+  @include container;
+  background: $color-white;
+}

@@ -14,12 +14,13 @@ import ThreeItemLayout from "../components/ThreeItemLayout";
 import { customLoader } from "../utils";
 import { baseUrl, breakpoints } from "../config";
 import PageFooterContext from "../context/pageFooter";
+import TrustPilot from "../components/TrustPilot";
 
 /**
  * This is the site homepage.
  */
 
-export async function getStaticProps({}) {
+export async function getStaticProps({ }) {
   const { data } = await getPage();
 
   if (!data) {
@@ -60,6 +61,9 @@ export default function IndexPage(props) {
 
       {/* Page hero */}
       <PageHero content={content[0]} />
+
+      {/* Trust Pilot Section */}
+      <TrustPilot />
 
       {/* "Switch and Save" section */}
       <section className="bg-white">
