@@ -5,14 +5,14 @@ import CTAReminderSection from "../components/CTAReminderSection";
 import PageHero from "../components/PageHero";
 import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
-import TwoAccordionSection from "../components/TwoAccordionSection"
-import SignUpSection from "../components/SignUpSection"
+import TwoAccordionSection from "../components/TwoAccordionSection";
+import SignUpSection from "../components/SignUpSection";
 
 /**
  * This is the site homepage.
  */
 
-export async function getStaticProps({ }) {
+export async function getStaticProps({}) {
   const { data } = await getPage();
 
   if (!data) {
@@ -50,7 +50,10 @@ export default function IndexPage(props) {
       </section>
 
       {/* Blog Section */}
-      <BlogFaqSection content={content[9]} blogs={[content[10], content[11], content[12]]} />
+      <BlogFaqSection
+        content={content[9]}
+        blogs={[content[10], content[11], content[12]]}
+      />
 
       {/* Sign up section */}
       <SignUpSection content={content[13]} />
@@ -58,7 +61,7 @@ export default function IndexPage(props) {
       {/* Canadian insurance accordion section*/}
       <TwoAccordionSection
         content={content[14]}
-        leftRightAccordianContent={content[15].fields}
+        leftRightAccordianContent={content[15]?.fields}
       />
 
       {/* "When it comes to..." section */}

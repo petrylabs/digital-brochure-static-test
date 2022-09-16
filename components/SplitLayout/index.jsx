@@ -16,7 +16,7 @@ function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
   const { headline, copy, url, cta } = content;
 
-  const imageString = content.fields[0].hasOwnProperty("image")
+  const imageString = content?.fields[0].hasOwnProperty("image")
     ? "image"
     : "featureImage";
 

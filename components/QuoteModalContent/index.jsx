@@ -14,11 +14,9 @@ import styles from "./QuoteModalContent.module.scss";
 function QuoteModalContent() {
   const content = gaqModalData.data.content;
 
-  const menuItem = (i) => content[i].fields["GetAQuoteButtons.menuItem"][0];
+  const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
-    `${baseUrl}/dA/${
-      content[i].fields[`GetAQuoteButtons.${name}`][0].identifier
-    }`;
+    `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
 
   return (
     <article>
@@ -31,8 +29,8 @@ function QuoteModalContent() {
         {/* Home & Auto */}
         <li>
           <a
-            href={menuItem(1).url}
-            target={menuItem(1).urlTarget}
+            href={menuItem(1)?.url}
+            target={menuItem(1)?.urlTarget}
             className={styles.link}
           >
             <div className={`${styles.linkHeading} ${styles.linkHeadingDark}`}>
@@ -42,7 +40,7 @@ function QuoteModalContent() {
               <img src={iconSrc(1, "lefticonlg")} alt="" />
               <span className={styles.plus} />
               <img src={iconSrc(1, "righticonlg")} alt="" />
-              <div>{menuItem(1).menuItem}</div>
+              <div>{menuItem(1).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -50,13 +48,13 @@ function QuoteModalContent() {
         {/* Auto */}
         <li>
           <a
-            href={menuItem(2).url}
-            target={menuItem(2).urlTarget}
+            href={menuItem(2)?.url}
+            target={menuItem(2)?.urlTarget}
             className={styles.link}
           >
             <div className={styles.linkPanel}>
               <img src={iconSrc(2, "lefticonlg")} alt="" />
-              <div>{menuItem(2).menuItem}</div>
+              <div>{menuItem(2).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -64,13 +62,13 @@ function QuoteModalContent() {
         {/* Home */}
         <li>
           <a
-            href={menuItem(3).url}
-            target={menuItem(3).urlTarget}
+            href={menuItem(3)?.url}
+            target={menuItem(3)?.urlTarget}
             className={styles.link}
           >
             <div className={styles.linkPanel}>
               <img src={iconSrc(3, "lefticonlg")} alt="" />
-              <div>{menuItem(3).menuItem}</div>
+              <div>{menuItem(3).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -78,8 +76,8 @@ function QuoteModalContent() {
         {/* Pet */}
         <li>
           <a
-            href={menuItem(4).url}
-            target={menuItem(4).urlTarget}
+            href={menuItem(4)?.url}
+            target={menuItem(4)?.urlTarget}
             className={`${styles.link} ${styles.linkLightBorder}`}
           >
             <div className={`${styles.linkHeading} ${styles.linkHeadingLight}`}>
@@ -88,7 +86,7 @@ function QuoteModalContent() {
             <div className={styles.linkPanel}>
               <img src={iconSrc(4, "lefticonlg")} alt="" />
               <div>
-                {menuItem(4).menuItem}
+                {menuItem(4).menuItem.menuItem}
                 <span className={styles.extIcon}>
                   <ExternalLinkIcon />
                 </span>

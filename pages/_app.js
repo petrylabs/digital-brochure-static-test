@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import loadable from "@loadable/component";
 
 import ModalContext from "../context/modal";
+import PageFooterContext from "../context/pageFooter";
 import Header from "../components/Header";
 import "../scss/styles.scss";
 
@@ -10,12 +11,6 @@ const Modal = loadable(() => import("../components/Modal"));
 const QuoteModalContent = loadable(() =>
   import("../components/QuoteModalContent")
 );
-
-//Todo: added this as a dummy modal will replace it once the actual modal is ready.
-//Tested the same the modal is opening.
-function SignUpModal() {
-  return <div>hello World</div>;
-}
 
 /**
  * Structure for entire app!
@@ -27,35 +22,41 @@ function SignUpModal() {
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
 
   return (
-    <ModalContext.Provider
-      value={{
-        isQuoteModalOpen,
-        setIsQuoteModalOpen,
-        isSignUpModalOpen,
-        setIsSignUpModalOpen,
-      }}
-    >
-      <Header />
-
-      <main id="main-content">
-        <Component {...pageProps} />
-      </main>
-
-      <Footer />
-
-      <Modal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)}>
-        <QuoteModalContent />
-      </Modal>
-
-      <Modal
-        open={isSignUpModalOpen}
-        onClose={() => setIsSignUpModalOpen(false)}
+    <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
+      <ModalContext.Provider
+        value={{
+          isQuoteModalOpen,
+          setIsQuoteModalOpen,
+          isSignUpModalOpen,
+          setIsSignUpModalOpen,
+        }}
       >
-        <SignUpModal />
-      </Modal>
-    </ModalContext.Provider>
+        <Header />
+
+        <main id="main-content">
+          <Component {...pageProps} />
+        </main>
+
+        <Footer />
+
+        <Modal
+          open={isQuoteModalOpen}
+          onClose={() => setIsQuoteModalOpen(false)}
+        >
+          <QuoteModalContent />
+        </Modal>
+
+        <Modal
+          open={isSignUpModalOpen}
+          onClose={() => setIsSignUpModalOpen(false)}
+        >
+          <div>hello World</div>
+        </Modal>
+      </ModalContext.Provider>
+    </PageFooterContext.Provider>
   );
 }
 
