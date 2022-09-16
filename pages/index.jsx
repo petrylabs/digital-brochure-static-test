@@ -1,5 +1,5 @@
+import { React, useEffect, useContext } from "react";
 import Head from "next/head";
-import parse from "html-react-parser";
 
 import { getPage } from "../utils/api";
 import CTAReminderSection from "../components/CTAReminderSection";
@@ -13,6 +13,7 @@ import LargeScreenImage from "../components/LargeScreenImage";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import { customLoader } from "../utils";
 import { baseUrl, breakpoints } from "../config";
+import PageFooterContext from "../context/pageFooter";
 
 /**
  * This is the site homepage.
@@ -37,7 +38,16 @@ export async function getStaticProps({}) {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-  console.log(content);
+
+  /* Handle page footer content: */
+  const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
+  const legalFooterContent = content.filter(
+    (x) => x.contentType === "LegalFooter"
+  );
+  useEffect(() => {
+    setPageFooterData(legalFooterContent);
+  }, [content, setPageFooterData, legalFooterContent]);
+
   return (
     <>
       {/* CUSTOM PAGE HEAD */}
