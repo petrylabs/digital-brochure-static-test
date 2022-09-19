@@ -53,10 +53,8 @@ function PageHero(props) {
 
       <div className={styles.heroContentContainer}>
         <div className={styles.content}>
-          <div>
-            <h1>{headline}</h1>
-            <p>{copy}</p>
-          </div>
+          <h1>{headline}</h1>
+          <p>{copy}</p>
           <div className={styles.buttonGroup}>
             <CTA type={buttonType} onClick={() => setIsQuoteModalOpen(true)}>
               {cta}

@@ -54,7 +54,6 @@
 
 .content {
   margin-top: 20px;
-  width: 100%;
 
   @include mq-min-width(md) {
     max-width: 60%;
