@@ -2,6 +2,16 @@
 @import "../../scss/globals/color.scss";
 
 .container {
-  @include container;
   background: $color-white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+
+  @include mq-min-width(md) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 71px !important;
+    padding-right: 71px !important;
+  }
 }
