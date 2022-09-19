@@ -29,8 +29,8 @@ function QuoteModalContent() {
         {/* Home & Auto */}
         <li>
           <a
-            href={menuItem(1)?.url}
-            target={menuItem(1)?.urlTarget}
+            href={menuItem(1)?.menuItem.url}
+            target={menuItem(1)?.menuItem.urlTarget}
             className={styles.link}
           >
             <div className={`${styles.linkHeading} ${styles.linkHeadingDark}`}>
@@ -48,8 +48,8 @@ function QuoteModalContent() {
         {/* Auto */}
         <li>
           <a
-            href={menuItem(2)?.url}
-            target={menuItem(2)?.urlTarget}
+            href={menuItem(2)?.menuItem.url}
+            target={menuItem(2)?.menuItem.urlTarget}
             className={styles.link}
           >
             <div className={styles.linkPanel}>
@@ -62,8 +62,8 @@ function QuoteModalContent() {
         {/* Home */}
         <li>
           <a
-            href={menuItem(3)?.url}
-            target={menuItem(3)?.urlTarget}
+            href={menuItem(3)?.menuItem.url}
+            target={menuItem(3)?.menuItem.urlTarget}
             className={styles.link}
           >
             <div className={styles.linkPanel}>
@@ -76,8 +76,8 @@ function QuoteModalContent() {
         {/* Pet */}
         <li>
           <a
-            href={menuItem(4)?.url}
-            target={menuItem(4)?.urlTarget}
+            href={menuItem(4)?.menuItem.url}
+            target={menuItem(4)?.menuItem.urlTarget}
             className={`${styles.link} ${styles.linkLightBorder}`}
           >
             <div className={`${styles.linkHeading} ${styles.linkHeadingLight}`}>
