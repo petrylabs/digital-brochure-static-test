@@ -76,7 +76,6 @@ e.g. SKY-230_set-up-readme
 - `_app`: The custom App, which handles the common layout across pages (header, footer, etc)
 - `[slug].jsx`: The template for 4 of the landing pages (see `config.js` for the page slugs). Responsible for fetching data for each landing page and generating the static HTML file
 - `index.jsx`: The template for the homepage. Responsible for fetching homepage data and generating the HTML file
-- `test/index.jsx`: A temporary page, used during development for creating and rendering UI components in isolation.
 
 ## Styling
 
