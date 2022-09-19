@@ -48,4 +48,8 @@
   &:hover {
     color: $color-links;
   }
+  &:focus-within{
+    outline: 1px dashed;
+    outline-offset: 3px
+  }
 }
