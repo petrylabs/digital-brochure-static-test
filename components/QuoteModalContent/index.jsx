@@ -21,7 +21,7 @@ function QuoteModalContent() {
   return (
     <article>
       <div className={styles.text}>
-        <h1>{content[0].headline}</h1>
+        <h2>{content[0].headline}</h2>
         <ParsedCopy copy={content[0].copy} />
       </div>
 
