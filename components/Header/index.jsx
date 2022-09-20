@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import loadable from "@loadable/component";
 
 import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
@@ -6,7 +7,6 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
 import CloseIcon from "../../icons/CloseIcon";
 import headerData from "../../site-data/header.preval";
-import Chevron from "../../icons/Chevron";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -14,11 +14,10 @@ import SkipNavLink from "../SkipNavLink";
 import NavMobile from "../NavMobile";
 import NavDesktop from "../NavDesktop";
 import CartLink from "../CartLink";
-import SearchInput from "../SearchInput";
-
-import styles from "./Header.module.scss";
 import NavSecondary from "../NavSecondary";
-import SearchPanel from "../SearchPanel";
+import styles from "./Header.module.scss";
+
+const SearchPanel = loadable(() => import("../components/SearchPanel"));
 
 /**
  * Header
