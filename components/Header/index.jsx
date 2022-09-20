@@ -17,7 +17,7 @@ import CartLink from "../CartLink";
 import NavSecondary from "../NavSecondary";
 import styles from "./Header.module.scss";
 
-const SearchPanel = loadable(() => import("../components/SearchPanel"));
+const SearchPanel = loadable(() => import("../SearchPanel"));
 
 /**
  * Header
