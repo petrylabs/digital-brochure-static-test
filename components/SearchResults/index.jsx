@@ -20,7 +20,6 @@ function SearchResults(props) {
     } else {
       setSearchResults([]);
     }
-    console.log(searchResults);
     onResults(searchResultData);
   }, [searchTerm, onResults]);
 
