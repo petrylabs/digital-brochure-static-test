@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Chevron from "../../icons/Chevron";
 import SearchInput from "../SearchInput";
 import SearchResults from "../SearchResults";
@@ -41,6 +42,17 @@ function SearchPanel(props) {
           onResults={(results) => setHasResults(!!results)}
         />
       </div>
+
+      {/* Overlay/Backdrop */}
+      {/* TODO: Extract to own component */}
+      {hasResults && (
+        <div
+          className={styles.backdrop}
+          onClick={() => {
+            setIsActive(false);
+          }}
+        />
+      )}
     </>
   ) : null;
 }

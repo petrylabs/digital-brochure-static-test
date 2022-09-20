@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Backdrop } from "@mui/material";
 
 import SearchIcon from "../../icons/SearchIcon";
 import SearchResults from "../SearchResults";
@@ -15,10 +14,6 @@ function SearchInput(props) {
 
   return (
     <>
-      {/* <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={showResults}
-      > */}
       <div className={styles.inputContainer}>
         <SearchIcon />
         <input
@@ -35,7 +30,6 @@ function SearchInput(props) {
       </div>
 
       {/* <SearchResults searchTerm={searchTerm} /> */}
-      {/* </Backdrop> */}
     </>
   );
 }
