@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
+
 import { searchData } from "../../utils";
 import styles from "./SearchResults.module.scss";
 
@@ -27,7 +28,7 @@ function SearchResults(props) {
   const highlight = (title) => {
     let search = searchTerm;
     search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-    var re = new RegExp(search, "g");
+    var re = new RegExp(search, "gi");
     if (search.length > 0) {
       return parse(title.replace(re, `<b>$&</b>`));
     } else {
