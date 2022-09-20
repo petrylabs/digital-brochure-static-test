@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import loadable from "@loadable/component";
 
 import { breakpoints } from "../../config";
@@ -58,6 +58,15 @@ function Header() {
     setIsMobileSearchExpanded(!isMobileSearchExpanded);
     setIsSubmenuExpanded(false); // for nav items
   };
+
+  /* Close search on layout change: */
+  useEffect(() => {
+    if (isDesktop) {
+      setIsMobileSearchExpanded(false);
+    } else {
+      setIsSearchExpanded(false);
+    }
+  }, [isDesktop]);
 
   return (
     <>
