@@ -28,10 +28,6 @@
     width: 426px;
     padding: 60px;
   }
-  @include mq-min-width(xl) {
-    width: 570px;
-    padding: 60px;
-  }
 }
 
 .closeButton {
@@ -52,7 +48,6 @@
   &:hover {
     color: $color-links;
   }
-
   &:focus-within{
     outline: 1px dashed;
     outline-offset: 3px
