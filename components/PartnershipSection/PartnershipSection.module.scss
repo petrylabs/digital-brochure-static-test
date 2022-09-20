@@ -1,0 +1,40 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
+@import "../../scss/globals/mixins.scss";
+
+.spacings {
+  padding: 13px 0;
+  background-color: $color-secondary-light;
+  display: flex;
+  flex-direction: column;
+
+  @include mq-min-width(md) {
+    flex-direction: row;
+  }
+  overflow: hidden;
+}
+
+.contentContainer {
+  @include container;
+}
+
+.contentContainer,
+.imageMobile {
+  @include mq-min-width(md) {
+    width: 50%;
+  }
+}
+
+.imageMobile {
+  position: relative;
+  height: 100vw;
+
+  @include mq-min-width(md) {
+    height: unset;
+  }
+}
+
+.heading {
+  @include heading-margin;
+}

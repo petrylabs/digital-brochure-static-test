@@ -1,0 +1,19 @@
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/typography.scss";
+@import "../../scss/globals/mixins.scss";
+
+.section {
+  @include container;
+}
+
+.textContainer {
+  padding-bottom: 13px;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+
+  h2 {
+    @include heading-margin;
+  }
+}

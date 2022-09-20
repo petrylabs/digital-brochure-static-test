@@ -10,6 +10,11 @@ var checkDomain = function (url) {
     .split("/")[0];
 };
 
+/**
+ * Check if URL is external
+ * @param {string} url
+ * @returns boolean
+ */
 var isExternal = function (url) {
   if (typeof window !== "undefined") {
     return (

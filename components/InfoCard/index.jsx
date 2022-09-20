@@ -1,8 +1,11 @@
 import React from "react";
-import styles from "./InfoCard.module.scss";
 import Image from "next/image";
 import PropTypes from "prop-types";
+
+import { baseUrl } from "../../config.js";
 import { customLoader } from "../../utils/images";
+import ParsedCopy from "../ParsedCopy";
+import styles from "./InfoCard.module.scss";
 
 /**
  * InfoCard
@@ -10,7 +13,9 @@ import { customLoader } from "../../utils/images";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, content, withBorder = false } = props;
+  const { iconUrl, title, alt, content, withBorder = false } = props;
+  const src = baseUrl + iconUrl;
+
   return (
     <div
       className={`${styles.infoCard} ${withBorder && styles.infoCard__border}`}
@@ -18,14 +23,16 @@ function InfoCard(props) {
       <div className={styles.icon}>
         <Image
           loader={customLoader}
-          src={iconUrl}
-          alt=""
+          src={src}
+          alt={alt}
           width={45}
           height={45}
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>
-      <div className={styles.content}>{content}</div>
+      <div className={styles.content}>
+        <ParsedCopy copy={content} animatedLinks />
+      </div>
     </div>
   );
 }
@@ -35,8 +42,10 @@ InfoCard.propTypes = {
   iconUrl: PropTypes.string.isRequired,
   // title of the card
   title: PropTypes.string.isRequired,
-  // content copy of card consisting of HTML element
-  content: PropTypes.node.isRequired,
+  // alt text of the icon
+  alt: PropTypes.string.isRequired,
+  // content copy of card
+  content: PropTypes.string.isRequired,
   // optional prop to add border around the card
   withBorder: PropTypes.bool,
 };

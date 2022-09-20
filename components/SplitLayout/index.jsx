@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
 
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import LargeScreenImage from "../LargeScreenImage";
+import ParsedCopy from "../ParsedCopy";
 import styles from "./SplitLayout.module.scss";
 
 /**
@@ -14,11 +14,16 @@ import styles from "./SplitLayout.module.scss";
 
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
+  const { headline, copy, url, cta } = content;
+
+  const imageString = content?.fields[0].hasOwnProperty("image")
+    ? "image"
+    : "featureImage";
 
   const imageProps = {
     loader: customLoader,
-    src: imageSrc(content, "GenericContent.image"),
-    alt: imageAlt(content, "GenericContent.image"),
+    src: imageSrc(content, imageString),
+    alt: imageAlt(content, imageString),
     layout: "fill",
     objectFit: "cover",
   };
@@ -30,7 +35,11 @@ function SplitLayout(props) {
       }`}
     >
       {/* IMAGE */}
-      <div className={styles.imageCol}>
+      <div
+        className={`${styles.imageCol} ${
+          hideImageOnMobile && styles.hideImage
+        }`}
+      >
         {hideImageOnMobile ? (
           <LargeScreenImage {...imageProps} />
         ) : (
@@ -41,8 +50,17 @@ function SplitLayout(props) {
 
       {/* TEXT CONTENT */}
       <div className={styles.contentCol}>
-        <h2>{content.headline}</h2>
-        {parse(content.copy)}
+        <h2>{headline}</h2>
+        <div className={styles.content}>
+          <ParsedCopy copy={copy} animatedLinks />
+        </div>
+        {content?.cta && (
+          <div className={styles.ctaLinkWrapper}>
+            <a href={url} className={styles.ctaLink}>
+              {cta}
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -51,11 +69,11 @@ function SplitLayout(props) {
 SplitLayout.propTypes = {
   /** Content object: */
   content: PropTypes.shape({
-    headline: PropTypes.string,
+    headline: PropTypes.string.isRequired,
     copy: PropTypes.string,
-    fields: PropTypes.shape({
-      "GenericContent.image": PropTypes.array,
-    }),
+    url: PropTypes.string,
+    cta: PropTypes.string,
+    fields: PropTypes.array,
   }).isRequired,
 
   /** Only show image on large screen */

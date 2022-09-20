@@ -39,7 +39,10 @@ async function get(url, options = {}) {
  * @returns page data
  */
 export async function getPage(slug) {
-  const pageDataResponse = await get(`${apiUrl}/v1/page/render/${slug}/index`);
+  const url = slug
+    ? `${apiUrl}/v1/page/render/${slug}/index`
+    : `${apiUrl}/v1/page/render/index`;
+  const pageDataResponse = await get(url);
   let { data, error } = pageDataResponse;
 
   if (data && data.entity) {
@@ -51,11 +54,15 @@ export async function getPage(slug) {
     /** Get all related content */
     const contentRelationships = content.map((item) => {
       if (item.contentType === "AccordionWidget") {
-        return getAccordianWidgetData(item.tagsToDisplay);
+        return getAccordianWidgetData(
+          item.tagsToDisplay,
+          item.languageId,
+          item.numberOfRowsToDisplay
+        );
       } else if (item.contentType === "TestimonialCarouselWidget") {
         return getTestimonialWidgetData(item.tag, item.languageId);
       } else {
-        return getContentRelationshipData(item.identifier);
+        return getContentRelationshipData(item.identifier, item.languageId);
       }
     });
 
@@ -126,26 +133,30 @@ function getFullContainers(column, containers) {
  * @param {string} identifier unique identifier (id) of the current piece of content
  * @returns API response with the related content
  */
-export function getContentRelationshipData(identifier) {
-  return get(`${apiUrl}/v1/contentrelationships/id/${identifier}`);
+export function getContentRelationshipData(identifier, languageId) {
+  return get(
+    `${apiUrl}/content/depth/3/language/${languageId}/id/${identifier}`
+  );
 }
 
 /**
- * Get related accordian widget data
- * @param {string} tags tags to pull related content
+ * Get related accordion widget data
+ * @param {string} tagString tags to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with the related content
  */
-export function getAccordianWidgetData(tagString) {
+export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
   const tags = tagString.split(",");
   const tagQuery = tags.map((x) => `+FAQ.tags:"${x}"`).join(" ");
   return get(
-    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +deleted:false +working:true/orderby/score,modDate desc`
+    `${apiUrl}/content/render/false/query/+contentType:FAQ ${tagQuery} +languageId:${languageId} +deleted:false +working:true/limit/${numberOfItems}/orderby/score,modDate desc`
   );
 }
 
 /**
  * Get related testimonial widget data
- * @param {string} tags tags to pull related content
+ * @param {string} tagString tags to pull related content
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with the related content
  */
 export function getTestimonialWidgetData(tagString, languageId) {
@@ -198,12 +209,12 @@ export async function getGaqModal() {
 
     /** Get all related content */
     const contentRelationships = content.map((item) =>
-      getContentRelationshipData(item.identifier)
+      getContentRelationshipData(item.identifier, item.languageId)
     );
 
     return Promise.all(contentRelationships).then((relations) => {
       relations.map((data, i) => {
-        content[i].fields = data.data[0];
+        content[i].fields = data.data.contentlets[0];
       });
 
       return {

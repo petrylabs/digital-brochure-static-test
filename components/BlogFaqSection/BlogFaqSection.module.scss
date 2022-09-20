@@ -1,0 +1,32 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+@import "scss/globals/typography.scss";
+
+.section {
+  background: $color-white;
+  @include container;
+}
+
+.content {
+  padding-bottom: 13px;
+
+  @include mq-min-width(md) {
+    text-align: center;
+  }
+
+  h2 {
+    @include heading-margin();
+  }
+}
+
+.blogContainer {
+  padding-bottom: 40px;
+
+  @include mq-min-width(lg) {
+    padding-bottom: 60px;
+  }
+}
+
+.accordions {
+  padding-top: 13px;
+}

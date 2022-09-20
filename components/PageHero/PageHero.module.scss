@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   margin-top: 39px;
+  background-color: $color-white;
 
   @include mq-min-width(md) {
     height: 400px;
@@ -32,23 +33,22 @@
   width: 100%;
   height: 100%;
   display: inline-block;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, #fff 115%);
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) 30%,
+    $color-white 115%
+  );
 }
 
 .heroContentContainer {
-  padding: 30px 40px;
+  width: 100%;
+  @include container;
+  @include mq-min-width(blg) {
+    padding-inline: 135px;
+  }
 
   @include mq-min-width(md) {
     position: absolute;
-    padding: 40px 37px 40px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px 71px 60px;
-  }
-
-  @include mq-min-width(blg) {
-    padding: 60px 135px 60px;
   }
 }
 
@@ -59,12 +59,12 @@
     max-width: 60%;
   }
 
-  @include mq-min-width(blg) {
+  @include mq-min-width(lg) {
     margin-top: 22px;
   }
 
   p {
-    margin: 15px 0 30px;
+    margin: 13px 0 26px;
 
     @include mq-min-width(lg) {
       margin: 15px 0 30px;
@@ -92,7 +92,7 @@
 }
 
 .buttonGroup {
-  margin-right: 22px;
+  margin-bottom: 20px;
 }
 
 .mobileImageContainer {

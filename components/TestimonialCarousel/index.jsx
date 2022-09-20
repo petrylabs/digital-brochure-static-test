@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import parse from "html-react-parser";
 import PropTypes from "prop-types";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
+import ParsedCopy from "../ParsedCopy";
 import styles from "./TestimonialCarousel.module.scss";
 
 /**
@@ -56,7 +56,7 @@ function TestimonialCarousel(props) {
             }`}
           >
             <blockquote className={styles.quote}>
-              {parse(slide.testimonial)}
+              <ParsedCopy copy={slide.testimonial} />
             </blockquote>
             <cite className={styles.cite}>{slide.title}</cite>
           </div>

@@ -16,6 +16,7 @@ import styles from "./PageHero.module.scss";
 
 function PageHero(props) {
   const { content } = props;
+  const { headline, copy, buttonType, cta } = content;
 
   const imageLoader = ({ src }) => {
     return imageSrc(content, src);
@@ -24,11 +25,11 @@ function PageHero(props) {
   const screenWidth = useWindowWidth();
   let src;
   if (screenWidth < breakpoints.lg) {
-    src = "Hero.tabletImage";
-  } else if (screenWidth < 1200) {
-    src = "Hero.desktopImage";
-  } else if (screenWidth >= 1200) {
-    src = "Hero.desktopHdImage";
+    src = "tabletImage";
+  } else if (screenWidth < breakpoints.blg) {
+    src = "desktopImage";
+  } else if (screenWidth >= breakpoints.blg) {
+    src = "desktopHdImage";
   }
 
   /* Handling modal display: */
@@ -44,6 +45,7 @@ function PageHero(props) {
             alt={imageAlt(content, src)}
             layout="fill"
             objectFit="cover"
+            priority
           />
           <div className={styles.whiteGradient} />
         </div>
@@ -51,14 +53,11 @@ function PageHero(props) {
 
       <div className={styles.heroContentContainer}>
         <div className={styles.content}>
-          <h1>{content.headline}</h1>
-          <p>{content.copy}</p>
+          <h1>{headline}</h1>
+          <p>{copy}</p>
           <div className={styles.buttonGroup}>
-            <CTA
-              type={content.buttonType}
-              onClick={() => setIsQuoteModalOpen(true)}
-            >
-              {content.cta}
+            <CTA type={buttonType} onClick={() => setIsQuoteModalOpen(true)}>
+              {cta}
             </CTA>
           </div>
         </div>
@@ -68,9 +67,10 @@ function PageHero(props) {
         <div className={styles.mobileImageContainer}>
           <Image
             loader={customLoader}
-            src={imageSrc(content, "Hero.mobileImage")}
-            alt={imageAlt(content, "Hero.mobileImage")}
+            src={imageSrc(content, "mobileImage")}
+            alt={imageAlt(content, "mobileImage")}
             layout="fill"
+            priority
           />
         </div>
       )}
@@ -79,7 +79,12 @@ function PageHero(props) {
 }
 
 PageHero.propTypes = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.shape({
+    headline: PropTypes.string.isRequired,
+    copy: PropTypes.string.isRequired,
+    buttonType: PropTypes.string.isRequired,
+    cta: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PageHero;

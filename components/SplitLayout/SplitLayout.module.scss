@@ -1,5 +1,8 @@
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/typography.scss";
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
 
 .flexContainer {
   display: flex;
@@ -18,9 +21,8 @@
   }
 }
 
-.contentCol,
-.imageCol {
-  flex: 1;
+.flexContainer > div {
+  flex: 0 0 50%;
 }
 
 .imageCol {
@@ -32,10 +34,43 @@
   }
 }
 
+.hideImage {
+  display: none;
+
+  @include mq-min-width(md) {
+    display: block;
+  }
+}
+
 .contentCol {
   @include container;
 
   h2 {
     @include heading-margin;
   }
+}
+
+.content {
+  font-size: 14px;
+
+  @include mq-min-width(lg) {
+    font-size: 16px;
+  }
+}
+
+.ctaLinkWrapper {
+  margin-top: 30px;
+}
+
+.ctaLink {
+  font-family: $font-extra-bold;
+  font-size: 14px;
+  @include cta-animated-link(
+    $color-primary-grey,
+    $color-primary-accent,
+    100% 3px,
+    all 0.3s,
+    3px,
+    3px
+  );
 }

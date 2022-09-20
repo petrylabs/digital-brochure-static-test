@@ -13,11 +13,8 @@ $accordion-border: 0.25px solid $color-grey-10;
 .summary {
   position: relative;
   background-color: $color-white;
-  padding: 17px 1.5rem 16px 30px;
-  font-size: 0.875rem;
-  line-height: 21px;
+  padding: 17px 24px 16px 30px;
   font-family: $font-extra-bold;
-  font-weight: 500;
 
   &:focus {
     background-color: $color-white;
@@ -90,7 +87,7 @@ $accordion-border: 0.25px solid $color-grey-10;
   position: relative;
   z-index: 1;
   color: $color-primary-accent;
-  margin-left: 1.5rem;
+  margin-left: 24px;
 
   @media (prefers-reduced-motion: no-preference) {
     transition: 0.65s;
