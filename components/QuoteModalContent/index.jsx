@@ -6,17 +6,22 @@ import gaqModalData from "../../site-data/gaqModal.preval.js";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import ParsedCopy from "../ParsedCopy/index.jsx";
 import styles from "./QuoteModalContent.module.scss";
-
+import useWindowWidth from "../../hooks/useWindowWidth.js";
+import { breakpoints } from "../../config";
 /**
  * QuoteModalContent
  * The body of the "Get a quote" modal (displayed inside a `Modal`)
  */
 function QuoteModalContent() {
   const content = gaqModalData.data.content;
-
   const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
+  const screenWidth = useWindowWidth();
+  console.log(screenWidth);
+  const leftIconSrc = screenWidth >= breakpoints.lg ? "lefticonlg" : "lefticonsm";
+  const rightIconSrc = screenWidth >= breakpoints.lg ? "righticonlg" : "righticonsm";
+
 
   return (
     <article>
@@ -37,9 +42,9 @@ function QuoteModalContent() {
               {content[1].buttonHighlightText}
             </div>
             <div className={styles.linkPanel}>
-              <img src={iconSrc(1, "lefticonlg")} alt="" />
+              <img src={iconSrc(1, leftIconSrc)} alt="" />
               <span className={styles.plus} />
-              <img src={iconSrc(1, "righticonlg")} alt="" />
+              <img src={iconSrc(1, rightIconSrc)} alt="" />
               <div>{menuItem(1).menuItem.menuItem}</div>
             </div>
           </a>
@@ -53,7 +58,7 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              <img src={iconSrc(2, "lefticonlg")} alt="" />
+              <img src={iconSrc(2, leftIconSrc)} alt="" />
               <div>{menuItem(2).menuItem.menuItem}</div>
             </div>
           </a>
@@ -84,7 +89,7 @@ function QuoteModalContent() {
               {content[4].buttonHighlightText}
             </div>
             <div className={styles.linkPanel}>
-              <img src={iconSrc(4, "lefticonlg")} alt="" />
+              <img src={iconSrc(4, leftIconSrc)} alt="" />
               <div>
                 {menuItem(4).menuItem.menuItem}
                 <span className={styles.extIcon}>
