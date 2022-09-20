@@ -18,10 +18,11 @@ function SearchResults(props) {
     if (searchResultData) {
       setSearchResults(searchResultData.slice(0, 10));
     } else {
-      setSearchResults("");
+      setSearchResults([]);
     }
+    console.log(searchResults);
     onResults(searchResultData);
-  }, [searchTerm]);
+  }, [searchTerm, onResults]);
 
   /* Make search term bold within link text */
   const highlight = (title) => {

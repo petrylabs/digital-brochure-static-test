@@ -16,6 +16,17 @@ function SearchPanel(props) {
 
   return isActive ? (
     <>
+      {/* Overlay/Backdrop */}
+      {/* TODO: Extract to own component */}
+      {hasResults && (
+        <div
+          className={styles.backdrop}
+          onClick={() => {
+            setIsActive(false);
+          }}
+        />
+      )}
+
       <div
         id="search-panel"
         className={`${styles.panel} ${
@@ -39,20 +50,9 @@ function SearchPanel(props) {
 
         <SearchResults
           searchTerm={query}
-          onResults={(results) => setHasResults(!!results)}
+          onResults={(results) => setHasResults(results?.length > 0)}
         />
       </div>
-
-      {/* Overlay/Backdrop */}
-      {/* TODO: Extract to own component */}
-      {hasResults && (
-        <div
-          className={styles.backdrop}
-          onClick={() => {
-            setIsActive(false);
-          }}
-        />
-      )}
     </>
   ) : null;
 }
