@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import Chevron from "../../icons/Chevron";
 import SearchInput from "../SearchInput";
@@ -56,5 +57,10 @@ function SearchPanel(props) {
     </>
   ) : null;
 }
+
+SearchPanel.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  setIsActive: PropTypes.func.isRequired,
+};
 
 export default SearchPanel;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchInput.module.scss";
@@ -27,5 +28,10 @@ function SearchInput(props) {
     </div>
   );
 }
+
+SearchInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default SearchInput;

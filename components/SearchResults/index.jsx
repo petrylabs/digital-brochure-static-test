@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 
 import { searchData } from "../../utils";
 import styles from "./SearchResults.module.scss";
@@ -48,5 +49,10 @@ function SearchResults(props) {
     </ul>
   ) : null;
 }
+
+SearchResults.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onResults: PropTypes.func.isRequired,
+};
 
 export default SearchResults;
