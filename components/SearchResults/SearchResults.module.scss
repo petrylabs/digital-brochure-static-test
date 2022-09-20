@@ -1,74 +1,91 @@
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/layout.scss";
 
-.searchResultTablet {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  top: 74px;
-  left: 0;
-  height: 100vh;
-  padding: 0;
-  overflow-y: auto;
-  cursor: pointer;
-  border-radius: 25px;
-  .searchResultItem {
-    padding: 1px;
-    border-bottom: 1px solid $color-grey-06;
-    .searchResultItemLink {
-      padding: 20px 30px;
-      text-decoration: none;
-      color: $color-primary-grey;
-      font-size: 14px;
+.searchResults {
+  @include unstyle-list;
+
+  border-radius: 0 0 25px 25px;
+  // display: flex;
+  // flex-direction: column;
+  // width: 100%;
+  // position: fixed;
+  // top: 74px;
+  // left: 0;
+  // height: 100vh;
+  // padding: 0;
+  // overflow-y: auto;
+  // cursor: pointer;
+
+  // .searchResultItem {
+  //   &:hover {
+  //   }
+  // }
+
+  @include mq-min-width(lg) {
+    position: absolute;
+    background: $color-white;
+    width: 100%;
+    padding: 10px;
+    // top: 100%;
+    // width: 100%;
+    // padding: 0.625rem;
+    // border: 1px solid $color-grey-07;
+    // border-top: none;
+    // border-radius: 0px 0px 25px 25px;
+    // background-color: $color-white;
+    // list-style: none;
+    // cursor: pointer;
+
+    // .searchResultItem {
+    // font-size: 14px;
+    // }
+
+    /* Divider between input and results: */
+    &::before {
+      position: relative;
+      content: "";
       display: block;
+      top: -10px;
+      margin-inline: auto;
+      width: calc(100% - 2rem);
+      border-top: 1px solid $color-primary-accent;
     }
-    .searchResultItemLink:hover {
-      color: $color-links;
-      text-decoration: underline;
-    }
-  }
-  .searchResultItem:hover {
-    border-color: $color-secondary-light;
-    background-color: $color-secondary-light;
   }
 }
 
-.searchResult {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  padding: 0.625rem;
-  border: 1px solid $color-grey-07;
-  border-top: none;
-  border-radius: 0px 0px 25px 25px;
-  background-color: $color-white;
-  list-style: none;
-  cursor: pointer;
-  ::before {
-    position: absolute;
-    content: " ";
-    height: 1px;
-    margin-right: auto;
-    margin-left: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: calc(100% - 2rem);
-    background-color: $color-primary-accent;
+.searchResultItem {
+  &:not(:first-child) {
+    border-top: 1px solid $color-grey-06;
   }
-  .searchResultItem {
+}
+
+.searchResultItemLink {
+  display: block;
+  padding: 20px 30px;
+  text-decoration: none;
+  color: $color-primary-grey;
+  font-size: 14px;
+
+  &:hover,
+  &:focus {
+    color: $color-links;
+    text-decoration: underline;
+    border-color: $color-secondary-light;
+    background-color: $color-secondary-light;
+    outline: none;
+  }
+
+  @include mq-min-width(lg) {
+    // display: block;
     padding: 0.3125rem 0.625rem;
-    font-size: 14px;
-    border-bottom: 1px solid $color-grey-06;
-  }
-  .searchResultItemLink {
-    text-decoration: none;
+    // text-decoration: none;
     color: $color-primary-grey;
-    font-size: 14px;
+    // font-size: 14px;
     line-height: 23px;
-    display: block;
-  }
-  .searchResultItem:hover {
-    background-color: $color-grey-03;
+
+    &:hover {
+      background-color: $color-grey-03;
+    }
   }
 }

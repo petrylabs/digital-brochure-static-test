@@ -1,10 +1,5 @@
-import React from "react";
-// import { Backdrop } from "@mui/material";
-
-import { breakpoints } from "../../config";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import { useState } from "react";
 import Chevron from "../../icons/Chevron";
-import CloseIcon from "../../icons/CloseIcon";
 import SearchInput from "../SearchInput";
 import SearchResults from "../SearchResults";
 import styles from "./SearchPanel.module.scss";
@@ -15,55 +10,37 @@ import styles from "./SearchPanel.module.scss";
  */
 function SearchPanel(props) {
   const { isActive, setIsActive } = props;
-
-  /* Handle screen sizes: */
-  const screenWidth = useWindowWidth();
-  const isMobile = screenWidth < breakpoints.sm;
-  const isDesktop = screenWidth >= breakpoints.lg;
+  const [query, setQuery] = useState("");
+  const [hasResults, setHasResults] = useState(false);
 
   return isActive ? (
     <>
-      {/* <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={showResults}
-      > */}
       <div
         id="search-panel"
-        className={
-          isDesktop ? styles.searchContainer : styles.tabletSearchContainer
-        }
+        className={`${styles.panel} ${
+          hasResults ? styles.withResults : styles.noResults
+        }`}
       >
-        {/* INPUT */}
-        <div
-          className={
-            isDesktop ? styles.searchPaneDesktop : styles.searchPaneTablet
-          }
-        >
-          {!isDesktop && (
-            <button
-              className={styles.chevronButton}
-              onClick={() => setIsActive(false)}
-            >
-              <Chevron direction="left" size="25px" />
-            </button>
-          )}
+        <div className={styles.top}>
+          {/* back (close) button on mobile */}
+          <button
+            className={styles.chevronButton}
+            onClick={() => setIsActive(false)}
+          >
+            <Chevron direction="left" size="25px" />
+          </button>
 
-          <SearchInput />
-
-          {isDesktop && (
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsActive(false)}
-            >
-              <CloseIcon />
-            </button>
-          )}
+          <SearchInput
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
         </div>
 
-        {/* RESULTS> */}
-        {/* <SearchResults /> */}
+        <SearchResults
+          searchTerm={query}
+          onResults={(results) => setHasResults(!!results)}
+        />
       </div>
-      {/* </Backdrop> */}
     </>
   ) : null;
 }

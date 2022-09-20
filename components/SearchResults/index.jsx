@@ -5,17 +5,25 @@ import styles from "./SearchResults.module.scss";
 
 /**
  * SearchResults
+ * Performs a search using provided search term and displays result as a list of links
  */
-function SearchResults({ searchTerm, isDesktop }) {
+function SearchResults(props) {
+  const { searchTerm, onResults } = props;
+
   const [searchResults, setSearchResults] = useState([]);
 
+  /* Perform search as search term changes */
   useEffect(() => {
     const searchResultData = searchData(searchTerm);
     if (searchResultData) {
       setSearchResults(searchResultData.slice(0, 10));
+    } else {
+      setSearchResults("");
     }
+    onResults(searchResultData);
   }, [searchTerm]);
 
+  /* Make search term bold within link text */
   const highlight = (title) => {
     let search = searchTerm;
     search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
@@ -28,7 +36,7 @@ function SearchResults({ searchTerm, isDesktop }) {
   };
 
   return searchResults.length > 0 ? (
-    <ul className={isDesktop ? styles.searchResult : styles.searchResultTablet}>
+    <ul className={styles.searchResults}>
       {searchResults.map((item, i) => (
         <li key={i} className={styles.searchResultItem}>
           <a href={item.url} className={styles.searchResultItemLink}>

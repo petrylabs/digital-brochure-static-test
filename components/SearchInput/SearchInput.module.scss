@@ -1,84 +1,103 @@
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
 
-// .searchContainer {
-//   width: 100%;
-//   max-width: 752px;
-//   margin-left: 5px;
-// }
+.comboBox {
+  width: 100%;
+}
 
-.searchInputArea {
-  border: 1px solid $color-grey-07;
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  // max-width: 752px;
   border-radius: 25px;
+  padding: 0 18px;
+  // margin: 3px;
+  border: 1px solid $color-grey-07;
 
   &:hover {
-    border: 1px solid $color-primary-accent;
+    border-color: $color-primary-accent;
   }
 
   &:focus-within {
-    border: 3px solid $color-primary-accent;
-    margin: -2px;
+    outline: 3px solid $color-primary-accent;
+    outline-offset: -1px;
   }
 
   input {
+    flex: 1;
     border: none;
     background-color: transparent;
-    width: 93%;
+    // width: 93%;
     height: 40px;
     font-size: 14px;
     line-height: 20px;
     padding: 1px 2px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
-  textarea:focus,
-  input:focus {
-    outline: none;
-  }
-  &WithResults {
-    @extend .searchInputArea;
-    border-radius: 25px 25px 0px 0px;
+  @include mq-min-width(lg) {
+    border: none;
 
+    &:hover,
     &:focus-within {
-      border: 1px solid $color-grey-07;
-      margin: -2px;
-    }
-    &:hover {
-      border: 1px solid $color-grey-07;
+      border: none;
+      outline: none;
     }
   }
+
+  // &WithResults {
+  //   @extend .searchInputArea;
+  // border-radius: 0px 0px 25px 25px;
+
+  //   &:focus-within {
+  //     border: 1px solid $color-grey-07;
+  //     margin: -2px;
+  //   }
+
+  //   &:hover {
+  //     border: 1px solid $color-grey-07;
+  //   }
+  // }
 }
 
-.search {
-  display: flex;
-  position: relative;
-  background-color: $color-white;
-  border-radius: 25px;
-  &WithResults {
-    @extend .search;
-    border-radius: 25px 25px 0px 0px;
-  }
-}
+// .search {
+//   display: flex;
+//   position: relative;
+//   background-color: $color-white;
+//   border-radius: 25px;
 
-.searchTablet {
-  display: flex;
-}
+//   &WithResults {
+//     @extend .search;
+//     border-radius: 25px 25px 0px 0px;
+//   }
+// }
 
-.searchLogo {
-  line-height: 40px;
-  margin: 0 10px 0 18px;
+// .searchTablet {
+//   display: flex;
+// }
 
-  svg {
-    vertical-align: middle;
-    padding-bottom: 4px;
-    width: 18px;
-    height: 20px;
-  }
-}
+// .searchIcon {
+//   line-height: 40px;
+//   margin: 0 10px 0 18px;
 
-.backdrop {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  background-color: rgba(51, 51, 51, 0.75);
-  overflow: hidden;
-}
+//   svg {
+//     vertical-align: middle;
+//     padding-bottom: 4px;
+//     width: 18px;
+//     height: 20px;
+//   }
+// }
+
+// .backdrop {
+//   position: fixed;
+//   height: 100%;
+//   width: 100%;
+//   z-index: 1;
+//   background-color: rgba(51, 51, 51, 0.75);
+//   overflow: hidden;
+// }

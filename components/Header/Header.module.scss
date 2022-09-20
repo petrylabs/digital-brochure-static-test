@@ -68,80 +68,34 @@
   }
 }
 
-// .tabletSearchContainer {
-//   position: fixed;
-//   background-color: $color-white;
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-// }
+.searchPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
 
-// .searchPaneDesktop,
-// .searchPaneTablet {
-//   align-items: center !important;
-//   justify-content: center !important;
-//   display: flex !important;
-//   div {
-//     flex-grow: 1;
-//   }
-// }
+.closeButton {
+  @include unstyle-button;
+  padding: 3px;
 
-// .searchPaneDesktop {
-//   padding: 10px 0;
-// }
+  svg {
+    height: 14px;
+    width: 14px;
+    path {
+      stroke: $color-black;
+      stroke-width: 3;
+    }
+  }
 
-// .searchPaneTablet {
-//   border: 1px solid $color-grey-06;
-//   padding: 15px 30px;
+  &:hover {
+    color: $color-links;
+  }
 
-//   @include mq-min-width(sm) {
-//     padding: 15px;
-//   }
-// }
-
-// .closeButton {
-//   @include unstyle-button;
-//   position: inherit;
-//   display: flex;
-//   border: 1px solid transparent;
-//   padding: 3px;
-
-//   svg {
-//     height: 14px;
-//     width: 14px;
-//     path {
-//       stroke: $color-black;
-//       stroke-width: 3;
-//     }
-//   }
-
-//   &:hover {
-//     color: $color-links;
-//   }
-
-//   &:focus {
-//     @include focus-button;
-//   }
-// }
-
-// .chevronButton {
-//   display: flex;
-//   border: 1px solid transparent;
-//   background: transparent;
-//   padding: 3px;
-
-//   svg {
-//     height: 23px;
-//     path {
-//       stroke: $color-black;
-//       stroke-width: 2.5;
-//     }
-//   }
-
-//   &:focus {
-//     @include focus-button;
-//   }
-// }
+  &:focus {
+    @include focus-button;
+  }
+}
 
 .backdrop {
   position: fixed;

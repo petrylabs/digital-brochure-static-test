@@ -136,6 +136,23 @@ function Header() {
           />
         )}
 
+        {/* Search */}
+        {isDesktop && isSearchExpanded && (
+          <div className={styles.searchPanel}>
+            <SearchPanel
+              isActive={isSearchExpanded}
+              setIsActive={setIsSearchExpanded}
+            />
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsSearchExpanded(false)}
+            >
+              <CloseIcon />
+            </button>
+          </div>
+        )}
+
+        {/* Mobile submenu */}
         {!isDesktop && (
           <NavMobile
             isExpanded={isSubmenuExpanded}
@@ -143,14 +160,6 @@ function Header() {
             ariaControls="search-panel"
             isSearchExpanded={isMobileSearchExpanded}
             onClick={mobileSearchButton}
-          />
-        )}
-
-        {/* Search */}
-        {isSearchExpanded && (
-          <SearchPanel
-            isActive={isSearchExpanded}
-            setIsActive={setIsSearchExpanded}
           />
         )}
       </header>
