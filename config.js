@@ -1,12 +1,5 @@
 export const baseUrl = "https://www.sonnet.ca";
 
-export const pageSlugs = [
-  "auto-insurance",
-  "condo-insurance",
-  "home-insurance",
-  "tenant-insurance",
-];
-
 export const languageId = {
   en: 1,
   fr: 1584454943708,

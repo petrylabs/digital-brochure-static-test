@@ -1,25 +1,22 @@
 import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
-import { getPage } from "../utils/api";
-import PageFooterContext from "../context/pageFooter";
-import TextSection from "../components/TextSection";
-import { pageSlugs } from "../config";
-import SplitLayout from "../components/SplitLayout";
-import PageHero from "../components/PageHero";
-import BlogFaqSection from "../components/BlogFaqSection";
-import ThreeColumnsSection from "../components/ThreeColumnsSection";
-import TestimonialCarousel from "../components/TestimonialCarousel";
-import CTAReminderSection from "../components/CTAReminderSection";
-import PartnershipSection from "../components/PartnershipSection";
-import TwoAccordionSection from "../components/TwoAccordionSection";
 
-export async function getStaticPaths() {
-  const paths = pageSlugs.map((slug) => ({
-    params: {
-      slug,
-    },
-  }));
+import BlogFaqSection from "../components/BlogFaqSection";
+import CTAReminderSection from "../components/CTAReminderSection";
+import PageHero from "../components/PageHero";
+import PartnershipSection from "../components/PartnershipSection";
+import SplitLayout from "../components/SplitLayout";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import TextSection from "../components/TextSection";
+import ThreeColumnsSection from "../components/ThreeColumnsSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
+import { slugData } from "../config";
+import PageFooterContext from "../context/pageFooter";
+import { getPage } from "../utils/api";
+
+export function getStaticPaths() {
+  const paths = slugData.map(({ slug }) => ({ params: { slug } }));
 
   return {
     paths,
@@ -29,7 +26,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const { data } = await getPage(slug);
+  const pageData = slugData?.find((item) => item.slug === slug);
+  const { data } = await getPage(pageData.pageId, pageData.langId);
 
   if (!data) {
     return {
