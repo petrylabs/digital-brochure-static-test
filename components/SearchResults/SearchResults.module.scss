@@ -53,7 +53,8 @@
     color: $color-primary-grey;
     line-height: 23px;
 
-    &:hover {
+    &:hover,
+    :focus {
       background-color: $color-grey-03;
     }
   }
