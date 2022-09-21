@@ -1,0 +1,82 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/buttons";
+
+.panel {
+  position: fixed;
+  background-color: $color-white;
+  width: 100%;
+  height: 100%;
+
+  @include mq-min-width(lg) {
+    position: relative;
+    max-width: 752px;
+
+    &.noResults {
+      border: 1px solid $color-grey-07;
+      border-radius: 25px;
+
+      &:hover {
+        border-color: $color-primary-accent;
+      }
+
+      &:focus-within {
+        outline: 3px solid $color-primary-accent;
+        outline-offset: -1px;
+      }
+    }
+
+    &.withResults {
+      border-radius: 25px 25px 0 0;
+    }
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: 1px solid $color-grey-06;
+
+  @include mq-min-width(md) {
+    padding: 15px;
+  }
+
+  @include mq-min-width(lg) {
+    border: none;
+    padding: 0;
+  }
+}
+
+.chevronButton {
+  @include unstyle-button;
+
+  display: flex;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 3px;
+
+  svg {
+    height: 23px;
+    path {
+      stroke: $color-black;
+      stroke-width: 2.5;
+    }
+  }
+
+  &:focus {
+    @include focus-button;
+  }
+
+  @include mq-min-width(lg) {
+    display: none;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(51, 51, 51, 0.75);
+  overflow: hidden;
+}
