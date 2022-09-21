@@ -1,9 +1,6 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
-import { baseUrl, breakpoints } from "../config";
-import { customLoader } from "../utils";
-import { getPage } from "../utils/api";
 import BlogFaqSection from "../components/BlogFaqSection";
 import CTAReminderSection from "../components/CTAReminderSection";
 import InfoCard from "../components/InfoCard";
@@ -16,9 +13,13 @@ import SplitLayout from "../components/SplitLayout";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
+import { baseUrl, breakpoints } from "../config";
+import { customLoader } from "../utils";
+import { getPage } from "../utils/api";
 
 /**
- * This is the site homepage.
+ * This is the site homepage in English.
+ * French homepage uses same template, but is rendered from `fr.jsx`
  */
 
 export async function getStaticProps() {
