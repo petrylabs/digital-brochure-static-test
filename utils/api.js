@@ -35,18 +35,18 @@ async function get(url, options = {}) {
 
 /**
  * Get all data for a given page & language, including all nested container data.
- * @param {string} pageId page name in dotCMS -- e.g. "auto-insurance"
  * @param {string} languageId numerical ID for the language (see config.js)
+ * @param {string} pageId page name in dotCMS -- e.g. "auto-insurance"
  * @returns {array} objects representing content "rows" for the given page
  */
-export async function getPage(pageId, languageId) {
+export async function getPage(languageId = 1, pageId) {
   const url = pageId
     ? `${apiUrl}/v1/page/render/${pageId}/index?language_id=${languageId}`
     : `${apiUrl}/v1/page/render/index?language_id=${languageId}`;
   const pageDataResponse = await get(url);
   let { data, error } = pageDataResponse;
 
-  if (data && data.entity) {
+  if (data?.entity) {
     const { layout, containers, page } = data.entity;
     const content = getPageContent(layout.body.rows, containers).filter((x) =>
       Boolean(x)

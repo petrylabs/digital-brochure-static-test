@@ -27,7 +27,7 @@ export function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const pageData = slugData?.find((item) => item.slug === slug);
-  const { data } = await getPage(pageData.pageId, pageData.langId);
+  const { data } = await getPage(pageData.langId, pageData.pageId);
 
   if (!data) {
     return {
