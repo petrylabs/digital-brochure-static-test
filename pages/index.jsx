@@ -57,7 +57,7 @@ export default function IndexPage(props) {
       </Head>
 
       {/* Page hero */}
-      <PageHero content={content[0]} />
+      <PageHero content={content[0]} imgContain />
 
       {/* Trust Pilot Section */}
       <TrustPilot />
