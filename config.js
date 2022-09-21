@@ -7,6 +7,38 @@ export const pageSlugs = [
   "tenant-insurance",
 ];
 
+export const languageId = {
+  en: 1,
+  fr: 1584454943708,
+};
+
+export const slugData = [
+  { pageId: "auto-insurance", langId: languageId.en, slug: "auto-insurance" },
+  { pageId: "auto-insurance", langId: languageId.fr, slug: "assurance-auto" },
+  { pageId: "home-insurance", langId: languageId.en, slug: "home-insurance" },
+  {
+    pageId: "home-insurance",
+    langId: languageId.fr,
+    slug: "assurance-habitation",
+  },
+  { pageId: "condo-insurance", langId: languageId.en, slug: "condo-insurance" },
+  {
+    pageId: "condo-insurance",
+    langId: languageId.fr,
+    slug: "assurance-coproprietaires",
+  },
+  {
+    pageId: "tenant-insurance",
+    langId: languageId.en,
+    slug: "tenant-insurance",
+  },
+  {
+    pageId: "tenant-insurance",
+    langId: languageId.fr,
+    slug: "assurance-locataires",
+  },
+];
+
 /** For Google Tag Manager */
 export const GTMContainerId = "GTM-TF8DP3";
 
