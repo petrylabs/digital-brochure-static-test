@@ -15,6 +15,7 @@ import { breakpoints } from "../../config";
 function QuoteModalContent() {
   const content = gaqModalData.data.content;
   const menuItem = (i) => content[i]?.fields;
+  console.log(content);
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
   const screenWidth = useWindowWidth();
@@ -42,9 +43,11 @@ function QuoteModalContent() {
               {content[1].buttonHighlightText}
             </div>
             <div className={styles.linkPanel}>
+              <div className={styles.iconPanel}>
               <img src={iconSrc(1, leftIconSrc)} alt="" />
               <span className={styles.plus} />
               <img src={iconSrc(1, rightIconSrc)} alt="" />
+              </div>
               <div><h4>{menuItem(1).menuItem.menuItem}</h4></div>
             </div>
           </a>

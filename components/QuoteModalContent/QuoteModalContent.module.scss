@@ -84,11 +84,20 @@
   padding: 15px;
 }
 
+.iconPanel {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .plus {
   margin-inline: 10px;
-
+  font-size: 10px;
+  padding-top: 6px;
+  font-family: "icomoon" !important;
+  
   &::before {
-    content: "\2795";
+    content: "\e968";
   }
 }
 
