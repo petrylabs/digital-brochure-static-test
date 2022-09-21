@@ -15,11 +15,9 @@ import { breakpoints } from "../../config";
 function QuoteModalContent() {
   const content = gaqModalData.data.content;
   const menuItem = (i) => content[i]?.fields;
-  console.log(content);
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
   const screenWidth = useWindowWidth();
-  console.log(screenWidth);
   const leftIconSrc = screenWidth >= breakpoints.lg ? "lefticonlg" : "lefticonsm";
   const rightIconSrc = screenWidth >= breakpoints.lg ? "righticonlg" : "righticonsm";
 
