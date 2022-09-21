@@ -140,6 +140,7 @@ export default function IndexPage(props) {
       <TwoAccordionSection
         content={content[14]}
         leftRightAccordianContent={content[15]?.fields}
+        bgWhite
       />
 
       {/* "When it comes to..." section */}
