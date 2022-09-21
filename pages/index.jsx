@@ -1,26 +1,27 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
+import { baseUrl, breakpoints } from "../config";
+import { customLoader } from "../utils";
 import { getPage } from "../utils/api";
-import CTAReminderSection from "../components/CTAReminderSection";
-import PageHero from "../components/PageHero";
-import SplitLayout from "../components/SplitLayout";
 import BlogFaqSection from "../components/BlogFaqSection";
-import TwoAccordionSection from "../components/TwoAccordionSection";
-import SignUpSection from "../components/SignUpSection";
+import CTAReminderSection from "../components/CTAReminderSection";
 import InfoCard from "../components/InfoCard";
 import LargeScreenImage from "../components/LargeScreenImage";
-import ThreeItemLayout from "../components/ThreeItemLayout";
-import { customLoader } from "../utils";
-import { baseUrl, breakpoints } from "../config";
 import PageFooterContext from "../context/pageFooter";
+import PageHero from "../components/PageHero";
+import PartnershipSection from "../components/PartnershipSection";
+import SignUpSection from "../components/SignUpSection";
+import SplitLayout from "../components/SplitLayout";
+import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
+import TwoAccordionSection from "../components/TwoAccordionSection";
 
 /**
  * This is the site homepage.
  */
 
-export async function getStaticProps({ }) {
+export async function getStaticProps() {
   const { data } = await getPage();
 
   if (!data) {
@@ -51,16 +52,12 @@ export default function IndexPage(props) {
 
   return (
     <>
-      {/* CUSTOM PAGE HEAD */}
-
       <Head>
         <title>{title}</title>
       </Head>
 
-      {/* PAGE TEMPLATE */}
-
       {/* Page hero */}
-      <PageHero content={content[0]} />
+      <PageHero content={content[0]} imgContain />
 
       {/* Trust Pilot Section */}
       <TrustPilot />
@@ -99,6 +96,9 @@ export default function IndexPage(props) {
       <section className="bg-white">
         <SplitLayout content={content[4]} hideImageOnMobile imageRight />
       </section>
+
+      {/* Partnership Section */}
+      <PartnershipSection content={content[5]} />
 
       {/* Section 6 */}
       <section className="container bg-white">
@@ -140,6 +140,7 @@ export default function IndexPage(props) {
       <TwoAccordionSection
         content={content[14]}
         leftRightAccordianContent={content[15]?.fields}
+        bgWhite
       />
 
       {/* "When it comes to..." section */}
