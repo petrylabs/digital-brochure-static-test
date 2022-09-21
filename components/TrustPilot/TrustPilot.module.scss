@@ -1,0 +1,12 @@
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/color.scss";
+
+.container {
+  background: $color-white;
+  padding-block: 40px;
+  padding-inline: 0px;
+
+  @include mq-min-width(md) {
+    padding-block: 0;
+  }
+}

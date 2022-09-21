@@ -15,7 +15,7 @@ import styles from "./PageHero.module.scss";
  */
 
 function PageHero(props) {
-  const { content } = props;
+  const { content, imgContain } = props;
   const { headline, copy, buttonType, cta } = content;
 
   const imageLoader = ({ src }) => {
@@ -44,7 +44,8 @@ function PageHero(props) {
             src={src}
             alt={imageAlt(content, src)}
             layout="fill"
-            objectFit="cover"
+            objectFit={imgContain ? "contain" : "cover"}
+            objectPosition={imgContain ? "right" : null}
             priority
           />
           <div className={styles.whiteGradient} />
@@ -85,6 +86,7 @@ PageHero.propTypes = {
     buttonType: PropTypes.string.isRequired,
     cta: PropTypes.string.isRequired,
   }).isRequired,
+  imgContain: PropTypes.bool,
 };
 
 export default PageHero;

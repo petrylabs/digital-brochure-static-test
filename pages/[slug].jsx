@@ -142,7 +142,7 @@ function LandingPage(props) {
       </section>
 
       {/* CTA Reminder */}
-      <CTAReminderSection content={content[18]} />
+      <CTAReminderSection content={commonContent[18]} />
     </>
   );
 }
