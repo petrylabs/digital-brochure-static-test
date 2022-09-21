@@ -1,0 +1,61 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
+@import "../../scss/globals/layout.scss";
+
+.searchResults {
+  @include unstyle-list;
+
+  border-radius: 0 0 25px 25px;
+
+  @include mq-min-width(lg) {
+    position: absolute;
+    background: $color-white;
+    width: 100%;
+    padding: 10px;
+
+    /* Divider between input and results: */
+    &::before {
+      position: relative;
+      content: "";
+      display: block;
+      top: -10px;
+      margin-inline: auto;
+      width: calc(100% - 2rem);
+      border-top: 1px solid $color-primary-accent;
+    }
+  }
+}
+
+.searchResultItem {
+  &:not(:first-child) {
+    border-top: 1px solid $color-grey-06;
+  }
+}
+
+.searchResultItemLink {
+  display: block;
+  padding: 20px 30px;
+  text-decoration: none;
+  color: $color-primary-grey;
+  font-size: 14px;
+
+  &:hover,
+  &:focus {
+    color: $color-links;
+    text-decoration: underline;
+    border-color: $color-secondary-light;
+    background-color: $color-secondary-light;
+    outline: none;
+  }
+
+  @include mq-min-width(lg) {
+    padding: 0.3125rem 0.625rem;
+    color: $color-primary-grey;
+    line-height: 23px;
+
+    &:hover,
+    :focus {
+      background-color: $color-grey-03;
+    }
+  }
+}

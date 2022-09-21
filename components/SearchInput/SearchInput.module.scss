@@ -1,52 +1,45 @@
 @import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
 
-.searchContainer {
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
-  max-width: 752px;
-  margin-left: 5px;
-}
-
-.searchInputArea {
-  border: 1px solid $color-grey-07;
   border-radius: 25px;
+  padding: 0 18px;
+  border: 1px solid $color-grey-07;
 
   &:hover {
-    border: 1px solid $color-primary-accent;
+    border-color: $color-primary-accent;
   }
 
   &:focus-within {
-    border: 3px solid $color-primary-accent;
-    margin: -2px;
+    outline: 3px solid $color-primary-accent;
+    outline-offset: -1px;
   }
 
   input {
+    flex: 1;
     border: none;
     background-color: transparent;
-    width: 93%;
     height: 40px;
     font-size: 14px;
     line-height: 20px;
     padding: 1px 2px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
-  textarea:focus,
-  input:focus {
-    outline: none;
-  }
-}
+  @include mq-min-width(lg) {
+    border: none;
 
-.search {
-  display: flex;
-}
-
-.searchLogo {
-  line-height: 40px;
-  margin: 0 10px 0 18px;
-
-  svg {
-    vertical-align: middle;
-    padding-bottom: 4px;
-    width: 18px;
-    height: 20px;
+    &:hover,
+    &:focus-within {
+      border: none;
+      outline: none;
+    }
   }
 }
