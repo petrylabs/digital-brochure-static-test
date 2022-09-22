@@ -46,7 +46,7 @@ function QuoteModalContent() {
               <span className={styles.plus} />
               <img src={iconSrc(1, rightIconSrc)} alt="" />
               </div>
-              <div><h4>{menuItem(1).menuItem.menuItem}</h4></div>
+              <div className="h4">{menuItem(1).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -60,7 +60,7 @@ function QuoteModalContent() {
           >
             <div className={styles.linkPanel}>
               <img src={iconSrc(2, leftIconSrc)} alt="" />
-              <div><h4>{menuItem(2).menuItem.menuItem}</h4></div>
+              <div className="h4">{menuItem(2).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -74,7 +74,7 @@ function QuoteModalContent() {
           >
             <div className={styles.linkPanel}>
               <img src={iconSrc(3, "lefticonlg")} alt="" />
-              <div><h4>{menuItem(3).menuItem.menuItem}</h4></div>
+              <div className="h4">{menuItem(3).menuItem.menuItem}</div>
             </div>
           </a>
         </li>
@@ -91,12 +91,11 @@ function QuoteModalContent() {
             </div>
             <div className={styles.linkPanel}>
               <img src={iconSrc(4, leftIconSrc)} alt="" />
-              <div>
-                <h4>{menuItem(4).menuItem.menuItem}
+              <div className="h4">
+               {menuItem(4).menuItem.menuItem}
                 <span className={styles.extIcon}>
                   <ExternalLinkIcon />
-                </span>
-                </h4>
+                </span>                
               </div>
             </div>
           </a>
