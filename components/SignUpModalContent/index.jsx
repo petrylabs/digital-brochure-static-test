@@ -1,71 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useReducer, useState } from "react";
 import parse from "html-react-parser";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import styles from "./SignUpModalContent.module.scss";
 import signUpModalData from "../../site-data/signUpModal.preval";
 import recaptchaSiteKeyData from "../../site-data/recaptchaSiteKey.preval";
-import Select from "@mui/material/Select";
-import FormControl from "@mui/material/FormControl";
-import MenuItem from "@mui/material/MenuItem";
-import NavItem from "../NavItem";
-import { useReducer } from "react";
-import { useState } from "react";
+import FooterLink from "../FooterLink";
+import Select from "../Select";
+import { getDelimitedOptions } from "../../utils/array";
 
 const formReducer = (state, event) => {
   return {
     ...state,
     [event.name]: event.value,
   };
-};
-
-const sx = {
-  fontFamily: "Averta-Regular, Arial, Helvetica, sans-serif",
-  height: "calc(1.5em + 0.75rem + 4px)",
-  legend: { display: "none" },
-  "& :focus ": {
-    borderRadius: 0,
-    padding: "10px 14px",
-    color: "#495057",
-    borderColor: "#80bdff",
-    outline: 0,
-    boxShadow: "none",
-    border: "3px solid #147582",
-  },
-
-  // "&:focus .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-  //   color: "#495057",
-  //   borderColor: "#80bdff",
-  //   outline: 0,
-  //   boxShadow: "none",
-  //   border: "3px solid #147582",
-  // },
-  // "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-  //   color: "purple",
-  // },
-  // "& .MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-  //   borderColor: "purple",
-  //   backgroundColor: "red",
-  // },
-
-  // "& .MuiSelect-select": {
-  //   color: "#495057",
-  //   borderColor: "#80bdff",
-  //   outline: 0,
-  //   boxShadow: "none",
-  //   border: "3px solid #147582",
-  // },
-  // "& fieldset.MuiOutlinedInput-notchedOutline": {
-  //   color: "#495057",
-  //   borderColor: "#80bdff",
-  //   outline: 0,
-  //   boxShadow: "none",
-  //   border: "3px solid #147582",
-  // },
-  // "& .MuiMenu-paper.MuiPopover-paper": {
-  //   backgroundColor: "black",
-  // },
 };
 
 /**
@@ -77,7 +26,7 @@ function SignUpModalContent() {
   const googleRecaptchaKey = recaptchaSiteKeyData.data.googleRecaptchaKey;
   const [formData, setFormData] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
-
+  console.log(fieldsData);
   const data = fieldsData.reduce((acc, obj) => {
     const key = obj["key"];
     const value = obj["value"];
@@ -85,15 +34,8 @@ function SignUpModalContent() {
     return acc;
   }, {});
 
-  const interestedList = data.interestedList.split("\n");
-  console.log(interestedList);
-  const interestedOptions = interestedList.map((x) => {
-    const data = x.split("|");
-    return {
-      key: data[0],
-      value: data[1],
-    };
-  });
+  const interestedOptions = getDelimitedOptions(data.interestedList, "\n");
+
   const handleChange = (event) => {
     setFormData({
       name: event.target.name,
@@ -101,21 +43,13 @@ function SignUpModalContent() {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSubmitting(true);
-
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 3000);
-  };
+  /* TODO: handle submission */
+  const handleSubmit = (event) => {};
 
   return (
-    <div>
-      {console.log({ formData, submitting })}
+    <div className={styles.container}>
       <h2 className={styles.title}>{data.title}</h2>
-      <FormControl sx={{ m: 1, minWidth: 120 }}></FormControl>
-      <form action="" className={styles.signUpForm} onSubmit={handleSubmit}>
+      <form className={styles.signUpForm} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label htmlFor="first-name">{data.firstName}</label>
           <input
@@ -157,39 +91,7 @@ function SignUpModalContent() {
           ></input>
         </div>
         <div className={styles.row}>
-          <label htmlFor="interest">{data.interested}</label>
-          {/* {console.log(styles.row)} */}
-          <Select
-            id="select"
-            name="interest"
-            value={formData.interest}
-            onChange={handleChange}
-            // classes={{
-            //   root: styles.input,
-            //   // select: styles.select,
-            //   legend: styles.legend,
-            //   focused: styles.select,
-            // }}
-            variant={"outlined"}
-            sx={sx}
-          >
-            {interestedOptions.map((x, i) => {
-              return (
-                <MenuItem
-                  key={i}
-                  value={x.key}
-                  sx={{
-                    fontFamily: "Averta-Regular, Arial, Helvetica, sans-serif",
-                    "& :hover": {
-                      background: "#f2f2f2",
-                    },
-                  }}
-                >
-                  {x.value}
-                </MenuItem>
-              );
-            })}
-          </Select>
+          <Select options={interestedOptions} label={data.interested}></Select>
         </div>
         <div className={styles.row}>
           <span>{data.recaptchaText}</span>
@@ -203,15 +105,13 @@ function SignUpModalContent() {
           <span>
             {parse(data.privacy, {
               replace: (domNode) => {
-                console.log({ domNode });
                 const { name, attribs } = domNode;
                 if (name === "snt-link") {
                   return (
-                    <NavItem
+                    <FooterLink
                       href={attribs.href}
                       title={" Privacy Notice"}
-                      style={{ color: "#147582" }}
-                    ></NavItem>
+                    ></FooterLink>
                   );
                 }
               },

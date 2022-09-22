@@ -1,0 +1,79 @@
+@import "../../scss/globals/variables";
+@import "../../scss/globals/color";
+@import "/scss/globals/layout";
+
+.select {
+  font-family: $font-regular;
+  padding: 10px 20px;
+}
+
+.input {
+  border-radius: 0px !important;
+  height: 45px;
+  padding: 0px 0px;
+}
+
+.input:focus-within {
+  fieldset {
+    border: 3px solid $color-primary-accent !important;
+  }
+  svg {
+    color: $color-primary-accent;
+  }
+}
+
+.paper {
+  padding: 0px 0px;
+  border-radius: 0px;
+}
+
+.none {
+  display: none;
+}
+
+.modalContainer {
+  width: 100%;
+}
+
+.menuItem {
+  @include mq-min-width(lg) {
+    padding: 16px 57px 14px 20px;
+  }
+  padding: 18px 57px 18px 20px;
+  font-family: $font-regular;
+  &:hover {
+    background-color: $color-grey-05;
+  }
+  &:active {
+    background-color: $color-primary-accent;
+    color: $color-white;
+  }
+  &:focus {
+    background-color: $color-primary;
+  }
+}
+
+.menuList {
+  padding: 0px;
+}
+
+.selectedMenuItem {
+  font-family: $font-regular;
+  font-weight: 700;
+  &::before {
+    content: "";
+    position: absolute;
+    right: 25px;
+    width: 6px;
+    height: 12px;
+    font-size: 12px;
+    line-height: 12px;
+    border: solid $color-primary-grey;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
