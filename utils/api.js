@@ -143,7 +143,7 @@ export function getContentRelationshipData(identifier, languageId) {
 /**
  * Get related accordion widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with the related content
  */
 export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
@@ -157,7 +157,7 @@ export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
 /**
  * Get related testimonial widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with the related content
  */
 export function getTestimonialWidgetData(tagString, languageId) {
@@ -170,35 +170,39 @@ export function getTestimonialWidgetData(tagString, languageId) {
 
 /**
  * Get header data and menu items from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with header data and nav menu items
  */
-export const getHeader = () => {
-  return get(`${apiUrl}/vtl/headermenu`);
+export const getHeader = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/headermenu +languageId:${languageId}`);
 };
 
 /**
  * Get footer data and menu items from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with footer data and menu items
  */
-export const getFooter = () => {
-  return get(`${apiUrl}/vtl/footermenu`);
+export const getFooter = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/footermenu +languageId:${languageId}`);
 };
 
 /**
  * Get sign up modal data from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with sign up modal data
  */
-export const getNewsLetterModal = () => {
-  return get(`${apiUrl}/vtl/newsletterform`);
+export const getNewsLetterModal = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/newsletterform +languageId:${languageId}`);
 };
 
 /**
  * Get Get a Quote modal data
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns get a quote modal data
  */
-export async function getGaqModal() {
+export async function getGaqModal(languageId = 1) {
   const modalDataResponse = await get(
-    `${apiUrl}/v1/page/render/modals/get-a-quote-2`
+    `${apiUrl}/v1/page/render/modals/get-a-quote-2 +languageId:${languageId}`
   );
   let { data, error } = modalDataResponse;
 
@@ -237,15 +241,16 @@ export async function getGaqModal() {
 
 /**
  * Get search results from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with search related data
  */
-export const getSearchResults = (languageId) => {
+export const getSearchResults = (languageId = 1) => {
   // needs to be updated to get content based on languageId
   var url = new URL(`${apiUrl}/es/search`);
   var raw = JSON.stringify({
     query: {
       query_string: {
-        query: `+(contentType:FAQ contentType:Blog ) +languageId:1`,
+        query: `+(contentType:FAQ contentType:Blog ) +languageId:${languageId}`,
       },
     },
     size: 1000,
