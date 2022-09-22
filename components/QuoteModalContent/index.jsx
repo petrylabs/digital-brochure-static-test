@@ -73,7 +73,7 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              <img src={iconSrc(3, "lefticonlg")} alt="" />
+              <img src={iconSrc(3, leftIconSrc)} alt="" />
               <div className="h4">{menuItem(3).menuItem.menuItem}</div>
             </div>
           </a>
