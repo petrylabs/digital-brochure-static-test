@@ -19,6 +19,7 @@ export async function getStaticProps() {
     props: {
       title: data.title,
       content: data.content,
+      pageLang: "fr",
     },
   };
 }
