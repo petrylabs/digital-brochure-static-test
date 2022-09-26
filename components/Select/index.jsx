@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import MuiSelect from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { useRef, useEffect } from "react";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
@@ -16,6 +17,20 @@ function Select({ options, label }) {
   const [isMenuModalOpen, setMenuModalOpen] = useState(false);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
+
+  const select = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (select.current && !select.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [select]);
 
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.md;
@@ -40,6 +55,7 @@ function Select({ options, label }) {
       <MuiSelect
         id="select"
         name="interest"
+        ref={select}
         value={value}
         onChange={handleSelect}
         onOpen={handleOpen}
