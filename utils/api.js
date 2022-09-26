@@ -173,8 +173,8 @@ export function getTestimonialWidgetData(tagString, languageId) {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with header data and nav menu items
  */
-export const getHeader = (languageId = 1) => {
-  return get(`${apiUrl}/vtl/headermenu +languageId:${languageId}`);
+export const getHeader = () => {
+  return get(`${apiUrl}/vtl/headermenu`);
 };
 
 /**
@@ -182,8 +182,8 @@ export const getHeader = (languageId = 1) => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with footer data and menu items
  */
-export const getFooter = (languageId = 1) => {
-  return get(`${apiUrl}/vtl/footermenu +languageId:${languageId}`);
+export const getFooter = () => {
+  return get(`${apiUrl}/vtl/footermenu`);
 };
 
 /**
@@ -191,8 +191,8 @@ export const getFooter = (languageId = 1) => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with sign up modal data
  */
-export const getNewsLetterModal = (languageId = 1) => {
-  return get(`${apiUrl}/vtl/newsletterform +languageId:${languageId}`);
+export const getNewsLetterModal = () => {
+  return get(`${apiUrl}/vtl/newsletterform`);
 };
 
 /**
@@ -200,9 +200,9 @@ export const getNewsLetterModal = (languageId = 1) => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns get a quote modal data
  */
-export async function getGaqModal(languageId = 1) {
+export async function getGaqModal() {
   const modalDataResponse = await get(
-    `${apiUrl}/v1/page/render/modals/get-a-quote-2 +languageId:${languageId}`
+    `${apiUrl}/v1/page/render/modals/get-a-quote-2`
   );
   let { data, error } = modalDataResponse;
 
@@ -244,13 +244,13 @@ export async function getGaqModal(languageId = 1) {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with search related data
  */
-export const getSearchResults = (languageId = 1) => {
+export const getSearchResults = () => {
   // needs to be updated to get content based on languageId
   var url = new URL(`${apiUrl}/es/search`);
   var raw = JSON.stringify({
     query: {
       query_string: {
-        query: `+(contentType:FAQ contentType:Blog ) +languageId:${languageId}`,
+        query: `+(contentType:FAQ contentType:Blog )`,
       },
     },
     size: 1000,
