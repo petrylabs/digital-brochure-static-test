@@ -26,8 +26,9 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const pageData = routes?.find((item) => item.path === slug);
-  const { data } = await getPage(pageData.query.langId, pageData.query.pageId);
+  const routeInfo = routes?.find((item) => item.path === slug);
+  const { langId, locale, pageId } = routeInfo.query;
+  const { data } = await getPage(langId, pageId);
 
   if (!data) {
     return {
@@ -44,6 +45,7 @@ export async function getStaticProps({ params }) {
       description: data.description,
       content: data.content,
       slug,
+      pageLang: locale,
     },
   };
 }
