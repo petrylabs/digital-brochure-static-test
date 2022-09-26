@@ -5,21 +5,7 @@ import footerData from "../../site-data/footer.preval";
 import FooterLink from "../FooterLink";
 import styles from "./Footer.module.scss";
 import PageFooterContext from "../../context/pageFooter";
-
-/**
- * Replace <snt-link> with <FooterLink /> in copy
- * @param {string} copy
- */
-const formatLegalFooter = (copy) => {
-  return parse(copy, {
-    replace: (domNode) => {
-      const { name, attribs } = domNode;
-      if (name === "snt-link") {
-        return <FooterLink href={attribs.href} title={attribs.title} />;
-      }
-    },
-  });
-};
+import ReplaceSntLinkWithFooterLink from "../ReplaceSntLinkWithFooterLink";
 
 /**
  * Footer
@@ -82,16 +68,15 @@ function Footer() {
 
         {/* Legal footer */}
         <div className={styles.legalFooter}>
-          {formatLegalFooter(content?.legalFooter[0]?.copy)}
+          <ReplaceSntLinkWithFooterLink copy={content?.legalFooter[0]?.copy} />
 
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
             <summary
-              className={`${styles.legalDetailsButton} ${
-                showLegalFooter
-                  ? styles.legalDetailsShow
-                  : styles.legalDetailsHide
-              }`}
+              className={`${styles.legalDetailsButton} ${showLegalFooter
+                ? styles.legalDetailsShow
+                : styles.legalDetailsHide
+                }`}
             >
               {/* TODO: translate */}
               <span>{showLegalFooter ? "Hide Legal" : "View Legal"}</span>
@@ -99,12 +84,12 @@ function Footer() {
 
             {content.accordionLegalFooter.map((item) => (
               <Fragment key={item.identifier}>
-                {formatLegalFooter(item.copy)}
+                <ReplaceSntLinkWithFooterLink copy={item.copy} />
               </Fragment>
             ))}
             {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
-                {formatLegalFooter(item.copy)}
+                <ReplaceSntLinkWithFooterLink copy={item.copy} />
               </Fragment>
             ))}
           </details>

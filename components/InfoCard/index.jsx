@@ -6,6 +6,7 @@ import { baseUrl } from "../../config.js";
 import { customLoader } from "../../utils/images";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./InfoCard.module.scss";
+import ReplaceSntLinkWithFooterLink from "../ReplaceSntLinkWithFooterLink";
 
 /**
  * InfoCard
@@ -13,7 +14,7 @@ import styles from "./InfoCard.module.scss";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, alt, content, withBorder = false } = props;
+  const { iconUrl, title, alt, content, externalLink = false, withBorder = false } = props;
   const src = baseUrl + iconUrl;
 
   return (
@@ -31,7 +32,12 @@ function InfoCard(props) {
       </div>
       <h3 className={styles.h3}>{title}</h3>
       <div className={styles.content}>
-        <ParsedCopy copy={content} animatedLinks />
+        {!externalLink && (
+          <ParsedCopy copy={content} animatedLinks />
+        )}
+        {externalLink && (
+          <ReplaceSntLinkWithFooterLink copy={content} />
+        ) }
       </div>
     </div>
   );

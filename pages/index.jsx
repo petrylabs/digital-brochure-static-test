@@ -109,6 +109,7 @@ export default function IndexPage(props) {
             alt={content[6].fields[0].icon.altText}
             content={content[6].copy}
             withBorder={true}
+            externalLink
           />
           <InfoCard
             title={content[7].headline}
@@ -116,6 +117,7 @@ export default function IndexPage(props) {
             alt={content[7].fields[0].icon.altText}
             content={content[7].copy}
             withBorder={true}
+            externalLink
           />
           <LargeScreenImage
             src={`${baseUrl}${content[8].fileAsset}`}
