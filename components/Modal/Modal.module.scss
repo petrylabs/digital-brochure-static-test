@@ -13,21 +13,11 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   max-width: 100%;
   min-height: 100vh;
-  padding: 40px 30px;
   margin: auto;
   outline: none;
 
   @include mq-min-width(md) {
     min-height: 0;
-    padding: 40px 26px;
-  }
-
-  @include mq-min-width(lg) {
-    padding: 60px;
-  }
-  @include mq-min-width(xl) {
-    width: 570px;
-    padding: 60px;
   }
 }
 
@@ -49,8 +39,8 @@
   &:hover {
     color: $color-links;
   }
-  &:focus-within{
+  &:focus-within {
     outline: 1px dashed;
-    outline-offset: 3px
+    outline-offset: 3px;
   }
 }

@@ -13,6 +13,12 @@
   padding: 0px 0px;
 }
 
+.activeInput {
+  fieldset {
+    border: 3px solid $color-primary-accent !important;
+  }
+}
+
 .input:focus-within {
   fieldset {
     border: 3px solid $color-primary-accent !important;
@@ -25,6 +31,8 @@
 .paper {
   padding: 0px 0px;
   border-radius: 0px;
+  border: 1px solid $color-grey-09;
+  box-shadow: none;
 }
 
 .none {
@@ -36,6 +44,7 @@
 }
 
 .menuItem {
+  border-bottom: 1px solid $color-grey-07;
   @include mq-min-width(lg) {
     padding: 16px 57px 14px 20px;
   }
@@ -45,7 +54,7 @@
     background-color: $color-grey-05;
   }
   &:active {
-    background-color: $color-primary-accent;
+    background-color: $color-grey-05;
     color: $color-white;
   }
   &:focus {

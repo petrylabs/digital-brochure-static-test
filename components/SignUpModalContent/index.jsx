@@ -3,10 +3,13 @@ import React, { useReducer, useState } from "react";
 import parse from "html-react-parser";
 import ReCAPTCHA from "react-google-recaptcha";
 
+import { breakpoints } from "../../config";
 import styles from "./SignUpModalContent.module.scss";
 import signUpModalData from "../../site-data/signUpModal.preval";
 import recaptchaSiteKeyData from "../../site-data/recaptchaSiteKey.preval";
 import FooterLink from "../FooterLink";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import CTA from "../CTA";
 import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
 
@@ -26,13 +29,17 @@ function SignUpModalContent() {
   const googleRecaptchaKey = recaptchaSiteKeyData.data.googleRecaptchaKey;
   const [formData, setFormData] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
-  console.log(fieldsData);
+
+  const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < breakpoints.sm;
+
   const data = fieldsData.reduce((acc, obj) => {
     const key = obj["key"];
     const value = obj["value"];
     acc[key] = value;
     return acc;
   }, {});
+  console.log(data);
 
   const interestedOptions = getDelimitedOptions(data.interestedList, "\n");
 
@@ -118,7 +125,13 @@ function SignUpModalContent() {
             })}
           </span>
         </div>
-        <button className={styles.submitButton}>Submit</button>
+        <CTA
+          type="primary"
+          fullWidth={isMobile}
+          onClick={() => console.log("submit")}
+        >
+          {data.submitButton}
+        </CTA>
       </form>
     </div>
   );

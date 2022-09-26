@@ -44,7 +44,7 @@ function Select({ options, label }) {
         onChange={handleSelect}
         onOpen={handleOpen}
         open={open}
-        className={styles.input}
+        className={`${styles.input} ${open ? styles.activeInput : ""} `}
         classes={{
           select: styles.select,
         }}

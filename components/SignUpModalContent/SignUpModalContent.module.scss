@@ -5,12 +5,23 @@
 @import "../../scss/globals/layout.scss";
 
 .container {
+  max-width: 100%;
+  width: 100vh;
+  padding: 40px 30px;
+
   @include mq-min-width(md) {
     width: 578px;
+    padding: 40px 26px;
   }
 
   @include mq-min-width(lg) {
-    width: auto;
+    width: 578px;
+    padding: 60px;
+  }
+
+  @include mq-min-width(xl) {
+    width: 770px;
+    padding: 60px;
   }
 }
 
@@ -53,7 +64,7 @@
 
   .submitButton {
     align-self: center;
-    width: min-content;
+    width: 100%;
     background-color: $color-primary;
     color: $color-primary-grey;
     box-shadow: inset 0 0 0 3px $color-primary;
@@ -63,6 +74,10 @@
     cursor: pointer;
     font-family: $font-extra-bold;
     border: none;
+
+    @include mq-min-width(md) {
+      width: min-content;
+    }
   }
   .submitButton:hover {
     color: $color-white;

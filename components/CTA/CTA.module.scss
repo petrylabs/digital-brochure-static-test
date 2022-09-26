@@ -1,6 +1,9 @@
 @import "../../scss/globals/buttons.scss";
 
 .cta {
+  width: max-content;
+  align-self: center;
+
   &.primary {
     @include cta-primary;
   }
@@ -11,9 +14,12 @@
 
   &.ctaSmall {
     display: inline-block;
-    width: auto;
     padding: 5px 10px;
     font-size: 14px;
     line-height: 23px;
+  }
+
+  &.fullWidth {
+    width: auto;
   }
 }

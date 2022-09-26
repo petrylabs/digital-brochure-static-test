@@ -9,14 +9,23 @@ import styles from "./CTA.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179081829/CTA
  */
 function CTA(props) {
-  const { buttonId, children, onClick, small, target, type, url } = props;
+  const {
+    buttonId,
+    children,
+    onClick,
+    small,
+    target,
+    type,
+    url,
+    fullWidth = true,
+  } = props;
 
   /** CTA is a link if URL is provided */
   const isLink = !!url;
 
   const ctaClass = `${styles.cta} ${small ? styles.ctaSmall : ""} ${
-    styles[type]
-  }`;
+    fullWidth ? styles.ctaFullWidth : ""
+  } ${styles[type]}`;
 
   return isLink ? (
     <a href={url} className={ctaClass} target={target}>
@@ -42,6 +51,7 @@ CTA.propTypes = {
   target: PropTypes.oneOf(["_self", "_blank", "_parent", "_top"]),
   type: PropTypes.oneOf(["primary", "secondary"]),
   url: PropTypes.string,
+  fullWidth: PropTypes.bool,
 };
 
 CTA.defaultProps = {
