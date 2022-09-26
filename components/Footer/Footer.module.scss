@@ -36,6 +36,10 @@
   @include mq-min-width(md) {
     margin-bottom: 1.25em;
   }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 30px;
+  }
 }
 
 .menuItems {
@@ -97,6 +101,21 @@
 
   a {
     color: $color-primary-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover,
+    &:focus {
+      color: $color-links;
+      span:first-of-type {
+        background-image: linear-gradient(transparent, transparent),
+        linear-gradient($color-links, $color-links);
+      }
+      span:last-of-type {
+        color: $color-links;
+      }
+    }
+
   }
 }
 
@@ -105,7 +124,8 @@
   display: inline-flex;
   align-items: center;
   font-family: $font-regular;
-  padding: 3px;
+  padding: 0 3px 0 3px;
+  margin-top: 10px;
   margin-bottom: 0.475em;
   font-size: 12px;
 
