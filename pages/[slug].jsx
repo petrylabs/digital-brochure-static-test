@@ -11,12 +11,12 @@ import TestimonialCarousel from "../components/TestimonialCarousel";
 import TextSection from "../components/TextSection";
 import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TwoAccordionSection from "../components/TwoAccordionSection";
-import { slugData } from "../config";
+import { routes } from "../config";
 import PageFooterContext from "../context/pageFooter";
 import { getPage } from "../utils/api";
 
 export function getStaticPaths() {
-  const paths = slugData.map(({ slug }) => ({ params: { slug } }));
+  const paths = routes.map(({ path }) => ({ params: { slug: path } }));
 
   return {
     paths,
@@ -26,8 +26,8 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const pageData = slugData?.find((item) => item.slug === slug);
-  const { data } = await getPage(pageData.langId, pageData.pageId);
+  const pageData = routes?.find((item) => item.path === slug);
+  const { data } = await getPage(pageData.query.langId, pageData.query.pageId);
 
   if (!data) {
     return {

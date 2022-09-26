@@ -5,30 +5,75 @@ export const languageId = {
   fr: 1584454943708,
 };
 
-export const slugData = [
-  { pageId: "auto-insurance", langId: languageId.en, slug: "auto-insurance" },
-  { pageId: "auto-insurance", langId: languageId.fr, slug: "assurance-auto" },
-  { pageId: "home-insurance", langId: languageId.en, slug: "home-insurance" },
+export const locales = {
+  en: "en",
+  fr: "fr",
+};
+
+export const routes = [
   {
-    pageId: "home-insurance",
-    langId: languageId.fr,
-    slug: "assurance-habitation",
-  },
-  { pageId: "condo-insurance", langId: languageId.en, slug: "condo-insurance" },
-  {
-    pageId: "condo-insurance",
-    langId: languageId.fr,
-    slug: "assurance-coproprietaires",
-  },
-  {
-    pageId: "tenant-insurance",
-    langId: languageId.en,
-    slug: "tenant-insurance",
+    path: "auto-insurance",
+    query: {
+      pageId: "auto-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
   },
   {
-    pageId: "tenant-insurance",
-    langId: languageId.fr,
-    slug: "assurance-locataires",
+    path: "assurance-auto",
+    query: {
+      pageId: "auto-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "home-insurance",
+    query: {
+      pageId: "home-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-habitation",
+    query: {
+      pageId: "home-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "condo-insurance",
+    query: {
+      pageId: "condo-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-coproprietaires",
+    query: {
+      pageId: "condo-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "tenant-insurance",
+    query: {
+      pageId: "tenant-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-locataires",
+    query: {
+      pageId: "tenant-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
   },
 ];
 
