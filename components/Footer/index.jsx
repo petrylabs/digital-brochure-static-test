@@ -2,16 +2,31 @@ import React, { Fragment, useState, useContext } from "react";
 import parse from "html-react-parser";
 
 import footerData from "../../site-data/footer.preval";
-import FooterLink from "../FooterLink";
+import AnimatedLink from "../AnimatedLink";
 import styles from "./Footer.module.scss";
 import PageFooterContext from "../../context/pageFooter";
-import ReplaceSntLinkWithFooterLink from "../ReplaceSntLinkWithFooterLink";
 
 /**
  * Footer
  * Page footer; container for navigation elements
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179049009/Footer
  */
+
+/**
+ * Replace <snt-link> with <AnimatedLink /> in copy
+ * @param {string} copy
+ */
+const formatLegalFooter = (copy) => {
+  return parse(copy, {
+    replace: (domNode) => {
+      const { name, attribs } = domNode;
+      if (name === "snt-link") {
+        return <AnimatedLink href={attribs.href} title={attribs.title} />;
+      }
+    },
+  });
+};
+
 function Footer() {
   const content = footerData.data.footerMenu;
   const [showLegalFooter, setShowLegalFooter] = useState(false);
@@ -40,7 +55,7 @@ function Footer() {
               <ul className={styles.menuItems}>
                 {modifyMenu(menu).map((item, i) => (
                   <li key={i} className={styles.navItem}>
-                    <FooterLink href={item.url} title={item.name} />
+                    <AnimatedLink href={item.url} title={item.name} />
                   </li>
                 ))}
               </ul>
@@ -52,12 +67,12 @@ function Footer() {
         <ul className={styles.horizontalFooterMenu}>
           {content.footerHorizontalMenu.map((item, i) => (
             <li key={i} className={styles.navItem}>
-              <FooterLink href={item.url} title={item.name} />
+              <AnimatedLink href={item.url} title={item.name} />
             </li>
           ))}
           <li className={styles.navItem}>
             {/* TODO: translate */}
-            <FooterLink
+            <AnimatedLink
               href={"https://www.sonnet.ca/fr"}
               title={"Français"}
               style={{ fontFamily: "Averta-ExtraBold" }}
@@ -68,7 +83,7 @@ function Footer() {
 
         {/* Legal footer */}
         <div className={styles.legalFooter}>
-          <ReplaceSntLinkWithFooterLink copy={content?.legalFooter[0]?.copy} />
+          {formatLegalFooter(content?.legalFooter[0]?.copy)}
 
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
@@ -84,12 +99,12 @@ function Footer() {
 
             {content.accordionLegalFooter.map((item) => (
               <Fragment key={item.identifier}>
-                <ReplaceSntLinkWithFooterLink copy={item.copy} />
+                {formatLegalFooter(item.copy)}
               </Fragment>
             ))}
             {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
-                <ReplaceSntLinkWithFooterLink copy={item.copy} />
+                {formatLegalFooter(item.copy)}
               </Fragment>
             ))}
           </details>

@@ -1,14 +1,15 @@
 import React from "react";
-import styles from "./FooterLink.module.scss";
+import styles from "./AnimatedLink.module.scss";
 import isExternal from "../../utils/link";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import PropTypes from "prop-types";
 
 /**
- * FooterLink
- * FooterLink; component to render internal and external navigation links
+ * AnimatedLink
+ * AnimatedLink; component to render internal and external navigation links
  */
-function FooterLink(props) {
+
+function AnimatedLink(props) {
   const { href, title, externalLink } = props;
   const isExternalLink =
     externalLink == undefined ? isExternal(href) : externalLink;
@@ -20,6 +21,7 @@ function FooterLink(props) {
         className={styles.link}
         target={isExternalLink ? "_blank" : "_self"}
         rel="noreferrer"
+        title={title}
       >
         <span className={styles.linkText}>{title}</span>
         {isExternalLink && (
@@ -40,7 +42,7 @@ function FooterLink(props) {
   );
 }
 
-FooterLink.propTypes = {
+AnimatedLink.propTypes = {
   // nav item href
   href: PropTypes.string.isRequired,
 
@@ -51,4 +53,4 @@ FooterLink.propTypes = {
   externalLink: PropTypes.bool,
 };
 
-export default FooterLink;
+export default AnimatedLink;
