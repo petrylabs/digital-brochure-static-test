@@ -23,7 +23,7 @@
   left: 0.3em;
   margin-right: 0.5em;
 }
-
+.highlightLink,
 .link:hover,
 .link:focus {
   color: $color-primary-accent;
@@ -43,6 +43,12 @@
 
   .icon {
     color: $color-primary-grey;
+  }
+}
+
+.highlightLink {
+  .icon {
+    color: $color-primary-accent;
   }
 }
 

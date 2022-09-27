@@ -117,6 +117,7 @@ function SignUpModalContent() {
                     <FooterLink
                       href={attribs.href}
                       title={" Privacy Notice"}
+                      highlight={true}
                     ></FooterLink>
                   );
                 }

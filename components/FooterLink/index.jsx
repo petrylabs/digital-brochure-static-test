@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  * FooterLink; component to render internal and external navigation links
  */
 function FooterLink(props) {
-  const { href, title, externalLink } = props;
+  const { href, title, externalLink, highlight } = props;
   const isExternalLink =
     externalLink == undefined ? isExternal(href) : externalLink;
 
@@ -17,7 +17,7 @@ function FooterLink(props) {
     <>
       <a
         href={href}
-        className={styles.link}
+        className={`${styles.link} ${highlight ? styles.highlightLink : ""}`}
         target={isExternalLink ? "_blank" : "_self"}
         rel="noreferrer"
       >
@@ -49,6 +49,9 @@ FooterLink.propTypes = {
 
   // boolean value states if the nav item is external link
   externalLink: PropTypes.bool,
+
+  // boolean value states if the nav item is to be highlighted and sets the color
+  highlight: PropTypes.bool,
 };
 
 export default FooterLink;
