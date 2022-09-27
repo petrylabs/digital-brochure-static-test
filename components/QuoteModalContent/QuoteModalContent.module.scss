@@ -5,22 +5,18 @@
 
 .container {
   max-width: 100%;
-  padding: 40px 30px;
 
   width: 100vh;
   @include mq-min-width(md) {
     width: 334px;
-    padding: 40px 26px;
   }
 
   @include mq-min-width(lg) {
     width: 426px;
-    padding: 60px;
   }
 
   @include mq-min-width(xl) {
     width: 570px;
-    padding: 60px;
   }
 }
 

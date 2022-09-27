@@ -7,21 +7,17 @@
 .container {
   max-width: 100%;
   width: 100vh;
-  padding: 40px 30px;
 
   @include mq-min-width(md) {
     width: 578px;
-    padding: 40px 26px;
   }
 
   @include mq-min-width(lg) {
     width: 578px;
-    padding: 60px;
   }
 
   @include mq-min-width(xl) {
     width: 770px;
-    padding: 60px;
   }
 }
 

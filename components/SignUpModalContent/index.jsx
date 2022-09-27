@@ -39,7 +39,6 @@ function SignUpModalContent() {
     acc[key] = value;
     return acc;
   }, {});
-  console.log(data);
 
   const interestedOptions = getDelimitedOptions(data.interestedList, "\n");
 

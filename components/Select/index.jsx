@@ -21,16 +21,17 @@ function Select({ options, label }) {
   const select = useRef(null);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (select.current && !select.current.contains(event.target)) {
-        setOpen(false);
-      }
-    }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [select]);
+
+  const handleClickOutside = (event) => {
+    if (select.current && !select.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
 
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.md;
@@ -67,6 +68,7 @@ function Select({ options, label }) {
         native={false}
         variant={"outlined"}
         MenuProps={{
+          onKeyDown: (e) => e.key === "Tab" && setOpen(false),
           classes: {
             paper: isMobile ? styles.none : styles.paper,
             list: styles.menuList,
