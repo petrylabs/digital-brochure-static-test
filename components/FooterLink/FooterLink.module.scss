@@ -2,7 +2,7 @@
 @import "../../scss/globals/mixins.scss";
 
 .link {
-  // @include unstyle-link;
+  @include unstyle-link;
 
   color: $color-primary-grey;
   white-space: pre-wrap;

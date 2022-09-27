@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  */
 
 function AnimatedLink(props) {
-  const { href, title, externalLink } = props;
+  const { href, title, linkText, externalLink } = props;
   const isExternalLink =
     externalLink == undefined ? isExternal(href) : externalLink;
 
@@ -23,7 +23,7 @@ function AnimatedLink(props) {
         rel="noreferrer"
         title={title}
       >
-        <span className={styles.linkText}>{title}</span>
+        <span className={styles.linkText}>{linkText}</span>
         {isExternalLink && (
           <>
             {/* TODO: translate */}
@@ -46,8 +46,11 @@ AnimatedLink.propTypes = {
   // nav item href
   href: PropTypes.string.isRequired,
 
-  // nav item title
-  title: PropTypes.string.isRequired,
+   // strung value states if the anchor tag has the target. 
+   title: PropTypes.string,
+
+  // nav item linkText
+  linkText: PropTypes.string.isRequired,
 
   // boolean value states if the nav item is external link
   externalLink: PropTypes.bool,

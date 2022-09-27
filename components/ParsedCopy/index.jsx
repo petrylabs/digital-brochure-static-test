@@ -1,5 +1,5 @@
 import React from "react";
-import parse, { attributesToProps } from "html-react-parser";
+import parse, { domToReact, attributesToProps } from "html-react-parser";
 import PropTypes from "prop-types";
 
 import styles from "./ParsedCopy.module.scss";
@@ -22,8 +22,7 @@ function ParsedCopy(props) {
             <AnimatedLink
               href={props.href}
               title={props.title}
-              externalLink={true}
-              className={styles.sntLink}
+              // linkText={domToReact(children)}
             />
           );
         }

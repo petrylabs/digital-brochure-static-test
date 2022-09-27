@@ -13,7 +13,7 @@ import styles from "./InfoCard.module.scss";
  */
 
 function InfoCard(props) {
-  const { iconUrl, title, alt, content, externalLink = false, withBorder = false } = props;
+  const { iconUrl, title, alt, content, withBorder = false } = props;
   const src = baseUrl + iconUrl;
 
   return (
