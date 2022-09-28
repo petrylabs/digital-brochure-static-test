@@ -39,7 +39,7 @@ function Footer() {
               <ul className={styles.menuItems}>
                 {modifyMenu(menu).map((item, i) => (
                   <li key={i} className={styles.navItem}>
-                    <FooterLink href={item.url} title={item.name}/>
+                    <FooterLink href={item.url} title={item.name} />
                   </li>
                 ))}
               </ul>
@@ -72,10 +72,11 @@ function Footer() {
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
             <summary
-              className={`${styles.legalDetailsButton} ${showLegalFooter
-                ? styles.legalDetailsShow
-                : styles.legalDetailsHide
-                }`}
+              className={`${styles.legalDetailsButton} ${
+                showLegalFooter
+                  ? styles.legalDetailsShow
+                  : styles.legalDetailsHide
+              }`}
             >
               {/* TODO: translate */}
               <span>{showLegalFooter ? "Hide Legal" : "View Legal"}</span>

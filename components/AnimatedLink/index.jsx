@@ -20,7 +20,7 @@ function AnimatedLink(props) {
       className={styles.link}
     >
       <span className={styles.linkText}>{linkText}</span>
-      {target === '_blank' && (
+      {target === "_blank" && (
         <>
           {/* TODO: translate */}
           <span className="visually-hidden">This is an external link</span>
@@ -41,15 +41,14 @@ AnimatedLink.propTypes = {
   // nav item href
   href: PropTypes.string.isRequired,
 
-  // string value states if the anchor tag has the title. 
+  // string value states if the anchor tag has the title.
   title: PropTypes.string,
 
-  // string value states if the anchor tag has the text. 
+  // string value states if the anchor tag has the text.
   linkText: PropTypes.string.isRequired,
 
   // string value states what is the target value "_blank" or "_self".
-  target: PropTypes.oneOf(['_blank', '_self']).isRequired,
-
+  target: PropTypes.oneOf(["_blank", "_self"]).isRequired,
 };
 
 export default AnimatedLink;
