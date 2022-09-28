@@ -7,6 +7,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
 import CloseIcon from "../../icons/CloseIcon";
 import headerData from "../../site-data/header.preval";
+import SiteBanners from "../SiteBanners";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -76,6 +77,7 @@ function Header() {
           if (isDesktop) setIsSubmenuExpanded(false);
         }}
       >
+        <SiteBanners />
         <SkipNavLink />
 
         {/* HEADER BAR ----------------------------------------------------------- */}
