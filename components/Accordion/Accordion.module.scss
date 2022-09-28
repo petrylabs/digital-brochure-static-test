@@ -103,24 +103,4 @@ $accordion-border: 0.25px solid $color-black;
   @include mq-min-width(lg) {
     padding: 30px;
   }
-
-  a {
-    display: inline;
-    background: linear-gradient(currentColor 0 0) 0 100% /var(--d, 0) 1px no-repeat;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: none;
-
-    &:hover {
-      --d: 100%;
-      text-decoration: none;
-      transition: 0.5s;
-      background-image: linear-gradient(currentColor, currentColor);
-    }
-
-    &::before {
-      content: none;
-    }
-  }
-  
 }
