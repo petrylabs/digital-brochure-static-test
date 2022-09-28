@@ -18,6 +18,7 @@ function AnimatedLink(props) {
         target={target}
         rel="noreferrer"
         title={title}
+        className={styles.link}
       >
         <span className={styles.linkText}>{linkText}</span>
         {target === '_blank' && (
