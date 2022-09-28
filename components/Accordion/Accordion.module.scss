@@ -2,7 +2,7 @@
 @import "../../scss/globals/variables";
 @import "../../scss/globals/layout";
 
-$accordion-border: 0.25px solid $color-grey-10;
+$accordion-border: 0.25px solid $color-black;
 
 .accordion {
   box-shadow: none;
@@ -97,8 +97,30 @@ $accordion-border: 0.25px solid $color-grey-10;
 .details {
   border-top: $accordion-border;
   padding: 15px;
+  text-align: left;
+  color: $color-primary-grey;
 
   @include mq-min-width(lg) {
     padding: 30px;
   }
+
+  a {
+    display: inline;
+    background: linear-gradient(currentColor 0 0) 0 100% /var(--d, 0) 1px no-repeat;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: none;
+
+    &:hover {
+      --d: 100%;
+      text-decoration: none;
+      transition: 0.5s;
+      background-image: linear-gradient(currentColor, currentColor);
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+  
 }
