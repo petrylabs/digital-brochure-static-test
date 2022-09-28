@@ -1,31 +1,16 @@
 import React, { Fragment, useState, useContext } from "react";
-import parse from "html-react-parser";
-
 import footerData from "../../site-data/footer.preval";
 import FooterLink from "../FooterLink";
+import ParsedCopy from "../ParsedCopy";
 import styles from "./Footer.module.scss";
 import PageFooterContext from "../../context/pageFooter";
-
-/**
- * Replace <snt-link> with <FooterLink /> in copy
- * @param {string} copy
- */
-const formatLegalFooter = (copy) => {
-  return parse(copy, {
-    replace: (domNode) => {
-      const { name, attribs } = domNode;
-      if (name === "snt-link") {
-        return <FooterLink href={attribs.href} title={attribs.title} />;
-      }
-    },
-  });
-};
 
 /**
  * Footer
  * Page footer; container for navigation elements
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179049009/Footer
  */
+
 function Footer() {
   const content = footerData.data.footerMenu;
   const [showLegalFooter, setShowLegalFooter] = useState(false);
@@ -82,7 +67,7 @@ function Footer() {
 
         {/* Legal footer */}
         <div className={styles.legalFooter}>
-          {formatLegalFooter(content?.legalFooter[0]?.copy)}
+          <ParsedCopy copy={content?.legalFooter[0]?.copy} animatedLinks />
 
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
@@ -99,12 +84,12 @@ function Footer() {
 
             {content.accordionLegalFooter.map((item) => (
               <Fragment key={item.identifier}>
-                {formatLegalFooter(item.copy)}
+                <ParsedCopy copy={item.copy} animatedLinks />
               </Fragment>
             ))}
             {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
-                {formatLegalFooter(item.copy)}
+                <ParsedCopy copy={item.copy} animatedLinks />
               </Fragment>
             ))}
           </details>

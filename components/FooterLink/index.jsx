@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 /**
  * FooterLink
- * FooterLink; component to render internal and external navigation links
+ * Component to render internal and external navigation links within footer menus
  */
 function FooterLink(props) {
   const { href, title, externalLink } = props;

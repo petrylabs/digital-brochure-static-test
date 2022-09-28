@@ -4,15 +4,15 @@ function ExternalLinkIcon() {
   return (
     <svg
       width="16"
-      height="13"
-      viewBox="0 0 16 13"
+      height="16"
+      viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       strokeWidth="0.5"
       stroke="currentColor"
     >
       <path
-        d="M1.76199 8.29032V0.5H15.0968V11.2581H4.80994"
+        d="M1.76199 8.29032V0.5H15.0968V12.2581H4.80994"
         strokeLinecap="square"
       />
       <path
