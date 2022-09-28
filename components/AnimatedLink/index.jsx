@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./AnimatedLink.module.scss";
-import isExternal from "../../utils/link";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import PropTypes from "prop-types";
 
@@ -10,21 +9,18 @@ import PropTypes from "prop-types";
  */
 
 function AnimatedLink(props) {
-  const { href, title, linkText, externalLink } = props;
-  const isExternalLink =
-    externalLink == undefined ? isExternal(href) : externalLink;
+  const { href, title, linkText, target } = props;
 
   return (
     <>
       <a
         href={href}
-        className={styles.link}
-        target={isExternalLink ? "_blank" : "_self"}
+        target={target}
         rel="noreferrer"
         title={title}
       >
         <span className={styles.linkText}>{linkText}</span>
-        {isExternalLink && (
+        {target === '_blank' && (
           <>
             {/* TODO: translate */}
             <span className="visually-hidden">This is an external link</span>
@@ -46,14 +42,15 @@ AnimatedLink.propTypes = {
   // nav item href
   href: PropTypes.string.isRequired,
 
-   // strung value states if the anchor tag has the target. 
-   title: PropTypes.string,
+  // string value states if the anchor tag has the title. 
+  title: PropTypes.string,
 
-  // nav item linkText
+  // string value states if the anchor tag has the text. 
   linkText: PropTypes.string.isRequired,
 
-  // boolean value states if the nav item is external link
-  externalLink: PropTypes.bool,
+  // string value states what is the target value "_blank" or "_self"
+  target: PropTypes.string.isRequired,
+
 };
 
 export default AnimatedLink;

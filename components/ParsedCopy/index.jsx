@@ -1,13 +1,11 @@
 import React from "react";
-import parse, { domToReact, attributesToProps } from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 import PropTypes from "prop-types";
-
-import styles from "./ParsedCopy.module.scss";
 import AnimatedLink from "../AnimatedLink";
 
 /**
  * ParsedCopy
- * Parses HTML copy strings from dotCMS and replaces <snt-link> components
+ * Parses HTML copy strings from dotCMS and replaces <snt-link> components. 
  */
 
 function ParsedCopy(props) {
@@ -16,15 +14,9 @@ function ParsedCopy(props) {
   const parsingOptions = animatedLinks
     ? {
       replace: (node) => {
-        if (node.attribs && node.name === "snt-link") {
-          const props = attributesToProps(node.attribs);
-          return (
-            <AnimatedLink
-              href={props.href}
-              title={props.title}
-              // linkText={domToReact(children)}
-            />
-          );
+        const { name, attribs, children } = node;
+        if (name === "snt-link") {
+          return <AnimatedLink href={attribs.href} title={attribs.title} linkText={domToReact(children)} target={attribs.target} />
         }
       },
     }
