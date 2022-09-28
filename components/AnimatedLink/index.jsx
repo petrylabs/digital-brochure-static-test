@@ -12,30 +12,28 @@ function AnimatedLink(props) {
   const { href, title, linkText, target } = props;
 
   return (
-    <>
-      <a
-        href={href}
-        target={target}
-        rel="noreferrer"
-        title={title}
-        className={styles.link}
-      >
-        <span className={styles.linkText}>{linkText}</span>
-        {target === '_blank' && (
-          <>
-            {/* TODO: translate */}
-            <span className="visually-hidden">This is an external link</span>
-            <span
-              className={styles.icon}
-              title="This is an external link"
-              aria-hidden
-            >
-              <ExternalLinkIcon />
-            </span>
-          </>
-        )}
-      </a>
-    </>
+    <a
+      href={href}
+      target={target}
+      rel="noreferrer"
+      title={title}
+      className={styles.link}
+    >
+      <span className={styles.linkText}>{linkText}</span>
+      {target === '_blank' && (
+        <>
+          {/* TODO: translate */}
+          <span className="visually-hidden">This is an external link</span>
+          <span
+            className={styles.icon}
+            title="This is an external link"
+            aria-hidden
+          >
+            <ExternalLinkIcon />
+          </span>
+        </>
+      )}
+    </a>
   );
 }
 
