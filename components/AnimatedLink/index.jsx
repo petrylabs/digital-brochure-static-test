@@ -47,8 +47,8 @@ AnimatedLink.propTypes = {
   // string value states if the anchor tag has the text. 
   linkText: PropTypes.string.isRequired,
 
-  // string value states what is the target value "_blank" or "_self"
-  target: PropTypes.string.isRequired,
+  // string value states what is the target value "_blank" or "_self".
+  target: PropTypes.oneOf(['_blank', '_self']).isRequired,
 
 };
 
