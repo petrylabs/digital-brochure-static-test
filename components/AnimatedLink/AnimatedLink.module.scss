@@ -1,7 +1,17 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/mixins.scss";
 
-.sntLink {
+.link {
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus,
+.link:visited {
+  text-decoration: none;
+}
+
+.linkText {
   @include cta-animated-link(
     $color-primary-accent,
     $color-links,
@@ -10,4 +20,11 @@
     2px,
     1px
   );
+}
+
+.icon {
+  position: relative;
+  top: 0.3em;
+  left: 0.3em;
+  margin-right: 0.5em;
 }
