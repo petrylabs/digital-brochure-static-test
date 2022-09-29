@@ -40,7 +40,7 @@ export async function getStaticProps() {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-
+console.log(content);
   /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
   const legalFooterContent = content.filter(
@@ -101,7 +101,7 @@ export default function IndexPage(props) {
       <PartnershipSection content={content[5]} />
 
       {/* Section 6 */}
-      <section className="container bg-white">
+      <section className="container bg-white threeItemWithLargeScreenImage" style={{ paddingBottom: "13px" }}>
         <ThreeItemLayout>
           <InfoCard
             title={content[6].headline}
@@ -124,7 +124,7 @@ export default function IndexPage(props) {
             loader={customLoader}
             breakpoint={breakpoints.lg}
           />
-        </ThreeItemLayout>
+        </ThreeItemLayout>      
       </section>
 
       {/* Blog Section */}
