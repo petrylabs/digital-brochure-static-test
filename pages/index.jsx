@@ -40,7 +40,7 @@ export async function getStaticProps() {
 
 export default function IndexPage(props) {
   const { title, content } = props;
-console.log(content);
+
   /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
   const legalFooterContent = content.filter(
@@ -124,7 +124,7 @@ console.log(content);
             loader={customLoader}
             breakpoint={breakpoints.lg}
           />
-        </ThreeItemLayout>      
+        </ThreeItemLayout>   
       </section>
 
       {/* Blog Section */}
