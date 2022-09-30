@@ -76,3 +76,7 @@
 .accordionGroup {
   flex: 1;
 }
+
+.heading + p {
+  margin-bottom: 2.75em;
+}
