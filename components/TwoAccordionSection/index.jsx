@@ -48,8 +48,8 @@ function TwoAccordionSection(props) {
                 <Accordion
                   key={item.identifier}
                   id={item.identifier}
-                  details={<ParsedCopy copy={item.copy} />}
-                  summary={<ParsedCopy copy={item.headline} />}
+                  details={<ParsedCopy copy={item.copy} animatedLinks/>}
+                  summary={item.headline}
                 />
               ))}
             </AccordionGroup>
@@ -67,8 +67,8 @@ function TwoAccordionSection(props) {
                 <Accordion
                   key={item.identifier}
                   id={item.identifier}
-                  details={<ParsedCopy copy={item.copy} />}
-                  summary={<ParsedCopy copy={item.headline} />}
+                  details={<ParsedCopy copy={item.copy} animatedLinks/>}
+                  summary={item.headline}
                 />
               ))}
             </AccordionGroup>

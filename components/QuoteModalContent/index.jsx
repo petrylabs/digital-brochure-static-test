@@ -23,7 +23,7 @@ function QuoteModalContent() {
 
 
   return (
-    <article>
+    <article className={styles.container}>
       <div className={styles.text}>
         <h2>{content[0].headline}</h2>
         <ParsedCopy copy={content[0].copy} />
