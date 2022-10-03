@@ -192,6 +192,37 @@ export const getSignUpModal = () => {
 };
 
 /**
+ * Sign up modal form submission
+ * @returns API response with sign up form submission
+ */
+export const signUpSubmission = (formData) => {
+  return get(`${apiUrl}/vtl/contact`, {
+    method: "POST",
+    body: JSON.stringify(formData),
+  });
+};
+
+/**
+ * Get sign up success modal data from API
+ * @returns API response with sign up success modal data
+ */
+export const getSignUpModalSuccessContent = (languageId = 1) => {
+  return get(
+    `${apiUrl}/v1/page/render/modals/newsletter-success-modal?language_id=${languageId}`
+  );
+};
+
+/**
+ * Get sign up error modal data from API
+ * @returns API response with sign up error modal data
+ */
+export const getSignUpModalErrorContent = (languageId = 1) => {
+  return get(
+    `${apiUrl}/v1/page/render/modals/newsletter-error-modal?language_id=${languageId}`
+  );
+};
+
+/**
  * Get Get a Quote modal data
  * @returns get a quote modal data
  */

@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useReducer, useState } from "react";
+import React, { useRef } from "react";
 import parse from "html-react-parser";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useForm } from "react-hook-form";
 
 import { breakpoints } from "../../config";
 import styles from "./SignUpModalContent.module.scss";
@@ -12,13 +13,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
 import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
-
-const formReducer = (state, event) => {
-  return {
-    ...state,
-    [event.name]: event.value,
-  };
-};
+import { getDeviceType, signUpSubmission } from "../../utils";
 
 /**
  * SignUpModalContent
@@ -27,8 +22,15 @@ const formReducer = (state, event) => {
 function SignUpModalContent() {
   const fieldsData = signUpModalData.data.newsletterForm.fields;
   const googleRecaptchaKey = recaptchaSiteKeyData.data.googleRecaptchaKey;
-  const [formData, setFormData] = useReducer(formReducer, {});
-  const [submitting, setSubmitting] = useState(false);
+  const recaptchaRef = useRef(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    setValue,
+  } = useForm();
 
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
@@ -42,20 +44,33 @@ function SignUpModalContent() {
 
   const interestedOptions = getDelimitedOptions(data.interestedList, "\n");
 
-  const handleChange = (event) => {
-    setFormData({
-      name: event.target.name,
-      value: event.target.value,
-    });
-  };
-
   /* TODO: handle submission */
-  const handleSubmit = (event) => {};
+  const onSubmit = async (data) => {
+    const formData = {
+      gRecaptchaResponse: recaptchaRef.current.getValue(),
+      firstName: data.firstName,
+      lastName: data.lastName,
+      emailAddress: data.email,
+      languageCode: window.navigator.language,
+      hasOptedOutOfEmail: "false",
+      interestedIn: data.interestedIn,
+      leadSource: "Marketing Sign-Up",
+      deviceType: getDeviceType(),
+      operatingSystem: window.navigator.platform,
+    };
+    const response = await signUpSubmission(formData);
+    /**
+     * on error show error modal
+     */
+    /**
+     * on success show success modal
+     */
+  };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>{data.title}</h2>
-      <form className={styles.signUpForm} onSubmit={handleSubmit}>
+      <form className={styles.signUpForm}>
         <div className={styles.row}>
           <label htmlFor="first-name">{data.firstName}</label>
           <input
@@ -63,17 +78,16 @@ function SignUpModalContent() {
             id="first-name"
             name="firstName"
             className={styles.formControl}
-            required="required"
             aria-required="true"
             minLength={2}
             maxLength={30}
-            onChange={handleChange}
+            {...register("firstName", { required: true, maxLength: 20 })}
           ></input>
+          {errors.firstName && <div>{requiredInputMessage()}</div>}
         </div>
         <div className={styles.row}>
           <label htmlFor="last-name">{data.lastName}</label>
           <input
-            required="required"
             name="lastName"
             aria-required="true"
             minLength={1}
@@ -81,31 +95,51 @@ function SignUpModalContent() {
             type="text"
             className={styles.formControl}
             id="last-name"
-            onChange={handleChange}
+            {...register("lastName", { required: true })}
           ></input>
+          {errors?.lastName && <div>{requiredInputMessage()}</div>}
         </div>
         <div className={styles.row}>
           <label htmlFor="email-address">{data.email}</label>
           <input
-            required="required"
             name="email"
             aria-required="true"
             type="email"
             className={styles.formControl}
             id="email-address"
-            onChange={handleChange}
+            {...register("email", {
+              required: true,
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            })}
           ></input>
+          {errors && (
+            <div>
+              {errors?.email?.type == "required" && requiredInputMessage()}
+              {errors?.email?.type == "pattern" && (
+                <span className={styles.errorText}>
+                  {'Oops! Your email needs to contain an "@" and a ".".'}
+                </span>
+              )}
+            </div>
+          )}
         </div>
         <div className={styles.row}>
-          <Select options={interestedOptions} label={data.interested}></Select>
+          <Select
+            options={interestedOptions}
+            label={data.interested}
+            methods={{ control }}
+            setValue={setValue}
+            {...register("interestedIn")}
+          ></Select>
         </div>
         <div className={styles.row}>
           <span>{data.recaptchaText}</span>
         </div>
-        {/* Key needs to be replaced with Sonnet */}
-        {/** use following key for testing "6Lc1r7YhAAAAAMQ7ZHkzMyTK6yW9qz4ULKZviH9S" */}
         <div className={styles.row}>
-          <ReCAPTCHA sitekey={googleRecaptchaKey} />
+          <ReCAPTCHA ref={recaptchaRef} sitekey={googleRecaptchaKey} />
+          <div>
+            {!recaptchaRef?.current?.getValue() && requiredInputMessage()}
+          </div>
         </div>
         <div className={styles.row}>
           <span>
@@ -128,7 +162,7 @@ function SignUpModalContent() {
         <CTA
           type="primary"
           fullWidth={isMobile}
-          onClick={() => console.log("submit")}
+          onClick={handleSubmit(onSubmit)}
         >
           {data.submitButton}
         </CTA>
@@ -138,3 +172,11 @@ function SignUpModalContent() {
 }
 
 export default SignUpModalContent;
+
+const requiredInputMessage = () => {
+  return (
+    <span className={styles.errorText}>
+      Oops! Looks like you forgot to fill this in.
+    </span>
+  );
+};
