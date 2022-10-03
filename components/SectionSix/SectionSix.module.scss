@@ -1,0 +1,15 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+
+/*Used to adjust extra grid gap at bottom in small screens and background color*/
+.threeItemWithLargeScreenImage {
+  background-color: $color-white;
+  margin-bottom: -30px;
+
+  @include mq-min-width(lg){
+    margin-bottom: 0;
+  }
+}
+.container {
+  @include container;
+}

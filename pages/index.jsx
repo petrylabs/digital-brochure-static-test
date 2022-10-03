@@ -1,8 +1,6 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
-import { baseUrl, breakpoints } from "../config";
-import { customLoader } from "../utils";
 import { getPage } from "../utils/api";
 import BlogFaqSection from "../components/BlogFaqSection";
 import CTAReminderSection from "../components/CTAReminderSection";
@@ -16,6 +14,7 @@ import SplitLayout from "../components/SplitLayout";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
+import SectionSix from "../components/SectionSix";
 
 /**
  * This is the site homepage.
@@ -101,31 +100,7 @@ export default function IndexPage(props) {
       <PartnershipSection content={content[5]} />
 
       {/* Section 6 */}
-      <section className="container bg-white threeItemWithLargeScreenImage" style={{ paddingBottom: "13px" }}>
-        <ThreeItemLayout>
-          <InfoCard
-            title={content[6].headline}
-            iconUrl={content[6].fields[0].icon.url}
-            alt={content[6].fields[0].icon.altText}
-            content={content[6].copy}
-            withBorder={true}
-          />
-          <InfoCard
-            title={content[7].headline}
-            iconUrl={content[7].fields[0].icon.url}
-            alt={content[7].fields[0].icon.altText}
-            content={content[7].copy}
-            withBorder={true}
-          />
-          <LargeScreenImage
-            src={`${baseUrl}${content[8].fileAsset}`}
-            layout="fill"
-            objectFit="cover"
-            loader={customLoader}
-            breakpoint={breakpoints.lg}
-          />
-        </ThreeItemLayout>   
-      </section>
+      <SectionSix content={content}/>
 
       {/* Blog Section */}
       <BlogFaqSection

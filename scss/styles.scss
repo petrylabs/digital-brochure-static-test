@@ -272,12 +272,3 @@ cite {
 .container {
   @include container;
 }
-/*Used for ThreeItemLayout with one LargeScreenImage to adjust extra grid gap at bottom in small screens*/
-.threeItemWithLargeScreenImage {
-    margin-bottom: -30px;
-
-    @include mq-min-width(lg){
-      margin-bottom: 0;
-    }
-  
-}
