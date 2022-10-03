@@ -40,11 +40,7 @@
   text-align: center;
 }
 
-.iconImage {
-  height: 30px;
-  width: 30px;
-  @include mq-min-width(lg) {
-    height: 45px;
-    width: 45px;
-  }
+.icon-image {
+  height: 45px;
+  width: 45px;
 }
