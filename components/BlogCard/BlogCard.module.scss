@@ -54,6 +54,9 @@
 .blogContent {
   position: relative;
   padding: 15px;
+  @include mq-min-width(lg) {
+    padding: 20px;
+  }
 }
 
 .blogTitle {
@@ -78,7 +81,10 @@
 .blogMinRead {
   position: absolute;
   color: $color-hint;
-  padding-left: 20px;
+  padding-left: 15px;
+  @include mq-min-width(md) {
+    padding-left: 20px;
+  }
   bottom: 16px;
   font-size: 12px;
   line-height: 18px;
