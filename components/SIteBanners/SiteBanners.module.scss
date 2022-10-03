@@ -4,9 +4,6 @@
 
 .banner {
   padding: 10px 30px;
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
 
   @include mq-min-width(md) {
     padding-inline: 37px;
@@ -25,8 +22,7 @@
   background-color: $color-primary-accent;
   color: $color-white;
 
-  a,
-  .closeButton {
+  a {
     color: $color-white;
 
     &:hover {
@@ -46,8 +42,7 @@
     border-top: 1px solid $color-grey-08;
   }
 
-  a,
-  .closeButton {
+  a {
     &:hover {
       color: $color-primary-accent;
     }
@@ -55,22 +50,5 @@
     &:focus {
       outline: 1px solid $color-grey-08;
     }
-  }
-}
-
-.closeButton {
-  @include unstyle-button;
-
-  height: 10px;
-  width: 10px;
-  flex-shrink: 0;
-
-  &:focus {
-    outline-offset: 2px;
-  }
-
-  @include mq-min-width(lg) {
-    height: 15px;
-    width: 15px;
   }
 }
