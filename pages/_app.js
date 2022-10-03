@@ -11,6 +11,9 @@ const Modal = loadable(() => import("../components/Modal"));
 const QuoteModalContent = loadable(() =>
   import("../components/QuoteModalContent")
 );
+const SignUpModalContent = loadable(() =>
+  import("../components/SignUpModalContent")
+);
 
 /**
  * Structure for entire app!
@@ -55,7 +58,7 @@ function CustomApp({ Component, pageProps }) {
           open={isSignUpModalOpen}
           onClose={() => setIsSignUpModalOpen(false)}
         >
-          <div>hello World</div>
+          <SignUpModalContent />
         </Modal>
       </ModalContext.Provider>
     </PageFooterContext.Provider>

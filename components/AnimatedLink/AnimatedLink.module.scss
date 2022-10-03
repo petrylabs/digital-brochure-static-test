@@ -1,0 +1,30 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/mixins.scss";
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus,
+.link:visited {
+  text-decoration: none;
+}
+
+.linkText {
+  @include cta-animated-link(
+    $color-primary-accent,
+    $color-links,
+    100% 1px,
+    all 0.2s ease-in,
+    2px,
+    1px
+  );
+}
+
+.icon {
+  position: relative;
+  top: 0.3em;
+  left: 0.3em;
+  margin-right: 0.5em;
+}

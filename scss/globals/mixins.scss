@@ -42,31 +42,27 @@
   $underlineHeight
 ) {
   color: $colour;
-  text-decoration: none;
   position: relative;
   width: 100%;
   height: 1px;
-  background-image: linear-gradient($colour, $colour);
   background-position: 0 100%;
   padding-bottom: $paddingBottom;
   background-repeat: no-repeat;
   background-size: $bgSize;
 
-  &:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: $underlineHeight;
-    bottom: 0;
-    left: 0;
-    background-color: $hoverColour;
-    visibility: hidden;
-  }
+  display: inline;
+  background: linear-gradient(currentColor 0 0) 0 100% /var(--d, 0) 1px no-repeat;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: none;
 
   &:hover {
     color: $hoverColour;
     text-decoration: none;
-    background-image: linear-gradient(transparent, transparent);
+    --d: 100%;
+    text-decoration: none;
+    transition: 0.5s;
+    background-image: linear-gradient(currentColor, currentColor);
   }
 
   &:hover:before {

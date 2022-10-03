@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 
 import styles from "./Accordion.module.scss";
 import Chevron from "../../icons/Chevron";
+import ParsedCopy from "../ParsedCopy";
 
 /**
  * Accordion
@@ -16,7 +17,6 @@ import Chevron from "../../icons/Chevron";
  */
 function Accordion(props) {
   const { details, expanded, id, onChange, summary } = props;
-
   return (
     <MuiAccordion
       id={id}
@@ -42,7 +42,7 @@ function Accordion(props) {
         {summary}
       </AccordionSummary>
       <AccordionDetails id={`details${id}`} classes={{ root: styles.details }}>
-        {details}
+        <ParsedCopy copy={details.props.copy} animatedLinks />
       </AccordionDetails>
     </MuiAccordion>
   );
