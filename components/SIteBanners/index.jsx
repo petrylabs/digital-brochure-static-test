@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 
 import ParsedCopy from "../ParsedCopy";
 import styles from "./SiteBanners.module.scss";
@@ -15,10 +16,28 @@ function SiteBanners() {
     { id: 3, type: "secondary", copy: copy },
   ];
 
+  const [activeBanners, setActiveBanners] = useState([]);
+
+  useEffect(() => {
+    // make API call to identify active banner IDs
+    setActiveBanners([
+      { id: 1, type: "primary", copy: copy },
+      { id: 3, type: "secondary", copy: copy },
+    ]);
+  }, [setActiveBanners]);
+
+  const isActive = (id) => {
+    return Boolean(activeBanners.find((b) => b.id === id));
+  };
+
   return (
     <section aria-label="notifications" className={styles.section}>
-      {banners.map((b, i) => (
-        <article key={i} className={`${styles.banner} ${styles[b.type]}`}>
+      {activeBanners?.map((b, i) => (
+        <article
+          key={i}
+          className={`${styles.banner} ${styles[b.type]}`}
+          style={{ display: isActive(b.id) ? "block" : "none" }}
+        >
           <ParsedCopy copy={b.copy} animatedLinks />
         </article>
       ))}
