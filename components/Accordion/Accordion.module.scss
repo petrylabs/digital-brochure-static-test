@@ -13,8 +13,12 @@ $accordion-border: 0.25px solid $color-black;
 .summary {
   position: relative;
   background-color: $color-white;
-  padding: 17px 24px 16px 30px;
+  padding: 10px 15px;
   font-family: $font-extra-bold;
+
+  @include mq-min-width(lg) {
+    padding: 15px 24px 15px 30px;
+  }
 
   &:focus {
     background-color: $color-white;
@@ -99,6 +103,10 @@ $accordion-border: 0.25px solid $color-black;
   padding: 15px;
   text-align: left;
   color: $color-primary-grey;
+
+  @include mq-min-width(md) {
+    padding: 20px 15px;
+  }
 
   @include mq-min-width(lg) {
     padding: 30px;

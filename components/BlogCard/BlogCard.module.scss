@@ -40,10 +40,10 @@
 
 .blogTag {
   position: absolute;
+  top: 130px;
   background-color: $color-secondary-medium;
   color: $color-primary-grey;
   padding: 10px 20px;
-  top: 130px;
   font-size: 14px;
   font-family: $font-extra-bold;
   font-weight: 800;
@@ -54,6 +54,10 @@
 .blogContent {
   position: relative;
   padding: 15px;
+
+  @include mq-min-width(lg) {
+    padding: 20px;
+  }
 }
 
 .blogTitle {
@@ -77,9 +81,13 @@
 
 .blogMinRead {
   position: absolute;
-  color: $color-hint;
-  padding-left: 20px;
   bottom: 16px;
+  color: $color-hint;
+  padding-left: 15px;
   font-size: 12px;
   line-height: 18px;
+
+  @include mq-min-width(md) {
+    padding-left: 20px;
+  }
 }

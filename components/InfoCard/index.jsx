@@ -6,6 +6,8 @@ import { baseUrl } from "../../config.js";
 import { customLoader } from "../../utils/images";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./InfoCard.module.scss";
+import useWindowWidth from "../../hooks/useWindowWidth.js";
+import { breakpoints } from "../../config";
 
 /**
  * InfoCard
@@ -15,6 +17,8 @@ import styles from "./InfoCard.module.scss";
 function InfoCard(props) {
   const { iconUrl, title, alt, content, withBorder = false } = props;
   const src = baseUrl + iconUrl;
+  const screenWidth = useWindowWidth();
+  const size = screenWidth < breakpoints.lg ? "30" : "45";
 
   return (
     <div
@@ -25,8 +29,8 @@ function InfoCard(props) {
           loader={customLoader}
           src={src}
           alt={alt}
-          width={45}
-          height={45}
+          width={size}
+          height={size}
         />
       </div>
       <h3 className={styles.h3}>{title}</h3>

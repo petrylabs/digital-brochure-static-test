@@ -1,0 +1,14 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+
+.section {
+  @include container;
+
+  background-color: $color-white;
+  margin-bottom: -30px;
+  padding-bottom: 13px !important;
+
+  @include mq-min-width(lg) {
+    margin-bottom: 0;
+  }
+}
