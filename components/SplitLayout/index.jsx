@@ -6,6 +6,8 @@ import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import LargeScreenImage from "../LargeScreenImage";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./SplitLayout.module.scss";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import { breakpoints } from "../../config";
 
 /**
  * SplitLayout
@@ -15,10 +17,18 @@ import styles from "./SplitLayout.module.scss";
 function SplitLayout(props) {
   const { content, hideImageOnMobile, imageRight } = props;
   const { headline, copy, url, cta } = content;
+  const screenWidth = useWindowWidth();
 
-  const imageString = content?.fields[0].hasOwnProperty("image")
+  var imageString = content?.fields[0].hasOwnProperty("image")
     ? "image"
-    : "featureImage";
+    : "featureImage"; 
+    
+    /*Use imageSmall src when it's available for mobile/tablet screens*/ 
+    if(screenWidth < breakpoints.md) {
+      if(content?.fields[0].imageSmall?.fileAsset){
+        imageString="imageSmall";
+      }
+    }
 
   const imageProps = {
     loader: customLoader,
