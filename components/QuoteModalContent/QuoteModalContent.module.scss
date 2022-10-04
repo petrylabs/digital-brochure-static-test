@@ -108,10 +108,14 @@
 }
 
 .plus {
-  margin-inline: 15px;
+  margin-inline: 10px;
   font-size: 10px;
   padding-top: 6px;
   font-family: "icomoon" !important;
+ 
+  @include mq-min-width(lg){
+    margin-inline: 15px;
+  }
 
   &::before {
     content: "\e968";
