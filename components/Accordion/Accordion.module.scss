@@ -13,7 +13,7 @@ $accordion-border: 0.25px solid $color-black;
 .summary {
   position: relative;
   background-color: $color-white;
-  padding: 10px 15px 10px 15px;
+  padding: 10px 15px;
   font-family: $font-extra-bold;
 
   @include mq-min-width(lg) {
@@ -105,14 +105,10 @@ $accordion-border: 0.25px solid $color-black;
   color: $color-primary-grey;
 
   @include mq-min-width(md) {
-    padding: 20px 15px 20px 15px;
+    padding: 20px 15px;
   }
 
   @include mq-min-width(lg) {
     padding: 30px;
-  }
-
-  strong {
-    font-family: "Averta-ExtraBold", Arial, Helvetica, sans-serif;
   }
 }
