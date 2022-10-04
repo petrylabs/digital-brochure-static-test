@@ -104,7 +104,7 @@ function LandingPage(props) {
       <ThreeColumnsSection
         introContent={commonContent[5]}
         columnContent={commonContent[6]}
-        className="bg-white"
+        onWhite
       />
 
       {/* Partnership Section (6) */}
