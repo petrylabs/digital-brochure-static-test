@@ -15,6 +15,11 @@ import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
 import { getDeviceType, signUpSubmission } from "../../utils";
 
+const ErrorMessages = {
+  InputRequired: "Oops! Looks like you forgot to fill this in.",
+  InvalidEmail: 'Oops! Your email needs to contain an "@" and a ".".',
+};
+
 /**
  * SignUpModalContent
  * The body of the "Sign up" modal (displayed inside a `Modal`)
@@ -27,10 +32,11 @@ function SignUpModalContent() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     control,
-    setValue,
-  } = useForm();
+  } = useForm({
+    reValidateMode: "onSubmit",
+  });
 
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.sm;
@@ -117,7 +123,7 @@ function SignUpModalContent() {
               {errors?.email?.type == "required" && requiredInputMessage()}
               {errors?.email?.type == "pattern" && (
                 <span className={styles.errorText}>
-                  {'Oops! Your email needs to contain an "@" and a ".".'}
+                  {ErrorMessages.InvalidEmail}
                 </span>
               )}
             </div>
@@ -128,7 +134,6 @@ function SignUpModalContent() {
             options={interestedOptions}
             label={data.interested}
             methods={{ control }}
-            setValue={setValue}
             {...register("interestedIn")}
           ></Select>
         </div>
@@ -136,9 +141,14 @@ function SignUpModalContent() {
           <span>{data.recaptchaText}</span>
         </div>
         <div className={styles.row}>
-          <ReCAPTCHA ref={recaptchaRef} sitekey={googleRecaptchaKey} />
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={"6Lc1r7YhAAAAAMQ7ZHkzMyTK6yW9qz4ULKZviH9S"}
+          />
           <div>
-            {!recaptchaRef?.current?.getValue() && requiredInputMessage()}
+            {isSubmitted &&
+              !recaptchaRef?.current?.getValue() &&
+              requiredInputMessage()}
           </div>
         </div>
         <div className={styles.row}>
@@ -175,8 +185,6 @@ export default SignUpModalContent;
 
 const requiredInputMessage = () => {
   return (
-    <span className={styles.errorText}>
-      Oops! Looks like you forgot to fill this in.
-    </span>
+    <span className={styles.errorText}>{ErrorMessages.InputRequired}</span>
   );
 };

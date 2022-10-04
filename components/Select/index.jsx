@@ -14,9 +14,10 @@ import styles from "./Select.module.scss";
  * Select
  * Select input field wrapper on MUI select
  */
-function Select({ options, label, methods, setValue }) {
+function Select({ options, label, methods }) {
   const [isMenuModalOpen, setMenuModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   const select = useRef(null);
 
@@ -36,17 +37,13 @@ function Select({ options, label, methods, setValue }) {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < breakpoints.md;
 
-  const handleSelect = (e) => {
-    setOpen(false);
-    setValue(e.target.value);
-  };
-
   const handleOpen = () => {
     isMobile ? setMenuModalOpen(true) : setOpen(true);
   };
 
   const handleMenuItemClick = (e) => {
     isMobile ? setMenuModalOpen(false) : setOpen(false);
+    setValue(e.target.textContent);
   };
 
   return (
@@ -55,7 +52,7 @@ function Select({ options, label, methods, setValue }) {
       <Controller
         name="interestedIn"
         control={methods.control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange } }) => (
           <>
             <MuiSelect
               id="select"
@@ -85,9 +82,7 @@ function Select({ options, label, methods, setValue }) {
                 },
               }}
             >
-              {MenuItemList(options, value, (e) =>
-                onChange(e.target.textContent)
-              )}
+              {MenuItemList(options, value, handleMenuItemClick)}
             </MuiSelect>
             {isMobile && (
               <SelectModal
@@ -96,9 +91,7 @@ function Select({ options, label, methods, setValue }) {
                 onClose={() => setMenuModalOpen(false)}
               >
                 <div className={styles.modalContainer}>
-                  {MenuItemList(options, value, (e) => {
-                    return onChange(e.target.textContent);
-                  })}
+                  {MenuItemList(options, value, handleMenuItemClick)}
                 </div>
               </SelectModal>
             )}

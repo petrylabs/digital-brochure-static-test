@@ -17,14 +17,14 @@
   }
 
   @include mq-min-width(xl) {
-    width: 770px;
+    width: 650px;
   }
 }
 
 .errorText {
-  font-family: "Averta-Regular", sans-serif;
+  font-family: $font-regular;
   margin-top: 5px;
-  color: #e12160;
+  color: $color-error;
   font-size: 12px;
   position: absolute;
 }
@@ -42,7 +42,7 @@
     width: 100%;
     margin-bottom: 30px;
     font-size: 14px;
-    
+
     @include mq-min-width(lg) {
       font-size: 16px;
     }
@@ -61,7 +61,8 @@
     height: 38px;
     padding: 0.375rem 0.75rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    font-size: inherit;
+    font-family: $font-regular;
+    font-size: 1rem;
   }
 
   .formControl:focus {
