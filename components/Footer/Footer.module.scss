@@ -50,6 +50,10 @@
     padding-bottom: 10px;
     width: 100%;
     text-align: left;
+    
+    @include mq-min-width(lg) {
+      font-size: 14px;
+    }
   }
 
   .navItem:last-child {
