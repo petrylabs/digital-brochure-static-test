@@ -1,13 +1,12 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/layout.scss";
 
-/*Used to adjust extra grid gap at bottom in small screens and background color*/
 .section {
   @include container;
 
   background-color: $color-white;
   margin-bottom: -30px;
-  padding-bottom: 13px;
+  padding-bottom: 13px !important;
 
   @include mq-min-width(lg) {
     margin-bottom: 0;
