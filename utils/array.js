@@ -11,3 +11,18 @@ export function evenIndexBeforeOdd(array) {
 
   return [...evens, ...odds];
 }
+
+/**
+ * Converts delimited string input to list of options
+ * @param {*} listString eg: "No Month|blank\nJanuary|jan\nFebrurary|feb\nMarch|mar\nApril|apr\nMay|may\nJune|jun\nJuly|jul\nAugust|aug\nSeptember|sept\nOctober|oct\nNovember|nov\nDecember|dec"
+ */
+export const getDelimitedOptions = (listString, delimiter) => {
+  const listArray = listString.split(delimiter);
+  return listArray.map((x) => {
+    const data = x.split("|");
+    return {
+      key: data[0],
+      value: data[1],
+    };
+  });
+};

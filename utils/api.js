@@ -191,7 +191,7 @@ export const getFooter = () => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with sign up modal data
  */
-export const getNewsLetterModal = () => {
+export const getSignUpModal = () => {
   return get(`${apiUrl}/vtl/newsletterform`);
 };
 
@@ -262,4 +262,8 @@ export const getSearchResults = () => {
     body: raw,
     redirect: "follow",
   });
+};
+
+export const getRecaptchaSiteKey = () => {
+  return get(`${apiUrl}/vtl/googleRecaptchaKey`);
 };

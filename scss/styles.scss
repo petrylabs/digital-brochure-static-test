@@ -159,6 +159,11 @@ p {
   }
 }
 
+b,
+strong {
+  font-family: $font-extra-bold;
+}
+
 /* LINKS */
 
 a {

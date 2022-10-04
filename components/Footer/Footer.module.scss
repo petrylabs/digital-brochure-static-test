@@ -36,6 +36,10 @@
   @include mq-min-width(md) {
     margin-bottom: 1.25em;
   }
+
+  @include mq-min-width(lg) {
+    margin-bottom: 30px;
+  }
 }
 
 .menuItems {
@@ -94,10 +98,6 @@
     line-height: 1.5;
     margin-bottom: 0.475em;
   }
-
-  a {
-    color: $color-primary-accent;
-  }
 }
 
 .legalDetailsButton {
@@ -105,7 +105,8 @@
   display: inline-flex;
   align-items: center;
   font-family: $font-regular;
-  padding: 3px;
+  padding: 0 3px 0 3px;
+  margin-top: 10px;
   margin-bottom: 0.475em;
   font-size: 12px;
 

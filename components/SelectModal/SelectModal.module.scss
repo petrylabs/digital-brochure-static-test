@@ -1,0 +1,53 @@
+@import "../../scss/globals/color";
+@import "../../scss/globals/buttons";
+@import "../../scss/globals/layout";
+
+.header {
+  border-bottom: 1px solid $color-primary-grey;
+  height: 72px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  background-color: $color-white;
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100vh;
+}
+
+.closeButton {
+  @include unstyle-button;
+
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0px 20px 0px 15px;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-grey-06;
+    .closeIcon {
+      color: $color-links;
+    }
+  }
+
+  span {
+    font-family: $font-extra-bold;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .closeIcon {
+    margin-inline: 10px;
+    margin-right: 8px;
+    font-family: "icomoon";
+    &::before {
+      content: "\e94c";
+    }
+  }
+}

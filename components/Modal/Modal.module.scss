@@ -11,21 +11,22 @@
   position: relative;
   background-color: $color-white;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  width: 100vw;
   max-width: 100%;
   min-height: 100vh;
-  padding: 40px 30px;
   margin: auto;
   outline: none;
+  padding: 40px 30px;
 
   @include mq-min-width(md) {
     min-height: 0;
-    width: 334px;
     padding: 40px 26px;
   }
 
   @include mq-min-width(lg) {
-    width: 426px;
+    padding: 60px;
+  }
+
+  @include mq-min-width(xl) {
     padding: 60px;
   }
 }
@@ -36,7 +37,7 @@
   position: absolute;
   top: 17px;
   right: 17px;
-  color: $color-black;
+  color: $color-primary-accent;
   outline: none;
 
   svg {
@@ -47,5 +48,9 @@
 
   &:hover {
     color: $color-links;
+  }
+  &:focus-within {
+    outline: 1px dashed;
+    outline-offset: 3px;
   }
 }

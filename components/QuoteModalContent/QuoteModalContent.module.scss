@@ -3,11 +3,28 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/layout.scss";
 
+.container {
+  max-width: 100%;
+
+  width: 100vh;
+  @include mq-min-width(md) {
+    width: 334px;
+  }
+
+  @include mq-min-width(lg) {
+    width: 426px;
+  }
+
+  @include mq-min-width(xl) {
+    width: 570px;
+  }
+}
+
 .text {
   text-align: center;
   margin-bottom: 26px;
 
-  h1 {
+  h2 {
     margin-bottom: 10px;
 
     @include mq-min-width(lg) {
@@ -81,18 +98,23 @@
 }
 
 .linkPanel {
-  padding: 26px;
+  padding: 15px;
+}
 
-  @include mq-min-width(lg) {
-    padding: 30px;
-  }
+.iconPanel {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .plus {
   margin-inline: 10px;
+  font-size: 10px;
+  padding-top: 6px;
+  font-family: "icomoon" !important;
 
   &::before {
-    content: "\2795";
+    content: "\e968";
   }
 }
 
@@ -100,6 +122,5 @@
   svg {
     position: relative;
     left: 0.2em;
-    bottom: 0.2em;
   }
 }

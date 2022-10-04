@@ -1,21 +1,19 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
+import { getPage } from "../utils/api";
 import BlogFaqSection from "../components/BlogFaqSection";
 import CTAReminderSection from "../components/CTAReminderSection";
 import InfoCard from "../components/InfoCard";
-import LargeScreenImage from "../components/LargeScreenImage";
 import PageFooterContext from "../context/pageFooter";
 import PageHero from "../components/PageHero";
 import PartnershipSection from "../components/PartnershipSection";
+import SectionSix from "../components/SectionSix";
 import SignUpSection from "../components/SignUpSection";
 import SplitLayout from "../components/SplitLayout";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
-import { baseUrl, breakpoints } from "../config";
-import { customLoader } from "../utils";
-import { getPage } from "../utils/api";
 
 /**
  * This is the site homepage in English.
@@ -102,32 +100,8 @@ export default function IndexPage(props) {
       {/* Partnership Section */}
       <PartnershipSection content={content[5]} />
 
-      {/* Section 6 */}
-      <section className="container bg-white">
-        <ThreeItemLayout>
-          <InfoCard
-            title={content[6].headline}
-            iconUrl={content[6].fields[0].icon.url}
-            alt={content[6].fields[0].icon.altText}
-            content={content[6].copy}
-            withBorder={true}
-          />
-          <InfoCard
-            title={content[7].headline}
-            iconUrl={content[7].fields[0].icon.url}
-            alt={content[7].fields[0].icon.altText}
-            content={content[7].copy}
-            withBorder={true}
-          />
-          <LargeScreenImage
-            src={`${baseUrl}${content[8].fileAsset}`}
-            layout="fill"
-            objectFit="cover"
-            loader={customLoader}
-            breakpoint={breakpoints.lg}
-          />
-        </ThreeItemLayout>
-      </section>
+      {/* Section 6 (for content items 6,7,8) */}
+      <SectionSix content={content} />
 
       {/* Blog Section */}
       <BlogFaqSection
