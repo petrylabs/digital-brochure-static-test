@@ -193,6 +193,7 @@ export const getSignUpModal = () => {
 
 /**
  * Sign up modal form submission
+ * @param {object} formData sign up form data
  * @returns API response with sign up form submission
  */
 export const signUpSubmission = (formData) => {
@@ -204,6 +205,7 @@ export const signUpSubmission = (formData) => {
 
 /**
  * Get sign up success modal data from API
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with sign up success modal data
  */
 export const getSignUpModalSuccessContent = (languageId = 1) => {
@@ -214,11 +216,23 @@ export const getSignUpModalSuccessContent = (languageId = 1) => {
 
 /**
  * Get sign up error modal data from API
+ * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with sign up error modal data
  */
 export const getSignUpModalErrorContent = (languageId = 1) => {
   return get(
     `${apiUrl}/v1/page/render/modals/newsletter-error-modal?language_id=${languageId}`
+  );
+};
+
+/**
+ * Get sign up error modal data from API
+ * @param {string} languageId lamg key ("en" or "fr")
+ * @returns API response with sign up error modal data
+ */
+export const getFormErrors = (languageId = 1) => {
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:FormErrors +languageId:${languageId}`
   );
 };
 

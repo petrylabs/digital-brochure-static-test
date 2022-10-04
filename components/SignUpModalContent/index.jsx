@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { breakpoints } from "../../config";
 import styles from "./SignUpModalContent.module.scss";
 import signUpModalData from "../../site-data/signUpModal.preval";
+import formErrorData from "../../site-data/formErrors.preval";
 import recaptchaSiteKeyData from "../../site-data/recaptchaSiteKey.preval";
 import FooterLink from "../FooterLink";
 import useWindowWidth from "../../hooks/useWindowWidth";
@@ -15,17 +16,17 @@ import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
 import { getDeviceType, signUpSubmission } from "../../utils";
 
-const ErrorMessages = {
-  InputRequired: "Oops! Looks like you forgot to fill this in.",
-  InvalidEmail: 'Oops! Your email needs to contain an "@" and a ".".',
-};
-
 /**
  * SignUpModalContent
  * The body of the "Sign up" modal (displayed inside a `Modal`)
  */
 function SignUpModalContent() {
   const fieldsData = signUpModalData.data.newsletterForm.fields;
+  const formErrors = formErrorData.data.contentlets;
+
+  const { errorEmail, errorEmptyValue, errorRecaptchaVerification } =
+    getErrorMessages(formErrors);
+
   const googleRecaptchaKey = recaptchaSiteKeyData.data.googleRecaptchaKey;
   const recaptchaRef = useRef(null);
 
@@ -89,7 +90,15 @@ function SignUpModalContent() {
             maxLength={30}
             {...register("firstName", { required: true, maxLength: 20 })}
           ></input>
-          {errors.firstName && <div>{requiredInputMessage()}</div>}
+          {errors.firstName && (
+            <div>
+              {
+                <span className={styles.errorText}>
+                  {errorEmptyValue.value}
+                </span>
+              }
+            </div>
+          )}
         </div>
         <div className={styles.row}>
           <label htmlFor="last-name">{data.lastName}</label>
@@ -103,7 +112,15 @@ function SignUpModalContent() {
             id="last-name"
             {...register("lastName", { required: true })}
           ></input>
-          {errors?.lastName && <div>{requiredInputMessage()}</div>}
+          {errors?.lastName && (
+            <div>
+              {
+                <span className={styles.errorText}>
+                  {errorEmptyValue.value}
+                </span>
+              }
+            </div>
+          )}
         </div>
         <div className={styles.row}>
           <label htmlFor="email-address">{data.email}</label>
@@ -120,11 +137,13 @@ function SignUpModalContent() {
           ></input>
           {errors && (
             <div>
-              {errors?.email?.type == "required" && requiredInputMessage()}
-              {errors?.email?.type == "pattern" && (
+              {errors?.email?.type == "required" && (
                 <span className={styles.errorText}>
-                  {ErrorMessages.InvalidEmail}
+                  {errorEmptyValue.value}
                 </span>
+              )}
+              {errors?.email?.type == "pattern" && (
+                <span className={styles.errorText}>{errorEmail.value}</span>
               )}
             </div>
           )}
@@ -141,14 +160,13 @@ function SignUpModalContent() {
           <span>{data.recaptchaText}</span>
         </div>
         <div className={styles.row}>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={"6Lc1r7YhAAAAAMQ7ZHkzMyTK6yW9qz4ULKZviH9S"}
-          />
+          <ReCAPTCHA ref={recaptchaRef} sitekey={googleRecaptchaKey} />
           <div>
-            {isSubmitted &&
-              !recaptchaRef?.current?.getValue() &&
-              requiredInputMessage()}
+            {isSubmitted && !recaptchaRef?.current?.getValue() && (
+              <span className={styles.errorText}>
+                {errorRecaptchaVerification.value}
+              </span>
+            )}
           </div>
         </div>
         <div className={styles.row}>
@@ -183,8 +201,9 @@ function SignUpModalContent() {
 
 export default SignUpModalContent;
 
-const requiredInputMessage = () => {
-  return (
-    <span className={styles.errorText}>{ErrorMessages.InputRequired}</span>
-  );
+const getErrorMessages = (formErrorData) => {
+  return formErrorData.reduce((acc, error) => {
+    let { key } = error;
+    return { ...acc, [key]: [...(acc[key] || []), error][0] };
+  }, {});
 };
