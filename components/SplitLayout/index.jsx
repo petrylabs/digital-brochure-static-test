@@ -25,8 +25,11 @@ function SplitLayout(props) {
     
     /*Use imageSmall src when it's available for mobile/tablet screens*/ 
     if(screenWidth < breakpoints.md) {
-      if(content?.fields[0].imageSmall?.fileAsset){
+      if(content?.fields[0].imageSmall?.fileAsset) {
         imageString="imageSmall";
+      }
+      if(content?.fields[0].featureImageSmall?.fileAsset) {
+        imageString="featureImageSmall";
       }
     }
 
