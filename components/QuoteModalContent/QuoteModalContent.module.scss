@@ -132,6 +132,9 @@
   svg {
     position: relative;
     left: 0.2em;
+    path {
+      stroke-width: 0.7;
+    }
   }
 }
 .spacings {
