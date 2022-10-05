@@ -16,10 +16,10 @@ function SiteBanners() {
   useEffect(() => {
     async function fetchBanners() {
       const fetched = await getSiteBanners();
-      const actives = fetched.data.contentlets.filter(
-        (b) => b.active === "true"
-      );
-      setActiveBanners(actives);
+      const activeSorted = fetched.data.contentlets
+        .filter((b) => b.active === "true")
+        .sort((a, b) => b.order - a.order);
+      setActiveBanners(activeSorted);
       setIsMounted(true);
     }
     fetchBanners();
