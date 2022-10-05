@@ -21,7 +21,8 @@ https://economical.atlassian.net/browse/SKY-198
 - [Husky](https://github.com/typicode/husky) for pre-commit hooks
 - [dotCMS](https://www.dotcms.com/) for content management
 - [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding.
-- [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wide data
+- [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site-wide data, which cannot get fetched by pages via `getStaticProps`
+- [html-react-parser](https://github.com/remarkablemark/html-react-parser) for rendering strings of HTML, returned by dotCMS for any content produced in a WYSIWYG editor
 
 ---
 
@@ -35,10 +36,11 @@ You will need:
 
 1. Clone this repository using SSH
 1. Run `npm install` in the project directory
-1. Create a `.env` file and add the following code (with your own dotCMS access credentials):
+1. Create a `.env.local` file and add the following code (with your own dotCMS access credentials):
    ```
-   NODE_ENV=production
+   NODE_ENV=development
    DOTCMS_HOST=https://dev-economical.dotcmscloud.com/api
+   NEXT_PUBLIC_DOTCMS_HOST=https://dev-economical.dotcmscloud.com/api
    DOTCMS_USERNAME=
    DOTCMS_PASSWORD=
    ```
@@ -51,9 +53,10 @@ You will need:
 - `/hooks`: React hooks
 - `/icons`: SVG icons as React components
 - `/pages`: static page templates
+- `/public`: static asset files to be served as-is
 - `/scss`: style files
+- `/site-data`: Preval files, for prefetched site-wide data for header, footer, modals, etc.
 - `/utils`: utility & helper functions
-- `/site-data`: prefetched site wide data for header, footer and modals
 
 ## Git strategy
 
