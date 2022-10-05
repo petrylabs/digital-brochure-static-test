@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import banners from "../../site-data/banners.preval";
+import { getSiteBanners } from "../../utils/api";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./SiteBanners.module.scss";
 
@@ -9,40 +10,39 @@ import styles from "./SiteBanners.module.scss";
  * Manages and displays site banners at the top of the page
  */
 function SiteBanners() {
-  const copy = `<p><b>Heads up!</b> Our site is currently unavailable while we make some updates. Sorry for the inconvenience. We will be back up as soon as we can. <a href="#">Learn more</a>.</p>`;
-  const banners = [
-    { id: 1, type: "primary", copy: copy },
-    { id: 2, type: "secondary", copy: copy },
-    { id: 3, type: "secondary", copy: copy },
-  ];
-
-  const [activeBanners, setActiveBanners] = useState([]);
+  const [isMounted, setIsMounted] = useState(false);
+  const [activeBanners, setActiveBanners] = useState(banners.data.contentlets);
 
   useEffect(() => {
-    // make API call to identify active banner IDs
-    setActiveBanners([
-      { id: 1, type: "primary", copy: copy },
-      { id: 3, type: "secondary", copy: copy },
-    ]);
-  }, [setActiveBanners]);
+    async function fetchBanners() {
+      const fetched = await getSiteBanners();
+      const actives = fetched.data.contentlets.filter(
+        (b) => b.active === "true"
+      );
+      setActiveBanners(actives);
+      setIsMounted(true);
+    }
+    fetchBanners();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const isActive = (id) => {
-    return Boolean(activeBanners.find((b) => b.id === id));
-  };
+  if (isMounted) {
+    return (
+      <section aria-label="notifications" className={styles.section}>
+        {activeBanners?.length > 0 &&
+          activeBanners?.map((b) => (
+            <article
+              key={b.id}
+              className={`${styles.banner} ${styles[b.type]}`}
+            >
+              <ParsedCopy copy={b.copy} animatedLinks />
+            </article>
+          ))}
+      </section>
+    );
+  }
 
-  return (
-    <section aria-label="notifications" className={styles.section}>
-      {activeBanners?.map((b, i) => (
-        <article
-          key={i}
-          className={`${styles.banner} ${styles[b.type]}`}
-          style={{ display: isActive(b.id) ? "block" : "none" }}
-        >
-          <ParsedCopy copy={b.copy} animatedLinks />
-        </article>
-      ))}
-    </section>
-  );
+  return <div />;
 }
 
 export default SiteBanners;
