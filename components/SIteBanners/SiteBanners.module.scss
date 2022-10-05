@@ -16,39 +16,39 @@
   @include mq-min-width(xl) {
     padding-inline: 135px;
   }
-}
 
-.primary {
-  background-color: $color-primary-accent;
-  color: $color-white;
-
-  a {
+  &:first-child {
+    background-color: $color-primary-accent;
     color: $color-white;
 
-    &:hover {
-      color: $color-secondary-light;
-    }
+    a {
+      color: $color-white;
 
-    &:focus {
-      outline: 1px solid $color-white;
+      &:hover {
+        color: $color-secondary-light;
+      }
+
+      &:focus {
+        outline: 1px solid $color-white;
+      }
     }
   }
-}
 
-.secondary {
-  background-color: $color-grey-03;
+  &:not(:first-child) {
+    background-color: $color-grey-03;
 
-  + .secondary {
-    border-top: 1px solid $color-grey-08;
-  }
-
-  a {
-    &:hover {
-      color: $color-primary-accent;
+    + .banner {
+      border-top: 1px solid $color-grey-08;
     }
 
-    &:focus {
-      outline: 1px solid $color-grey-08;
+    a {
+      &:hover {
+        color: $color-primary-accent;
+      }
+
+      &:focus {
+        outline: 1px solid $color-grey-08;
+      }
     }
   }
 }

@@ -28,13 +28,10 @@ function SiteBanners() {
 
   if (isMounted) {
     return (
-      <section aria-label="notifications" className={styles.section}>
+      <section aria-label="notifications">
         {activeBanners?.length > 0 &&
           activeBanners?.map((b) => (
-            <article
-              key={b.id}
-              className={`${styles.banner} ${styles[b.type]}`}
-            >
+            <article key={b.identifier} className={styles.banner}>
               <ParsedCopy copy={b.copy} animatedLinks />
             </article>
           ))}
