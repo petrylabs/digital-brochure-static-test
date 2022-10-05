@@ -11,7 +11,6 @@ async function get(url, options = {}) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // TODO: update below with API key
         Authorization:
           "Basic " +
           Buffer.from(
@@ -142,7 +141,7 @@ export function getContentRelationshipData(identifier, languageId) {
 /**
  * Get related accordion widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId
  * @returns API response with the related content
  */
 export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
@@ -156,7 +155,7 @@ export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
 /**
  * Get related testimonial widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId
  * @returns API response with the related content
  */
 export function getTestimonialWidgetData(tagString, languageId) {
@@ -164,6 +163,18 @@ export function getTestimonialWidgetData(tagString, languageId) {
   const tagQuery = tags.map((x) => `+Testimonial.tags:"${x}"`).join(" ");
   return get(
     `${apiUrl}/content/render/false/query/+contentType:Testimonial ${tagQuery} +languageId:${languageId} +deleted:false +working:true/orderby/score,modDate desc`
+  );
+}
+
+/**
+ * Get all content items of type "Banner"
+ * Uses public API URL because it is called client side
+ * @param {string} languageId
+ * @returns {object} with an array of Banners as "contentlets"
+ */
+export function getSiteBanners(languageId = 1) {
+  return get(
+    `${process.env.NEXT_PUBLIC_DOTCMS_HOST}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
   );
 }
 
