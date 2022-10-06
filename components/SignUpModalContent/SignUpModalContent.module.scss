@@ -33,13 +33,17 @@
     flex-direction: column;
     width: 100%;
     margin-bottom: 30px;
+    font-size: 14px;
+    
+    @include mq-min-width(lg) {
+      font-size: 16px;
+    }
   }
 
   label {
     font-family: $font-extra-bold;
     font-weight: 500;
     margin-bottom: 5px;
-    font-size: 16px;
   }
 
   .formControl {
@@ -49,6 +53,7 @@
     height: 38px;
     padding: 0.375rem 0.75rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: inherit;
   }
 
   .formControl:focus {
