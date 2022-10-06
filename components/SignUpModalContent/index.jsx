@@ -58,7 +58,7 @@ function SignUpModalContent() {
       firstName: data.firstName,
       lastName: data.lastName,
       emailAddress: data.email,
-      languageCode: window.navigator.language,
+      languageCode: window.navigator.language == "en-us" ? "en_CA" : "fr_CA",
       hasOptedOutOfEmail: "false",
       interestedIn: data.interestedIn,
       leadSource: "Marketing Sign-Up",
