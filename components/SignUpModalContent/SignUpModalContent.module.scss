@@ -39,7 +39,11 @@
     font-family: $font-extra-bold;
     font-weight: 500;
     margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 14px;
+    
+    @include mq-min-width(lg) {
+      font-size: 16px;
+    }
   }
 
   .formControl {
