@@ -28,6 +28,7 @@
     font-family: "icomoon" !important;
     font-size: 16px;
     transform: translate(3px, 4px);
+    height: 0; // Prevents the outline from dropping below the baseline on Chrome
   }
 }
 
