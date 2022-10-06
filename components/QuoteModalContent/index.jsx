@@ -81,6 +81,7 @@ function QuoteModalContent() {
 
         {/* Pet */}
         <li>
+          <div className={styles.spacings}>
           <a
             href={menuItem(4)?.menuItem.url}
             target={menuItem(4)?.menuItem.urlTarget}
@@ -99,6 +100,7 @@ function QuoteModalContent() {
               </div>
             </div>
           </a>
+          </div>
         </li>
       </ul>
     </article>
