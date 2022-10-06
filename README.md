@@ -22,6 +22,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [dotCMS](https://www.dotcms.com/) for content management
 - [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding.
 - [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site wide data
+- [react-hook-form](https://github.com/react-hook-form/react-hook-form) for creating and validating forms
 
 ---
 
@@ -106,6 +107,10 @@ To maintain consistent styling patterns within the app (i.e. relying on CSS Modu
 ```jsx
 <Modal classes={{ root: styles.root }}>{/* modal content */}</Modal>
 ```
+
+### Forms
+
+React Hook Form library is used to create performant, flexible and extensible forms with easy-to-use validation.
 
 ## Deployment
 
