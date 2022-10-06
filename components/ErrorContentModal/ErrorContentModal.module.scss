@@ -1,0 +1,40 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables";
+
+.contentSection {
+  text-align: center;
+  @include dialogContainer;
+  h2 {
+    font-size: 1.5rem;
+    @include mq-min-width(smd) {
+      font-size: 1.563rem;
+      line-height: 30px;
+    }
+    @include mq-min-width(lg) {
+      font-size: 1.75rem;
+      line-height: 38px;
+    }
+    @include mq-min-width(xl) {
+      font-size: 2.375rem;
+      line-height: 47px;
+    }
+  }
+  p {
+    padding-top: 15px;
+    @include mq-min-width(lg) {
+      padding-top: 25px;
+    }
+    @include mq-min-width(xl) {
+      padding-top: 30px;
+    }
+  }
+}
+
+.buttonContainer {
+  padding-bottom: 0.813em;
+  @include mq-min-width(md) {
+    display: inline-block;
+    text-align: center;
+  }
+}

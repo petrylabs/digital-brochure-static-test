@@ -36,6 +36,41 @@ $breakpoints: (
   }
 }
 
+/* Container that handles width for dialog modals responsively */
+@mixin dialogContainer() {
+  max-width: 100%;
+  width: 100vw;
+  @include mq-min-width(md) {
+    width: 282px;
+  }
+
+  @include mq-min-width(lg) {
+    width: 306px;
+  }
+
+  @include mq-min-width(xl) {
+    width: 450px;
+  }
+}
+
+/* Container that handles width for form modals responsively */
+@mixin formContainer() {
+  max-width: 100%;
+  width: 100vw;
+
+  @include mq-min-width(md) {
+    width: 458px;
+  }
+
+  @include mq-min-width(lg) {
+    width: 458px;
+  }
+
+  @include mq-min-width(xl) {
+    width: 650px;
+  }
+}
+
 // $viewport-xs: "extra-small";
 // $viewport-sm: "small";
 // $viewport-md: "medium";

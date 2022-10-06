@@ -7,6 +7,10 @@ import LanguageContext from "../context/language";
 import Header from "../components/Header";
 import "../scss/styles.scss";
 import { locales } from "../config";
+import getSignUpModalSuccessData from "../site-data/signUpModalSuccess.preval";
+import getSignUpModalErrorData from "../site-data/signUpModalError.preval";
+import { removeStorage } from "../utils";
+import { newsLetterFormKey } from "../config";
 
 const Footer = loadable(() => import("../components/Footer"));
 const Modal = loadable(() => import("../components/Modal"));
@@ -15,6 +19,12 @@ const QuoteModalContent = loadable(() =>
 );
 const SignUpModalContent = loadable(() =>
   import("../components/SignUpModalContent")
+);
+const ErrorContentModal = loadable(() =>
+  import("../components/ErrorContentModal")
+);
+const SuccessContentModal = loadable(() =>
+  import("../components/SuccessContentModal")
 );
 
 /**
@@ -28,12 +38,15 @@ const SignUpModalContent = loadable(() =>
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(false);
+  const [isSignUpSuccessModalOpen, setIsSignUpSuccessModalOpen] =
+    useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
   const [lang, setLanguage] = useState(locales.en);
 
-  // TEMPORARY LANGUAGE ASSIGNMENT
-  // TODO: translation; provide dynamic value for `lang` when API is ready
-  // const lang = "en";
+  const { data: signUpSuccessData } = getSignUpModalSuccessData;
+  const signUpModalSuccessContent = signUpSuccessData?.content[0];
+  const signUpModalErrorContent = getSignUpModalErrorData[0];
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
@@ -44,6 +57,8 @@ function CustomApp({ Component, pageProps }) {
             setIsQuoteModalOpen,
             isSignUpModalOpen,
             setIsSignUpModalOpen,
+            isSignUpErrorModalOpen,
+            setIsSignUpErrorModalOpen,
           }}
         >
           <Header />
@@ -65,11 +80,30 @@ function CustomApp({ Component, pageProps }) {
 
           <Modal
             open={isSignUpModalOpen}
-            onClose={() => setIsSignUpModalOpen(false)}
-            isQuoteModal={false}
+            onClose={() => {
+              setIsSignUpModalOpen(false);
+              removeStorage(newsLetterFormKey);
+            }}
           >
             <SignUpModalContent />
           </Modal>
+          {signUpModalErrorContent && (
+            <ErrorContentModal
+              content={signUpModalErrorContent}
+              open={isSignUpErrorModalOpen}
+              onClose={() => {
+                setIsSignUpErrorModalOpen(false);
+                setIsSignUpModalOpen(true);
+              }}
+            />
+          )}
+          {signUpModalSuccessContent && (
+            <SuccessContentModal
+              content={signUpModalSuccessContent}
+              open={isSignUpSuccessModalOpen}
+              onClose={() => setIsSignUpSuccessModalOpen(false)}
+            />
+          )}
         </ModalContext.Provider>
       </PageFooterContext.Provider>
     </LanguageContext.Provider>
