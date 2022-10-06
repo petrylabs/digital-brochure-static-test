@@ -19,9 +19,9 @@ function NavCard(props) {
       {/* TODO: translation */}
       {isNew && <span className={styles.newTag}>New!</span>}
 
-      <p className={styles.subText}>
+      <div className={styles.subText}>
         <ParsedCopy copy={subText} />
-      </p>
+      </div>
     </a>
   );
 }
