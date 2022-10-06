@@ -22,27 +22,33 @@
 
 .text {
   text-align: center;
-  margin-bottom: 26px;
+  padding-bottom: 26px;
 
   h2 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+
+    @include mq-min-width(md) {
+      margin-bottom: 20px;
+    }
 
     @include mq-min-width(lg) {
-      margin-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    @include mq-min-width(xl) {
+      margin-bottom: 30px;
     }
   }
 
-  @include mq-min-width(lg) {
-    margin-bottom: 30px;
-  }
 }
 
 .linksList {
+  margin: 10px !important;
   @include unstyle-list;
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px;
+  gap: 20px;
 
   li {
     &:first-child,
@@ -51,9 +57,6 @@
     }
   }
 
-  @include mq-min-width(lg) {
-    gap: 30px;
-  }
 }
 
 .link {
@@ -110,8 +113,12 @@
 .plus {
   margin-inline: 10px;
   font-size: 10px;
-  padding-top: 6px;
+  padding-top: 5px;
   font-family: "icomoon" !important;
+ 
+  @include mq-min-width(lg){
+    margin-inline: 15px;
+  }
 
   &::before {
     content: "\e968";
@@ -122,5 +129,23 @@
   svg {
     position: relative;
     left: 0.2em;
+    top: 0.2em;
+    height: 14px;
+    width: 14px;
+
+    @include mq-min-width(lg) {
+      height: 16px;
+      width: 16px;
+    }
+    @include mq-min-width(xl) {
+      height: 21px;
+      width: 21px;
+    }
+    path {
+      stroke-width: 0.7;
+    }
   }
+}
+.spacings {
+  margin-top: 13.008px;
 }
