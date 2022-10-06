@@ -74,6 +74,7 @@ function Select({ options, label }) {
             list: styles.menuList,
           },
         }}
+        IconComponent={() => <div className={styles.icon}></div>}
         inputProps={{
           classes: {
             root: styles.input,
