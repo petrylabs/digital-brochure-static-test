@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import headerData from "../../site-data/header.preval";
 import { baseUrl } from "../../config";
+import headerData from "../../site-data/header.preval";
 import { customLoader } from "../../utils/images";
-import useWindowWidth from "../../hooks/useWindowWidth.js";
-import { breakpoints } from "../../config";
+import styles from "./HomeLogoLink.module.scss";
 
 /**
  * HomeLogoLink
@@ -13,26 +12,23 @@ import { breakpoints } from "../../config";
  */
 function HomeLogoLink() {
   const content = headerData.data.headerMenu;
-  const screenWidth = useWindowWidth();
-  const width = screenWidth < breakpoints.sm ? "80" : "100";
-  const height = screenWidth < breakpoints.sm ? "16" : "20";
 
   return (
-    <a href={content.logoHref}>
+    <a href={content.logoHref} className={styles.link}>
       <Image
         // TODO: Logo in content is white -- can we get the grey one?
         // src={`${baseUrl}${content.logoUrl}`}
         loader={customLoader}
         src={`${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`}
-        layout="fixed"
-        width={width}
-        height={height}
+        layout="responsive"
+        width={100}
+        height={20}
         alt=""
         priority
       />
 
       {/* For a11y */}
-      {/* TODO: is this available from CMS? */}
+      {/* TODO: translate; is this available from CMS? */}
       <span className="visually-hidden">Home / Acceuil</span>
     </a>
   );
