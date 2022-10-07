@@ -79,15 +79,6 @@ function SignUpModalContent() {
       operatingSystem: window.navigator.platform,
     };
     const { data: response, error } = await signUpSubmission(formData);
-    // if (error || !responseData?.gSiteVerifyResponse?.success) {
-    //   setIsSignUpModalOpen(false);
-    //   setIsSignUpErrorModalOpen(true);
-    // } else {
-    //   removeStorage(newsLetterFormKey);
-    //   setIsSignUpModalOpen(false);
-    //   setIsSignUpSuccessModalOpen(true);
-    // }
-    console.log(response);
     if (
       response.sfResponse &&
       response.sfResponse.response &&
