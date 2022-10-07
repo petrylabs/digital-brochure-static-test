@@ -21,11 +21,12 @@
   background-color: $color-white;
   padding-left: 6px;
   padding-right: 14px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   font-family: $font-extra-bold;
   font-weight: 500;
   justify-content: center;
+  color: $color-black;
 
   &:hover {
     background-color: $color-white;

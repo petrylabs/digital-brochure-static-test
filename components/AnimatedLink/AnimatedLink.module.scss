@@ -8,7 +8,10 @@
 
 .linkText {
   background-color: transparent;
-  background-image: linear-gradient($color-primary-accent, $color-primary-accent),
+  background-image: linear-gradient(
+      $color-primary-accent,
+      $color-primary-accent
+    ),
     linear-gradient($color-links, $color-links);
   background-size: 100% 1px, 0 1px;
   background-position: 100% 100%, 1px 100%;
@@ -16,21 +19,24 @@
 }
 
 .icon {
-  position: relative;
-  top: 0.3em;
-  left: 0.3em;
-  margin-right: 0.5em;
+  right: 0;
 
-  svg {
-    stroke-width: 0.7;
+  &::after {
+    display: inline-block;
+    content: "\e960";
+    margin-right: 0.5em;
+    font-family: "icomoon" !important;
+    font-size: 16px;
+    transform: translate(3px, 4px);
+    height: 0; // Prevents the outline from dropping below the baseline on Chrome
   }
-  
 }
 
 .link:hover,
 .link:focus {
   color: $color-links;
   text-decoration: none;
+
   .linkText {
     background-image: linear-gradient(transparent, transparent),
       linear-gradient($color-links, $color-links);
@@ -43,13 +49,4 @@
       transition-property: background-size;
     }
   }
-
-  .icon {
-    color: $color-links;
-  }
-}
-
-.link:focus {
-  outline: 1px solid $color-primary-accent;
-  outline-offset: 2px;
 }

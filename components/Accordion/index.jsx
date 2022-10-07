@@ -26,6 +26,7 @@ function Accordion(props) {
       classes={{ root: styles.accordion }}
       expanded={expanded}
       onChange={onChange}
+      elevation={0}
     >
       <AccordionSummary
         id={`summary${id}`}
