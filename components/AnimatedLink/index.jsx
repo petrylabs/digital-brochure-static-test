@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./AnimatedLink.module.scss";
-import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import PropTypes from "prop-types";
 
 /**
@@ -21,17 +20,14 @@ function AnimatedLink(props) {
     >
       <span className={styles.linkText}>{linkText}</span>
       {target === "_blank" && (
-        <>
-          {/* TODO: translate */}
+        // TODO: translate
+        <span
+          className={styles.icon}
+          title="This is an external link"
+          aria-hidden
+        >
           <span className="visually-hidden">This is an external link</span>
-          <span
-            className={styles.icon}
-            title="This is an external link"
-            aria-hidden
-          >
-            <ExternalLinkIcon />
-          </span>
-        </>
+        </span>
       )}
     </a>
   );

@@ -15,6 +15,9 @@
 
   &:focus {
     outline: 5px solid $color-primary-accent;
+    .blogContainer {
+      box-shadow: none;
+    }
   }
 }
 

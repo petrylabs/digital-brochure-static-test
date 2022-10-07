@@ -19,4 +19,9 @@ module.exports = withNextPluginPreval({
     loader: "custom",
   },
   basePath: getBasePath(),
+  env: {
+    DOTCMS_HOST: process.env.DOTCMS_HOST,
+    DOTCMS_USERNAME: process.env.DOTCMS_USERNAME,
+    DOTCMS_PASSWORD: process.env.DOTCMS_PASSWORD,
+  },
 });

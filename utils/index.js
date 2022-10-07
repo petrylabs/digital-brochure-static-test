@@ -5,3 +5,4 @@ export * from "./window";
 export * from "./link";
 export * from "./search";
 export * from "./cookie";
+export * from "./deviceType";

@@ -3,10 +3,10 @@
 
 .container {
   background: $color-white;
-  padding-block: 40px;
-  padding-inline: 0px;
-
+  padding-top: 60px;
+  padding-bottom: 60px;
   @include mq-min-width(md) {
-    padding-block: 0;
+    padding-right: 4.438em;
+    padding-left: 4.438em;
   }
 }

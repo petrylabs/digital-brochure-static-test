@@ -1,10 +1,80 @@
 export const baseUrl = "https://www.sonnet.ca";
 
-export const pageSlugs = [
-  "auto-insurance",
-  "condo-insurance",
-  "home-insurance",
-  "tenant-insurance",
+export const languageId = {
+  en: 1,
+  fr: 1584454943708,
+};
+
+export const locales = {
+  en: "en",
+  fr: "fr",
+};
+
+export const landingPageRoutes = [
+  {
+    path: "auto-insurance",
+    query: {
+      pageId: "auto-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-auto",
+    query: {
+      pageId: "auto-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "home-insurance",
+    query: {
+      pageId: "home-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-habitation",
+    query: {
+      pageId: "home-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "condo-insurance",
+    query: {
+      pageId: "condo-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-coproprietaires",
+    query: {
+      pageId: "condo-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
+    path: "tenant-insurance",
+    query: {
+      pageId: "tenant-insurance",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-locataires",
+    query: {
+      pageId: "tenant-insurance",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
 ];
 
 /** For Google Tag Manager */

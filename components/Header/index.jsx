@@ -69,123 +69,126 @@ function Header() {
     }
   }, [isDesktop]);
 
-  return (
-    <>
-      <header
-        className={styles.header}
-        onMouseLeave={() => {
-          if (isDesktop) setIsSubmenuExpanded(false);
-        }}
-      >
-        <SiteBanners />
-        <SkipNavLink />
+  if (content)
+    return (
+      <>
+        <header
+          className={styles.header}
+          onMouseLeave={() => {
+            if (isDesktop) setIsSubmenuExpanded(false);
+          }}
+        >
+          <SiteBanners />
+          <SkipNavLink />
 
-        {/* HEADER BAR ----------------------------------------------------------- */}
-        {!isMobileSearchExpanded ? (
-          <div id="header-bar" className={styles.headerBar}>
-            <HomeLogoLink />
+          {/* HEADER BAR ----------------------------------------------------------- */}
+          {!isMobileSearchExpanded ? (
+            <div id="header-bar" className={styles.headerBar}>
+              <HomeLogoLink />
 
-            {!isDesktop && (
-              <div className={styles.NavMobile}>
-                {!isSubmenuExpanded && (
-                  <CTA
-                    type="primary"
-                    small={isMobile}
-                    onClick={() => setIsQuoteModalOpen(true)}
-                  >
-                    {isMobile ? content.gaqSmall : content.gaq}
-                  </CTA>
-                )}
-                <HamburgerButton
-                  ariaControls="mobile-nav"
-                  state={[isSubmenuExpanded, setIsSubmenuExpanded]}
-                />
-              </div>
-            )}
-
-            {isDesktop && (
-              <>
-                <NavDesktop
-                  isExpanded={isSubmenuExpanded}
-                  setIsExpanded={handleSubmenu}
-                  setPanelHeight={setPanelHeight}
-                />
-
-                {/* Secondary Nav */}
-                <div className={styles.secondaryNav}>
-                  {hasScrolled ? (
+              {!isDesktop && (
+                <div className={styles.NavMobile}>
+                  {!isSubmenuExpanded && (
                     <CTA
                       type="primary"
+                      small={isMobile}
                       onClick={() => setIsQuoteModalOpen(true)}
                     >
-                      {content.gaq}
+                      {isMobile ? content.gaqSmall : content.gaq}
                     </CTA>
-                  ) : (
-                    <NavSecondary searchToggleFn={deskTopSearchButton} />
                   )}
-
-                  <CartLink />
+                  <HamburgerButton
+                    ariaControls="mobile-nav"
+                    state={[isSubmenuExpanded, setIsSubmenuExpanded]}
+                  />
                 </div>
-              </>
-            )}
-          </div>
-        ) : (
-          // TODO: move this out of header bar
-          <SearchPanel
-            isActive={isMobileSearchExpanded}
-            setIsActive={setIsMobileSearchExpanded}
-          />
-        )}
+              )}
 
-        {/* EXPANSION PANEL ----------------------------------------------------------- */}
-        {/* Desktop submenu; positioned absolutely, so this (empty) panel expands to match its height */}
-        {isDesktop && isSubmenuExpanded && (
-          <div
-            className={styles.headerPanelDesktop}
-            style={{ height: panelHeight }}
-          />
-        )}
+              {isDesktop && (
+                <>
+                  <NavDesktop
+                    isExpanded={isSubmenuExpanded}
+                    setIsExpanded={handleSubmenu}
+                    setPanelHeight={setPanelHeight}
+                  />
 
-        {/* Search */}
-        {isDesktop && isSearchExpanded && (
-          <div className={styles.searchPanel}>
+                  {/* Secondary Nav */}
+                  <div className={styles.secondaryNav}>
+                    {hasScrolled ? (
+                      <CTA
+                        type="primary"
+                        onClick={() => setIsQuoteModalOpen(true)}
+                      >
+                        {content.gaq}
+                      </CTA>
+                    ) : (
+                      <NavSecondary searchToggleFn={deskTopSearchButton} />
+                    )}
+
+                    <CartLink />
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            // TODO: move this out of header bar
             <SearchPanel
-              isActive={isSearchExpanded}
-              setIsActive={setIsSearchExpanded}
+              isActive={isMobileSearchExpanded}
+              setIsActive={setIsMobileSearchExpanded}
             />
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsSearchExpanded(false)}
-            >
-              <CloseIcon />
-            </button>
-          </div>
-        )}
+          )}
 
-        {/* Mobile submenu */}
-        {!isDesktop && (
-          <NavMobile
-            isExpanded={isSubmenuExpanded}
-            content={content}
-            ariaControls="search-panel"
-            isSearchExpanded={isMobileSearchExpanded}
-            onClick={mobileSearchButton}
+          {/* EXPANSION PANEL ----------------------------------------------------------- */}
+          {/* Desktop submenu; positioned absolutely, so this (empty) panel expands to match its height */}
+          {isDesktop && isSubmenuExpanded && (
+            <div
+              className={styles.headerPanelDesktop}
+              style={{ height: panelHeight }}
+            />
+          )}
+
+          {/* Search */}
+          {isDesktop && isSearchExpanded && (
+            <div className={styles.searchPanel}>
+              <SearchPanel
+                isActive={isSearchExpanded}
+                setIsActive={setIsSearchExpanded}
+              />
+              <button
+                className={styles.closeButton}
+                onClick={() => setIsSearchExpanded(false)}
+              >
+                <CloseIcon />
+              </button>
+            </div>
+          )}
+
+          {/* Mobile submenu */}
+          {!isDesktop && (
+            <NavMobile
+              isExpanded={isSubmenuExpanded}
+              content={content}
+              ariaControls="search-panel"
+              isSearchExpanded={isMobileSearchExpanded}
+              onClick={mobileSearchButton}
+            />
+          )}
+        </header>
+
+        {/* Overlay/Backdrop */}
+        {/* TODO: Extract to own component */}
+        {isDesktop && isSearchExpanded && (
+          <div
+            className={styles.backdrop}
+            onClick={() => {
+              setIsSearchExpanded(false);
+            }}
           />
         )}
-      </header>
+      </>
+    );
 
-      {/* Overlay/Backdrop */}
-      {/* TODO: Extract to own component */}
-      {isDesktop && isSearchExpanded && (
-        <div
-          className={styles.backdrop}
-          onClick={() => {
-            setIsSearchExpanded(false);
-          }}
-        />
-      )}
-    </>
-  );
+  return null;
 }
 
 export default Header;

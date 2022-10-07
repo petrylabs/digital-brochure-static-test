@@ -23,6 +23,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [Material UI (MUI)](https://mui.com/material-ui) for component scaffolding.
 - [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site-wide data, which cannot get fetched by pages via `getStaticProps`
 - [html-react-parser](https://github.com/remarkablemark/html-react-parser) for rendering strings of HTML, returned by dotCMS for any content produced in a WYSIWYG editor
+- [react-hook-form](https://github.com/react-hook-form/react-hook-form) for creating and validating forms
 
 ---
 
@@ -109,6 +110,10 @@ To maintain consistent styling patterns within the app (i.e. relying on CSS Modu
 ```jsx
 <Modal classes={{ root: styles.root }}>{/* modal content */}</Modal>
 ```
+
+### Forms
+
+React Hook Form library is used to create performant, flexible and extensible forms with easy-to-use validation.
 
 ## Deployment
 
