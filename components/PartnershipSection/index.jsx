@@ -23,7 +23,7 @@ function PartnershipSection(props) {
     <section className={styles.spacings}>
       <div className={styles.contentContainer}>
         <h2 className={styles.heading}>{content.headline}</h2>
-        <ParsedCopy copy={content.copy} animatedLinks />
+        <ParsedCopy copy={content.copy} />
       </div>
       <div className={styles.imageMobile}>
         <Image

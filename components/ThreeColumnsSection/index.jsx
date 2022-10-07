@@ -32,7 +32,7 @@ function ThreeColumnsSection(props) {
     <section className={`${styles.section} ${onWhite ? "bg-white" : ""}`}>
       <div className={styles.textContainer}>
         <h2>{headline}</h2>
-        {copy && <ParsedCopy copy={copy} animatedLinks />}
+        {copy && <ParsedCopy copy={copy} />}
       </div>
 
       <ThreeItemLayout variableGap>

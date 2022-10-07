@@ -67,7 +67,7 @@ function Footer() {
 
         {/* Legal footer */}
         <div className={styles.legalFooter}>
-          <ParsedCopy copy={content?.legalFooter[0]?.copy} animatedLinks />
+          <ParsedCopy copy={content?.legalFooter[0]?.copy} />
 
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
@@ -84,12 +84,12 @@ function Footer() {
 
             {content.accordionLegalFooter.map((item) => (
               <Fragment key={item.identifier}>
-                <ParsedCopy copy={item.copy} animatedLinks />
+                <ParsedCopy copy={item.copy} />
               </Fragment>
             ))}
             {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
-                <ParsedCopy copy={item.copy} animatedLinks />
+                <ParsedCopy copy={item.copy} />
               </Fragment>
             ))}
           </details>
