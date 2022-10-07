@@ -185,10 +185,7 @@ function SignUpModalContent() {
           <span>{data.recaptchaText}</span>
         </div>
         <div className={styles.row}>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={"6Lc1r7YhAAAAAMQ7ZHkzMyTK6yW9qz4ULKZviH9S"}
-          />
+          <ReCAPTCHA ref={recaptchaRef} sitekey={googleRecaptchaKey} />
           <div>
             {isSubmitted && !recaptchaRef?.current?.getValue() && (
               <span className={styles.errorText}>
