@@ -11,7 +11,7 @@ import styles from "./SearchPanel.module.scss";
  * Displays the search input and live results
  */
 function SearchPanel(props) {
-  const { isActive, setIsActive } = props;
+  const { isActive, setIsActive, onBackButton } = props;
   const [query, setQuery] = useState("");
   const [hasResults, setHasResults] = useState(false);
 
@@ -38,7 +38,7 @@ function SearchPanel(props) {
           {/* back (close) button on mobile */}
           <button
             className={styles.chevronButton}
-            onClick={() => setIsActive(false)}
+            onClick={() => onBackButton()}
           >
             <Chevron direction="left" size="25px" />
           </button>
@@ -61,6 +61,8 @@ function SearchPanel(props) {
 SearchPanel.propTypes = {
   isActive: PropTypes.bool.isRequired,
   setIsActive: PropTypes.func.isRequired,
+  //prop to go back to the submenu and not the main menu.
+  onBackButton: PropTypes.func,
 };
 
 export default SearchPanel;

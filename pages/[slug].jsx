@@ -1,24 +1,23 @@
 import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import PropTypes, { object } from "prop-types";
-import { getPage } from "../utils/api";
-import PageFooterContext from "../context/pageFooter";
-import TextSection from "../components/TextSection";
-import { pageSlugs } from "../config";
-import SplitLayout from "../components/SplitLayout";
-import PageHero from "../components/PageHero";
-import BlogFaqSection from "../components/BlogFaqSection";
-import ThreeColumnsSection from "../components/ThreeColumnsSection";
-import TestimonialCarousel from "../components/TestimonialCarousel";
-import CTAReminderSection from "../components/CTAReminderSection";
-import PartnershipSection from "../components/PartnershipSection";
-import TwoAccordionSection from "../components/TwoAccordionSection";
 
-export async function getStaticPaths() {
-  const paths = pageSlugs.map((slug) => ({
-    params: {
-      slug,
-    },
+import BlogFaqSection from "../components/BlogFaqSection";
+import CTAReminderSection from "../components/CTAReminderSection";
+import PageHero from "../components/PageHero";
+import PartnershipSection from "../components/PartnershipSection";
+import SplitLayout from "../components/SplitLayout";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import TextSection from "../components/TextSection";
+import ThreeColumnsSection from "../components/ThreeColumnsSection";
+import TwoAccordionSection from "../components/TwoAccordionSection";
+import { landingPageRoutes } from "../config";
+import PageFooterContext from "../context/pageFooter";
+import { getPage } from "../utils/api";
+
+export function getStaticPaths() {
+  const paths = landingPageRoutes.map(({ path }) => ({
+    params: { slug: path },
   }));
 
   return {
@@ -29,7 +28,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const { data } = await getPage(slug);
+  const routeInfo = landingPageRoutes?.find((item) => item.path === slug);
+  const { langId, locale, pageId } = routeInfo.query;
+  const { data } = await getPage(langId, pageId);
 
   if (!data) {
     return {
@@ -46,6 +47,7 @@ export async function getStaticProps({ params }) {
       description: data.description,
       content: data.content,
       slug,
+      pageLang: locale,
     },
   };
 }
@@ -104,7 +106,7 @@ function LandingPage(props) {
       <ThreeColumnsSection
         introContent={commonContent[5]}
         columnContent={commonContent[6]}
-        className="bg-white"
+        onWhite
       />
 
       {/* Partnership Section (6) */}

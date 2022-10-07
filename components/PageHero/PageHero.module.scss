@@ -5,7 +5,6 @@
   min-height: 400px;
   position: relative;
   overflow: hidden;
-  margin-top: 39px;
   background-color: $color-white;
 
   @include mq-min-width(md) {

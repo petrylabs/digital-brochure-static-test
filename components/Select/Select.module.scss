@@ -13,7 +13,7 @@
   font-size: 12px;
   display: inline-block;
   padding: 14px 20px;
-  
+
   &::before {
     content: "\e97e";
   }
@@ -25,6 +25,13 @@
   padding: 0px 0px;
   fieldset {
     border: 1px solid $color-hint;
+  }
+
+  &:hover {
+    border: 1px solid $color-primary-accent;
+    fieldset {
+      border: none;
+    }
   }
 }
 

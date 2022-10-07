@@ -3,6 +3,7 @@ import loadable from "@loadable/component";
 
 import ModalContext from "../context/modal";
 import PageFooterContext from "../context/pageFooter";
+import LanguageContext from "../context/language";
 import Header from "../components/Header";
 import "../scss/styles.scss";
 
@@ -17,6 +18,7 @@ const SignUpModalContent = loadable(() =>
 
 /**
  * Structure for entire app!
+ * i.e. Components that "wrap" the page content and/or appear on any/all pages.
  *
  * @param {*} props.Component Component representing a page (see `/pages`)
  * @param {*} props.pageProps Props for the Component
@@ -27,39 +29,46 @@ function CustomApp({ Component, pageProps }) {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
 
+  // TEMPORARY LANGUAGE ASSIGNMENT
+  // TODO: translation; provide dynamic value for `lang` when API is ready
+  const lang = "en";
+
   return (
-    <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
-      <ModalContext.Provider
-        value={{
-          isQuoteModalOpen,
-          setIsQuoteModalOpen,
-          isSignUpModalOpen,
-          setIsSignUpModalOpen,
-        }}
-      >
-        <Header />
-
-        <main id="main-content">
-          <Component {...pageProps} />
-        </main>
-
-        <Footer />
-
-        <Modal
-          open={isQuoteModalOpen}
-          onClose={() => setIsQuoteModalOpen(false)}
+    <LanguageContext.Provider value={lang}>
+      <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
+        <ModalContext.Provider
+          value={{
+            isQuoteModalOpen,
+            setIsQuoteModalOpen,
+            isSignUpModalOpen,
+            setIsSignUpModalOpen,
+          }}
         >
-          <QuoteModalContent />
-        </Modal>
+          <Header />
 
-        <Modal
-          open={isSignUpModalOpen}
-          onClose={() => setIsSignUpModalOpen(false)}
-        >
-          <SignUpModalContent />
-        </Modal>
-      </ModalContext.Provider>
-    </PageFooterContext.Provider>
+          <main id="main-content">
+            {/* Page content gets displayed in here: */}
+            <Component {...pageProps} />
+          </main>
+
+          <Footer />
+
+          <Modal
+            open={isQuoteModalOpen}
+            onClose={() => setIsQuoteModalOpen(false)}
+          >
+            <QuoteModalContent />
+          </Modal>
+
+          <Modal
+            open={isSignUpModalOpen}
+            onClose={() => setIsSignUpModalOpen(false)}
+          >
+            <SignUpModalContent />
+          </Modal>
+        </ModalContext.Provider>
+      </PageFooterContext.Provider>
+    </LanguageContext.Provider>
   );
 }
 

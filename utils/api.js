@@ -11,7 +11,6 @@ async function get(url, options = {}) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // TODO: update below with API key
         Authorization:
           "Basic " +
           Buffer.from(
@@ -34,18 +33,19 @@ async function get(url, options = {}) {
 }
 
 /**
- * Get page-related data
- * @param {string} slug page slug
- * @returns page data
+ * Get all data for a given page & language, including all nested container data.
+ * @param {string} languageId numerical ID for the language (see config.js)
+ * @param {string} pageId page name in dotCMS -- e.g. "auto-insurance"
+ * @returns {array} objects representing content "rows" for the given page
  */
-export async function getPage(slug) {
-  const url = slug
-    ? `${apiUrl}/v1/page/render/${slug}/index`
-    : `${apiUrl}/v1/page/render/index`;
+export async function getPage(languageId = 1, pageId) {
+  const url = pageId
+    ? `${apiUrl}/v1/page/render/${pageId}/index?language_id=${languageId}`
+    : `${apiUrl}/v1/page/render/index?language_id=${languageId}`;
   const pageDataResponse = await get(url);
   let { data, error } = pageDataResponse;
 
-  if (data && data.entity) {
+  if (data?.entity) {
     const { layout, containers, page } = data.entity;
     const content = getPageContent(layout.body.rows, containers).filter((x) =>
       Boolean(x)
@@ -142,7 +142,7 @@ export function getContentRelationshipData(identifier, languageId) {
 /**
  * Get related accordion widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with the related content
  */
 export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
@@ -156,7 +156,7 @@ export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
 /**
  * Get related testimonial widget data
  * @param {string} tagString tags to pull related content
- * @param {string} languageId lamg key ("en" or "fr")
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with the related content
  */
 export function getTestimonialWidgetData(tagString, languageId) {
@@ -168,7 +168,20 @@ export function getTestimonialWidgetData(tagString, languageId) {
 }
 
 /**
+ * Get all content items of type "Banner"
+ * Uses public API URL because it is called client side
+ * @param {string} languageId
+ * @returns {object} with an array of Banners as "contentlets"
+ */
+export function getSiteBanners(languageId = 1) {
+  return get(
+    `${process.env.NEXT_PUBLIC_DOTCMS_HOST}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
+  );
+}
+
+/**
  * Get header data and menu items from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with header data and nav menu items
  */
 export const getHeader = () => {
@@ -177,6 +190,7 @@ export const getHeader = () => {
 
 /**
  * Get footer data and menu items from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with footer data and menu items
  */
 export const getFooter = () => {
@@ -185,6 +199,7 @@ export const getFooter = () => {
 
 /**
  * Get sign up modal data from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with sign up modal data
  */
 export const getSignUpModal = () => {
@@ -238,6 +253,7 @@ export const getFormErrors = (languageId = 1) => {
 
 /**
  * Get Get a Quote modal data
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns get a quote modal data
  */
 export async function getGaqModal() {
@@ -281,9 +297,10 @@ export async function getGaqModal() {
 
 /**
  * Get search results from API
+ * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with search related data
  */
-export const getSearchResults = (languageId) => {
+export const getSearchResults = () => {
   // needs to be updated to get content based on languageId
   var url = new URL(`${apiUrl}/es/search`);
   var raw = JSON.stringify({
