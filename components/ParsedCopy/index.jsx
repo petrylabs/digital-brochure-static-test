@@ -15,7 +15,7 @@ function ParsedCopy(props) {
     ? {
         replace: (node) => {
           const { name, attribs, children } = node;
-          if (name === "snt-link") {
+          if (name === "snt-link" || name === "a") {
             return (
               <AnimatedLink
                 href={attribs.href}
