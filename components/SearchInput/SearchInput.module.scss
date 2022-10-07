@@ -1,5 +1,6 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables.scss";
 
 .inputContainer {
   display: flex;
@@ -27,7 +28,7 @@
     font-size: 14px;
     line-height: 20px;
     padding: 1px 2px;
-    font-family: "Averta-Regular", Arial, Helvetica, sans-serif;
+    font-family: $font-regular;
     
     &:focus {
       outline: none;
