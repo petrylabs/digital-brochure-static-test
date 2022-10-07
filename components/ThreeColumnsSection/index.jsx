@@ -38,11 +38,11 @@ function ThreeColumnsSection(props) {
       <ThreeItemLayout variableGap>
         {threeColumns.map((item, i) => {
           const smallIconUrl =
-            item[1].iconSmall.fileAsset || item[1].icon.fileAsset;
+            item[1]?.iconSmall?.fileAsset || item[1]?.icon?.fileAsset;
           return (
             <InfoCard
               key={item[1].identifier}
-              iconUrl={isDesktop ? item[1].icon.fileAsset : smallIconUrl}
+              iconUrl={isDesktop ? item[1]?.icon?.fileAsset : smallIconUrl}
               title={item[1].headline}
               alt={item[1].icon.altText}
               content={item[1].copy}
