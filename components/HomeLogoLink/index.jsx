@@ -28,7 +28,8 @@ function HomeLogoLink() {
       />
 
       {/* For a11y */}
-      {/* TODO: translate; is this available from CMS? */}
+      {/* TODO: is this available from CMS? */}
+      {/* TODO: translate */}
       <span className="visually-hidden">Home / Acceuil</span>
     </a>
   );

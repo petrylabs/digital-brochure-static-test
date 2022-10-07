@@ -8,22 +8,12 @@
 }
 
 .content {
-  padding-bottom: 13px;
-
   @include mq-min-width(md) {
     text-align: center;
   }
 
   h2 {
-    @include heading-margin();
-  }
-}
-
-.blogContainer {
-  padding-bottom: 40px;
-
-  @include mq-min-width(lg) {
-    padding-bottom: 60px;
+    margin-bottom: 26px;
   }
 }
 
