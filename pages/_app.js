@@ -18,6 +18,7 @@ const SignUpModalContent = loadable(() =>
 
 /**
  * Structure for entire app!
+ * i.e. Components that "wrap" the page content and/or appear on any/all pages.
  *
  * @param {*} props.Component Component representing a page (see `/pages`)
  * @param {*} props.pageProps Props for the Component
@@ -46,6 +47,7 @@ function CustomApp({ Component, pageProps }) {
           <Header />
 
           <main id="main-content">
+            {/* Page content gets displayed in here: */}
             <Component {...pageProps} />
           </main>
 
