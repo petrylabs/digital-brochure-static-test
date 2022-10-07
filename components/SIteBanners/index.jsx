@@ -33,7 +33,7 @@ function SiteBanners() {
         {activeBanners?.length > 0 &&
           activeBanners?.map((b) => (
             <article key={b.identifier} className={styles.banner}>
-              <ParsedCopy copy={b.copy} animatedLinks />
+              <ParsedCopy copy={b.copy} />
             </article>
           ))}
       </section>

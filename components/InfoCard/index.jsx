@@ -35,7 +35,7 @@ function InfoCard(props) {
       </div>
       <h3 className={styles.h3}>{title}</h3>
       <div className={styles.content}>
-        <ParsedCopy copy={content} animatedLinks />
+        <ParsedCopy copy={content} />
       </div>
     </div>
   );

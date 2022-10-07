@@ -2,12 +2,13 @@
 @import "../../scss/globals/variables";
 @import "../../scss/globals/layout";
 
-$accordion-border: 0.25px solid $color-black;
+$accordion-border: 0.25px solid $color-hint;
 
 .accordion {
   box-shadow: none;
   margin-bottom: 5px;
   border: $accordion-border;
+  background-color: transparent;
 }
 
 .summary {
@@ -65,8 +66,6 @@ $accordion-border: 0.25px solid $color-black;
 
   /* animation when expanded */
   &.summaryExpanded {
-    color: $color-white;
-
     &::before {
       height: 100%;
 
@@ -85,6 +84,11 @@ $accordion-border: 0.25px solid $color-black;
   position: relative;
   z-index: 1;
   margin: 0;
+  color: $color-black;
+
+  &.summaryExpanded {
+    color: $color-white;
+  }
 }
 
 .summaryIcon {

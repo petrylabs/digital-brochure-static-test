@@ -15,7 +15,7 @@ function TextSection(props) {
   return (
     <section className={styles.section}>
       {title && <h2 className={styles.heading}>{title}</h2>}
-      {copy && <ParsedCopy copy={copy} animatedLinks />}
+      {copy && <ParsedCopy copy={copy} />}
     </section>
   );
 }

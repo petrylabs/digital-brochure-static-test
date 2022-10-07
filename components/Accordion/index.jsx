@@ -43,7 +43,7 @@ function Accordion(props) {
         {summary}
       </AccordionSummary>
       <AccordionDetails id={`details${id}`} classes={{ root: styles.details }}>
-        <ParsedCopy copy={details.props.copy} animatedLinks />
+        <ParsedCopy copy={details.props.copy} />
       </AccordionDetails>
     </MuiAccordion>
   );
