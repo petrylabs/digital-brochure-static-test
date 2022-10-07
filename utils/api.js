@@ -250,7 +250,7 @@ export const getSearchResults = () => {
   var raw = JSON.stringify({
     query: {
       query_string: {
-        query: `+(contentType:FAQ contentType:Blog )`,
+        query: `+(contentType:FAQ contentType:Blog ) +languageId:1`,
       },
     },
     size: 1000,
