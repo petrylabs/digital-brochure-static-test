@@ -135,6 +135,10 @@ function Header() {
             <SearchPanel
               isActive={isMobileSearchExpanded}
               setIsActive={setIsMobileSearchExpanded}
+              onBackButton={() => {
+                setIsMobileSearchExpanded(false);
+                setIsSubmenuExpanded(true); 
+              }}
             />
           )}
 
