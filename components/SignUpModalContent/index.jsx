@@ -179,9 +179,9 @@ function SignUpModalContent() {
                   return (
                     <AnimatedLink
                       href={attribs.href}
-                      title={" Privacy Notice"}
-                      linkText={"Privacy Notice"}
-                      target={"_blank"}
+                      title="Privacy Notice"
+                      linkText="Privacy Notice"
+                      target="_blank"
                     />
                   );
                 }
