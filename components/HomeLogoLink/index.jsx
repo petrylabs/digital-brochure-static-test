@@ -4,6 +4,8 @@ import Image from "next/image";
 import headerData from "../../site-data/header.preval";
 import { baseUrl } from "../../config";
 import { customLoader } from "../../utils/images";
+import useWindowWidth from "../../hooks/useWindowWidth.js";
+import { breakpoints } from "../../config";
 
 /**
  * HomeLogoLink
@@ -11,6 +13,9 @@ import { customLoader } from "../../utils/images";
  */
 function HomeLogoLink() {
   const content = headerData.data.headerMenu;
+  const screenWidth = useWindowWidth();
+  const width = screenWidth < breakpoints.sm ? "80" : "100";
+  const height = screenWidth < breakpoints.sm ? "16" : "20";
 
   return (
     <a href={content.logoHref}>
@@ -20,8 +25,8 @@ function HomeLogoLink() {
         loader={customLoader}
         src={`${baseUrl}/dA/b47bb52683/fileAsset/sonnet-wordmark-grey.svg`}
         layout="fixed"
-        width={100}
-        height={20}
+        width={width}
+        height={height}
         alt=""
         priority
       />
