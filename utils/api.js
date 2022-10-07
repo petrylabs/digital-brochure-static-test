@@ -195,8 +195,8 @@ export function getLanguageVariables(languageId = 1) {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with header data and nav menu items
  */
-export const getHeader = () => {
-  return get(`${apiUrl}/vtl/headermenu`);
+export const getHeader = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/headermenu?language_id=${languageId}`);
 };
 
 /**
@@ -204,8 +204,8 @@ export const getHeader = () => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with footer data and menu items
  */
-export const getFooter = () => {
-  return get(`${apiUrl}/vtl/footermenu`);
+export const getFooter = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/footermenu?language_id=${languageId}`);
 };
 
 /**
@@ -213,8 +213,8 @@ export const getFooter = () => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with sign up modal data
  */
-export const getSignUpModal = () => {
-  return get(`${apiUrl}/vtl/newsletterform`);
+export const getSignUpModal = (languageId = 1) => {
+  return get(`${apiUrl}/vtl/newsletterform?language_id=${languageId}`);
 };
 
 /**
@@ -267,9 +267,9 @@ export const getFormErrors = (languageId = 1) => {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns get a quote modal data
  */
-export async function getGaqModal() {
+export async function getGaqModal(languageId = 1) {
   const modalDataResponse = await get(
-    `${apiUrl}/v1/page/render/modals/get-a-quote-2`
+    `${apiUrl}/v1/page/render/modals/get-a-quote-2?language_id=${languageId}`
   );
   let { data, error } = modalDataResponse;
 
@@ -332,5 +332,5 @@ export const getSearchResults = () => {
 };
 
 export const getRecaptchaSiteKey = () => {
-  return get(`${apiUrl}/vtl/googleRecaptchaKey`);
+  return get(`${apiUrl}/vtl/googleRecaptchaKey?language_id=1`);
 };

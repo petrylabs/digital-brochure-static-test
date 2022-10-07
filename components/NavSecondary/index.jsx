@@ -27,7 +27,10 @@ function NavSecondary(props) {
       </button>
 
       {/* Language toggle */}
-      <a href="TODO" className={styles.link}>
+      <a
+        href={content.toggleLanguage === "Français" ? "/" : "/fr"}
+        className={styles.link}
+      >
         <span aria-hidden>
           {content.toggleLanguage === "Français" ? "Fr" : "En"}
         </span>
