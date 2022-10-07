@@ -1,6 +1,7 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
+import { locales } from "../config";
 import { getPage } from "../utils/api";
 import BlogFaqSection from "../components/BlogFaqSection";
 import CTAReminderSection from "../components/CTAReminderSection";
@@ -33,7 +34,7 @@ export async function getStaticProps() {
     props: {
       title: data.title,
       content: data.content,
-      pageLang: "en",
+      pageLang: locales.en,
     },
   };
 }

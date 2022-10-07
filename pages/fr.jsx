@@ -1,5 +1,5 @@
 import IndexPage from ".";
-import { languageId } from "../config";
+import { languageId, locales } from "../config";
 import { getPage } from "../utils/api";
 
 /**
@@ -19,7 +19,7 @@ export async function getStaticProps() {
     props: {
       title: data.title,
       content: data.content,
-      pageLang: "fr",
+      pageLang: locales.fr,
     },
   };
 }
