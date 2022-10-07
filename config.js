@@ -10,7 +10,7 @@ export const locales = {
   fr: "fr",
 };
 
-export const routes = [
+export const landingPageRoutes = [
   {
     path: "auto-insurance",
     query: {

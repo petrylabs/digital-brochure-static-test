@@ -11,12 +11,14 @@ import TestimonialCarousel from "../components/TestimonialCarousel";
 import TextSection from "../components/TextSection";
 import ThreeColumnsSection from "../components/ThreeColumnsSection";
 import TwoAccordionSection from "../components/TwoAccordionSection";
-import { routes } from "../config";
+import { landingPageRoutes } from "../config";
 import PageFooterContext from "../context/pageFooter";
 import { getPage } from "../utils/api";
 
 export function getStaticPaths() {
-  const paths = routes.map(({ path }) => ({ params: { slug: path } }));
+  const paths = landingPageRoutes.map(({ path }) => ({
+    params: { slug: path },
+  }));
 
   return {
     paths,
@@ -26,7 +28,7 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const routeInfo = routes?.find((item) => item.path === slug);
+  const routeInfo = landingPageRoutes?.find((item) => item.path === slug);
   const { langId, locale, pageId } = routeInfo.query;
   const { data } = await getPage(langId, pageId);
 
