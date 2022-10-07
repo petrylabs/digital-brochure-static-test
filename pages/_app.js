@@ -28,6 +28,8 @@ function CustomApp({ Component, pageProps }) {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
 
+  // TEMPORARY LANGUAGE ASSIGNMENT
+  // TODO: translation; provide dynamic value for `lang` when API is ready
   const lang = "en";
 
   return (
