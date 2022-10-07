@@ -40,12 +40,14 @@
     font-family: $font-extra-bold;
     font-weight: 500;
     font-size: 14px;
+    color: $color-primary-grey;
   }
 
   .closeIcon {
     margin-inline: 10px;
     margin-right: 8px;
     font-family: "icomoon";
+    color: $color-primary-accent;
     &::before {
       content: "\e94c";
     }
