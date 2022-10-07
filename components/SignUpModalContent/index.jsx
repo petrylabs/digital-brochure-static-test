@@ -15,6 +15,7 @@ import CTA from "../CTA";
 import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
 import { getDeviceType, signUpSubmission } from "../../utils";
+import AnimatedLink from "../AnimatedLink";
 
 /**
  * SignUpModalContent
@@ -176,11 +177,12 @@ function SignUpModalContent() {
                 const { name, attribs } = domNode;
                 if (name === "snt-link") {
                   return (
-                    <FooterLink
+                    <AnimatedLink
                       href={attribs.href}
                       title={" Privacy Notice"}
-                      highlight={true}
-                    ></FooterLink>
+                      linkText={"Privacy Notice"}
+                      target={"_blank"}
+                    />
                   );
                 }
               },
