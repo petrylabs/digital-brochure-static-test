@@ -1,0 +1,12 @@
+@import "../../scss/globals/layout.scss";
+
+.link {
+  display: inline-block;
+  height: 16px;
+  width: 80px;
+
+  @include mq-min-width(sm) {
+    height: 20px;
+    width: 100px;
+  }
+}

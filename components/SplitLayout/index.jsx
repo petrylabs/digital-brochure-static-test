@@ -21,17 +21,17 @@ function SplitLayout(props) {
 
   var imageString = content?.fields[0].hasOwnProperty("image")
     ? "image"
-    : "featureImage"; 
-    
-    /*Use imageSmall src when it's available for mobile/tablet screens*/ 
-    if(screenWidth < breakpoints.md) {
-      if(content?.fields[0].imageSmall?.fileAsset) {
-        imageString="imageSmall";
-      }
-      if(content?.fields[0].featureImageSmall?.fileAsset) {
-        imageString="featureImageSmall";
-      }
+    : "featureImage";
+
+  /*Use imageSmall src when it's available for mobile/tablet screens*/
+  if (screenWidth < breakpoints.md) {
+    if (content?.fields[0].imageSmall?.fileAsset) {
+      imageString = "imageSmall";
     }
+    if (content?.fields[0].featureImageSmall?.fileAsset) {
+      imageString = "featureImageSmall";
+    }
+  }
 
   const imageProps = {
     loader: customLoader,
@@ -65,7 +65,7 @@ function SplitLayout(props) {
       <div className={styles.contentCol}>
         <h2>{headline}</h2>
         <div className={styles.content}>
-          <ParsedCopy copy={copy} animatedLinks />
+          <ParsedCopy copy={copy} />
         </div>
         {content?.cta && (
           <div className={styles.ctaLinkWrapper}>

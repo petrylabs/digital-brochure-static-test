@@ -1,23 +1,24 @@
 import { React, useEffect, useContext } from "react";
 import Head from "next/head";
 
+import { locales } from "../config";
 import { getPage } from "../utils/api";
 import BlogFaqSection from "../components/BlogFaqSection";
 import CTAReminderSection from "../components/CTAReminderSection";
 import InfoCard from "../components/InfoCard";
-import LargeScreenImage from "../components/LargeScreenImage";
 import PageFooterContext from "../context/pageFooter";
 import PageHero from "../components/PageHero";
 import PartnershipSection from "../components/PartnershipSection";
+import SectionSix from "../components/SectionSix";
 import SignUpSection from "../components/SignUpSection";
 import SplitLayout from "../components/SplitLayout";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
-import SectionSix from "../components/SectionSix";
 
 /**
- * This is the site homepage.
+ * This is the site homepage in English.
+ * French homepage uses same template, but is rendered from `fr.jsx`
  */
 
 export async function getStaticProps() {
@@ -33,6 +34,7 @@ export async function getStaticProps() {
     props: {
       title: data.title,
       content: data.content,
+      pageLang: locales.en,
     },
   };
 }
@@ -99,8 +101,8 @@ export default function IndexPage(props) {
       {/* Partnership Section */}
       <PartnershipSection content={content[5]} />
 
-      {/* Section 6 */}
-      <SectionSix content={content}/>
+      {/* Section 6 (for content items 6,7,8) */}
+      <SectionSix content={content} />
 
       {/* Blog Section */}
       <BlogFaqSection
