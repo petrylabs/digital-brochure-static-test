@@ -70,7 +70,7 @@ function SplitLayout(props) {
         {content?.cta && (
           <div className={styles.ctaLinkWrapper}>
             <a href={url} className={styles.ctaLink}>
-              <span className={styles.ctaText}>{cta}</span>
+              {cta}
             </a>
           </div>
         )}

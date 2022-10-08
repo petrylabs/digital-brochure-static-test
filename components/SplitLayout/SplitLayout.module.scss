@@ -64,28 +64,6 @@
 
 .ctaLink {
   text-decoration: none;
-}
-
-.ctaLink:hover,
-.ctaLink:focus {
-  color: $color-primary-accent;
-  text-decoration: none;
-
-  .ctaText {
-    background-image: linear-gradient(transparent, transparent),
-      linear-gradient($color-primary-accent, $color-primary-accent);
-    background-size: 0 3px, 100% 3px;
-
-    @media (prefers-reduced-motion: no-preference) {
-      -webkit-transition: all 0.25s ease-in-out 0s;
-      transition: all 0.25s ease-in-out 0s;
-      transition-property: all;
-      transition-property: background-size;
-    }
-  }
-}
-
-.ctaText {
   font-family: $font-extra-bold;
   font-size: 14px;
   color: $color-primary-grey;
@@ -96,8 +74,20 @@
   background-size: 100% 3px, 0 3px;
   background-position: 100% 100%, 0 100%;
   background-repeat: no-repeat;
+}
 
-  &:hover {
-    color: $color-primary-accent;
+.ctaLink:hover,
+.ctaLink:focus {
+  color: $color-primary-accent;
+  text-decoration: none;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient($color-primary-accent, $color-primary-accent);
+  background-size: 0 3px, 100% 3px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    -webkit-transition: all 0.25s ease-in-out 0s;
+    transition: all 0.25s ease-in-out 0s;
+    transition-property: all;
+    transition-property: background-size;
   }
 }
