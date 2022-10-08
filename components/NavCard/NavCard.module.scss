@@ -37,6 +37,7 @@
   }
 
   &:focus {
+    outline: none !important;
     border-color: $color-primary-accent;
   }
 
