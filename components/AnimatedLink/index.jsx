@@ -44,7 +44,7 @@ AnimatedLink.propTypes = {
   linkText: PropTypes.string.isRequired,
 
   // string value states what is the target value "_blank" or "_self".
-  target: PropTypes.oneOf(["_blank", "_self"]).isRequired,
+  target: PropTypes.oneOf(["_blank", "_self"]),
 };
 
 export default AnimatedLink;

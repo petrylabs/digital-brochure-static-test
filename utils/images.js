@@ -38,7 +38,7 @@ function imageData(contentObj, field) {
  */
 export function imageSrc(contentObj, field) {
   const { identifier, fileName } = imageData(contentObj, field);
-  const cleanFileName = fileName.replace("@", "%40");
+  const cleanFileName = fileName?.replace("@", "%40");
   return `${baseUrl}/dA/${identifier}/${cleanFileName}`;
 }
 
