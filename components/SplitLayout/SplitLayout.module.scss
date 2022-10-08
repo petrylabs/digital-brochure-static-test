@@ -63,14 +63,31 @@
 }
 
 .ctaLink {
+  text-decoration: none;
   font-family: $font-extra-bold;
   font-size: 14px;
-  @include cta-animated-link(
-    $color-primary-grey,
-    $color-primary-accent,
-    100% 3px,
-    all 0.3s,
-    3px,
-    3px
-  );
+  color: $color-primary-grey;
+  padding-bottom: 3px;
+  background-color: transparent;
+  background-image: linear-gradient($color-primary-grey, $color-primary-grey),
+    linear-gradient($color-primary-accent, $color-primary-accent);
+  background-size: 100% 3px, 0 3px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+}
+
+.ctaLink:hover,
+.ctaLink:focus {
+  color: $color-primary-accent;
+  text-decoration: none;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient($color-primary-accent, $color-primary-accent);
+  background-size: 0 3px, 100% 3px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    -webkit-transition: all 0.25s ease-in-out 0s;
+    transition: all 0.25s ease-in-out 0s;
+    transition-property: all;
+    transition-property: background-size;
+  }
 }
