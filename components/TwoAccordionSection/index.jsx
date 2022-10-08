@@ -17,11 +17,11 @@ function TwoAccordionSection(props) {
   const { content, leftRightAccordianContent, bgWhite } = props;
   const { copy, headline } = content;
 
-  const leftAccordionItems = leftRightAccordianContent[0].leftColumn;
-  const leftAccordionTitle = leftRightAccordianContent[0].leftTitle;
+  const leftAccordionItems = leftRightAccordianContent[0]?.leftColumn;
+  const leftAccordionTitle = leftRightAccordianContent[0]?.leftTitle;
 
-  const rightAccordionItems = leftRightAccordianContent[0].rightColumn;
-  const rightAccordionTitle = leftRightAccordianContent[0].rightTitle;
+  const rightAccordionItems = leftRightAccordianContent[0]?.rightColumn;
+  const rightAccordionTitle = leftRightAccordianContent[0]?.rightTitle;
 
   return (
     <section className={`${bgWhite ? "bg-white" : styles.section}`}>
@@ -44,7 +44,7 @@ function TwoAccordionSection(props) {
               </h3>
             )}
             <AccordionGroup>
-              {leftAccordionItems.map((item) => (
+              {leftAccordionItems?.map((item) => (
                 <Accordion
                   key={item.identifier}
                   id={item.identifier}
@@ -63,7 +63,7 @@ function TwoAccordionSection(props) {
               </h3>
             )}
             <AccordionGroup>
-              {rightAccordionItems.map((item) => (
+              {rightAccordionItems?.map((item) => (
                 <Accordion
                   key={item.identifier}
                   id={item.identifier}
