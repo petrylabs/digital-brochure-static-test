@@ -5,7 +5,8 @@ import AnimatedLink from "../AnimatedLink";
 
 /**
  * ParsedCopy
- * Parses HTML copy strings from dotCMS and replaces <snt-link> components.
+ * Parses HTML copy strings from dotCMS.
+ * Replaces <snt-link> and <a> tags with AnimatedLink component.
  */
 
 function ParsedCopy(props) {

@@ -2,6 +2,10 @@
 @import "../../scss/globals/variables";
 @import "../../scss/globals/layout";
 
+/*
+NOTE: `!important` used throughout to override MUI styles where the bugs are only seen on deployed site
+*/
+
 $accordion-border: 0.25px solid $color-hint;
 
 .accordion {
@@ -14,15 +18,15 @@ $accordion-border: 0.25px solid $color-hint;
 .summary {
   position: relative;
   background-color: $color-white;
-  padding: 10px 15px;
+  padding: 17px 16px 16px 30px !important;
   font-family: $font-extra-bold;
 
   @include mq-min-width(lg) {
-    padding: 15px 24px 15px 30px;
+    padding: 17px 24px 16px 30px !important;
   }
 
   &:focus {
-    background-color: $color-white;
+    background-color: $color-white !important;
   }
 
   /* animated elements */
@@ -75,7 +79,7 @@ $accordion-border: 0.25px solid $color-hint;
     }
 
     .summaryIcon {
-      color: $color-white;
+      color: $color-white !important;
     }
   }
 }
@@ -83,7 +87,7 @@ $accordion-border: 0.25px solid $color-hint;
 .summaryContent {
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: 0 !important;
   color: $color-black;
 
   &.summaryExpanded {
@@ -94,7 +98,7 @@ $accordion-border: 0.25px solid $color-hint;
 .summaryIcon {
   position: relative;
   z-index: 1;
-  color: $color-primary-accent;
+  color: $color-primary-accent !important;
   margin-left: 24px;
 
   @media (prefers-reduced-motion: no-preference) {
@@ -104,15 +108,15 @@ $accordion-border: 0.25px solid $color-hint;
 
 .details {
   border-top: $accordion-border;
-  padding: 15px;
+  padding: 15px !important;
   text-align: left;
   color: $color-primary-grey;
 
   @include mq-min-width(md) {
-    padding: 20px 15px;
+    padding: 20px 15px !important;
   }
 
   @include mq-min-width(lg) {
-    padding: 30px;
+    padding: 30px !important;
   }
 }
