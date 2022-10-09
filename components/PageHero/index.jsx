@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import Image from "next/image";
 import PropTypes from "prop-types";
 
 import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import { customLoader, imageAlt, imageSrc } from "../../utils/images";
+import { imageAlt, imageSrc } from "../../utils/images";
 import CTA from "../CTA";
 import styles from "./PageHero.module.scss";
 
@@ -18,63 +16,40 @@ function PageHero(props) {
   const { content, imgContain } = props;
   const { headline, copy, buttonType, cta } = content;
 
-  const imageLoader = ({ src }) => {
-    return imageSrc(content, src);
-  };
-
-  const screenWidth = useWindowWidth();
-  let src;
-  if (screenWidth < breakpoints.lg) {
-    src = "tabletImage";
-  } else if (screenWidth < breakpoints.blg) {
-    src = "desktopImage";
-  } else if (screenWidth >= breakpoints.blg) {
-    src = "desktopHdImage";
-  }
-
   /* Handling modal display: */
   const { setIsQuoteModalOpen } = useContext(ModalContext);
 
   return (
     <section className={styles.heroContainer}>
-      {screenWidth >= breakpoints.md && (
-        <div className={styles.backgroundContainer}>
-          <Image
-            loader={imageLoader}
-            src={src}
-            alt={imageAlt(content, src)}
-            layout="fill"
-            objectFit={imgContain ? "contain" : "cover"}
-            objectPosition={imgContain ? "right" : null}
-            priority
-          />
-          <div className={styles.whiteGradient} />
-        </div>
-      )}
-
       <div className={styles.heroContentContainer}>
         <div className={styles.content}>
           <h1>{headline}</h1>
           <p>{copy}</p>
-          <div className={styles.buttonGroup}>
-            <CTA type={buttonType} onClick={() => setIsQuoteModalOpen(true)}>
-              {cta}
-            </CTA>
-          </div>
+          <CTA type={buttonType} onClick={() => setIsQuoteModalOpen(true)}>
+            {cta}
+          </CTA>
         </div>
       </div>
 
-      {screenWidth < breakpoints.md && (
-        <div className={styles.mobileImageContainer}>
-          <Image
-            loader={customLoader}
-            src={imageSrc(content, "mobileImage")}
-            alt={imageAlt(content, "mobileImage")}
-            layout="fill"
-            priority
-          />
-        </div>
-      )}
+      <picture className={styles.imageContainer}>
+        <source
+          srcSet={imageSrc(content, "desktopImage")}
+          media={`(min-width: ${breakpoints.lg}px)`}
+        />
+        <source
+          srcSet={imageSrc(content, "tabletImage")}
+          media={`(min-width: ${breakpoints.md}px)`}
+        />
+        <source
+          srcSet={imageSrc(content, "desktopHdImage")}
+          media={`(min-width: ${breakpoints.blg}px)`}
+        />
+        <img
+          src={imageSrc(content, "mobileImage")}
+          alt={imageAlt(content, "mobileImage")}
+          className={imgContain ? styles.contain : styles.cover}
+        />
+      </picture>
     </section>
   );
 }
