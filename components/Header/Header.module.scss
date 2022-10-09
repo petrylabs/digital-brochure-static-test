@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
 
-  @include mq-min-width(md) {
+  @include mq-min-width(sm) {
     [class^="CTA"] {
       height: 45px;
       width: 150px;
