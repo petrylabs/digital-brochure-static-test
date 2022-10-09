@@ -28,7 +28,7 @@
     height: 64px;
   }
 
-  @include mq-min-width(md) {
+  @include mq-min-width(lg) {
     padding-inline: 20px;
   }
 
