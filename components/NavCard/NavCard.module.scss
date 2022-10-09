@@ -37,6 +37,7 @@
   }
 
   &:focus {
+    outline: none !important;
     border-color: $color-primary-accent;
   }
 
@@ -46,7 +47,7 @@
   }
 
   @include mq-min-width(lg) {
-    min-height: 75px;
+    min-height: 82px;
   }
 }
 
