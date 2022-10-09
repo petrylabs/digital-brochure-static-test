@@ -28,7 +28,7 @@
     height: 64px;
   }
 
-  @include mq-min-width(md) {
+  @include mq-min-width(lg) {
     padding-inline: 20px;
   }
 
@@ -40,6 +40,16 @@
 .NavMobile {
   display: flex;
   align-items: center;
+
+  @include mq-min-width(sm) {
+    [class^="CTA"] {
+      height: 45px;
+      width: 150px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 .secondaryNav {

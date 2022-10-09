@@ -4,9 +4,11 @@
   display: inline-block;
   height: 16px;
   width: 80px;
+  margin-top: -4px; // nudge to match alignment on prod
 
   @include mq-min-width(sm) {
     height: 20px;
     width: 100px;
+    margin-top: unset;
   }
 }
