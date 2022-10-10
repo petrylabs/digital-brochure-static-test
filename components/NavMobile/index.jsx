@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import {
   Accordion as MuiAccordion,
   AccordionSummary,
@@ -11,10 +11,11 @@ import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import Chevron from "../../icons/Chevron";
 import headerData from "../../site-data/header.preval";
-import { evenIndexBeforeOdd } from "../../utils/array";
+import getNavigation from "../../utils/navigation";
 import NavCard from "../NavCard";
 import styles from "./NavMobile.module.scss";
 import NavSecondary from "../NavSecondary";
+import LanguageContext from "../../context/language";
 
 /**
  * NavMobile
@@ -23,17 +24,9 @@ import NavSecondary from "../NavSecondary";
  */
 function NavMobile(props) {
   const { isExpanded, ariaControls, isSearchExpanded, onClick } = props;
-  /* Restructure content: */
+  const { lang } = useContext(LanguageContext);
   const content = headerData.data.headerMenu;
-  const navItems = Object.entries(content?.menuItems)
-    .sort((a, b) => a[1].order - b[1].order) // re-order by `order` property
-    .map((item) => {
-      return {
-        menuItem: item[0],
-        ...item[1],
-        subItems: evenIndexBeforeOdd(item[1].subItems), // reorder by column
-      };
-    });
+  const navItems = getNavigation(lang);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
