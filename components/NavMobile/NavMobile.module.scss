@@ -1,6 +1,7 @@
 @import "../../scss/globals/layout.scss";
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/variables";
+@import "../../scss/globals/mixins";
 
 .mobileTabletNavBar {
   overflow: hidden;
@@ -67,6 +68,10 @@
   @include mq-min-width(lg) {
     padding: 30px;
   }
+}
+
+.subItemsList {
+  @include unstyle-list;
 }
 
 .itemsColumn {
