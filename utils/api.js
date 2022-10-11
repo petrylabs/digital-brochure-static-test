@@ -180,6 +180,17 @@ export function getSiteBanners(languageId = 1) {
 }
 
 /**
+ * Get all global language variable text
+ * @param {string} languageId
+ * @returns {object} with an array of objects with text Key and value
+ */
+export function getLanguageVariables(languageId = 1) {
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:Languagevariable +languageId:${languageId} +deleted:false/limit/1000`
+  );
+}
+
+/**
  * Get header data and menu items from API
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with header data and nav menu items

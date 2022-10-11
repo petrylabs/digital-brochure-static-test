@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./TestimonialCarousel.module.scss";
+import { getLanguageVariable } from "../../utils/languageVariable";
 
 /**
  * TestimonialCarousel
@@ -45,8 +46,10 @@ function TestimonialCarousel(props) {
       {/* SLIDES: */}
       <div className={styles.slides}>
         {slides.map((slide, i) => {
-          // TODO: Add translate text
-          const province = Object.values(slide.province[0])[0];
+          // TODO: Add translation
+          const province = getLanguageVariable(
+            `category-${Object.keys(slide.province[0])[0]}`
+          );
           const location = slide.city
             ? `${slide.customerName}, ${slide.city}, ${province}`
             : `${slide.customerName}, ${province}`;
