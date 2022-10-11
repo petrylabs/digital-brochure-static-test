@@ -9,11 +9,12 @@
   outline: 2px solid transparent;
   padding: 10px;
   margin: 0;
-  line-height: 20px;
+  line-height: 23px;
   color: $color-primary-grey;
   text-decoration: none;
   font-family: $font-regular;
   font-size: 18px;
+  break-inside: avoid-column;
 
   &:hover {
     text-decoration: none; // Overwrites the default styling for a from sonnet.css
@@ -52,14 +53,13 @@
 }
 
 .newTag {
-  font-family: $font-regular;
   color: $color-white;
   text-decoration: none;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 15px !important; // because an extra .5px was being computed somewhere?
   border-radius: 2px;
   background-color: $color-primary-accent;
-  padding: 0 3px 0 3px;
+  padding: 0 3px;
   margin-left: 5px;
 }
 

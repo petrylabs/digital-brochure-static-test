@@ -37,26 +37,27 @@ function NavMobile(props) {
 
   return (
     <div
-      className={styles.mobileTabletNavBar}
+      className={styles.container}
       style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
     >
-      <nav className={styles.navItemsContainer}>
+      <nav className={styles.nav}>
         {navItems.map((item, i) => (
           <MuiAccordion
             key={i}
             id={`accordian-item-${i + 1}`}
             defaultExpanded={i < 2}
             disableGutters
+            elevation={0}
             TransitionProps={{ timeout: 0 }}
-            classes={{ root: styles.accordionNavitems }}
+            classes={{ root: styles.accordionRoot }}
           >
             <AccordionSummary
               id={`summary${i + 1}`}
               expandIcon={i < 2 ? "" : <Chevron />}
               classes={{
-                root: styles.summaryNavitems,
-                expanded: styles.summaryExpandedNavitems,
-                expandIconWrapper: styles.summaryIconNavitems,
+                root: styles.summary,
+                expanded: styles.summaryExpanded,
+                expandIconWrapper: styles.summaryIcon,
               }}
             >
               {item.menuItem}
@@ -64,7 +65,7 @@ function NavMobile(props) {
 
             <AccordionDetails
               id={`details${i + 1}`}
-              classes={{ root: styles.detailsNavitems }}
+              classes={{ root: styles.details }}
             >
               <ul
                 className={`${styles.subItemsList} ${
@@ -88,7 +89,7 @@ function NavMobile(props) {
           </MuiAccordion>
         ))}
 
-        <div className={styles.buttonContentContainer}>
+        <div className={styles.secondaryNavContainer}>
           <NavSecondary
             ariaControls={ariaControls}
             ariaExpanded={isSearchExpanded}

@@ -13,45 +13,68 @@
 .searchButton {
   @include unstyle-button;
 
+  box-sizing: content-box;
+  height: 25px;
+  width: 25px;
   padding: 3px;
-  margin-right: 15px;
+  margin-right: 30px;
 
   &:hover {
-    svg {
-      path {
-        fill: $color-primary-accent;
-      }
-    }
+    color: $color-primary-accent;
   }
+
   &:focus {
     @include focus-border;
+  }
+
+  @include mq-min-width(lg) {
+    margin-right: 15px;
+  }
+}
+
+.searchIcon {
+  &::after {
+    display: block;
+    content: "\e953";
+    font-family: "icomoon";
+    font-size: 18px;
+  }
+
+  @include mq-min-width(lg) {
+    font-size: 16px;
   }
 }
 
 .link {
   @include unstyle-link;
 
-  padding-inline: 18px;
   font-family: $font-extra-bold;
   font-size: 18px;
   white-space: nowrap;
+  padding: 1px 4px;
+  margin-right: 30px;
   cursor: pointer;
 
   &:hover {
     color: $color-primary-accent;
     text-decoration: underline 3px;
   }
+
   &:focus {
     @include focus-border;
   }
 
   @include mq-min-width(sm) {
     font-size: 16px;
+    padding-inline: 18px;
   }
 }
 
 .loginLink {
+  margin-left: 4px; // nudge for mobile layout;
+
   @include mq-min-width(lg) {
     border-left: 1px solid $color-grey-06;
+    margin-left: unset;
   }
 }

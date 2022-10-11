@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import headerData from "../../site-data/header.preval";
-import SearchIcon from "../../icons/SearchIcon";
 import styles from "./NavSecondary.module.scss";
 import LanguageContext from "../../context/language";
 import { landingPageRoutes, languageId, locales } from "../../config";
@@ -36,7 +35,9 @@ function NavSecondary(props) {
         aria-expanded={ariaExpanded}
         className={styles.searchButton}
       >
-        <SearchIcon width="16px" height="16px" />
+        {/* TODO: translate */}
+        <span className="visually-hidden">Search</span>
+        <span className={styles.searchIcon} />
       </button>
 
       {/* Language toggle */}
