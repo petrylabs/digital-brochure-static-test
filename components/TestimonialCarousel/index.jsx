@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./TestimonialCarousel.module.scss";
+import { getLanguageVariable } from "../../utils/languageVariable";
 
 /**
  * TestimonialCarousel
@@ -44,23 +45,32 @@ function TestimonialCarousel(props) {
 
       {/* SLIDES: */}
       <div className={styles.slides}>
-        {slides.map((slide, i) => (
-          <div
-            key={`k${i}`}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} / ${slides.length}`}
-            aria-hidden={activeSlideIndex !== i}
-            className={`${styles.slide} ${
-              activeSlideIndex === i ? styles.active : ""
-            }`}
-          >
-            <blockquote className={styles.quote}>
-              <ParsedCopy copy={slide.testimonial} />
-            </blockquote>
-            <cite className={styles.cite}>{slide.title}</cite>
-          </div>
-        ))}
+        {slides.map((slide, i) => {
+          // TODO: Add translation
+          const province = getLanguageVariable(
+            `category-${Object.keys(slide.province[0])[0]}`
+          );
+          const location = slide.city
+            ? `${slide.customerName}, ${slide.city}, ${province}`
+            : `${slide.customerName}, ${province}`;
+          return (
+            <div
+              key={`k${i}`}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} / ${slides.length}`}
+              aria-hidden={activeSlideIndex !== i}
+              className={`${styles.slide} ${
+                activeSlideIndex === i ? styles.active : ""
+              }`}
+            >
+              <blockquote className={styles.quote}>
+                <ParsedCopy copy={slide.testimonial} />
+              </blockquote>
+              <cite className={styles.cite}>{location}</cite>
+            </div>
+          );
+        })}
       </div>
 
       {/* SLIDE CONTROLS: */}
