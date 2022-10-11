@@ -9,6 +9,7 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
 */
 
 .container {
+  height: 100vh;
   overflow-y: scroll;
 }
 
@@ -95,6 +96,7 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
 
 .itemsColumn {
   column-count: 2;
+  column-gap: 0;
 }
 
 .mobileDetails {
@@ -114,5 +116,9 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
   [class^="CTA"] {
     @include cta-gaq-modified;
     font-size: 20.25px;
+
+    @include mq-min-width(sm) {
+      font-size: 18px;
+    }
   }
 }

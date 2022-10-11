@@ -33,15 +33,20 @@
 }
 
 .searchIcon {
+  font-size: 18px;
+
   &::after {
     display: block;
     content: "\e953";
     font-family: "icomoon";
-    font-size: 18px;
+  }
+
+  @include mq-min-width(sm) {
+    font-size: 16px;
   }
 
   @include mq-min-width(lg) {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -66,7 +71,10 @@
 
   @include mq-min-width(sm) {
     font-size: 16px;
-    padding-inline: 18px;
+  }
+
+  @include mq-min-width(lg) {
+    font-size: 18px;
   }
 }
 

@@ -53,6 +53,7 @@
 }
 
 .newTag {
+  font-family: $font-regular;
   color: $color-white;
   text-decoration: none;
   font-size: 12px;
@@ -64,14 +65,15 @@
 }
 
 .subText {
-  font-size: 12px;
-  line-height: 20px;
-  color: $color-primary-grey;
-  text-decoration: none;
   display: none;
-  font-family: $font-regular;
 
   @include mq-min-width(sm) {
     display: block;
+    margin-top: 1px; // nudge to match production
+    font-family: $font-regular;
+    font-size: 12px;
+    line-height: 18px;
+    color: $color-primary-grey;
+    text-decoration: none;
   }
 }
