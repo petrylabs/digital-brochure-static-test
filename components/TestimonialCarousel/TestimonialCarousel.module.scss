@@ -10,13 +10,26 @@
   color: $color-white;
 
   h2 {
-    @include heading-margin;
+    margin-bottom: 15px;
+    @include mq-min-width(smm) {
+      margin-bottom: 30px;
+    }
   }
 }
 
 .slides {
   display: grid;
   align-items: center;
+  height: 208px;
+  @include mq-min-width(md) {
+    height: 161px;
+  }
+  @include mq-min-width(lg) {
+    height: 136px;
+  }
+  @include mq-min-width(xl) {
+    height: 176px;
+  }
 }
 
 .slide {
@@ -46,9 +59,14 @@
 
 .controls {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
-  margin-top: 30px;
+  height: 30px;
+
+  @include mq-min-width(smm) {
+    height: 60px;
+    align-items: center;
+  }
 
   &.controlsRight {
     justify-content: right;
@@ -111,4 +129,8 @@
       transform-origin: center;
     }
   }
+}
+
+.quote {
+  font-family: $font-regular-italic;
 }

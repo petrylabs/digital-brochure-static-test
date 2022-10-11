@@ -84,6 +84,7 @@ export const GTMContainerId = "GTM-TF8DP3";
 export const breakpoints = {
   xs: 0,
   ssm: 320,
+  smm: 480,
   sm: 576,
   smd: 700,
   md: 768,
