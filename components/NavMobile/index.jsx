@@ -15,6 +15,7 @@ import getNavigation from "../../utils/navigation";
 import NavCard from "../NavCard";
 import styles from "./NavMobile.module.scss";
 import NavSecondary from "../NavSecondary";
+import CTA from "../CTA";
 import LanguageContext from "../../context/language";
 
 /**
@@ -98,13 +99,9 @@ function NavMobile(props) {
         </div>
 
         <div className={styles.buttonContainer}>
-          <button
-            type="button"
-            className={styles.buttonGaq}
-            onClick={() => setIsQuoteModalOpen(true)}
-          >
+          <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
             {content.gaq}
-          </button>
+          </CTA>
         </div>
       </nav>
     </div>

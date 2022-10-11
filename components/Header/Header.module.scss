@@ -43,11 +43,7 @@
 
   @include mq-min-width(sm) {
     [class^="CTA"] {
-      height: 45px;
-      width: 150px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      @include cta-gaq-modified;
     }
   }
 }
