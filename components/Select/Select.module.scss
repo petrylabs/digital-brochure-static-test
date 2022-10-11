@@ -73,10 +73,10 @@
   padding: 18px 57px 18px 20px;
   font-family: $font-regular;
   &:hover {
-    background-color: $color-grey-05;
+    background-color: $color-grey-05 !important;
   }
   &:active {
-    background-color: $color-grey-05;
+    background-color: $color-primary-accent !important;
     color: $color-white;
   }
   &:focus {
@@ -91,6 +91,7 @@
 .selectedMenuItem {
   font-family: $font-regular;
   font-weight: 700;
+  background-color: $color-primary !important;
   &::before {
     content: "";
     position: absolute;
