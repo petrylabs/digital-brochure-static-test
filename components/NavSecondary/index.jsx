@@ -22,9 +22,7 @@ function NavSecondary(props) {
   const togglePath = getTogglePath(currentPath, toggleLocale);
 
   const handleToggleLanguage = () => {
-    setLanguage(
-      content.toggleLanguage === "Français" ? locales.fr : locales.en
-    );
+    setLanguage(toggleLocale);
     router.push(togglePath.path);
   };
 

@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchInput.module.scss";
 import { getLanguageVariable } from "../../utils/languageVariable";
-import { useContext } from "react";
 import LanguageContext from "../../context/language";
 
 /**

@@ -19,7 +19,6 @@ function SearchResults(props) {
   /* Perform search as search term changes */
   useEffect(() => {
     const searchResultData = searchData(searchTerm, lang);
-    console.log(searchResultData);
     if (searchResultData) {
       setSearchResults(searchResultData.slice(0, 10));
     } else {
