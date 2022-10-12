@@ -42,7 +42,7 @@ function SearchResults(props) {
       {searchResults.map((item, i) => (
         <li key={i} className={styles.searchResultItem}>
           <a href={item.url} className={styles.searchResultItemLink}>
-            {highlight(item.title)}
+            {highlight(item.metaTitle || item.title)}
           </a>
         </li>
       ))}
