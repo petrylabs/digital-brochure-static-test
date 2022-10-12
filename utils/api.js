@@ -311,13 +311,13 @@ export async function getGaqModal(languageId = 1) {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with search related data
  */
-export const getSearchResults = () => {
+export const getSearchResults = (languageId = 1) => {
   // needs to be updated to get content based on languageId
   var url = new URL(`${apiUrl}/es/search`);
   var raw = JSON.stringify({
     query: {
       query_string: {
-        query: `+(contentType:FAQ contentType:Blog ) +languageId:1`,
+        query: `+(contentType:FAQ contentType:Blog ) +languageId:${languageId}`,
       },
     },
     size: 1000,

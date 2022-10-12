@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useContext } from "react";
 
 import { baseUrl } from "../../config.js";
 import gaqModalData from "../../site-data/gaqModal.preval.js";
@@ -8,19 +8,22 @@ import ParsedCopy from "../ParsedCopy/index.jsx";
 import styles from "./QuoteModalContent.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth.js";
 import { breakpoints } from "../../config";
+import LanguageContext from "../../context/language.js";
 /**
  * QuoteModalContent
  * The body of the "Get a quote" modal (displayed inside a `Modal`)
  */
 function QuoteModalContent() {
-  const content = gaqModalData.data.content;
+  const { lang } = useContext(LanguageContext);
+  const content = gaqModalData[lang].data.content;
   const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
   const screenWidth = useWindowWidth();
-  const leftIconSrc = screenWidth >= breakpoints.lg ? "lefticonlg" : "lefticonsm";
-  const rightIconSrc = screenWidth >= breakpoints.lg ? "righticonlg" : "righticonsm";
-
+  const leftIconSrc =
+    screenWidth >= breakpoints.lg ? "lefticonlg" : "lefticonsm";
+  const rightIconSrc =
+    screenWidth >= breakpoints.lg ? "righticonlg" : "righticonsm";
 
   return (
     <article className={styles.container}>
@@ -42,9 +45,9 @@ function QuoteModalContent() {
             </div>
             <div className={styles.linkPanel}>
               <div className={styles.iconPanel}>
-              <img src={iconSrc(1, leftIconSrc)} alt="" />
-              <span className={styles.plus} />
-              <img src={iconSrc(1, rightIconSrc)} alt="" />
+                <img src={iconSrc(1, leftIconSrc)} alt="" />
+                <span className={styles.plus} />
+                <img src={iconSrc(1, rightIconSrc)} alt="" />
               </div>
               <div className="h4">{menuItem(1).menuItem.menuItem}</div>
             </div>
@@ -82,24 +85,26 @@ function QuoteModalContent() {
         {/* Pet */}
         <li>
           <div className={styles.spacings}>
-          <a
-            href={menuItem(4)?.menuItem.url}
-            target={menuItem(4)?.menuItem.urlTarget}
-            className={`${styles.link} ${styles.linkLightBorder}`}
-          >
-            <div className={`${styles.linkHeading} ${styles.linkHeadingLight}`}>
-              {content[4].buttonHighlightText}
-            </div>
-            <div className={styles.linkPanel}>
-              <img src={iconSrc(4, leftIconSrc)} alt="" />
-              <div className="h4">
-               {menuItem(4).menuItem.menuItem}
-                <span className={styles.extIcon}>
-                  <ExternalLinkIcon />
-                </span>                
+            <a
+              href={menuItem(4)?.menuItem.url}
+              target={menuItem(4)?.menuItem.urlTarget}
+              className={`${styles.link} ${styles.linkLightBorder}`}
+            >
+              <div
+                className={`${styles.linkHeading} ${styles.linkHeadingLight}`}
+              >
+                {content[4].buttonHighlightText}
               </div>
-            </div>
-          </a>
+              <div className={styles.linkPanel}>
+                <img src={iconSrc(4, leftIconSrc)} alt="" />
+                <div className="h4">
+                  {menuItem(4).menuItem.menuItem}
+                  <span className={styles.extIcon}>
+                    <ExternalLinkIcon />
+                  </span>
+                </div>
+              </div>
+            </a>
           </div>
         </li>
       </ul>

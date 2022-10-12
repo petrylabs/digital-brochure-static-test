@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
 
 import { searchData } from "../../utils";
 import styles from "./SearchResults.module.scss";
+import LanguageContext from "../../context/language";
 
 /**
  * SearchResults
  * Performs a search using provided search term and displays result as a list of links
  */
 function SearchResults(props) {
+  const { lang } = useContext(LanguageContext);
   const { searchTerm, onResults } = props;
 
   const [searchResults, setSearchResults] = useState([]);
 
   /* Perform search as search term changes */
   useEffect(() => {
-    const searchResultData = searchData(searchTerm);
+    const searchResultData = searchData(searchTerm, lang);
+    console.log(searchResultData);
     if (searchResultData) {
       setSearchResults(searchResultData.slice(0, 10));
     } else {

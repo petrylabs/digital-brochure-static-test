@@ -1,10 +1,15 @@
 import preval from "next-plugin-preval";
+import { languageId, locales } from "../config";
 import { getGaqModal } from "../utils/api";
 
 async function getGaqModalData() {
-  const gaqModalData = await getGaqModal();
+  const gaqModalDataEn = await getGaqModal();
+  const gaqModalDataFr = await getGaqModal(languageId.fr);
 
-  return gaqModalData;
+  return {
+    [locales.en]: gaqModalDataEn,
+    [locales.fr]: gaqModalDataFr,
+  };
 }
 
 export default preval(getGaqModalData());

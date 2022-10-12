@@ -1,10 +1,15 @@
 import preval from "next-plugin-preval";
+import { languageId, locales } from "../config";
 import { getFormErrors } from "../utils/api";
 
 async function getFormErrorsData() {
-  const formErrorsData = await getFormErrors();
+  const formErrorsDataEn = await getFormErrors();
+  const formErrorsDataFr = await getFormErrors(languageId.fr);
 
-  return formErrorsData;
+  return {
+    [locales.en]: formErrorsDataEn,
+    [locales.fr]: formErrorsDataFr,
+  };
 }
 
 export default preval(getFormErrorsData());

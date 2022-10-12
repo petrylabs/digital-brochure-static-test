@@ -12,6 +12,22 @@ export const locales = {
 
 export const landingPageRoutes = [
   {
+    path: "/",
+    query: {
+      pageId: "index",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "/fr",
+    query: {
+      pageId: "index",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
+  {
     path: "auto-insurance",
     query: {
       pageId: "auto-insurance",

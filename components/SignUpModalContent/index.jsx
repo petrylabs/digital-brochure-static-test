@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import parse from "html-react-parser";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
@@ -9,21 +9,22 @@ import styles from "./SignUpModalContent.module.scss";
 import signUpModalData from "../../site-data/signUpModal.preval";
 import formErrorData from "../../site-data/formErrors.preval";
 import recaptchaSiteKeyData from "../../site-data/recaptchaSiteKey.preval";
-import FooterLink from "../FooterLink";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
 import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
 import { getDeviceType, signUpSubmission } from "../../utils";
 import AnimatedLink from "../AnimatedLink";
+import LanguageContext from "../../context/language";
 
 /**
  * SignUpModalContent
  * The body of the "Sign up" modal (displayed inside a `Modal`)
  */
 function SignUpModalContent() {
-  const fieldsData = signUpModalData.data.newsletterForm.fields;
-  const formErrors = formErrorData.data.contentlets;
+  const { lang } = useContext(LanguageContext);
+  const fieldsData = signUpModalData[lang].data.newsletterForm.fields;
+  const formErrors = formErrorData[lang].data.contentlets;
 
   const { errorEmail, errorEmptyValue, errorRecaptchaVerification } =
     getErrorMessages(formErrors);

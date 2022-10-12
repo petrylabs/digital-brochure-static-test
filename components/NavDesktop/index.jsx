@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { locales } from "../../config";
+import LanguageContext from "../../context/language";
 
 import headerData from "../../site-data/header.preval";
 import { evenIndexBeforeOdd } from "../../utils/array";
@@ -12,9 +14,10 @@ import styles from "./NavDesktop.module.scss";
  */
 function NavDesktop(props) {
   const { isExpanded, setIsExpanded, setPanelHeight } = props;
+  const { lang } = useContext(LanguageContext);
 
   /* Restructure content: */
-  const content = headerData.data.headerMenu;
+  const content = headerData[lang].headerMenu;
   const navItems = Object.entries(content.menuItems)
     .sort((a, b) => a[1].order - b[1].order) // re-order by `order` property
     .map((item) => {

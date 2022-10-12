@@ -15,6 +15,7 @@ import SplitLayout from "../components/SplitLayout";
 import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
+import LanguageContext from "../context/language";
 
 /**
  * This is the site homepage in English.
@@ -40,8 +41,9 @@ export async function getStaticProps() {
 }
 
 export default function IndexPage(props) {
-  const { title, content } = props;
-
+  const { setLanguage } = useContext(LanguageContext);
+  const { title, content, pageLang } = props;
+  setLanguage(pageLang);
   /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
   const legalFooterContent = content.filter(

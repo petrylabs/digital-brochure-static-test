@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { languageId, locales } from "../../config";
+import LanguageContext from "../../context/language";
 
 import banners from "../../site-data/banners.preval";
 import { getSiteBanners } from "../../utils/api";
@@ -10,12 +12,16 @@ import styles from "./SiteBanners.module.scss";
  * Manages and displays site banners at the top of the page
  */
 function SiteBanners() {
+  const { lang } = useContext(LanguageContext);
   const [isMounted, setIsMounted] = useState(false);
-  const [activeBanners, setActiveBanners] = useState(banners.data.contentlets);
+  const [activeBanners, setActiveBanners] = useState(
+    banners[lang].data.contentlets
+  );
+  const currentLanguageId = lang === locales.en ? languageId.en : languageId.fr;
 
   useEffect(() => {
     async function fetchBanners() {
-      const fetched = await getSiteBanners();
+      const fetched = await getSiteBanners(currentLanguageId);
       const activeSorted =
         fetched?.data?.contentlets
           ?.filter((b) => b.active === "true")

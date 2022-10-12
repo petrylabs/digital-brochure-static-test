@@ -21,8 +21,7 @@ import NavSecondary from "../NavSecondary";
 function NavMobile(props) {
   const { isExpanded, content, ariaControls, isSearchExpanded, onClick } =
     props;
-
-  var menuItems = Object.keys(content.menuItems).map((key) => [
+  var menuItems = Object.keys(content?.menuItems).map((key) => [
     key,
     content.menuItems[key].order,
     content.menuItems[key].subItems,
