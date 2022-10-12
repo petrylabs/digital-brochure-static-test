@@ -322,6 +322,11 @@ export const getSearchResults = () => {
     },
     size: 1000,
     from: 0,
+    sort: {
+      modDate: {
+        order: "desc",
+      },
+    },
   });
   url.search = new URLSearchParams(raw).toString();
   return get(`${apiUrl}/es/search`, {
