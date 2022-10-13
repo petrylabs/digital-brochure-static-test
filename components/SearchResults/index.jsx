@@ -112,7 +112,6 @@ function SearchResults(props) {
           onKeyPress={reducer}
           style={{
             cursor: "pointer",
-            color: i === state.selectedIndex ? "red" : console.log('black')
           }}
         >
           <a
