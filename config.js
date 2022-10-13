@@ -20,7 +20,7 @@ export const landingPageRoutes = [
     },
   },
   {
-    path: "/fr",
+    path: "fr",
     query: {
       pageId: "index",
       langId: languageId.fr,

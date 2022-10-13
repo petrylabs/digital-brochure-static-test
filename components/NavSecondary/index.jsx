@@ -41,11 +41,7 @@ function NavSecondary(props) {
       </button>
 
       {/* Language toggle */}
-      <a
-        // href={content.toggleLanguage === "Français" ? "/" : "/fr"}
-        className={styles.link}
-        onClick={handleToggleLanguage}
-      >
+      <a href="#" className={styles.link} onClick={handleToggleLanguage}>
         <span aria-hidden>
           {content.toggleLanguage === "Français" ? "Fr" : "En"}
         </span>
