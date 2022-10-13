@@ -27,7 +27,6 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header() {
-  // const content = headerData.data.headerMenu;
   const { lang } = useContext(LanguageContext);
   const content = headerData[lang].headerMenu;
 

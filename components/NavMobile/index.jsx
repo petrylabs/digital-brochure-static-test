@@ -26,7 +26,7 @@ import LanguageContext from "../../context/language";
 function NavMobile(props) {
   const { isExpanded, ariaControls, isSearchExpanded, onClick } = props;
   const { lang } = useContext(LanguageContext);
-  const content = headerData.data.headerMenu;
+  const content = headerData[lang].headerMenu;
   const navItems = getNavigation(lang);
 
   /* Handling screen sizes: */
