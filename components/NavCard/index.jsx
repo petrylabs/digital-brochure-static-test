@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import ParsedCopy from "../ParsedCopy";
 
 import styles from "./NavCard.module.scss";
+import { getLanguageVariable } from "../../utils/languageVariable";
+import LanguageContext from "../../context/language";
 
 /**
  * NavCard
@@ -10,14 +12,18 @@ import styles from "./NavCard.module.scss";
  */
 
 function NavCard(props) {
+  const { lang } = useContext(LanguageContext);
   const { mainText, url, subText, isNew } = props;
 
   return (
     <a href={url} className={styles.navLink}>
       <span>{mainText}</span>
 
-      {/* TODO: translation */}
-      {isNew && <span className={styles.newTag}>New!</span>}
+      {isNew && (
+        <span className={styles.newTag}>
+          {getLanguageVariable("tog", lang)}
+        </span>
+      )}
 
       <div className={styles.subText}>
         <ParsedCopy copy={subText} />

@@ -4,6 +4,8 @@ import FooterLink from "../FooterLink";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./Footer.module.scss";
 import PageFooterContext from "../../context/pageFooter";
+import LanguageContext from "../../context/language";
+import { getLanguageVariable } from "../../utils/languageVariable";
 
 /**
  * Footer
@@ -12,7 +14,8 @@ import PageFooterContext from "../../context/pageFooter";
  */
 
 function Footer() {
-  const content = footerData.data.footerMenu;
+  const { lang } = useContext(LanguageContext);
+  const content = footerData[lang].data.footerMenu;
   const [showLegalFooter, setShowLegalFooter] = useState(false);
   const { pageFooterData } = useContext(PageFooterContext);
 
@@ -55,10 +58,9 @@ function Footer() {
             </li>
           ))}
           <li className={styles.navItem}>
-            {/* TODO: translate */}
             <FooterLink
               href={"https://www.sonnet.ca/fr"}
-              title={"Français"}
+              title={getLanguageVariable("toggle-Language", lang)}
               style={{ fontFamily: "Averta-ExtraBold" }}
               externalLink={false}
             />
@@ -78,8 +80,11 @@ function Footer() {
                   : styles.legalDetailsHide
               }`}
             >
-              {/* TODO: translate */}
-              <span>{showLegalFooter ? "Hide Legal" : "View Legal"}</span>
+              <span>
+                {showLegalFooter
+                  ? content.accordionTextHide
+                  : content.accordionTextShow}
+              </span>
             </summary>
 
             {content.accordionLegalFooter.map((item) => (

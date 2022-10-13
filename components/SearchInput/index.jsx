@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchInput.module.scss";
+import { getLanguageVariable } from "../../utils/languageVariable";
+import LanguageContext from "../../context/language";
 
 /**
  * SearchInput
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43178917935/SearchInput
  */
 function SearchInput(props) {
+  const { lang } = useContext(LanguageContext);
   const { value, onChange } = props;
 
   return (
@@ -19,7 +22,7 @@ function SearchInput(props) {
         type="search"
         aria-autocomplete="both"
         aria-controls="search-listbox"
-        placeholder="Search"
+        placeholder={getLanguageVariable("header-Search", lang)}
         autoComplete="off"
         autoFocus
         value={value}

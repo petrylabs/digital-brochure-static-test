@@ -14,11 +14,14 @@ import TwoAccordionSection from "../components/TwoAccordionSection";
 import { landingPageRoutes } from "../config";
 import PageFooterContext from "../context/pageFooter";
 import { getPage } from "../utils/api";
+import LanguageContext from "../context/language";
 
 export function getStaticPaths() {
-  const paths = landingPageRoutes.map(({ path }) => ({
-    params: { slug: path },
-  }));
+  const paths = landingPageRoutes
+    .filter((route) => route.query.pageId !== "index")
+    .map(({ path }) => ({
+      params: { slug: path },
+    }));
 
   return {
     paths,
@@ -30,6 +33,7 @@ export async function getStaticProps({ params }) {
   const { slug } = params;
   const routeInfo = landingPageRoutes?.find((item) => item.path === slug);
   const { langId, locale, pageId } = routeInfo.query;
+
   const { data } = await getPage(langId, pageId);
 
   if (!data) {
@@ -56,8 +60,11 @@ export async function getStaticProps({ params }) {
  * Landing page template
  */
 function LandingPage(props) {
+  const { setLanguage } = useContext(LanguageContext);
   const { title, description, seodescription, content, slug } = props;
+  const routeInfo = landingPageRoutes?.find((item) => item.path === slug);
 
+  setLanguage(routeInfo.query.locale);
   /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
   const legalFooterContent = content.filter(

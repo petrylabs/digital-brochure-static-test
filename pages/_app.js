@@ -6,6 +6,7 @@ import PageFooterContext from "../context/pageFooter";
 import LanguageContext from "../context/language";
 import Header from "../components/Header";
 import "../scss/styles.scss";
+import { locales } from "../config";
 
 const Footer = loadable(() => import("../components/Footer"));
 const Modal = loadable(() => import("../components/Modal"));
@@ -28,13 +29,14 @@ function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
+  const [lang, setLanguage] = useState(locales.en);
 
   // TEMPORARY LANGUAGE ASSIGNMENT
   // TODO: translation; provide dynamic value for `lang` when API is ready
-  const lang = "en";
+  // const lang = "en";
 
   return (
-    <LanguageContext.Provider value={lang}>
+    <LanguageContext.Provider value={{ lang, setLanguage }}>
       <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
         <ModalContext.Provider
           value={{

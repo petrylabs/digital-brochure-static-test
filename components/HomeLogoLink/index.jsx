@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 
-import { baseUrl } from "../../config";
+import { baseUrl, locales } from "../../config";
 import headerData from "../../site-data/header.preval";
 import { customLoader } from "../../utils/images";
 import styles from "./HomeLogoLink.module.scss";
+import LanguageContext from "../../context/language";
+import { getLanguageVariable } from "../../utils/languageVariable";
 
 /**
  * HomeLogoLink
  * Displays the Sonnet wordmark as a "home" logo. Used in Desktop & mobile navigation.
  */
 function HomeLogoLink() {
-  const content = headerData.data.headerMenu;
+  const { lang } = useContext(LanguageContext);
+
+  const content = headerData[lang].headerMenu;
 
   return (
     <a href={content.logoHref} className={styles.link}>
@@ -28,9 +32,9 @@ function HomeLogoLink() {
       />
 
       {/* For a11y */}
-      {/* TODO: is this available from CMS? */}
-      {/* TODO: translate */}
-      <span className="visually-hidden">Home / Acceuil</span>
+      <span className="visually-hidden">
+        {getLanguageVariable("category-propertyinsurance", lang)}
+      </span>
     </a>
   );
 }

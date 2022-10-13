@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import loadable from "@loadable/component";
 
-import { breakpoints } from "../../config";
+import { breakpoints, languageId, locales } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
@@ -17,6 +17,7 @@ import NavDesktop from "../NavDesktop";
 import CartLink from "../CartLink";
 import NavSecondary from "../NavSecondary";
 import styles from "./Header.module.scss";
+import LanguageContext from "../../context/language";
 
 const SearchPanel = loadable(() => import("../SearchPanel"));
 
@@ -26,7 +27,9 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header() {
-  const content = headerData.data.headerMenu;
+  // const content = headerData.data.headerMenu;
+  const { lang } = useContext(LanguageContext);
+  const content = headerData[lang].headerMenu;
 
   /* Handle panel expansion: */
   const [isSubmenuExpanded, setIsSubmenuExpanded] = useState(false);
@@ -137,7 +140,7 @@ function Header() {
               setIsActive={setIsMobileSearchExpanded}
               onBackButton={() => {
                 setIsMobileSearchExpanded(false);
-                setIsSubmenuExpanded(true); 
+                setIsSubmenuExpanded(true);
               }}
             />
           )}

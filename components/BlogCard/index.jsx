@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
 import { baseUrl } from "../../config";
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import styles from "./BlogCard.module.scss";
+import { getLanguageVariable } from "../../utils/languageVariable";
+import LanguageContext from "../../context/language";
 
 /**
  * BlogCard
@@ -12,14 +14,15 @@ import styles from "./BlogCard.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179311185/BlogCard
  */
 function BlogCard(props) {
+  const { lang } = useContext(LanguageContext);
   const { content } = props;
   const { category, headline, timeToRead, url } = content;
 
   /* Where does this actually come from? */
-  /* TODO: translate */
-  const tag = Object.keys(category?.[0]).includes("auto")
-    ? "On the road"
-    : "At home";
+  const tag = getLanguageVariable(
+    `category-${Object.values(category?.[0])[0]}`,
+    lang
+  );
 
   return (
     <a

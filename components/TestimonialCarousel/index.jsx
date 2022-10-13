@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./TestimonialCarousel.module.scss";
 import { getLanguageVariable } from "../../utils/languageVariable";
+import LanguageContext from "../../context/language";
 
 /**
  * TestimonialCarousel
@@ -12,6 +13,7 @@ import { getLanguageVariable } from "../../utils/languageVariable";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179180113/TestimonialCarousel
  */
 function TestimonialCarousel(props) {
+  const { lang } = useContext(LanguageContext);
   const { content } = props;
   const { headline, fields } = content;
   const slides = fields;
@@ -46,9 +48,9 @@ function TestimonialCarousel(props) {
       {/* SLIDES: */}
       <div className={styles.slides}>
         {slides.map((slide, i) => {
-          // TODO: Add translation
           const province = getLanguageVariable(
-            `category-${Object.keys(slide.province[0])[0]}`
+            `category-${Object.keys(slide.province[0])[0]}`,
+            lang
           );
           const location = slide.city
             ? `${slide.customerName}, ${slide.city}, ${province}`
@@ -85,8 +87,9 @@ function TestimonialCarousel(props) {
             onClick={() => handlePrev()}
             className={`${styles.prevnext} ${styles.prev}`}
           >
-            {/* TODO: translate */}
-            <span className="visually-hidden">Previous</span>
+            <span className="visually-hidden">
+              {getLanguageVariable("pagination-previous", lang)}
+            </span>
           </button>
         )}
 
@@ -112,8 +115,9 @@ function TestimonialCarousel(props) {
             onClick={() => handleNext()}
             className={`${styles.prevnext} ${styles.next}`}
           >
-            {/* TODO: translate */}
-            <span className="visually-hidden">Next</span>
+            <span className="visually-hidden">
+              {getLanguageVariable("pagination-next", lang)}
+            </span>
           </button>
         )}
       </div>
