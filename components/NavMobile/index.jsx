@@ -10,25 +10,24 @@ import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import Chevron from "../../icons/Chevron";
+import headerData from "../../site-data/header.preval";
+import getNavigation from "../../utils/navigation";
 import NavCard from "../NavCard";
 import styles from "./NavMobile.module.scss";
 import NavSecondary from "../NavSecondary";
+import CTA from "../CTA";
+import LanguageContext from "../../context/language";
 
 /**
  * NavMobile
+ * Header navigation for mobile & tablet screen widths
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179081764/NavMobile
  */
 function NavMobile(props) {
-  const { isExpanded, content, ariaControls, isSearchExpanded, onClick } =
-    props;
-  var menuItems = Object.keys(content?.menuItems).map((key) => [
-    key,
-    content.menuItems[key].order,
-    content.menuItems[key].subItems,
-  ]);
-
-  // Sort array based on order number in content
-  const sortedMenuItems = menuItems.sort((a, b) => a[1] - b[1]);
+  const { isExpanded, ariaControls, isSearchExpanded, onClick } = props;
+  const { lang } = useContext(LanguageContext);
+  const content = headerData[lang].headerMenu;
+  const navItems = getNavigation(lang);
 
   /* Handling screen sizes: */
   const screenWidth = useWindowWidth();
@@ -39,58 +38,59 @@ function NavMobile(props) {
 
   return (
     <div
-      className={styles.mobileTabletNavBar}
+      className={styles.container}
       style={{ maxHeight: isExpanded ? `100vh` : `0px` }}
     >
-      <nav className={styles.navItemsContainer}>
-        {sortedMenuItems.map((item, i) => (
-          <div key={i}>
-            <MuiAccordion
-              id={`accordian-item-${i + 1}`}
-              defaultExpanded={item[1] < 2}
-              disableGutters
-              TransitionProps={{ timeout: 0 }}
-              classes={{ root: styles.accordionNavitems }}
+      <nav className={styles.nav}>
+        {navItems.map((item, i) => (
+          <MuiAccordion
+            key={i}
+            id={`accordian-item-${i + 1}`}
+            defaultExpanded={i < 2}
+            disableGutters
+            elevation={0}
+            TransitionProps={{ timeout: 0 }}
+            classes={{ root: styles.accordionRoot }}
+          >
+            <AccordionSummary
+              id={`summary${i + 1}`}
+              expandIcon={i < 2 ? "" : <Chevron />}
+              classes={{
+                root: styles.summary,
+                expanded: styles.summaryExpanded,
+                expandIconWrapper: styles.summaryIcon,
+              }}
             >
-              <AccordionSummary
-                id={`summary${i + 1}`}
-                expandIcon={item[1] < 2 ? "" : <Chevron />}
-                classes={{
-                  root: styles.summaryNavitems,
-                  expanded: styles.summaryExpandedNavitems,
-                  expandIconWrapper: styles.summaryIconNavitems,
-                }}
-              >
-                {item[0]}
-              </AccordionSummary>
+              {item.menuItem}
+            </AccordionSummary>
 
-              <AccordionDetails
-                id={`details${i + 1}`}
-                classes={{ root: styles.detailsNavitems }}
+            <AccordionDetails
+              id={`details${i + 1}`}
+              classes={{ root: styles.details }}
+            >
+              <ul
+                className={`${styles.subItemsList} ${
+                  isMobile ? styles.mobileDetails : styles.itemsColumn
+                }`}
               >
-                <div
-                  className={
-                    isMobile ? styles.mobileDetails : styles.itemsColumn
-                  }
-                >
-                  {item[2].map((subItem, j) => {
-                    return isMobile && subItem.excludeInMobile ? null : (
+                {item.subItems.map((subItem, j) => {
+                  return isMobile && subItem.excludeInMobile ? null : (
+                    <li key={j}>
                       <NavCard
-                        key={j}
                         url={subItem.url}
                         mainText={subItem.header}
                         subText={subItem.subtext}
                         isNew={subItem.isNew}
                       />
-                    );
-                  })}
-                </div>
-              </AccordionDetails>
-            </MuiAccordion>
-          </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </AccordionDetails>
+          </MuiAccordion>
         ))}
 
-        <div className={styles.buttonContentContainer}>
+        <div className={styles.secondaryNavContainer}>
           <NavSecondary
             ariaControls={ariaControls}
             ariaExpanded={isSearchExpanded}
@@ -99,13 +99,9 @@ function NavMobile(props) {
         </div>
 
         <div className={styles.buttonContainer}>
-          <button
-            type="button"
-            className={styles.buttonGaq}
-            onClick={() => setIsQuoteModalOpen(true)}
-          >
+          <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
             {content.gaq}
-          </button>
+          </CTA>
         </div>
       </nav>
     </div>

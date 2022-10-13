@@ -76,6 +76,16 @@
     box-shadow: inset 0 0 0 3px $color-primary-pressed;
   }
 }
+
+@mixin cta-gaq-modified() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 150px;
+  padding: 0;
+}
+
 // @function ns($map, $path) {
 //     $keys: ();
 //     $separator: '.';

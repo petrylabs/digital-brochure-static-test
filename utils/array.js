@@ -1,3 +1,9 @@
+/**
+ * Re-orders items so that all the even-indexed items come (in order)
+ * before the odd-indexed ones
+ * @param {array} array items to re-order
+ * @returns {array} re-ordered items
+ */
 export function evenIndexBeforeOdd(array) {
   let odds = [];
   let evens = [];
