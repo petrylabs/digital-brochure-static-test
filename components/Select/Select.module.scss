@@ -8,15 +8,9 @@
 }
 
 .icon {
-  font-family: "icomoon" !important;
-  color: $color-primary-accent;
-  font-size: 12px;
-  display: inline-block;
-  padding: 14px 20px;
-
-  &::before {
-    content: "\e97e";
-  }
+  fill: $color-primary-accent;
+  font-size: 32px;
+  margin-right: 5px;
 }
 
 .input {

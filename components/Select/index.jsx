@@ -65,6 +65,7 @@ function Select({ options, label, methods }) {
               className={`${styles.input} ${open ? styles.activeInput : ""} `}
               classes={{
                 select: styles.select,
+                icon: styles.icon, 
               }}
               native={false}
               variant={"outlined"}
@@ -75,7 +76,6 @@ function Select({ options, label, methods }) {
                   list: styles.menuList,
                 },
               }}
-              IconComponent={() => <div className={styles.icon}></div>}
               inputProps={{
                 classes: {
                   root: styles.input,
