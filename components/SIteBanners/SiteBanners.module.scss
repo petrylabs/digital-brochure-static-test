@@ -20,6 +20,11 @@
   &:first-child {
     background-color: $color-primary-accent;
     color: $color-white;
+    font-size: 14px;
+
+    @include mq-min-width(lg) {
+      font-size: 16px;
+    }
 
     a {
       color: $color-white;
