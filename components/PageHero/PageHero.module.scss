@@ -103,10 +103,15 @@
     width: 100%;
     height: 100%;
     display: inline-block;
-    background: linear-gradient(
+
+    /*Display gradient only on tablet and large screens*/
+    @include mq-min-width(md){
+      background: linear-gradient(
       270deg,
       rgba(255, 255, 255, 0) 30%,
       $color-white 115%
     );
+    }
+   
   }
 }
