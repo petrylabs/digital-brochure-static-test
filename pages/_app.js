@@ -58,6 +58,7 @@ function CustomApp({ Component, pageProps }) {
           <Modal
             open={isQuoteModalOpen}
             onClose={() => setIsQuoteModalOpen(false)}
+            isQuoteModal
           >
             <QuoteModalContent />
           </Modal>
@@ -65,6 +66,7 @@ function CustomApp({ Component, pageProps }) {
           <Modal
             open={isSignUpModalOpen}
             onClose={() => setIsSignUpModalOpen(false)}
+            isQuoteModal={false}
           >
             <SignUpModalContent />
           </Modal>
