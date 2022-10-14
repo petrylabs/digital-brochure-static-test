@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import headerData from "../../site-data/header.preval";
 import styles from "./NavSecondary.module.scss";
 import LanguageContext from "../../context/language";
-import { landingPageRoutes, languageId, locales } from "../../config";
+import { landingPageRoutes, locales } from "../../config";
 import { useRouter } from "next/router";
 
 /**
