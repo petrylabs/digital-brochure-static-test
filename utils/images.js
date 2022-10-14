@@ -36,10 +36,10 @@ function imageData(contentObj, field) {
  * @param {string} field field name
  * @returns {string} image URL
  */
-export function imageSrc(contentObj, field) {
+export function imageSrc(contentObj, field, lang = 1) {
   const { identifier, fileName } = imageData(contentObj, field);
   const cleanFileName = fileName?.replace("@", "%40");
-  return `${baseUrl}/dA/${identifier}/${cleanFileName}`;
+  return `${baseUrl}/dA/${identifier}/${cleanFileName}?language_id=${lang}`;
 }
 
 /**

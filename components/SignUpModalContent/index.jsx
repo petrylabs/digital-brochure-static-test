@@ -175,13 +175,13 @@ function SignUpModalContent() {
           <span>
             {parse(data.privacy, {
               replace: (domNode) => {
-                const { name, attribs } = domNode;
+                const { name, attribs, children } = domNode;
                 if (name === "snt-link") {
                   return (
                     <AnimatedLink
                       href={attribs.href}
-                      title="Privacy Notice"
-                      linkText="Privacy Notice"
+                      title={children[0].data}
+                      linkText={children[0].data}
                       target="_blank"
                     />
                   );

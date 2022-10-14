@@ -1,3 +1,4 @@
+import { languageId, locales } from "../config";
 import globalVariableData from "../site-data/globalVariables.preval";
 
 export const getLanguageVariable = (key, lang) => {
@@ -7,4 +8,8 @@ export const getLanguageVariable = (key, lang) => {
       ?.value;
   }
   return;
+};
+
+export const getLanguageId = (localeLang) => {
+  return localeLang === locales.en ? languageId.en : languageId.fr;
 };
