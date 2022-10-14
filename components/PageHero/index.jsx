@@ -6,6 +6,8 @@ import ModalContext from "../../context/modal";
 import { imageAlt, imageSrc } from "../../utils/images";
 import CTA from "../CTA";
 import styles from "./PageHero.module.scss";
+import LanguageContext from "../../context/language";
+import { getLanguageId } from "../../utils/languageVariable";
 
 /**
  * PageHero
@@ -13,8 +15,10 @@ import styles from "./PageHero.module.scss";
  */
 
 function PageHero(props) {
+  const { lang } = useContext(LanguageContext);
   const { content, imgContain } = props;
   const { headline, copy, buttonType, cta } = content;
+  const languageId = getLanguageId(lang);
 
   /* Handling modal display: */
   const { setIsQuoteModalOpen } = useContext(ModalContext);
@@ -33,19 +37,19 @@ function PageHero(props) {
 
       <picture className={styles.imageContainer}>
         <source
-          srcSet={imageSrc(content, "desktopImage")}
+          srcSet={imageSrc(content, "desktopImage", languageId)}
           media={`(min-width: ${breakpoints.lg}px)`}
         />
         <source
-          srcSet={imageSrc(content, "tabletImage")}
+          srcSet={imageSrc(content, "tabletImage", languageId)}
           media={`(min-width: ${breakpoints.md}px)`}
         />
         <source
-          srcSet={imageSrc(content, "desktopHdImage")}
+          srcSet={imageSrc(content, "desktopHdImage", languageId)}
           media={`(min-width: ${breakpoints.blg}px)`}
         />
         <img
-          src={imageSrc(content, "mobileImage")}
+          src={imageSrc(content, "mobileImage", languageId)}
           alt={imageAlt(content, "mobileImage")}
           className={imgContain ? styles.contain : styles.cover}
         />

@@ -5,7 +5,10 @@ import PropTypes from "prop-types";
 import { baseUrl } from "../../config";
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import styles from "./BlogCard.module.scss";
-import { getLanguageVariable } from "../../utils/languageVariable";
+import {
+  getLanguageId,
+  getLanguageVariable,
+} from "../../utils/languageVariable";
 import LanguageContext from "../../context/language";
 
 /**
@@ -23,7 +26,7 @@ function BlogCard(props) {
     `category-${Object.values(category?.[0])[0]}`,
     lang
   );
-
+  const languageId = getLanguageId(lang);
   return (
     <a
       href={`${baseUrl}${url}`}
@@ -34,7 +37,7 @@ function BlogCard(props) {
         <div className={styles.blogImage}>
           <Image
             loader={customLoader}
-            src={imageSrc(content, "image")}
+            src={imageSrc(content, "image", languageId)}
             alt={imageAlt(content, "image")}
             layout="fill"
             objectFit="cover"

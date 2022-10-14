@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
@@ -7,13 +7,17 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import { customLoader, imageAlt, imageSrc } from "../../utils/images";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./PartnershipSection.module.scss";
+import LanguageContext from "../../context/language";
+import { getLanguageId } from "../../utils/languageVariable";
 
 /**
  * PartnershipSection
  * Section displaying what does car insurance cover in canada in an accordion
  */
 function PartnershipSection(props) {
+  const { lang } = useContext(LanguageContext);
   const { content } = props;
+  const languageId = getLanguageId(lang);
 
   const screenWidth = useWindowWidth();
 
@@ -28,7 +32,7 @@ function PartnershipSection(props) {
       <div className={styles.imageMobile}>
         <Image
           loader={customLoader}
-          src={imageSrc(content, imageString)}
+          src={imageSrc(content, imageString, languageId)}
           alt={imageAlt(content, imageString)}
           layout="fill"
           objectFit="cover"
