@@ -52,7 +52,7 @@ function SearchPanel(props) {
         <SearchResults
           searchTerm={query}
           onResults={(results) => setHasResults(results?.length > 0)}
-          onQueryChange={(newQuery) => {changeQuery(newQuery)}}
+          onQueryChange={(newQuery) => setQuery(newQuery)}
         />
       </div>
     </>

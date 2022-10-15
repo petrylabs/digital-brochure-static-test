@@ -14,8 +14,6 @@ function SearchInput(props) {
   const { lang } = useContext(LanguageContext);
   const { value, onChange, hasResults } = props;
 
-  // const listboxId = this.hostElement.id ? `${this.hostElement.id}-listbox` : null;
-
   return (
     <div
       className={styles.inputContainer}
@@ -36,7 +34,6 @@ function SearchInput(props) {
         autoFocus
         value={value}
         onChange={onChange}
-        // aria-activedescendant={this.activeIndex >= 0 ? resultItemPrefix + this.activeIndex : null}
       />
     </div>
   );

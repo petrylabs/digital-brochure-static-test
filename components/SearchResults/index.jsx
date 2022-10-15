@@ -46,6 +46,11 @@ function SearchResults(props) {
   const arrowDownPressed = useKeyPress('ArrowDown');
 
   function reducer (state, action) {
+    // NOTE: Commented code helps replace searchInput when user navigates search
+    // results via arrow keys but needs to be placed elsewhere.
+    // if (searchResults[state.selectedIndex]) {
+    //   onQueryChange(searchResults[state.selectedIndex].title);
+    // }
     switch (action.type) {
       case "arrowUp":
         return {
@@ -71,7 +76,7 @@ function SearchResults(props) {
       setSearchResults([]);
     }
     onResults(searchResultData);
-  }, [searchTerm, onResults]);
+  }, [lang, searchTerm, onResults]);
 
   useEffect(() => {
     if (arrowDownPressed) {
@@ -88,12 +93,14 @@ function SearchResults(props) {
   /* Make search term bold within link text */
   const highlight = (title) => {
     let search = searchTerm;
-    search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-    var re = new RegExp(search, "gi");
-    if (search.length > 0) {
-      return parse(title.replace(re, `<b>$&</b>`));
-    } else {
-      return title;
+    if (typeof search == 'string') {
+      search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+      var re = new RegExp(search, "gi");
+      if (search.length > 0) {
+        return parse(title.replace(re, `<b>$&</b>`));
+      } else {
+        return title;
+      }
     }
   };
 
@@ -105,7 +112,6 @@ function SearchResults(props) {
           key={i}
           className={styles.searchResultItem}
           aria-selected={i == state.selectedIndex}
-          // aria-label={this.languageVariables.get("link to") + SearchSuggestionItem.title}
           onClick={() => {
             dispatch({ type: "select", payload: i });
           }}
@@ -117,7 +123,7 @@ function SearchResults(props) {
           <a
             href={item.url} 
             className={ `${styles.searchResultItemLink} ${i === state.selectedIndex ? styles.searchResultHoveredItem : styles.searchResultItem}`}
-            >
+          >
             {highlight(item.metaTitle || item.title)}
           </a>
         </li>
@@ -129,6 +135,7 @@ function SearchResults(props) {
 SearchResults.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   onResults: PropTypes.func.isRequired,
+  onQueryChange: PropTypes.func.isRequired,
 };
 
 export default SearchResults;
