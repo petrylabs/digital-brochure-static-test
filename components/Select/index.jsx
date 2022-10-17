@@ -52,7 +52,7 @@ function Select({ options, label, methods }) {
       <Controller
         name="interestedIn"
         control={methods.control}
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange, value } }) => (
           <>
             <MuiSelect
               id="select"
@@ -91,7 +91,10 @@ function Select({ options, label, methods }) {
                 onClose={() => setMenuModalOpen(false)}
               >
                 <div className={styles.modalContainer}>
-                  {MenuItemList(options, value, handleMenuItemClick)}
+                  {MenuItemList(options, value, (e) => {
+                    onChange(e.target.textContent);
+                    handleMenuItemClick(e);
+                  })}
                 </div>
               </SelectModal>
             )}

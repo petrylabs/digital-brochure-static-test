@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import loadable from "@loadable/component";
 
-import { breakpoints, languageId, locales } from "../../config";
+import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";

@@ -5,19 +5,6 @@
 
 .container {
   max-width: 100%;
-
-  width: 100vh;
-  @include mq-min-width(md) {
-    width: 334px;
-  }
-
-  @include mq-min-width(lg) {
-    width: 426px;
-  }
-
-  @include mq-min-width(xl) {
-    width: 570px;
-  }
 }
 
 .text {
@@ -39,7 +26,6 @@
       margin-bottom: 30px;
     }
   }
-
 }
 
 .linksList {
@@ -56,7 +42,6 @@
       grid-column: 1 / span 2;
     }
   }
-
 }
 
 .link {
@@ -115,8 +100,8 @@
   font-size: 10px;
   padding-top: 5px;
   font-family: "icomoon" !important;
- 
-  @include mq-min-width(lg){
+
+  @include mq-min-width(lg) {
     margin-inline: 15px;
   }
 

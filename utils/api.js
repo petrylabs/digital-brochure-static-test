@@ -99,7 +99,7 @@ export async function getPage(languageId = 1, pageId) {
  * @param {array} containers from entity.containers
  * @returns
  */
-function getPageContent(rows, containers) {
+export function getPageContent(rows, containers) {
   let content = [];
   rows.map((row) => {
     row.columns.map((column) => {
@@ -234,11 +234,42 @@ export const signUpSubmission = (formData) => {
  * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with sign up success modal data
  */
-export const getSignUpModalSuccessContent = (languageId = 1) => {
-  return get(
+export async function getSignUpModalSuccessContent(languageId = 1) {
+  const modalDataResponse = await get(
     `${apiUrl}/v1/page/render/modals/newsletter-success-modal?language_id=${languageId}`
   );
-};
+  let { data, error } = modalDataResponse;
+
+  if (data && data.entity) {
+    const { layout, containers, page } = data.entity;
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
+
+    /** Get all related content */
+    const contentRelationships = content.map((item) =>
+      getContentRelationshipData(item.identifier, item.languageId)
+    );
+
+    return Promise.all(contentRelationships).then((relations) => {
+      relations.map((data, i) => {
+        content[i].fields = data.data.contentlets[0];
+      });
+
+      return {
+        data: {
+          content,
+        },
+        error,
+      };
+    });
+  } else {
+    return {
+      data: null,
+      error,
+    };
+  }
+}
 
 /**
  * Get sign up error modal data from API

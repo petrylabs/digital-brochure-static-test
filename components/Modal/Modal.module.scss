@@ -21,7 +21,7 @@
 
   @include mq-min-width(md) {
     min-height: 0;
-    padding: 40px 26px;
+    padding: 40px;
   }
 
   @include mq-min-width(lg) {
@@ -29,7 +29,7 @@
   }
 }
 
-.containerQuoteModal{
+.containerQuoteModal {
   @include mq-min-width(md) {
     width: 334px;
   }
@@ -39,11 +39,11 @@
   }
 
   @include mq-min-width(xl) {
-    width: 570px; 
+    width: 570px;
   }
 }
 
-.containerSignUpModal{
+.containerSignUpModal {
   @include mq-min-width(md) {
     width: 514px;
   }
@@ -53,7 +53,7 @@
   }
 
   @include mq-min-width(xl) {
-    width: 770px; 
+    width: 770px;
   }
 }
 

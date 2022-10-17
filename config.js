@@ -93,6 +93,8 @@ export const landingPageRoutes = [
   },
 ];
 
+export const newsLetterFormKey = "newsLetterForm";
+
 /** For Google Tag Manager */
 export const GTMContainerId = "GTM-TF8DP3";
 
