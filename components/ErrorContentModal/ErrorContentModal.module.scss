@@ -3,8 +3,9 @@
 @import "../../scss/globals/variables";
 
 .contentSection {
+  max-width: 100%;
+  width: 100vh;
   text-align: center;
-  @include dialogContainer;
   h2 {
     font-size: 1.5rem;
     @include mq-min-width(smd) {
@@ -21,18 +22,17 @@
     }
   }
   p {
-    padding-top: 15px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    margin-bottom: 0px;
     @include mq-min-width(lg) {
-      padding-top: 25px;
-    }
-    @include mq-min-width(xl) {
       padding-top: 30px;
+      padding-bottom: 30px;
     }
   }
 }
 
 .buttonContainer {
-  padding-bottom: 0.813em;
   @include mq-min-width(md) {
     display: inline-block;
     text-align: center;

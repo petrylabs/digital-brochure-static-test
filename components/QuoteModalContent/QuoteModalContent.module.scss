@@ -4,7 +4,7 @@
 @import "../../scss/globals/layout.scss";
 
 .container {
-  @include dialogContainer;
+  max-width: 100%;
 }
 
 .text {
@@ -26,7 +26,6 @@
       margin-bottom: 30px;
     }
   }
-
 }
 
 .linksList {
@@ -43,7 +42,6 @@
       grid-column: 1 / span 2;
     }
   }
-
 }
 
 .link {
@@ -102,8 +100,8 @@
   font-size: 10px;
   padding-top: 5px;
   font-family: "icomoon" !important;
- 
-  @include mq-min-width(lg){
+
+  @include mq-min-width(lg) {
     margin-inline: 15px;
   }
 

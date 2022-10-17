@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 
-import { baseUrl } from "../../config.js";
+import { baseUrl, breakpoints } from "../../config.js";
 import styles from "./SuccessContentModal.module.scss";
 import ParsedCopy from "../ParsedCopy";
 import { customLoader } from "../../utils/images";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import Modal from "../Modal";
 
 /**
@@ -15,6 +16,8 @@ import Modal from "../Modal";
 function SuccessContentModal({ open, content, onClose }) {
   const src = baseUrl + content.fields?.icon?.url;
   const alt = baseUrl + content.fields?.icon?.altText;
+  const screenWidth = useWindowWidth();
+  const size = screenWidth < breakpoints.lg ? "30" : "45";
   return (
     <Modal open={open} onClose={onClose}>
       <section className={styles.contentSection}>
@@ -23,8 +26,8 @@ function SuccessContentModal({ open, content, onClose }) {
             loader={customLoader}
             src={src}
             alt={alt}
-            width={"45"}
-            height={"45"}
+            width={size}
+            height={size}
           />
         </div>
         <h2>{content?.headline}</h2>
