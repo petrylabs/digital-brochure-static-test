@@ -38,18 +38,14 @@ const SuccessContentModal = loadable(() =>
 function CustomApp({ Component, pageProps }) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-  const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(true);
+  const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(false);
   const [isSignUpSuccessModalOpen, setIsSignUpSuccessModalOpen] =
     useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
   const [lang, setLanguage] = useState(locales.fr);
-  console.log({ test: getSignUpModalSuccessData[lang] });
-  console.log({ signUpModalErrorContent: getSignUpModalErrorData[lang] });
   const { data: signUpSuccessData } = getSignUpModalSuccessData[lang];
   const signUpModalSuccessContent = signUpSuccessData?.content[0];
   const signUpModalErrorContent = getSignUpModalErrorData[lang][0];
-  console.log({ signUpModalSuccessContent });
-  console.log({ signUpModalErrorContent });
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
