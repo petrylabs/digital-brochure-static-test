@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import MuiSelect from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -46,6 +45,24 @@ function Select({ options, label, methods }) {
     setValue(e.target.textContent);
   };
 
+  const MenuItemList = (optionsList, selectedValue, handleClick) => {
+    return optionsList.map((option, i) => (
+      <MenuItem
+        key={i}
+        value={option.key}
+        selected={selectedValue == option.value}
+        divider={true}
+        classes={{
+          root: styles.menuItem,
+          selected: styles.selectedMenuItem,
+        }}
+        onClick={handleClick}
+      >
+        {option.value}
+      </MenuItem>
+    ));
+  };
+
   return (
     <>
       <label htmlFor="interest">{label}</label>
@@ -62,10 +79,10 @@ function Select({ options, label, methods }) {
               onChange={onChange}
               onOpen={handleOpen}
               open={open}
-              className={`${styles.input} ${open ? styles.activeInput : ""} `}
+              className={`${styles.root} ${open ? styles.activeInput : ""} `}
               classes={{
                 select: styles.select,
-                icon: styles.icon, 
+                icon: styles.icon,
               }}
               native={false}
               variant={"outlined"}
@@ -76,14 +93,10 @@ function Select({ options, label, methods }) {
                   list: styles.menuList,
                 },
               }}
-              inputProps={{
-                classes: {
-                  root: styles.input,
-                },
-              }}
             >
               {MenuItemList(options, value, handleMenuItemClick)}
             </MuiSelect>
+
             {isMobile && (
               <SelectModal
                 open={isMenuModalOpen}
@@ -106,23 +119,3 @@ function Select({ options, label, methods }) {
 }
 
 export default Select;
-
-const MenuItemList = (optionsList, selectedValue, handleClick) => {
-  return optionsList.map((option, i) => {
-    return (
-      <MenuItem
-        key={i}
-        value={option.key}
-        selected={selectedValue == option.value}
-        divider={true}
-        classes={{
-          root: styles.menuItem,
-          selected: styles.selectedMenuItem,
-        }}
-        onClick={handleClick}
-      >
-        {option.value}
-      </MenuItem>
-    );
-  });
-};

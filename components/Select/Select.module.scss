@@ -2,6 +2,39 @@
 @import "../../scss/globals/color";
 @import "/scss/globals/layout";
 
+/* MuiSelect: */
+
+.root {
+  height: 45px;
+  padding: 0px 0px;
+  border-radius: 0px !important;
+
+  fieldset {
+    border: 1px solid $color-hint;
+  }
+
+  &:hover {
+    fieldset {
+      border: 1px solid $color-primary-accent !important;
+    }
+  }
+
+  &:focus-within {
+    fieldset {
+      border: 3px solid $color-primary-accent !important;
+    }
+    svg {
+      color: $color-primary-accent;
+    }
+  }
+}
+
+.activeInput {
+  fieldset {
+    border: 3px solid $color-primary-accent !important;
+  }
+}
+
 .select {
   font-family: $font-regular;
   padding: 10px 20px;
@@ -13,37 +46,7 @@
   margin-right: 5px;
 }
 
-.input {
-  border-radius: 0px !important;
-  height: 45px;
-  padding: 0px 0px;
-  border: 1px solid transparent;
-  fieldset {
-    border: 1px solid $color-hint;
-  }
-
-  &:hover {
-    border: 1px solid $color-primary-accent;
-    fieldset {
-      border: none;
-    }
-  }
-}
-
-.activeInput {
-  fieldset {
-    border: 3px solid $color-primary-accent !important;
-  }
-}
-
-.input:focus-within {
-  fieldset {
-    border: 3px solid $color-primary-accent !important;
-  }
-  svg {
-    color: $color-primary-accent;
-  }
-}
+/* in Menu props: */
 
 .paper {
   padding: 0px 0px;
@@ -56,37 +59,46 @@
   display: none;
 }
 
+.menuList {
+  padding: 0px;
+}
+
+/* in SelectModal: */
+
 .modalContainer {
   width: 100%;
 }
 
+/* in MenuItemList: */
+
 .menuItem {
   border-bottom: 1px solid $color-grey-07;
-  @include mq-min-width(lg) {
-    padding: 16px 57px 14px 20px;
-  }
   padding: 18px 57px 18px 20px;
   font-family: $font-regular;
+
   &:hover {
     background-color: $color-grey-05 !important;
   }
+
   &:active {
     background-color: $color-primary-accent !important;
     color: $color-white;
   }
+
   &:focus {
     background-color: $color-primary;
   }
-}
 
-.menuList {
-  padding: 0px;
+  @include mq-min-width(lg) {
+    padding: 16px 57px 14px 20px;
+  }
 }
 
 .selectedMenuItem {
   font-family: $font-regular;
   font-weight: 700;
   background-color: $color-primary !important;
+
   &::before {
     content: "";
     position: absolute;
