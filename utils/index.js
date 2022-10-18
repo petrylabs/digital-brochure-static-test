@@ -7,3 +7,4 @@ export * from "./search";
 export * from "./cookie";
 export * from "./deviceType";
 export * from "./removeStorage";
+export * from "./route";

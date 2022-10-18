@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import loadable from "@loadable/component";
+import { useRouter } from "next/router";
 
 import ModalContext from "../context/modal";
 import PageFooterContext from "../context/pageFooter";
@@ -9,7 +10,7 @@ import "../scss/styles.scss";
 import { locales } from "../config";
 import getSignUpModalSuccessData from "../site-data/signUpModalSuccess.preval";
 import getSignUpModalErrorData from "../site-data/signUpModalError.preval";
-import { removeStorage } from "../utils";
+import { getCurrentPath, removeStorage } from "../utils";
 import { newsLetterFormKey } from "../config";
 
 const Footer = loadable(() => import("../components/Footer"));
@@ -36,6 +37,7 @@ const SuccessContentModal = loadable(() =>
  */
 
 function CustomApp({ Component, pageProps }) {
+  const router = useRouter();
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(false);
@@ -46,6 +48,11 @@ function CustomApp({ Component, pageProps }) {
   const { data: signUpSuccessData } = getSignUpModalSuccessData[lang];
   const signUpModalSuccessContent = signUpSuccessData?.content[0];
   const signUpModalErrorContent = getSignUpModalErrorData[lang][0];
+
+  useEffect(() => {
+    const currentPath = getCurrentPath(router);
+    setLanguage(currentPath.query.locale);
+  }, []);
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
