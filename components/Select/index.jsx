@@ -62,10 +62,10 @@ function Select({ options, label, methods }) {
               onChange={onChange}
               onOpen={handleOpen}
               open={open}
-              className={`${styles.input} ${open ? styles.activeInput : ""} `}
+              className={`${styles.root} ${open ? styles.activeInput : ""} `}
               classes={{
                 select: styles.select,
-                icon: styles.icon, 
+                icon: styles.icon,
               }}
               native={false}
               variant={"outlined"}
@@ -76,14 +76,10 @@ function Select({ options, label, methods }) {
                   list: styles.menuList,
                 },
               }}
-              inputProps={{
-                classes: {
-                  root: styles.input,
-                },
-              }}
             >
               {MenuItemList(options, value, handleMenuItemClick)}
             </MuiSelect>
+
             {isMobile && (
               <SelectModal
                 open={isMenuModalOpen}
