@@ -19,7 +19,7 @@ function NavSecondary(props) {
   const content = headerData[lang].headerMenu;
   const toggleLocale = lang === locales.en ? locales.fr : locales.en;
   const currentPath = getCurrentPath(router);
-  const togglePath = getTogglePath(currentPath, toggleLocale).path;
+  const togglePath = getTogglePath(currentPath, toggleLocale)?.path;
   return (
     <nav className={styles.nav}>
       {/* Search */}
