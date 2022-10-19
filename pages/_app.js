@@ -54,6 +54,9 @@ function CustomApp({ Component, pageProps }) {
     setLanguage(currentPath.query.locale);
   }, []);
 
+  /* Handle header positioning below SiteBanners (if any) */
+  const [pageOffset, setPageOffset] = useState(0);
+
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
       <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
@@ -67,9 +70,9 @@ function CustomApp({ Component, pageProps }) {
             setIsSignUpErrorModalOpen,
           }}
         >
-          <Header />
+          <Header setPageOffset={setPageOffset} />
 
-          <main id="main-content">
+          <main id="main-content" style={{ top: `${pageOffset + 64}px` }}>
             {/* Page content gets displayed in here: */}
             <Component {...pageProps} />
           </main>
@@ -83,7 +86,6 @@ function CustomApp({ Component, pageProps }) {
           >
             <QuoteModalContent />
           </Modal>
-
           <Modal
             open={isSignUpModalOpen}
             onClose={() => {

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import { languageId, locales } from "../../config";
 import LanguageContext from "../../context/language";
 
@@ -11,7 +12,7 @@ import styles from "./SiteBanners.module.scss";
  * SiteBanners
  * Manages and displays site banners at the top of the page
  */
-function SiteBanners() {
+function SiteBanners(props, ref) {
   const { lang } = useContext(LanguageContext);
   const [isMounted, setIsMounted] = useState(false);
   const [activeBanners, setActiveBanners] = useState(
@@ -35,7 +36,7 @@ function SiteBanners() {
 
   if (isMounted) {
     return (
-      <section aria-label="notifications">
+      <section aria-label="notifications / annonces" ref={ref}>
         {activeBanners?.length > 0 &&
           activeBanners?.map((b) => (
             <article key={b.identifier} className={styles.banner}>
@@ -49,4 +50,4 @@ function SiteBanners() {
   return <div />;
 }
 
-export default SiteBanners;
+export default forwardRef(SiteBanners);
