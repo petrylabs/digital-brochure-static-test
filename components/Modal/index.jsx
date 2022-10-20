@@ -52,7 +52,7 @@ Modal.propTypes = {
   open: PropTypes.bool.isRequired,
 
   /** Is Quote Modal or not */
-  isQuoteModal: PropTypes.bool.isRequired,
+  isQuoteModal: PropTypes.bool,
 };
 
 export default Modal;
