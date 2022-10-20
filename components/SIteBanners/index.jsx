@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { forwardRef } from "react";
 import { languageId, locales } from "../../config";
 import LanguageContext from "../../context/language";
@@ -12,7 +12,7 @@ import styles from "./SiteBanners.module.scss";
  * SiteBanners
  * Manages and displays site banners at the top of the page
  */
-function SiteBanners(props, ref) {
+function SiteBanners(props) {
   const { setHeight } = props;
   const { lang } = useContext(LanguageContext);
   const [isMounted, setIsMounted] = useState(false);
@@ -20,6 +20,8 @@ function SiteBanners(props, ref) {
     banners[lang].data.contentlets
   );
   const currentLanguageId = lang === locales.en ? languageId.en : languageId.fr;
+
+  const ref = useRef();
 
   useEffect(() => {
     async function fetchBanners() {
@@ -52,4 +54,4 @@ function SiteBanners(props, ref) {
   return <div />;
 }
 
-export default forwardRef(SiteBanners);
+export default SiteBanners;

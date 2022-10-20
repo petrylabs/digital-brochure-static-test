@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import loadable from "@loadable/component";
 
 import { breakpoints } from "../../config";
@@ -7,7 +7,6 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
 import CloseIcon from "../../icons/CloseIcon";
 import headerData from "../../site-data/header.preval";
-import SiteBanners from "../SiteBanners";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -27,7 +26,7 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header(props) {
-  const { setPageOffset } = props;
+  const { banners } = props;
   const { lang } = useContext(LanguageContext);
   const content = headerData[lang].headerMenu;
 
@@ -72,13 +71,6 @@ function Header(props) {
     }
   }, [isDesktop]);
 
-  /* Relay height of SiteBanners (if any) back to app.js */
-  const bannersRef = useRef();
-  const bannersHeight = bannersRef?.current?.clientHeight || 0;
-  useEffect(() => {
-    setPageOffset(bannersHeight);
-  }, [setPageOffset, bannersHeight]);
-
   if (content)
     return (
       <>
@@ -88,7 +80,7 @@ function Header(props) {
             if (isDesktop) setIsSubmenuExpanded(false);
           }}
         >
-          <SiteBanners ref={bannersRef} setHeight={setPageOffset} />
+          {banners}
           <SkipNavLink />
 
           {/* HEADER BAR ----------------------------------------------------------- */}
