@@ -13,6 +13,7 @@ import styles from "./SiteBanners.module.scss";
  * Manages and displays site banners at the top of the page
  */
 function SiteBanners(props, ref) {
+  const { setHeight } = props;
   const { lang } = useContext(LanguageContext);
   const [isMounted, setIsMounted] = useState(false);
   const [activeBanners, setActiveBanners] = useState(
@@ -29,6 +30,7 @@ function SiteBanners(props, ref) {
           .sort((a, b) => b.order - a.order) || [];
       setActiveBanners(activeSorted);
       setIsMounted(true);
+      setHeight(ref.current?.clientHeight);
     }
     fetchBanners();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -88,7 +88,7 @@ function Header(props) {
             if (isDesktop) setIsSubmenuExpanded(false);
           }}
         >
-          <SiteBanners ref={bannersRef} />
+          <SiteBanners ref={bannersRef} setHeight={setPageOffset} />
           <SkipNavLink />
 
           {/* HEADER BAR ----------------------------------------------------------- */}
