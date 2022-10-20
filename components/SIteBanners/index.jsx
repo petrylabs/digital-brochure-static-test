@@ -14,29 +14,34 @@ import styles from "./SiteBanners.module.scss";
  */
 function SiteBanners(props) {
   const { setHeight } = props;
+
   const { lang } = useContext(LanguageContext);
+  const currentLanguageId = lang === locales.fr ? languageId.fr : languageId.en;
+
   const [isMounted, setIsMounted] = useState(false);
   const [activeBanners, setActiveBanners] = useState(
     banners[lang].data.contentlets
   );
-  const currentLanguageId = lang === locales.en ? languageId.en : languageId.fr;
 
   const ref = useRef();
+  const setBannersHeight = () => setHeight(ref.current?.clientHeight);
+
+  async function fetchBanners() {
+    const fetched = await getSiteBanners(currentLanguageId);
+    const activeSorted =
+      fetched?.data?.contentlets
+        ?.filter((b) => b.active === "true")
+        .sort((a, b) => b.order - a.order) || [];
+    setActiveBanners(activeSorted);
+    setIsMounted(true);
+    setBannersHeight();
+  }
 
   useEffect(() => {
-    async function fetchBanners() {
-      const fetched = await getSiteBanners(currentLanguageId);
-      const activeSorted =
-        fetched?.data?.contentlets
-          ?.filter((b) => b.active === "true")
-          .sort((a, b) => b.order - a.order) || [];
-      setActiveBanners(activeSorted);
-      setIsMounted(true);
-      setHeight(ref.current?.clientHeight);
-    }
     fetchBanners();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    window.addEventListener("resize", () => setBannersHeight());
+    return () => window.removeEventListener("resize", () => setBannersHeight());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isMounted) {
     return (
