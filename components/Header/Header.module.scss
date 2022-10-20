@@ -26,6 +26,10 @@
 
   @include mq-min-width(sm) {
     height: 64px;
+
+    [class^="CTA"] {
+      @include cta-gaq-modified;
+    }
   }
 
   @include mq-min-width(lg) {
@@ -37,15 +41,9 @@
   }
 }
 
-.NavMobile {
+.navMobile {
   display: flex;
   align-items: center;
-
-  @include mq-min-width(sm) {
-    [class^="CTA"] {
-      @include cta-gaq-modified;
-    }
-  }
 }
 
 .secondaryNav {

@@ -89,7 +89,7 @@ function Header() {
               <HomeLogoLink />
 
               {!isDesktop && (
-                <div className={styles.NavMobile}>
+                <div className={styles.navMobile}>
                   {!isSubmenuExpanded && (
                     <CTA
                       type="primary"
