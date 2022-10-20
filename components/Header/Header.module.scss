@@ -3,12 +3,14 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/buttons";
 
+$header-z: 100;
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: $header-z;
   width: 100%;
   max-width: map.get($breakpoints, xl);
   margin-inline: auto;
@@ -108,7 +110,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: $header-z - 1;
   background-color: rgba(51, 51, 51, 0.75);
   overflow: hidden;
 }
