@@ -38,7 +38,7 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
   line-height: 20px;
   font-family: $font-extra-bold;
   font-weight: 500;
-  color: $color-black;
+  color: $color-black !important;
   border: 1px solid transparent;
   border-radius: 5px;
   box-sizing: content-box;
@@ -70,7 +70,7 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
 }
 
 .summaryIcon {
-  color: $color-black;
+  color: $color-black !important;
   margin-left: 1.5rem;
 
   @media (prefers-reduced-motion: no-preference) {
