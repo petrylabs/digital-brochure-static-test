@@ -61,17 +61,6 @@
   }
 }
 
-.headerPanelMobile {
-  overflow: hidden;
-  height: 100vh;
-  padding-left: 37px;
-  padding-right: 14px;
-
-  @media (prefers-reduced-motion: no-preference) {
-    transition: max-height 0.5s ease;
-  }
-}
-
 .searchPanel {
   display: flex;
   align-items: center;
