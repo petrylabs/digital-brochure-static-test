@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { forwardRef } from "react";
+import PropTypes from "prop-types";
+
 import { languageId, locales } from "../../config";
 import LanguageContext from "../../context/language";
-
 import banners from "../../site-data/banners.preval";
 import { getSiteBanners } from "../../utils/api";
 import ParsedCopy from "../ParsedCopy";
@@ -10,7 +10,8 @@ import styles from "./SiteBanners.module.scss";
 
 /**
  * SiteBanners
- * Manages and displays site banners at the top of the page
+ * Manages and displays site banners at the top of the page.
+ * Relays its height back via `setHeight` prop (for use in `app.js`, to adjust position of `main`)
  */
 function SiteBanners(props) {
   const { setHeight } = props;
@@ -56,7 +57,11 @@ function SiteBanners(props) {
     );
   }
 
-  return <div />;
+  return null;
 }
+
+SiteBanners.propTypes = {
+  setHeight: PropTypes.func.isRequired,
+};
 
 export default SiteBanners;
