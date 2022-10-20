@@ -17,7 +17,8 @@ function SiteBanners(props) {
   const { setHeight } = props;
 
   const { lang } = useContext(LanguageContext);
-  const currentLanguageId = lang === locales.fr ? languageId.fr : languageId.en;
+  const isFrench = lang === locales.fr;
+  const currentLanguageId = isFrench ? languageId.fr : languageId.en;
 
   const [isMounted, setIsMounted] = useState(false);
   const [activeBanners, setActiveBanners] = useState(
@@ -46,7 +47,7 @@ function SiteBanners(props) {
 
   if (isMounted) {
     return (
-      <section aria-label="notifications / annonces" ref={ref}>
+      <section aria-label={isFrench ? "annonces" : "notifications"} ref={ref}>
         {activeBanners?.length > 0 &&
           activeBanners?.map((b) => (
             <article key={b.identifier} className={styles.banner}>
