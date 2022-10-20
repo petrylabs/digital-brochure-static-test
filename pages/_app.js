@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import loadable from "@loadable/component";
 import { useRouter } from "next/router";
 
@@ -12,6 +12,7 @@ import getSignUpModalSuccessData from "../site-data/signUpModalSuccess.preval";
 import getSignUpModalErrorData from "../site-data/signUpModalError.preval";
 import { getCurrentPath, removeStorage } from "../utils";
 import { newsLetterFormKey } from "../config";
+import SiteBanners from "../components/SiteBanners";
 
 const Footer = loadable(() => import("../components/Footer"));
 const Modal = loadable(() => import("../components/Modal"));
@@ -54,6 +55,9 @@ function CustomApp({ Component, pageProps }) {
     setLanguage(currentPath.query.locale);
   }, []);
 
+  /* Handle header positioning below SiteBanners (if any) */
+  const [pageOffset, setPageOffset] = useState(0);
+
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
       <PageFooterContext.Provider value={{ pageFooterData, setPageFooterData }}>
@@ -67,9 +71,9 @@ function CustomApp({ Component, pageProps }) {
             setIsSignUpErrorModalOpen,
           }}
         >
-          <Header />
+          <Header banners={<SiteBanners setHeight={setPageOffset} />} />
 
-          <main id="main-content">
+          <main id="main-content" style={{ top: `${pageOffset + 64}px` }}>
             {/* Page content gets displayed in here: */}
             <Component {...pageProps} />
           </main>
@@ -83,7 +87,6 @@ function CustomApp({ Component, pageProps }) {
           >
             <QuoteModalContent />
           </Modal>
-
           <Modal
             open={isSignUpModalOpen}
             onClose={() => {
