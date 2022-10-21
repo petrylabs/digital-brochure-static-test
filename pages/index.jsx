@@ -114,7 +114,7 @@ export default function IndexPage(props) {
       />
 
       {/* Sign up section */}
-      <SignUpSection content={content[13]} />
+      {/* <SignUpSection content={content[13]} /> */}
 
       {/* Canadian insurance accordion section*/}
       <TwoAccordionSection
