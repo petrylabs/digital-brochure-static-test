@@ -8,6 +8,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 import SelectModal from "../SelectModal";
 import styles from "./Select.module.scss";
+import { MenuList } from "@mui/material";
 
 /**
  * Select
@@ -89,7 +90,7 @@ function Select({ options, label, methods }) {
               MenuProps={{
                 onKeyDown: (e) => e.key === "Tab" && setOpen(false),
                 classes: {
-                  paper: isMobile ? styles.none : styles.paper,
+                  paper: styles.paper,
                   list: styles.menuList,
                 },
               }}
@@ -97,18 +98,22 @@ function Select({ options, label, methods }) {
               {MenuItemList(options, value, handleMenuItemClick)}
             </MuiSelect>
 
+            {/* On mobile, select options are shown in a full-screen modal: */}
             {isMobile && (
               <SelectModal
                 open={isMenuModalOpen}
                 onOpen={() => setMenuModalOpen(true)}
                 onClose={() => setMenuModalOpen(false)}
               >
-                <div className={styles.modalContainer}>
+                <MenuList
+                  autoFocusItem
+                  classes={{ root: styles.mobileMenuList }}
+                >
                   {MenuItemList(options, value, (e) => {
                     onChange(e.target.textContent);
                     handleMenuItemClick(e);
                   })}
-                </div>
+                </MenuList>
               </SelectModal>
             )}
           </>
