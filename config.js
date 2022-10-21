@@ -12,7 +12,7 @@ export const locales = {
 
 export const landingPageRoutes = [
   {
-    path: "/",
+    path: "",
     query: {
       pageId: "index",
       langId: languageId.en,
@@ -20,7 +20,7 @@ export const landingPageRoutes = [
     },
   },
   {
-    path: "/fr",
+    path: "fr",
     query: {
       pageId: "index",
       langId: languageId.fr,
@@ -92,6 +92,8 @@ export const landingPageRoutes = [
     },
   },
 ];
+
+export const newsLetterFormKey = "newsLetterForm";
 
 /** For Google Tag Manager */
 export const GTMContainerId = "GTM-TF8DP3";

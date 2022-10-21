@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal as MuiModal } from "@mui/material";
 import PropTypes from "prop-types";
 
+import LanguageContext from "../../context/language";
+import { getLanguageVariable } from "../../utils/languageVariable";
 import styles from "./SelectModal.module.scss";
 
 /**
@@ -11,11 +13,15 @@ import styles from "./SelectModal.module.scss";
 function SelectModal(props) {
   const { children, onClose, open } = props;
 
+  const { lang } = useContext(LanguageContext);
+  const closeText = getLanguageVariable("general-Close", lang);
+
   return (
     <MuiModal
       open={open}
       classes={{ root: styles.root }}
       onClose={() => onClose()}
+      hideBackdrop
     >
       <div className={styles.container}>
         <div className={styles.header}>
@@ -24,7 +30,7 @@ function SelectModal(props) {
             className={styles.closeButton}
             onClick={() => onClose()}
           >
-            <span>{"Close"}</span>
+            <span>{closeText}</span>
             <span className={styles.closeIcon} />
           </button>
         </div>

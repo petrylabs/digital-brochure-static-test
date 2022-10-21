@@ -11,7 +11,7 @@ import styles from "./SkipNavLink.module.scss";
  */
 function SkipNavLink() {
   const { lang } = useContext(LanguageContext);
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
 
   return (
     <a href="#main-content" className={styles.skipNavLink}>

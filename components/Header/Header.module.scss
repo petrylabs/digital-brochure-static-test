@@ -3,12 +3,14 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/buttons";
 
+$header-z: 100;
+
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: $header-z;
   width: 100%;
   max-width: map.get($breakpoints, xl);
   margin-inline: auto;
@@ -26,6 +28,10 @@
 
   @include mq-min-width(sm) {
     height: 64px;
+
+    [class^="CTA"] {
+      @include cta-gaq-modified;
+    }
   }
 
   @include mq-min-width(lg) {
@@ -37,15 +43,9 @@
   }
 }
 
-.NavMobile {
+.navMobile {
   display: flex;
   align-items: center;
-
-  @include mq-min-width(sm) {
-    [class^="CTA"] {
-      @include cta-gaq-modified;
-    }
-  }
 }
 
 .secondaryNav {
@@ -63,22 +63,12 @@
   }
 }
 
-.headerPanelMobile {
-  overflow: hidden;
-  height: 100vh;
-  padding-left: 37px;
-  padding-right: 14px;
-
-  @media (prefers-reduced-motion: no-preference) {
-    transition: max-height 0.5s ease;
-  }
-}
-
 .searchPanel {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 0;
+  border-top: 1px solid $color-grey-02;
 }
 
 .closeButton {
@@ -109,7 +99,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: $header-z - 1;
   background-color: rgba(51, 51, 51, 0.75);
   overflow: hidden;
 }

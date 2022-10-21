@@ -4,6 +4,7 @@
 .heroContainer {
   position: relative;
   min-height: 400px;
+  margin-top: -25px;
   overflow: hidden;
   background-color: $color-white;
 
@@ -91,7 +92,7 @@
 
     > img.contain {
       object-fit: contain;
-      object-position: right;
+      object-position: right top;
     }
   }
 
@@ -103,10 +104,14 @@
     width: 100%;
     height: 100%;
     display: inline-block;
-    background: linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0) 30%,
-      $color-white 115%
-    );
+
+    /*Display gradient only on tablet and large screens*/
+    @include mq-min-width(md) {
+      background: linear-gradient(
+        270deg,
+        rgba(255, 255, 255, 0) 30%,
+        $color-white 115%
+      );
+    }
   }
 }

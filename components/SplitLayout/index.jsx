@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
@@ -8,6 +8,8 @@ import ParsedCopy from "../ParsedCopy";
 import styles from "./SplitLayout.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
+import LanguageContext from "../../context/language";
+import { getLanguageId } from "../../utils/languageVariable";
 
 /**
  * SplitLayout
@@ -15,9 +17,11 @@ import { breakpoints } from "../../config";
  */
 
 function SplitLayout(props) {
+  const { lang } = useContext(LanguageContext);
   const { content, hideImageOnMobile, imageRight } = props;
   const { headline, copy, url, cta } = content;
   const screenWidth = useWindowWidth();
+  const languageId = getLanguageId(lang);
 
   var imageString = content?.fields[0].hasOwnProperty("image")
     ? "image"
@@ -35,7 +39,7 @@ function SplitLayout(props) {
 
   const imageProps = {
     loader: customLoader,
-    src: imageSrc(content, imageString),
+    src: imageSrc(content, imageString, languageId),
     alt: imageAlt(content, imageString),
     layout: "fill",
     objectFit: "cover",
@@ -57,7 +61,7 @@ function SplitLayout(props) {
           <LargeScreenImage {...imageProps} />
         ) : (
           // eslint-disable-next-line jsx-a11y/alt-text
-          <Image {...imageProps} />
+          <Image key={imageString} {...imageProps} />
         )}
       </div>
 

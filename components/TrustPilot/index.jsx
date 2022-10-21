@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import LanguageContext from "../../context/language";
 import styles from "./TrustPilot.module.scss";
 /**
  * Trust Pilot
  * Trust Pilot section for home page.
  */
 function TrustPilot() {
+  const { lang } = useContext(LanguageContext);
   return (
     <div
       className={`trustpilot-widget ${styles.container}`}
@@ -16,7 +18,7 @@ function TrustPilot() {
       data-theme="light"
       data-tags="CMS-Trust"
       data-stars="4,5"
-      data-review-languages="en"
+      data-review-languages={lang}
       data-text-color="#323232"
     >
       <a

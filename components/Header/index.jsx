@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import loadable from "@loadable/component";
 
-import { breakpoints, languageId, locales } from "../../config";
+import { breakpoints } from "../../config";
 import ModalContext from "../../context/modal";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrolledPast from "../../hooks/useScrolledPast";
 import CloseIcon from "../../icons/CloseIcon";
 import headerData from "../../site-data/header.preval";
-import SiteBanners from "../SiteBanners";
 import CTA from "../CTA";
 import HamburgerButton from "../HamburgerButton";
 import HomeLogoLink from "../HomeLogoLink";
@@ -26,9 +25,10 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * Page header; container for navigation elements
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
-function Header() {
+function Header(props) {
+  const { banners } = props;
   const { lang } = useContext(LanguageContext);
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
 
   /* Handle panel expansion: */
   const [isSubmenuExpanded, setIsSubmenuExpanded] = useState(false);
@@ -80,7 +80,7 @@ function Header() {
             if (isDesktop) setIsSubmenuExpanded(false);
           }}
         >
-          <SiteBanners />
+          {banners}
           <SkipNavLink />
 
           {/* HEADER BAR ----------------------------------------------------------- */}
@@ -89,7 +89,7 @@ function Header() {
               <HomeLogoLink />
 
               {!isDesktop && (
-                <div className={styles.NavMobile}>
+                <div className={styles.navMobile}>
                   {!isSubmenuExpanded && (
                     <CTA
                       type="primary"

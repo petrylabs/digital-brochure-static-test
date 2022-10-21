@@ -60,7 +60,11 @@ export async function getPage(languageId = 1, pageId) {
           item.numberOfRowsToDisplay
         );
       } else if (item.contentType === "TestimonialCarouselWidget") {
-        return getTestimonialWidgetData(item.tag, item.languageId);
+        return getTestimonialWidgetData(
+          item.tag,
+          item.recordsToShow,
+          item.languageId
+        );
       } else {
         return getContentRelationshipData(item.identifier, item.languageId);
       }
@@ -68,10 +72,10 @@ export async function getPage(languageId = 1, pageId) {
 
     return Promise.all(contentRelationships).then((relations) => {
       relations.map((data, i) => {
-        if (data.data.hasOwnProperty("contentlets")) {
-          content[i].fields = data.data.contentlets;
+        if (data?.data.hasOwnProperty("contentlets")) {
+          content[i].fields = data?.data.contentlets;
         } else {
-          content[i].fields = data.data[0];
+          content[i].fields = data?.data[0];
         }
       });
 
@@ -99,7 +103,7 @@ export async function getPage(languageId = 1, pageId) {
  * @param {array} containers from entity.containers
  * @returns
  */
-function getPageContent(rows, containers) {
+export function getPageContent(rows, containers) {
   let content = [];
   rows.map((row) => {
     row.columns.map((column) => {
@@ -159,11 +163,11 @@ export function getAccordianWidgetData(tagString, languageId, numberOfItems) {
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with the related content
  */
-export function getTestimonialWidgetData(tagString, languageId) {
+export function getTestimonialWidgetData(tagString, recordsToShow, languageId) {
   const tags = tagString.split(",");
   const tagQuery = tags.map((x) => `+Testimonial.tags:"${x}"`).join(" ");
   return get(
-    `${apiUrl}/content/render/false/query/+contentType:Testimonial ${tagQuery} +languageId:${languageId} +deleted:false +working:true/orderby/score,modDate desc`
+    `${apiUrl}/content/render/false/query/+contentType:Testimonial ${tagQuery} +languageId:${languageId} +deleted:false +working:true/orderby/score,modDate desc/limit/${recordsToShow}`
   );
 }
 
@@ -234,11 +238,42 @@ export const signUpSubmission = (formData) => {
  * @param {string} languageId lamg key ("en" or "fr")
  * @returns API response with sign up success modal data
  */
-export const getSignUpModalSuccessContent = (languageId = 1) => {
-  return get(
+export async function getSignUpModalSuccessContent(languageId = 1) {
+  const modalDataResponse = await get(
     `${apiUrl}/v1/page/render/modals/newsletter-success-modal?language_id=${languageId}`
   );
-};
+  let { data, error } = modalDataResponse;
+
+  if (data && data.entity) {
+    const { layout, containers, page } = data.entity;
+    const content = getPageContent(layout.body.rows, containers).filter((x) =>
+      Boolean(x)
+    );
+
+    /** Get all related content */
+    const contentRelationships = content.map((item) =>
+      getContentRelationshipData(item.identifier, item.languageId)
+    );
+
+    return Promise.all(contentRelationships).then((relations) => {
+      relations.map((data, i) => {
+        content[i].fields = data?.data?.contentlets[0];
+      });
+
+      return {
+        data: {
+          content,
+        },
+        error,
+      };
+    });
+  } else {
+    return {
+      data: null,
+      error,
+    };
+  }
+}
 
 /**
  * Get sign up error modal data from API
@@ -286,7 +321,7 @@ export async function getGaqModal(languageId = 1) {
 
     return Promise.all(contentRelationships).then((relations) => {
       relations.map((data, i) => {
-        content[i].fields = data.data.contentlets[0];
+        content[i].fields = data?.data?.contentlets[0];
       });
 
       return {

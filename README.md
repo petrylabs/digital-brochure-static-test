@@ -24,6 +24,7 @@ https://economical.atlassian.net/browse/SKY-198
 - [next-plugin-preval](https://github.com/ricokahler/next-plugin-preval) for prefetching site-wide data, which cannot get fetched by pages via `getStaticProps`
 - [html-react-parser](https://github.com/remarkablemark/html-react-parser) for rendering strings of HTML, returned by dotCMS for any content produced in a WYSIWYG editor
 - [react-hook-form](https://github.com/react-hook-form/react-hook-form) for creating and validating forms
+- [react-hook-form-persist](https://github.com/tiaanduplessis/react-hook-form-persist) for persisting form data built using react hook form
 
 ---
 
@@ -114,6 +115,8 @@ To maintain consistent styling patterns within the app (i.e. relying on CSS Modu
 ### Forms
 
 React Hook Form library is used to create performant, flexible and extensible forms with easy-to-use validation.
+
+`react-hook-form-persist` library is used to persist form data built using `react-hook-form` across the opening and closing of modals and form submissions.
 
 ## Deployment
 

@@ -7,9 +7,9 @@ import { evenIndexBeforeOdd } from "./array";
  * @returns {array} re-ordered navigation
  */
 export default function getNavigation(lang) {
-  const header = headerData[lang].headerMenu;
+  const header = headerData[lang]?.headerMenu;
 
-  return Object.entries(header.menuItems)
+  return Object.entries(header?.menuItems)
     .sort((a, b) => a[1].order - b[1].order) // re-order by `order` property
     .map((item) => {
       return {

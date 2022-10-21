@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import loadable from "@loadable/component";
+import { useRouter } from "next/router";
 
 import ModalContext from "../context/modal";
 import PageFooterContext from "../context/pageFooter";
@@ -7,6 +8,11 @@ import LanguageContext from "../context/language";
 import Header from "../components/Header";
 import "../scss/styles.scss";
 import { locales } from "../config";
+import getSignUpModalSuccessData from "../site-data/signUpModalSuccess.preval";
+import getSignUpModalErrorData from "../site-data/signUpModalError.preval";
+import { getCurrentPath, removeStorage } from "../utils";
+import { newsLetterFormKey } from "../config";
+import SiteBanners from "../components/SiteBanners";
 
 const Footer = loadable(() => import("../components/Footer"));
 const Modal = loadable(() => import("../components/Modal"));
@@ -15,6 +21,12 @@ const QuoteModalContent = loadable(() =>
 );
 const SignUpModalContent = loadable(() =>
   import("../components/SignUpModalContent")
+);
+const ErrorContentModal = loadable(() =>
+  import("../components/ErrorContentModal")
+);
+const SuccessContentModal = loadable(() =>
+  import("../components/SuccessContentModal")
 );
 
 /**
@@ -26,14 +38,32 @@ const SignUpModalContent = loadable(() =>
  */
 
 function CustomApp({ Component, pageProps }) {
+  const router = useRouter();
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(false);
+  const [isSignUpSuccessModalOpen, setIsSignUpSuccessModalOpen] =
+    useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
-  const [lang, setLanguage] = useState(locales.en);
+  const [lang, setLanguage] = useState(locales.fr);
+  const signUpModalSuccessData = getSignUpModalSuccessData[lang]?.data;
+  const signUpModalSuccessContent =
+    signUpModalSuccessData && Array.isArray(signUpModalSuccessData.content)
+      ? signUpModalSuccessData.content[0]
+      : null;
+  const signUpModalErrorContent =
+    getSignUpModalErrorData[lang] &&
+    Array.isArray(getSignUpModalErrorData[lang])
+      ? getSignUpModalErrorData[lang][0]
+      : null;
 
-  // TEMPORARY LANGUAGE ASSIGNMENT
-  // TODO: translation; provide dynamic value for `lang` when API is ready
-  // const lang = "en";
+  useEffect(() => {
+    const currentPath = getCurrentPath(router);
+    setLanguage(currentPath?.query?.locale);
+  }, []);
+
+  /* Handle header positioning below SiteBanners (if any) */
+  const [pageOffset, setPageOffset] = useState(0);
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
@@ -44,11 +74,13 @@ function CustomApp({ Component, pageProps }) {
             setIsQuoteModalOpen,
             isSignUpModalOpen,
             setIsSignUpModalOpen,
+            isSignUpErrorModalOpen,
+            setIsSignUpErrorModalOpen,
           }}
         >
-          <Header />
+          <Header banners={<SiteBanners setHeight={setPageOffset} />} />
 
-          <main id="main-content">
+          <main id="main-content" style={{ top: `${pageOffset + 64}px` }}>
             {/* Page content gets displayed in here: */}
             <Component {...pageProps} />
           </main>
@@ -58,16 +90,36 @@ function CustomApp({ Component, pageProps }) {
           <Modal
             open={isQuoteModalOpen}
             onClose={() => setIsQuoteModalOpen(false)}
+            isQuoteModal
           >
             <QuoteModalContent />
           </Modal>
-
           <Modal
             open={isSignUpModalOpen}
-            onClose={() => setIsSignUpModalOpen(false)}
+            onClose={() => {
+              setIsSignUpModalOpen(false);
+              removeStorage(newsLetterFormKey);
+            }}
           >
             <SignUpModalContent />
           </Modal>
+          {signUpModalErrorContent && (
+            <ErrorContentModal
+              content={signUpModalErrorContent}
+              open={isSignUpErrorModalOpen}
+              onClose={() => {
+                setIsSignUpErrorModalOpen(false);
+                setIsSignUpModalOpen(true);
+              }}
+            />
+          )}
+          {signUpModalSuccessContent && (
+            <SuccessContentModal
+              content={signUpModalSuccessContent}
+              open={isSignUpSuccessModalOpen}
+              onClose={() => setIsSignUpSuccessModalOpen(false)}
+            />
+          )}
         </ModalContext.Provider>
       </PageFooterContext.Provider>
     </LanguageContext.Provider>
