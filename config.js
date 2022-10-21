@@ -12,7 +12,7 @@ export const locales = {
 
 export const landingPageRoutes = [
   {
-    path: "/",
+    path: "",
     query: {
       pageId: "index",
       langId: languageId.en,
@@ -20,7 +20,7 @@ export const landingPageRoutes = [
     },
   },
   {
-    path: "/fr",
+    path: "fr",
     query: {
       pageId: "index",
       langId: languageId.fr,

@@ -22,7 +22,7 @@ function SiteBanners(props) {
 
   const [isMounted, setIsMounted] = useState(false);
   const [activeBanners, setActiveBanners] = useState(
-    banners[lang].data.contentlets
+    banners[lang]?.data?.contentlets
   );
 
   const ref = useRef();

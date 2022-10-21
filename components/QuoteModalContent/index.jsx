@@ -15,7 +15,7 @@ import LanguageContext from "../../context/language.js";
  */
 function QuoteModalContent() {
   const { lang } = useContext(LanguageContext);
-  const content = gaqModalData[lang].data.content;
+  const content = gaqModalData[lang]?.data?.content;
   const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;

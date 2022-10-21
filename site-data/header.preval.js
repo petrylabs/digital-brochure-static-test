@@ -6,8 +6,8 @@ async function getHeaderData() {
   const headerEnglishData = await getHeader(languageId.en);
   const headerFrenchData = await getHeader(languageId.fr);
   return {
-    [locales.en]: headerEnglishData.data,
-    [locales.fr]: headerFrenchData.data,
+    [locales.en]: headerEnglishData?.data,
+    [locales.fr]: headerFrenchData?.data,
   };
 }
 

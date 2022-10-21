@@ -14,7 +14,7 @@ function HamburgerButton(props) {
 
   const { ariaControls, state } = props;
   const [isExpanded, setIsExpanded] = state;
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
 
   return (
     <button

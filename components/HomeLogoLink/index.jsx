@@ -15,7 +15,7 @@ import { getLanguageVariable } from "../../utils/languageVariable";
 function HomeLogoLink() {
   const { lang } = useContext(LanguageContext);
 
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
 
   return (
     <a href={content.logoHref} className={styles.link}>
