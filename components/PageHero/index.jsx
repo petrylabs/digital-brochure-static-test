@@ -37,16 +37,16 @@ function PageHero(props) {
 
       <picture className={styles.imageContainer}>
         <source
+          srcSet={imageSrc(content, "desktopHdImage", languageId)}
+          media={`(min-width: ${breakpoints.blg}px)`}
+        />
+        <source
           srcSet={imageSrc(content, "desktopImage", languageId)}
           media={`(min-width: ${breakpoints.lg}px)`}
         />
         <source
           srcSet={imageSrc(content, "tabletImage", languageId)}
           media={`(min-width: ${breakpoints.md}px)`}
-        />
-        <source
-          srcSet={imageSrc(content, "desktopHdImage", languageId)}
-          media={`(min-width: ${breakpoints.blg}px)`}
         />
         <img
           src={imageSrc(content, "mobileImage", languageId)}
