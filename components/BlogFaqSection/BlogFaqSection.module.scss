@@ -8,6 +8,8 @@
 }
 
 .content {
+  padding-bottom: 0.813em;
+
   @include mq-min-width(md) {
     text-align: center;
   }
@@ -17,6 +19,15 @@
   }
 }
 
+.blogContainer {
+  padding-top: 0.813em;
+  padding-bottom: 2.5em;
+
+  @include mq-min-width(lg) {
+    padding-bottom: 3.75em;
+  }
+}
+
 .accordions {
-  padding-top: 13px;
+  padding-top: 0.938em;
 }
