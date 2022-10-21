@@ -38,6 +38,7 @@
   text-decoration: none;
   color: $color-primary-grey;
   font-size: 14px;
+  border: 1px solid transparent;
 
   &:hover,
   &:focus {
@@ -48,6 +49,12 @@
     outline: none;
   }
 
+  &:active {
+    color: $color-primary-grey;
+    background-color: $color-grey-05;
+    border-color: $color-primary-accent;
+  }
+
   @include mq-min-width(lg) {
     padding: 0.3125rem 0.625rem;
     color: $color-primary-grey;
@@ -56,6 +63,11 @@
     &:hover,
     :focus {
       background-color: $color-grey-03;
+    }
+
+    &:active {
+      color: $color-white;
+      background-color: $color-primary-accent;
     }
   }
 }
