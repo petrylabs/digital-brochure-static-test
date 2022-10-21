@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+
 import Chevron from "../../icons/Chevron";
 import SearchInput from "../SearchInput";
 import SearchResults from "../SearchResults";
@@ -45,14 +46,12 @@ function SearchPanel(props) {
           <SearchInput
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            hasResults={hasResults}
           />
         </div>
 
         <SearchResults
           searchTerm={query}
           onResults={(results) => setHasResults(results?.length > 0)}
-          onQueryChange={(newQuery) => setQuery(newQuery)}
         />
       </div>
     </>
