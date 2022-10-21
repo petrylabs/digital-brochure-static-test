@@ -80,13 +80,17 @@ function CustomApp({ Component, pageProps }) {
         >
           <Header banners={<SiteBanners setHeight={setPageOffset} />} />
 
-          <main id="main-content" style={{ top: `${pageOffset + 64}px` }}>
-            {/* Page content gets displayed in here: */}
-            <Component {...pageProps} />
-          </main>
+          {/* `main` and Footer position are affected by presence of banners */}
+          <div style={{ position: "relative", top: `${pageOffset + 64}px` }}>
+            <main id="main-content">
+              {/* Page content gets displayed in here: */}
+              <Component {...pageProps} />
+            </main>
 
-          <Footer />
+            <Footer />
+          </div>
 
+          {/* MODALS:  */}
           <Modal
             open={isQuoteModalOpen}
             onClose={() => setIsQuoteModalOpen(false)}
@@ -94,6 +98,7 @@ function CustomApp({ Component, pageProps }) {
           >
             <QuoteModalContent />
           </Modal>
+
           <Modal
             open={isSignUpModalOpen}
             onClose={() => {
@@ -103,6 +108,7 @@ function CustomApp({ Component, pageProps }) {
           >
             <SignUpModalContent />
           </Modal>
+
           {signUpModalErrorContent && (
             <ErrorContentModal
               content={signUpModalErrorContent}
@@ -113,6 +119,7 @@ function CustomApp({ Component, pageProps }) {
               }}
             />
           )}
+
           {signUpModalSuccessContent && (
             <SuccessContentModal
               content={signUpModalSuccessContent}
