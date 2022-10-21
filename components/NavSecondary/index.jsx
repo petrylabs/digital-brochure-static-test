@@ -16,7 +16,7 @@ function NavSecondary(props) {
   const router = useRouter();
   const { ariaControls, ariaExpanded, searchToggleFn } = props;
   const { lang } = useContext(LanguageContext);
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
   const toggleLocale = lang === locales.en ? locales.fr : locales.en;
   const currentPath = getCurrentPath(router);
   const togglePath = getTogglePath(currentPath, toggleLocale)?.path;
@@ -36,7 +36,10 @@ function NavSecondary(props) {
       </button>
 
       {/* Language toggle */}
-      <a href={togglePath} className={styles.link}>
+      <a
+        href={togglePath || (lang === locales.en ? "fr" : "/")}
+        className={styles.link}
+      >
         <span aria-hidden>
           {content.toggleLanguage === "Français" ? "Fr" : "En"}
         </span>

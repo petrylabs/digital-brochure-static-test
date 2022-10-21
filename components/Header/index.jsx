@@ -28,7 +28,7 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
 function Header(props) {
   const { banners } = props;
   const { lang } = useContext(LanguageContext);
-  const content = headerData[lang].headerMenu;
+  const content = headerData[lang]?.headerMenu;
 
   /* Handle panel expansion: */
   const [isSubmenuExpanded, setIsSubmenuExpanded] = useState(false);

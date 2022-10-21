@@ -46,13 +46,20 @@ function CustomApp({ Component, pageProps }) {
     useState(false);
   const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
   const [lang, setLanguage] = useState(locales.fr);
-  const { data: signUpSuccessData } = getSignUpModalSuccessData[lang];
-  const signUpModalSuccessContent = signUpSuccessData?.content[0];
-  const signUpModalErrorContent = getSignUpModalErrorData[lang][0];
+  const signUpModalSuccessData = getSignUpModalSuccessData[lang]?.data;
+  const signUpModalSuccessContent =
+    signUpModalSuccessData && Array.isArray(signUpModalSuccessData.content)
+      ? signUpModalSuccessData.content[0]
+      : null;
+  const signUpModalErrorContent =
+    getSignUpModalErrorData[lang] &&
+    Array.isArray(getSignUpModalErrorData[lang])
+      ? getSignUpModalErrorData[lang][0]
+      : null;
 
   useEffect(() => {
     const currentPath = getCurrentPath(router);
-    setLanguage(currentPath.query.locale);
+    setLanguage(currentPath?.query?.locale);
   }, []);
 
   /* Handle header positioning below SiteBanners (if any) */

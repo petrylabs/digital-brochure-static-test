@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
 import footerData from "../../site-data/footer.preval";
 import FooterLink from "../FooterLink";
 import ParsedCopy from "../ParsedCopy";
@@ -15,19 +15,23 @@ import { getLanguageVariable } from "../../utils/languageVariable";
 
 function Footer() {
   const { lang } = useContext(LanguageContext);
-  const content = footerData[lang].data.footerMenu;
+  const [footerContent, setFooterContent] = useState(null);
   const [showLegalFooter, setShowLegalFooter] = useState(false);
   const { pageFooterData } = useContext(PageFooterContext);
+
+  useEffect(() => {
+    setFooterContent(footerData[lang]?.data?.footerMenu);
+  }, []);
 
   /* Some main nav links have `name` property that doesn't match what's on screen... */
   const modifyMenu = (menu) => {
     if (menu.category === "Social") {
       /* Remove "Sonnet " from link name */
-      return menu.menuItems.map((item) => {
+      return (menu?.menuItems).map((item) => {
         return { ...item, name: item.name.substring(7) };
       });
     } else {
-      return menu.menuItems;
+      return menu && menu?.menuItems;
     }
   };
 
@@ -36,27 +40,29 @@ function Footer() {
       <div className={styles.container}>
         {/* Primary menus */}
         <div className={styles.footerMenu}>
-          {content.footerMenu.map((menu, i) => (
-            <nav key={i} className={styles.col}>
-              <p className={`h5 ${styles.menuLabel}`}>{menu.category}</p>
-              <ul className={styles.menuItems}>
-                {modifyMenu(menu).map((item, i) => (
-                  <li key={i} className={styles.navItem}>
-                    <FooterLink href={item.url} title={item.name} />
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+          {footerContent &&
+            footerContent?.footerMenu.map((menu, i) => (
+              <nav key={i} className={styles.col}>
+                <p className={`h5 ${styles.menuLabel}`}>{menu.category}</p>
+                <ul className={styles.menuItems}>
+                  {modifyMenu(menu).map((item, i) => (
+                    <li key={i} className={styles.navItem}>
+                      <FooterLink href={item.url} title={item.name} />
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
         </div>
 
         {/* Secondary menu */}
         <ul className={styles.horizontalFooterMenu}>
-          {content.footerHorizontalMenu.map((item, i) => (
-            <li key={i} className={styles.navItem}>
-              <FooterLink href={item.url} title={item.name} />
-            </li>
-          ))}
+          {footerContent &&
+            footerContent?.footerHorizontalMenu.map((item, i) => (
+              <li key={i} className={styles.navItem}>
+                <FooterLink href={item.url} title={item.name} />
+              </li>
+            ))}
           <li className={styles.navItem}>
             <FooterLink
               href={"https://www.sonnet.ca/fr"}
@@ -69,7 +75,9 @@ function Footer() {
 
         {/* Legal footer */}
         <div className={styles.legalFooter}>
-          <ParsedCopy copy={content?.legalFooter[0]?.copy} />
+          {footerContent && (
+            <ParsedCopy copy={footerContent?.legalFooter[0]?.copy} />
+          )}
 
           {/* Expanding legal content */}
           <details onToggle={() => setShowLegalFooter(!showLegalFooter)}>
@@ -82,19 +90,20 @@ function Footer() {
             >
               <span>
                 {showLegalFooter
-                  ? content.accordionTextHide
-                  : content.accordionTextShow}
+                  ? footerContent?.accordionTextHide
+                  : footerContent?.accordionTextShow}
               </span>
             </summary>
 
-            {content.accordionLegalFooter.map((item) => (
-              <Fragment key={item.identifier}>
-                <ParsedCopy copy={item.copy} />
-              </Fragment>
-            ))}
+            {footerContent &&
+              footerContent?.accordionLegalFooter.map((item) => (
+                <Fragment key={item.identifier}>
+                  <ParsedCopy copy={item?.copy} />
+                </Fragment>
+              ))}
             {pageFooterData?.map((item) => (
               <Fragment key={item.identifier}>
-                <ParsedCopy copy={item.copy} />
+                <ParsedCopy copy={item?.copy} />
               </Fragment>
             ))}
           </details>
