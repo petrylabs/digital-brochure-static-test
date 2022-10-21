@@ -12,10 +12,16 @@ import LanguageContext from "../../context/language";
  */
 function SearchInput(props) {
   const { lang } = useContext(LanguageContext);
-  const { value, onChange } = props;
+  const { value, onChange, hasResults } = props;
 
   return (
-    <div className={styles.inputContainer}>
+    <div
+      className={styles.inputContainer}
+      role="combobox"
+      aria-haspopup="listbox"
+      aria-owns="global-search-combobox-listbox"
+      aria-expanded={hasResults.toString()}
+    >
       <SearchIcon />
       <input
         id="search"
@@ -23,6 +29,7 @@ function SearchInput(props) {
         aria-autocomplete="both"
         aria-controls="search-listbox"
         placeholder={getLanguageVariable("header-Search", lang)}
+        aria-labelledby={null}
         autoComplete="off"
         autoFocus
         value={value}
