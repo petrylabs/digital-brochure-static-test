@@ -81,7 +81,7 @@ function LandingPage(props) {
     (section) => section?.title === "Nissan Promotion / Auto Landing Page"
   );
   const commonContent = content.filter(
-    (section) => !section?.headline?.includes("Nissan")
+    (section) => section?.title !== "Nissan Promotion / Auto Landing Page"
   );
 
   return (
