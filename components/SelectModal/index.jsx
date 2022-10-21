@@ -3,7 +3,7 @@ import { Modal as MuiModal } from "@mui/material";
 import PropTypes from "prop-types";
 
 import LanguageContext from "../../context/language";
-import { locales } from "../../config";
+import { getLanguageVariable } from "../../utils/languageVariable";
 import styles from "./SelectModal.module.scss";
 
 /**
@@ -12,8 +12,9 @@ import styles from "./SelectModal.module.scss";
  */
 function SelectModal(props) {
   const { children, onClose, open } = props;
+
   const { lang } = useContext(LanguageContext);
-  const closeText = lang === locales.fr ? "Fermer" : "Close";
+  const closeText = getLanguageVariable("general-Close", lang);
 
   return (
     <MuiModal
