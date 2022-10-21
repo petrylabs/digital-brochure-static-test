@@ -16,6 +16,7 @@ function SelectModal(props) {
       open={open}
       classes={{ root: styles.root }}
       onClose={() => onClose()}
+      hideBackdrop
     >
       <div className={styles.container}>
         <div className={styles.header}>
