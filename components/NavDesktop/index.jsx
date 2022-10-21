@@ -33,7 +33,7 @@ function NavDesktop(props) {
       setPanelHeight(0);
       setVisibleSubmenu(false);
     }
-  }, [isExpanded, setPanelHeight]);
+  }, [visibleSubmenu, isExpanded, setPanelHeight]);
 
   return (
     <nav>
