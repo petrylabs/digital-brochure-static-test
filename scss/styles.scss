@@ -39,7 +39,6 @@ body {
 }
 
 main {
-  position: relative;
   max-width: map.get($breakpoints, "xl");
   margin-inline: auto;
   background-color: $color-grey-03;

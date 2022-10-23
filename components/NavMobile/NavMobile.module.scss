@@ -11,7 +11,6 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
 .container {
   height: 100vh;
   overflow-y: scroll;
-  border-top: 1px solid $color-grey-03;
 }
 
 .nav {
@@ -40,6 +39,7 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
   font-family: $font-extra-bold;
   font-weight: 500;
   color: $color-black !important;
+  border: 1px solid transparent;
   border-radius: 5px;
   box-sizing: content-box;
 
