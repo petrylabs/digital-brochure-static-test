@@ -1,8 +1,8 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import parse from "html-react-parser";
 import PropTypes from "prop-types";
 
 import { searchData } from "../../utils";
+import highlight from "../../utils/highlight";
 import useKeyPress from "../../hooks/useKeyPress";
 import styles from "./SearchResults.module.scss";
 import LanguageContext from "../../context/language";
@@ -71,20 +71,6 @@ function SearchResults(props) {
     }
   }, [arrowUpPressed, searchResults]);
 
-  /* Make search term bold within link text */
-  const highlight = (title) => {
-    let search = searchTerm;
-    if (typeof search == "string") {
-      search = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); //https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-      var re = new RegExp(search, "gi");
-      if (search.length > 0) {
-        return parse(title.replace(re, `<b>$&</b>`));
-      } else {
-        return title;
-      }
-    }
-  };
-
   return searchResults.length > 0 ? (
     <ul
       id="global-search-combobox-listbox"
@@ -113,7 +99,7 @@ function SearchResults(props) {
                 : styles.searchResultItem
             }`}
           >
-            {highlight(item.metaTitle || item.title)}
+            {highlight(searchTerm, item.metaTitle || item.title)}
           </a>
         </li>
       ))}
