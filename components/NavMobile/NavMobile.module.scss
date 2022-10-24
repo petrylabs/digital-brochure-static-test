@@ -11,6 +11,10 @@ NOTE: `!important` used throughout to override MUI styles where the bugs are onl
 .container {
   height: 100vh;
   overflow-y: scroll;
+
+  @include mq-min-width(lg) {
+    display: none;
+  }
 }
 
 .nav {

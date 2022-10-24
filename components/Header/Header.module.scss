@@ -46,6 +46,10 @@ $header-z: 100;
 .navMobile {
   display: flex;
   align-items: center;
+
+  @include mq-min-width(lg) {
+    display: none;
+  }
 }
 
 .secondaryNav {
