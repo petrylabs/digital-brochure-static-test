@@ -1,3 +1,4 @@
+@import "../../scss/globals/variables.scss";
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/mixins.scss";
 @import "../../scss/globals/layout.scss";
@@ -40,13 +41,17 @@
   font-size: 14px;
   border: 1px solid transparent;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: $color-links;
     text-decoration: underline;
     border-color: $color-secondary-light;
     background-color: $color-secondary-light;
+  }
+
+  &:focus {
     outline: none;
+    font-family: $font-extra-bold;
+    border: 1px solid $color-primary-accent;
   }
 
   &:active {
@@ -60,9 +65,9 @@
     color: $color-primary-grey;
     line-height: 23px;
 
-    &:hover,
-    :focus {
-      background-color: $color-grey-03;
+    &:focus {
+      border: none;
+      background-color: $color-white;
     }
 
     &:active {
