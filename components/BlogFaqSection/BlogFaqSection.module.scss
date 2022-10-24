@@ -3,8 +3,9 @@
 @import "scss/globals/typography.scss";
 
 .section {
-  background: $color-white;
   @include container;
+
+  background: $color-white;
 }
 
 .content {
@@ -21,13 +22,12 @@
 
 .blogContainer {
   padding-top: 0.813em;
-  padding-bottom: 2.5em;
-
-  @include mq-min-width(lg) {
-    padding-bottom: 3.75em;
-  }
 }
 
 .accordions {
-  padding-top: 0.938em;
+  padding-top: 3.438em;
+
+  @include mq-min-width(lg) {
+    padding-top: 4.688em;
+  }
 }
