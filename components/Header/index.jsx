@@ -26,7 +26,7 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header(props) {
-  const { banners } = props;
+  const { banners, lockPageScroll } = props;
   const { lang } = useContext(LanguageContext);
   const content = headerData[lang]?.headerMenu;
 
@@ -56,7 +56,6 @@ function Header(props) {
     setIsSearchExpanded(!isSearchExpanded); // button can on/off for search pane
     setIsSubmenuExpanded(false); // for nav items
   };
-
   const mobileSearchButton = () => {
     setIsMobileSearchExpanded(!isMobileSearchExpanded);
     setIsSubmenuExpanded(false); // for nav items
@@ -70,6 +69,14 @@ function Header(props) {
       setIsSearchExpanded(false);
     }
   }, [isDesktop]);
+
+  useEffect(() => {
+    if ((!isDesktop && isSubmenuExpanded) || isMobileSearchExpanded) {
+      lockPageScroll(true);
+    } else {
+      lockPageScroll(false);
+    }
+  });
 
   if (content)
     return (

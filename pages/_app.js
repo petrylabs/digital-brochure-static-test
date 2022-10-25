@@ -81,7 +81,12 @@ function CustomApp({ Component, pageProps }) {
     } else {
       setScrollLocked(false);
     }
-  });
+  }, [
+    isQuoteModalOpen,
+    isSignUpModalOpen,
+    isSignUpErrorModalOpen,
+    isSignUpSuccessModalOpen,
+  ]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
@@ -96,7 +101,10 @@ function CustomApp({ Component, pageProps }) {
             setIsSignUpErrorModalOpen,
           }}
         >
-          <Header banners={<SiteBanners setHeight={setPageOffset} />} />
+          <Header
+            lockPageScroll={setScrollLocked}
+            banners={<SiteBanners setHeight={setPageOffset} />}
+          />
 
           {/* `main` and Footer position are affected by presence of banners */}
           <div
