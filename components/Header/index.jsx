@@ -95,49 +95,41 @@ function Header(props) {
             <div id="header-bar" className={styles.headerBar}>
               <HomeLogoLink />
 
-              {!isDesktop && (
-                <div className={styles.navMobile}>
-                  {!isSubmenuExpanded && (
-                    <CTA
-                      type="primary"
-                      small={isMobile}
-                      onClick={() => setIsQuoteModalOpen(true)}
-                    >
-                      {isMobile ? content.gaqSmall : content.gaq}
-                    </CTA>
-                  )}
-                  <HamburgerButton
-                    ariaControls="mobile-nav"
-                    state={[isSubmenuExpanded, setIsSubmenuExpanded]}
-                  />
-                </div>
-              )}
+              {/* MOBILE NAV */}
+              <div className={styles.navMobile}>
+                {!isSubmenuExpanded && (
+                  <CTA
+                    type="primary"
+                    small={isMobile}
+                    onClick={() => setIsQuoteModalOpen(true)}
+                  >
+                    {isMobile ? content.gaqSmall : content.gaq}
+                  </CTA>
+                )}
+                <HamburgerButton
+                  ariaControls="mobile-nav"
+                  state={[isSubmenuExpanded, setIsSubmenuExpanded]}
+                />
+              </div>
 
-              {isDesktop && (
-                <>
-                  <NavDesktop
-                    isExpanded={isSubmenuExpanded}
-                    setIsExpanded={handleSubmenu}
-                    setPanelHeight={setPanelHeight}
-                  />
+              <NavDesktop
+                isExpanded={isSubmenuExpanded}
+                setIsExpanded={handleSubmenu}
+                setPanelHeight={setPanelHeight}
+              />
 
-                  {/* Secondary Nav */}
-                  <div className={styles.secondaryNav}>
-                    {hasScrolled ? (
-                      <CTA
-                        type="primary"
-                        onClick={() => setIsQuoteModalOpen(true)}
-                      >
-                        {content.gaq}
-                      </CTA>
-                    ) : (
-                      <NavSecondary searchToggleFn={deskTopSearchButton} />
-                    )}
+              {/* Secondary Nav */}
+              <div className={styles.secondaryNav}>
+                {hasScrolled ? (
+                  <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
+                    {content.gaq}
+                  </CTA>
+                ) : (
+                  <NavSecondary searchToggleFn={deskTopSearchButton} />
+                )}
 
-                    <CartLink />
-                  </div>
-                </>
-              )}
+                <CartLink />
+              </div>
             </div>
           ) : (
             // TODO: move this out of header bar

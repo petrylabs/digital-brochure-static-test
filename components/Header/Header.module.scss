@@ -53,8 +53,13 @@ $header-z: 100;
 }
 
 .secondaryNav {
+  display: none;
   text-align: right;
   flex-direction: row;
+
+  @include mq-min-width(lg) {
+    display: block;
+  }
 }
 
 .headerPanelDesktop {
