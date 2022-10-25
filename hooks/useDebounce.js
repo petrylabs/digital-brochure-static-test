@@ -10,7 +10,6 @@ export const useDebounce = (obj = null, wait = 1000) => {
 
   const debounceFunc = useCallback(
     debounce((_prop) => {
-      console.log("updating search");
       setState(_prop);
     }, wait),
     []
