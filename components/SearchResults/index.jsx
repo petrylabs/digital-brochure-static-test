@@ -21,7 +21,7 @@ function SearchResults(props) {
   const fetchData = async (query, cb) => {
     const res = await getSearchResults(
       query,
-      lang === locales.en ? languageId.en : languageId.fr
+      lang === locales.fr ? languageId.fr : languageId.en
     );
     cb(res);
   };
