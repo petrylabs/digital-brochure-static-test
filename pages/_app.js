@@ -38,14 +38,15 @@ const SuccessContentModal = loadable(() =>
  */
 
 function CustomApp({ Component, pageProps }) {
-  const router = useRouter();
+  const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
+  const [lang, setLanguage] = useState(locales.fr);
+
+  /* Modal management: */
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isSignUpErrorModalOpen, setIsSignUpErrorModalOpen] = useState(false);
   const [isSignUpSuccessModalOpen, setIsSignUpSuccessModalOpen] =
     useState(false);
-  const [pageFooterData, setPageFooterData] = useState(null); // the lifted state
-  const [lang, setLanguage] = useState(locales.fr);
   const signUpModalSuccessData = getSignUpModalSuccessData[lang]?.data;
   const signUpModalSuccessContent =
     signUpModalSuccessData && Array.isArray(signUpModalSuccessData.content)
@@ -57,6 +58,8 @@ function CustomApp({ Component, pageProps }) {
       ? getSignUpModalErrorData[lang][0]
       : null;
 
+  /* Language management: */
+  const router = useRouter();
   useEffect(() => {
     const currentPath = getCurrentPath(router);
     setLanguage(currentPath?.query?.locale);
@@ -64,6 +67,21 @@ function CustomApp({ Component, pageProps }) {
 
   /* Handle header positioning below SiteBanners (if any) */
   const [pageOffset, setPageOffset] = useState(0);
+
+  /* Locking page scroll (behind mobile nav, modals, etc) */
+  const [scrollLocked, setScrollLocked] = useState(false);
+  useEffect(() => {
+    if (
+      isQuoteModalOpen ||
+      isSignUpModalOpen ||
+      isSignUpErrorModalOpen ||
+      isSignUpSuccessModalOpen
+    ) {
+      setScrollLocked(true);
+    } else {
+      setScrollLocked(false);
+    }
+  });
 
   return (
     <LanguageContext.Provider value={{ lang, setLanguage }}>
@@ -81,7 +99,12 @@ function CustomApp({ Component, pageProps }) {
           <Header banners={<SiteBanners setHeight={setPageOffset} />} />
 
           {/* `main` and Footer position are affected by presence of banners */}
-          <div style={{ position: "relative", top: `${pageOffset + 64}px` }}>
+          <div
+            style={{
+              position: scrollLocked ? "fixed" : "relative",
+              top: `${pageOffset + 64}px`,
+            }}
+          >
             <main id="main-content">
               {/* Page content gets displayed in here: */}
               <Component {...pageProps} />
