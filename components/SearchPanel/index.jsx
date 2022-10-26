@@ -19,7 +19,7 @@ function SearchPanel(props) {
 
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [hasResults, setHasResults] = useState(false);
+  const hasResults = searchResults?.length > 0;
 
   /* Perform search as search term changes */
   useEffect(() => {
@@ -30,7 +30,6 @@ function SearchPanel(props) {
       setSearchResults([]);
     }
     console.log(searchResults);
-    setHasResults(searchResultData?.length > 0);
   }, [lang, query]);
 
   return isActive ? (
@@ -84,7 +83,7 @@ function SearchPanel(props) {
           </div>
         </div>
 
-        {searchResults.length > 0 ? (
+        {hasResults ? (
           <ul className={styles.searchResults}>
             {searchResults.map((item, i) => (
               <li key={i} className={styles.searchResultItem}>
