@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import headerData from "../../site-data/header.preval";
 import styles from "./NavSecondary.module.scss";
 import LanguageContext from "../../context/language";
-import { landingPageRoutes, languageId, locales } from "../../config";
+import { locales } from "../../config";
 import { useRouter } from "next/router";
+import { getTogglePath, getCurrentPath } from "../../utils";
 
 /**
  * NavSecondary
@@ -14,17 +15,11 @@ import { useRouter } from "next/router";
 function NavSecondary(props) {
   const router = useRouter();
   const { ariaControls, ariaExpanded, searchToggleFn } = props;
-  const { setLanguage, lang } = useContext(LanguageContext);
-  const content = headerData[lang].headerMenu;
+  const { lang } = useContext(LanguageContext);
+  const content = headerData[lang]?.headerMenu;
   const toggleLocale = lang === locales.en ? locales.fr : locales.en;
   const currentPath = getCurrentPath(router);
-  const togglePath = getTogglePath(currentPath, toggleLocale);
-
-  const handleToggleLanguage = () => {
-    setLanguage(toggleLocale);
-    router.push(togglePath.path);
-  };
-
+  const togglePath = getTogglePath(currentPath, toggleLocale)?.path;
   return (
     <nav className={styles.nav}>
       {/* Search */}
@@ -42,9 +37,8 @@ function NavSecondary(props) {
 
       {/* Language toggle */}
       <a
-        // href={content.toggleLanguage === "Français" ? "/" : "/fr"}
+        href={togglePath || (lang === locales.en ? "fr" : "/")}
         className={styles.link}
-        onClick={handleToggleLanguage}
       >
         <span aria-hidden>
           {content.toggleLanguage === "Français" ? "Fr" : "En"}
@@ -70,19 +64,3 @@ NavSecondary.propTypes = {
 };
 
 export default NavSecondary;
-
-const getCurrentPath = (router) => {
-  if (router.pathname === "/[slug]") {
-    return landingPageRoutes.find((item) => item.path === router.query.slug);
-  } else {
-    return landingPageRoutes.find((item) => item.path === router.asPath);
-  }
-};
-
-const getTogglePath = (currentPath, toggleLanguage) => {
-  return landingPageRoutes?.find(
-    (item) =>
-      item.query.pageId === currentPath?.query?.pageId &&
-      item.query.locale === toggleLanguage
-  );
-};

@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
-import LanguageContext from "../../context/language";
-import Chevron from "../../icons/Chevron";
-import { searchData } from "../../utils";
-import { getLanguageVariable } from "../../utils/languageVariable";
-import highlight from "../../utils/highlight";
-import SearchIcon from "../../icons/SearchIcon";
-import styles from "./SearchPanel.module.scss";
 import { Autocomplete } from "@mui/material";
+
+import { languageId, locales } from "../../config";
+import LanguageContext from "../../context/language";
+import SearchIcon from "../../icons/SearchIcon";
+import Chevron from "../../icons/Chevron";
+import { getSearchResults } from "../../utils";
+import highlight from "../../utils/highlight";
+import { getLanguageVariable } from "../../utils/languageVariable";
+import styles from "./SearchPanel.module.scss";
 
 /**
  * SearchPanel
@@ -24,14 +25,21 @@ function SearchPanel(props) {
 
   /* Perform search as search term changes */
   useEffect(() => {
-    const searchResultData = searchData(query, lang);
-    if (searchResultData) {
-      setSearchResults(searchResultData.slice(0, 10));
-    } else {
-      setSearchResults([]);
-    }
-    setShowResults(searchResults?.length > 0);
-  }, [lang, query, searchResults]);
+    const fetchData = async (searchTerm, cb) => {
+      const res = await getSearchResults(
+        searchTerm,
+        lang === locales.fr ? languageId.fr : languageId.en
+      );
+      cb(res);
+    };
+    fetchData(query, (res) => {
+      const { data, error } = res;
+      if (data) {
+        setSearchResults(data?.contentlets || []);
+        setShowResults(!!data?.contentlets);
+      }
+    });
+  }, [query, lang]);
 
   return isActive ? (
     <>

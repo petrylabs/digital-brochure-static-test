@@ -3,6 +3,7 @@ import React, { useContext, useRef } from "react";
 import parse from "html-react-parser";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
+import useFormPersist from "react-hook-form-persist";
 
 import { breakpoints } from "../../config";
 import styles from "./SignUpModalContent.module.scss";
@@ -13,8 +14,10 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import CTA from "../CTA";
 import Select from "../Select";
 import { getDelimitedOptions } from "../../utils/array";
-import { getDeviceType, signUpSubmission } from "../../utils";
+import { getDeviceType, removeStorage, signUpSubmission } from "../../utils";
 import AnimatedLink from "../AnimatedLink";
+import ModalContext from "../../context/modal";
+import { newsLetterFormKey } from "../../config";
 import LanguageContext from "../../context/language";
 
 /**
@@ -22,20 +25,28 @@ import LanguageContext from "../../context/language";
  * The body of the "Sign up" modal (displayed inside a `Modal`)
  */
 function SignUpModalContent() {
+  const {
+    setIsSignUpSuccessModalOpen,
+    setIsSignUpErrorModalOpen,
+    setIsSignUpModalOpen,
+  } = useContext(ModalContext);
   const { lang } = useContext(LanguageContext);
-  const fieldsData = signUpModalData[lang].data.newsletterForm.fields;
-  const formErrors = formErrorData[lang].data.contentlets;
+  const fieldsData = signUpModalData[lang]?.data?.newsletterForm?.fields;
+  const formErrors = formErrorData[lang]?.data?.contentlets;
 
   const { errorEmail, errorEmptyValue, errorRecaptchaVerification } =
     getErrorMessages(formErrors);
 
-  const googleRecaptchaKey = recaptchaSiteKeyData.data.googleRecaptchaKey;
+  const googleRecaptchaKey = recaptchaSiteKeyData?.data?.googleRecaptchaKey;
   const recaptchaRef = useRef(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitted },
+    watch,
+    setValue,
+    reset,
     control,
   } = useForm({
     reValidateMode: "onSubmit",
@@ -67,21 +78,33 @@ function SignUpModalContent() {
       deviceType: getDeviceType(),
       operatingSystem: window.navigator.platform,
     };
-    const response = await signUpSubmission(formData);
-    /**
-     * on error show error modal
-     */
-    /**
-     * on success show success modal
-     */
+    const { data: response, error } = await signUpSubmission(formData);
+    if (
+      response.sfResponse &&
+      response.sfResponse.response &&
+      response.sfResponse.response.toLowerCase().includes("success")
+    ) {
+      removeStorage(newsLetterFormKey);
+      setIsSignUpModalOpen(false);
+      setIsSignUpSuccessModalOpen(true);
+    } else {
+      setIsSignUpModalOpen(false);
+      setIsSignUpErrorModalOpen(true);
+    }
   };
+
+  useFormPersist(newsLetterFormKey, {
+    watch,
+    setValue,
+    storage: window.localStorage,
+  });
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>{data.title}</h2>
+      <h2 className={styles.title}>{data?.title}</h2>
       <form className={styles.signUpForm}>
         <div className={styles.row}>
-          <label htmlFor="first-name">{data.firstName}</label>
+          <label htmlFor="first-name">{data?.firstName}</label>
           <input
             type="text"
             id="first-name"
@@ -103,7 +126,7 @@ function SignUpModalContent() {
           )}
         </div>
         <div className={styles.row}>
-          <label htmlFor="last-name">{data.lastName}</label>
+          <label htmlFor="last-name">{data?.lastName}</label>
           <input
             name="lastName"
             aria-required="true"
@@ -125,7 +148,7 @@ function SignUpModalContent() {
           )}
         </div>
         <div className={styles.row}>
-          <label htmlFor="email-address">{data.email}</label>
+          <label htmlFor="email-address">{data?.email}</label>
           <input
             name="email"
             aria-required="true"
@@ -153,13 +176,13 @@ function SignUpModalContent() {
         <div className={styles.row}>
           <Select
             options={interestedOptions}
-            label={data.interested}
+            label={data?.interested}
             methods={{ control }}
             {...register("interestedIn")}
           ></Select>
         </div>
         <div className={styles.row}>
-          <span>{data.recaptchaText}</span>
+          <span>{data?.recaptchaText}</span>
         </div>
         <div className={styles.row}>
           <ReCAPTCHA ref={recaptchaRef} sitekey={googleRecaptchaKey} />
@@ -173,15 +196,15 @@ function SignUpModalContent() {
         </div>
         <div className={styles.row}>
           <span>
-            {parse(data.privacy, {
+            {parse(data?.privacy || "", {
               replace: (domNode) => {
-                const { name, attribs } = domNode;
+                const { name, attribs, children } = domNode;
                 if (name === "snt-link") {
                   return (
                     <AnimatedLink
                       href={attribs.href}
-                      title="Privacy Notice"
-                      linkText="Privacy Notice"
+                      title={children[0]?.data || ""}
+                      linkText={children[0]?.data || ""}
                       target="_blank"
                     />
                   );
@@ -195,7 +218,7 @@ function SignUpModalContent() {
           fullWidth={isMobile}
           onClick={handleSubmit(onSubmit)}
         >
-          {data.submitButton}
+          {data?.submitButton}
         </CTA>
       </form>
     </div>

@@ -7,18 +7,6 @@
 .container {
   max-width: 100%;
   width: 100vh;
-
-  @include mq-min-width(md) {
-    width: 578px;
-  }
-
-  @include mq-min-width(lg) {
-    width: 578px;
-  }
-
-  @include mq-min-width(xl) {
-    width: 650px;
-  }
 }
 
 .errorText {

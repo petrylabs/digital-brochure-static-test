@@ -28,7 +28,7 @@ function ParsedCopy(props) {
     },
   };
 
-  return <>{parse(copy, parsingOptions)}</>;
+  return <>{parse(copy || "", parsingOptions)}</>;
 }
 
 ParsedCopy.propTypes = {

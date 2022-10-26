@@ -21,18 +21,39 @@
 
   @include mq-min-width(md) {
     min-height: 0;
-    padding: 40px 26px;
-    width: 334px;
+    padding: 40px;
   }
 
   @include mq-min-width(lg) {
     padding: 60px;
+  }
+}
+
+.containerQuoteModal {
+  @include mq-min-width(md) {
+    width: 334px;
+  }
+
+  @include mq-min-width(lg) {
     width: 426px;
   }
 
   @include mq-min-width(xl) {
-    padding: 60px;
-    width: 570px
+    width: 570px;
+  }
+}
+
+.containerSignUpModal {
+  @include mq-min-width(md) {
+    width: 514px;
+  }
+
+  @include mq-min-width(lg) {
+    width: 578px;
+  }
+
+  @include mq-min-width(xl) {
+    width: 770px;
   }
 }
 

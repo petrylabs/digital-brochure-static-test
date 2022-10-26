@@ -43,12 +43,13 @@ export async function getStaticProps() {
 export default function IndexPage(props) {
   const { setLanguage } = useContext(LanguageContext);
   const { title, content, pageLang } = props;
-  setLanguage(pageLang);
   /* Handle page footer content: */
   const { pageFooterData, setPageFooterData } = useContext(PageFooterContext);
   const legalFooterContent = content.filter(
     (x) => x.contentType === "LegalFooter"
   );
+  setLanguage(pageLang);
+
   useEffect(() => {
     setPageFooterData(legalFooterContent);
   }, []); // empty array, to run once after component mounts
@@ -113,7 +114,7 @@ export default function IndexPage(props) {
       />
 
       {/* Sign up section */}
-      <SignUpSection content={content[13]} />
+      {/* <SignUpSection content={content[13]} /> */}
 
       {/* Canadian insurance accordion section*/}
       <TwoAccordionSection

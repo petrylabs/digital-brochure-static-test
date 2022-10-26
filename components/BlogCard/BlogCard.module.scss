@@ -46,7 +46,12 @@
   top: 130px;
   background-color: $color-secondary-medium;
   color: $color-primary-grey;
-  padding: 10px 20px;
+  padding: 10px 15px;
+
+  @include mq-min-width(lg) {
+    padding: 10px 20px;
+  }
+  
   font-size: 14px;
   font-family: $font-extra-bold;
   font-weight: 800;

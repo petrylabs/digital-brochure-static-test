@@ -11,7 +11,7 @@ import styles from "./Modal.module.scss";
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179114937/Modal
  */
 function Modal(props) {
-  const { children, onClose, open } = props;
+  const { children, onClose, open, isQuoteModal = false } = props;
 
   return (
     <MuiModal
@@ -19,7 +19,13 @@ function Modal(props) {
       classes={{ root: styles.root }}
       onClose={() => onClose()}
     >
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          isQuoteModal
+            ? styles.containerQuoteModal
+            : styles.containerSignUpModal
+        }`}
+      >
         {/* modal content: */}
         {children}
 
@@ -44,6 +50,9 @@ Modal.propTypes = {
 
   /** Is Modal open or not: */
   open: PropTypes.bool.isRequired,
+
+  /** Is Quote Modal or not */
+  isQuoteModal: PropTypes.bool,
 };
 
 export default Modal;

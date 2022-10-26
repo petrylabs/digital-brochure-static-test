@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { locales } from "../../config";
+import LanguageContext from "../../context/language";
 import styles from "./TrustPilot.module.scss";
 /**
  * Trust Pilot
  * Trust Pilot section for home page.
  */
 function TrustPilot() {
+  const { lang } = useContext(LanguageContext);
   return (
     <div
       className={`trustpilot-widget ${styles.container}`}
-      data-locale="en-US"
+      data-locale={lang === locales.en ? "en-US" : "fr-FR"}
       data-template-id="54ad5defc6454f065c28af8b"
       data-businessunit-id="5e4e0b7438d2d60001f5dc90"
       data-style-height="240px"
@@ -16,7 +19,7 @@ function TrustPilot() {
       data-theme="light"
       data-tags="CMS-Trust"
       data-stars="4,5"
-      data-review-languages="en"
+      data-review-languages={lang}
       data-text-color="#323232"
     >
       <a

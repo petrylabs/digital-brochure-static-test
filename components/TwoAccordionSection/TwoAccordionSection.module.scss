@@ -17,6 +17,10 @@
 
 .heading {
   @include heading-margin;
+
+  + p {
+    margin-bottom: 41px;
+  }
 }
 
 .rowColumnLandingFlex,
@@ -60,7 +64,6 @@
 
 .accordionHeading {
   text-align: left;
-  padding-top: 13px;
   padding-bottom: 26px;
 
   @include mq-min-width(md) {
@@ -76,8 +79,4 @@
 .accordionGroup {
   flex: 1;
   text-align: left;
-}
-
-.heading + p {
-  margin-bottom: 2.75em;
 }

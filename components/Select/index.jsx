@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import MuiSelect from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,6 +8,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 import SelectModal from "../SelectModal";
 import styles from "./Select.module.scss";
+import { MenuList } from "@mui/material";
 
 /**
  * Select
@@ -46,67 +46,8 @@ function Select({ options, label, methods }) {
     setValue(e.target.textContent);
   };
 
-  return (
-    <>
-      <label htmlFor="interest">{label}</label>
-      <Controller
-        name="interestedIn"
-        control={methods.control}
-        render={({ field: { onChange } }) => (
-          <>
-            <MuiSelect
-              id="select"
-              name="interest"
-              ref={select}
-              value={value}
-              onChange={onChange}
-              onOpen={handleOpen}
-              open={open}
-              className={`${styles.input} ${open ? styles.activeInput : ""} `}
-              classes={{
-                select: styles.select,
-              }}
-              native={false}
-              variant={"outlined"}
-              MenuProps={{
-                onKeyDown: (e) => e.key === "Tab" && setOpen(false),
-                classes: {
-                  paper: isMobile ? styles.none : styles.paper,
-                  list: styles.menuList,
-                },
-              }}
-              IconComponent={() => <div className={styles.icon}></div>}
-              inputProps={{
-                classes: {
-                  root: styles.input,
-                },
-              }}
-            >
-              {MenuItemList(options, value, handleMenuItemClick)}
-            </MuiSelect>
-            {isMobile && (
-              <SelectModal
-                open={isMenuModalOpen}
-                onOpen={() => setMenuModalOpen(true)}
-                onClose={() => setMenuModalOpen(false)}
-              >
-                <div className={styles.modalContainer}>
-                  {MenuItemList(options, value, handleMenuItemClick)}
-                </div>
-              </SelectModal>
-            )}
-          </>
-        )}
-      />
-    </>
-  );
-}
-
-export default Select;
-
-const MenuItemList = (optionsList, selectedValue, handleClick) => {
-  return optionsList.map((option, i) => {
-    return (
+  const MenuItemList = (optionsList, selectedValue, handleClick) => {
+    return optionsList.map((option, i) => (
       <MenuItem
         key={i}
         value={option.key}
@@ -120,6 +61,66 @@ const MenuItemList = (optionsList, selectedValue, handleClick) => {
       >
         {option.value}
       </MenuItem>
-    );
-  });
-};
+    ));
+  };
+
+  return (
+    <>
+      <label htmlFor="interest">{label}</label>
+      <Controller
+        name="interestedIn"
+        control={methods.control}
+        render={({ field: { onChange, value } }) => (
+          <>
+            <MuiSelect
+              id="select"
+              name="interest"
+              ref={select}
+              value={value}
+              onChange={onChange}
+              onOpen={handleOpen}
+              open={open}
+              className={`${styles.root} ${open ? styles.activeInput : ""} `}
+              classes={{
+                select: styles.select,
+                icon: styles.icon,
+              }}
+              native={false}
+              variant={"outlined"}
+              MenuProps={{
+                onKeyDown: (e) => e.key === "Tab" && setOpen(false),
+                classes: {
+                  paper: styles.paper,
+                  list: styles.menuList,
+                },
+              }}
+            >
+              {MenuItemList(options, value, handleMenuItemClick)}
+            </MuiSelect>
+
+            {/* On mobile, select options are shown in a full-screen modal: */}
+            {isMobile && (
+              <SelectModal
+                open={isMenuModalOpen}
+                onOpen={() => setMenuModalOpen(true)}
+                onClose={() => setMenuModalOpen(false)}
+              >
+                <MenuList
+                  autoFocusItem
+                  classes={{ root: styles.mobileMenuList }}
+                >
+                  {MenuItemList(options, value, (e) => {
+                    onChange(e.target.textContent);
+                    handleMenuItemClick(e);
+                  })}
+                </MenuList>
+              </SelectModal>
+            )}
+          </>
+        )}
+      />
+    </>
+  );
+}
+
+export default Select;

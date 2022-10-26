@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { locales } from "../../config";
-import LanguageContext from "../../context/language";
 
+import LanguageContext from "../../context/language";
 import getNavigation from "../../utils/navigation";
 import NavCard from "../NavCard";
 import styles from "./NavDesktop.module.scss";
@@ -32,11 +31,12 @@ function NavDesktop(props) {
       setPanelHeight(subNavRef.current?.offsetHeight);
     } else {
       setPanelHeight(0);
+      setVisibleSubmenu(false);
     }
-  });
+  }, [visibleSubmenu, isExpanded, setPanelHeight]);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul className={styles.navList}>
         {navItems.map((item, index) => (
           <li key={item.order}>

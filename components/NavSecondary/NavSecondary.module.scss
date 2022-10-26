@@ -29,24 +29,22 @@
 
   @include mq-min-width(lg) {
     margin-right: 15px;
+    transform: translate(-1px, 1px); // nudge to match prod
   }
 }
 
 .searchIcon {
+  font-family: "icomoon";
   font-size: 18px;
+  display: inline-block;
+  color: $color-black;
 
-  &::after {
-    display: block;
+  &::before {
     content: "\e953";
-    font-family: "icomoon";
   }
 
-  @include mq-min-width(sm) {
+  @include mq-min-width(md) {
     font-size: 16px;
-  }
-
-  @include mq-min-width(lg) {
-    font-size: 18px;
   }
 }
 
@@ -69,12 +67,13 @@
     @include focus-border;
   }
 
-  @include mq-min-width(sm) {
+  @include mq-min-width(md) {
     font-size: 16px;
   }
 
   @include mq-min-width(lg) {
-    font-size: 18px;
+    margin-right: 17px;
+    padding-block: 2px;
   }
 }
 
@@ -83,6 +82,8 @@
 
   @include mq-min-width(lg) {
     border-left: 1px solid $color-grey-06;
+    padding-left: 21px;
     margin-left: unset;
+    line-height: 30px; // sets the border height
   }
 }

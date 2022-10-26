@@ -1,0 +1,44 @@
+@import "../../scss/globals/color.scss";
+@import "../../scss/globals/layout.scss";
+@import "../../scss/globals/variables";
+
+.icon {
+  height: 60px;
+  width: 60px;
+  @include mq-min-width(lg) {
+    height: 80px;
+    width: 80px;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto 0px;
+  box-sizing: border-box;
+  background-color: $color-secondary-medium;
+  border-radius: 150px;
+  border: 3px solid $color-secondary-medium;
+}
+
+.contentSection {
+  max-width: 100%;
+  width: 100vh;
+  text-align: center;
+  h2 {
+    padding: 26px 0px;
+    font-size: 1.5rem;
+    @include mq-min-width(smd) {
+      font-size: 1.563rem;
+      line-height: 30px;
+    }
+    @include mq-min-width(lg) {
+      font-size: 1.75rem;
+      line-height: 38px;
+      padding: 30px 0px;
+    }
+    @include mq-min-width(xl) {
+      font-size: 2.375rem;
+      line-height: 47px;
+      padding: 30px 0px;
+    }
+  }
+}

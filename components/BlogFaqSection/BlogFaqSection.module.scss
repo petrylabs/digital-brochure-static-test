@@ -3,11 +3,14 @@
 @import "scss/globals/typography.scss";
 
 .section {
-  background: $color-white;
   @include container;
+
+  background: $color-white;
 }
 
 .content {
+  padding-bottom: 0.813em;
+
   @include mq-min-width(md) {
     text-align: center;
   }
@@ -17,6 +20,14 @@
   }
 }
 
+.blogContainer {
+  padding-top: 0.813em;
+}
+
 .accordions {
-  padding-top: 13px;
+  padding-top: 3.438em;
+
+  @include mq-min-width(lg) {
+    padding-top: 4.688em;
+  }
 }

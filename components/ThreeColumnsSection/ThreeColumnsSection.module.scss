@@ -7,7 +7,7 @@
 }
 
 .textContainer {
-  padding-bottom: 13px;
+  padding-bottom: 2 * 0.813em; // instead of adding top padding to ThreeItemLayout
 
   @include mq-min-width(md) {
     text-align: center;
