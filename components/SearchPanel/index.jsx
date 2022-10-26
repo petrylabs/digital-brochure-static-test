@@ -8,6 +8,7 @@ import { getLanguageVariable } from "../../utils/languageVariable";
 import highlight from "../../utils/highlight";
 import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchPanel.module.scss";
+import { Autocomplete } from "@mui/material";
 
 /**
  * SearchPanel
@@ -19,7 +20,7 @@ function SearchPanel(props) {
 
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const hasResults = searchResults?.length > 0;
+  const [showResults, setShowResults] = useState(false);
 
   /* Perform search as search term changes */
   useEffect(() => {
@@ -29,14 +30,14 @@ function SearchPanel(props) {
     } else {
       setSearchResults([]);
     }
-    console.log(searchResults);
-  }, [lang, query]);
+    setShowResults(searchResults?.length > 0);
+  }, [lang, query, searchResults]);
 
   return isActive ? (
     <>
       {/* Overlay/Backdrop */}
       {/* TODO: Extract to own component */}
-      {hasResults && (
+      {showResults && (
         <div
           className={styles.backdrop}
           onClick={() => {
@@ -48,7 +49,7 @@ function SearchPanel(props) {
       <div
         id="search-panel"
         className={`${styles.panel} ${
-          hasResults ? styles.withResults : styles.noResults
+          showResults ? styles.withResults : styles.noResults
         }`}
       >
         <div className={styles.top}>
@@ -60,30 +61,49 @@ function SearchPanel(props) {
             <Chevron direction="left" size="25px" />
           </button>
 
-          <div
-            className={styles.inputContainer}
-            role="combobox"
-            aria-haspopup="listbox"
-            aria-owns="global-search-combobox-listbox"
-            aria-expanded={hasResults.toString()}
-          >
-            <SearchIcon />
-            <input
-              id="search"
-              type="search"
-              aria-autocomplete="both"
-              aria-controls="search-listbox"
-              placeholder={getLanguageVariable("header-Search", lang)}
-              aria-labelledby={null}
-              autoComplete="off"
-              autoFocus
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-          </div>
+          <Autocomplete
+            autoComplete
+            freeSolo
+            fullWidth
+            includeInputInList
+            inputValue={query}
+            onInputChange={(event) => setQuery(event?.target.value)}
+            onChange={(event, option) => (window.location.href = option.url)}
+            renderInput={(params) => (
+              <div
+                ref={params.InputProps.ref}
+                className={styles.inputContainer}
+              >
+                <SearchIcon />
+                <input
+                  {...params.inputProps}
+                  id="search"
+                  type="search"
+                  placeholder={getLanguageVariable("header-Search", lang)}
+                  aria-label={getLanguageVariable("header-Search", lang)}
+                  autoFocus
+                />
+              </div>
+            )}
+            options={searchResults}
+            limit={10}
+            getOptionLabel={(option) => option.metaTitle || option.title}
+            renderOption={(props, option) => (
+              <li className={styles.searchResultItem} {...props}>
+                <a href={option.url} className={styles.searchResultItemLink}>
+                  {highlight(query, option.metaTitle || option.title)}
+                </a>
+              </li>
+            )}
+            onClose={(event, reason) => {
+              if (reason === "escape" || reason === "blur") {
+                setShowResults(false);
+              }
+            }}
+          />
         </div>
 
-        {hasResults ? (
+        {/* {showResults ? (
           <ul className={styles.searchResults}>
             {searchResults.map((item, i) => (
               <li key={i} className={styles.searchResultItem}>
@@ -93,7 +113,7 @@ function SearchPanel(props) {
               </li>
             ))}
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
     </>
   ) : null;
