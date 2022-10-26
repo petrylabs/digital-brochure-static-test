@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
+import LanguageContext from "../../context/language";
 import Chevron from "../../icons/Chevron";
+import { searchData } from "../../utils";
+import highlight from "../../utils/highlight";
 import SearchInput from "../SearchInput";
-import SearchResults from "../SearchResults";
 import styles from "./SearchPanel.module.scss";
 
 /**
@@ -11,8 +14,23 @@ import styles from "./SearchPanel.module.scss";
  */
 function SearchPanel(props) {
   const { isActive, setIsActive, onBackButton } = props;
+  const { lang } = useContext(LanguageContext);
+
   const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [hasResults, setHasResults] = useState(false);
+
+  /* Perform search as search term changes */
+  useEffect(() => {
+    const searchResultData = searchData(query, lang);
+    if (searchResultData) {
+      setSearchResults(searchResultData.slice(0, 10));
+    } else {
+      setSearchResults([]);
+    }
+    console.log(searchResults);
+    setHasResults(searchResultData?.length > 0);
+  }, [lang, query]);
 
   return isActive ? (
     <>
@@ -49,11 +67,21 @@ function SearchPanel(props) {
           />
         </div>
 
-        <SearchResults
-          searchTerm={query}
+        {/* <SearchResults
           onResults={(results) => setHasResults(results?.length > 0)}
           onQueryChange={(newQuery) => setQuery(newQuery)}
-        />
+        /> */}
+        {searchResults.length > 0 ? (
+          <ul className={styles.searchResults}>
+            {searchResults.map((item, i) => (
+              <li key={i} className={styles.searchResultItem}>
+                <a href={item.url} className={styles.searchResultItemLink}>
+                  {highlight(query, item.metaTitle || item.title)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </>
   ) : null;
