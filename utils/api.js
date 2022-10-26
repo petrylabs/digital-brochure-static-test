@@ -1,3 +1,5 @@
+import { buildSearchResultQuery } from "./search";
+
 const apiUrl = process.env.DOTCMS_HOST;
 
 /**
@@ -342,27 +344,18 @@ export async function getGaqModal(languageId = 1) {
 }
 
 /**
- * Get search results from API
+ * Get search results from API based on keyword and language passed
+ * @param {string} keywords keywords to search
  * @param {string} languageId numerical ID for the language (see config.js)
  * @returns API response with search related data
  */
-export const getSearchResults = (languageId = 1) => {
-  // needs to be updated to get content based on languageId
+export const getSearchResults = (keywords, languageId) => {
   var url = new URL(`${apiUrl}/es/search`);
-  var raw = JSON.stringify({
-    query: {
-      query_string: {
-        query: `+(contentType:FAQ contentType:Blog ) +languageId:${languageId}`,
-      },
-    },
-    size: 1000,
-    from: 0,
-    sort: {
-      modDate: {
-        order: "desc",
-      },
-    },
-  });
+  const raw = buildSearchResultQuery(
+    keywords,
+    ["FAQ", "Blog", "htmlpageasset"],
+    languageId
+  );
   url.search = new URLSearchParams(raw).toString();
   return get(`${apiUrl}/es/search`, {
     method: "POST",

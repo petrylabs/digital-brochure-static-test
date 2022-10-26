@@ -52,6 +52,8 @@ $header-z: 100;
   }
 }
 
+/* SECONDARY */
+
 .secondaryNav {
   display: none;
   text-align: right;
@@ -61,6 +63,17 @@ $header-z: 100;
     display: block;
   }
 }
+
+/*
+Hack to force NavSecondary overflow to the left side;
+required to maintain layout with French content
+*/
+.secondaryNavContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* PANELS */
 
 .headerPanelDesktop {
   border-top: 1px solid $color-grey-03;

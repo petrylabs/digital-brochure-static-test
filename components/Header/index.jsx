@@ -125,7 +125,9 @@ function Header(props) {
                     {content.gaq}
                   </CTA>
                 ) : (
-                  <NavSecondary searchToggleFn={deskTopSearchButton} />
+                  <div className={styles.secondaryNavContainer}>
+                    <NavSecondary searchToggleFn={deskTopSearchButton} />
+                  </div>
                 )}
 
                 <CartLink />
