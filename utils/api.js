@@ -351,11 +351,7 @@ export async function getGaqModal(languageId = 1) {
  */
 export const getSearchResults = (keywords, languageId) => {
   var url = new URL(`${apiUrl}/es/search`);
-  const raw = buildSearchResultQuery(
-    keywords,
-    ["FAQ", "Blog", "htmlpageasset"],
-    languageId
-  );
+  const raw = buildSearchResultQuery(keywords, ["FAQ", "Blog"], languageId);
   url.search = new URLSearchParams(raw).toString();
   return get(`${apiUrl}/es/search`, {
     method: "POST",
