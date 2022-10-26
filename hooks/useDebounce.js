@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { debounce } from "../utils";
 
-export const useDebounce = (obj = null, wait = 1000) => {
+export const useDebounce = (obj = null, wait = 500) => {
   const [state, setState] = useState(obj);
 
   const setDebouncedState = (_val) => {
