@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import LanguageContext from "../../context/language";
 import Chevron from "../../icons/Chevron";
 import { searchData } from "../../utils";
+import { getLanguageVariable } from "../../utils/languageVariable";
 import highlight from "../../utils/highlight";
-import SearchInput from "../SearchInput";
+import SearchIcon from "../../icons/SearchIcon";
 import styles from "./SearchPanel.module.scss";
 
 /**
@@ -60,17 +61,29 @@ function SearchPanel(props) {
             <Chevron direction="left" size="25px" />
           </button>
 
-          <SearchInput
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            hasResults={hasResults}
-          />
+          <div
+            className={styles.inputContainer}
+            role="combobox"
+            aria-haspopup="listbox"
+            aria-owns="global-search-combobox-listbox"
+            aria-expanded={hasResults.toString()}
+          >
+            <SearchIcon />
+            <input
+              id="search"
+              type="search"
+              aria-autocomplete="both"
+              aria-controls="search-listbox"
+              placeholder={getLanguageVariable("header-Search", lang)}
+              aria-labelledby={null}
+              autoComplete="off"
+              autoFocus
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </div>
         </div>
 
-        {/* <SearchResults
-          onResults={(results) => setHasResults(results?.length > 0)}
-          onQueryChange={(newQuery) => setQuery(newQuery)}
-        /> */}
         {searchResults.length > 0 ? (
           <ul className={styles.searchResults}>
             {searchResults.map((item, i) => (
