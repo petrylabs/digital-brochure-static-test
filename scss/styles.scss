@@ -19,13 +19,9 @@ html {
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-font-smoothing: antialiased;
   font-family: $font-regular;
   font-size: 16px;
-
-  @include mq-min-width(lg) {
-    -webkit-font-smoothing: antialiased;
-  }
 }
 
 body {
