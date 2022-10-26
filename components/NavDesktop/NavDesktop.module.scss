@@ -3,6 +3,14 @@
 @import "../../scss/globals/color.scss";
 @import "../../scss/globals/a11y.scss";
 
+.nav {
+  display: none;
+
+  @include mq-min-width(lg) {
+    display: block;
+  }
+}
+
 .navList {
   @include unstyle-list;
 

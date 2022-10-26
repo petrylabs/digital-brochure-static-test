@@ -55,9 +55,13 @@ $header-z: 100;
 /* SECONDARY */
 
 .secondaryNav {
+  display: none;
   text-align: right;
   flex-direction: row;
-  width: 175px;
+
+  @include mq-min-width(lg) {
+    display: block;
+  }
 }
 
 /*

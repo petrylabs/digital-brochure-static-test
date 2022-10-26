@@ -26,7 +26,7 @@ const SearchPanel = loadable(() => import("../SearchPanel"));
  * @docs https://economical.atlassian.net/wiki/spaces/SKT/pages/43179900955/Header
  */
 function Header(props) {
-  const { banners } = props;
+  const { banners, lockPageScroll } = props;
   const { lang } = useContext(LanguageContext);
   const content = headerData[lang]?.headerMenu;
 
@@ -56,7 +56,6 @@ function Header(props) {
     setIsSearchExpanded(!isSearchExpanded); // button can on/off for search pane
     setIsSubmenuExpanded(false); // for nav items
   };
-
   const mobileSearchButton = () => {
     setIsMobileSearchExpanded(!isMobileSearchExpanded);
     setIsSubmenuExpanded(false); // for nav items
@@ -70,6 +69,14 @@ function Header(props) {
       setIsSearchExpanded(false);
     }
   }, [isDesktop]);
+
+  useEffect(() => {
+    if ((!isDesktop && isSubmenuExpanded) || isMobileSearchExpanded) {
+      lockPageScroll(true);
+    } else {
+      lockPageScroll(false);
+    }
+  });
 
   if (content)
     return (
@@ -88,51 +95,43 @@ function Header(props) {
             <div id="header-bar" className={styles.headerBar}>
               <HomeLogoLink />
 
-              {!isDesktop && (
-                <div className={styles.navMobile}>
-                  {!isSubmenuExpanded && (
-                    <CTA
-                      type="primary"
-                      small={isMobile}
-                      onClick={() => setIsQuoteModalOpen(true)}
-                    >
-                      {isMobile ? content.gaqSmall : content.gaq}
-                    </CTA>
-                  )}
-                  <HamburgerButton
-                    ariaControls="mobile-nav"
-                    state={[isSubmenuExpanded, setIsSubmenuExpanded]}
-                  />
-                </div>
-              )}
+              {/* MOBILE NAV */}
+              <div className={styles.navMobile}>
+                {!isSubmenuExpanded && (
+                  <CTA
+                    type="primary"
+                    small={isMobile}
+                    onClick={() => setIsQuoteModalOpen(true)}
+                  >
+                    {isMobile ? content.gaqSmall : content.gaq}
+                  </CTA>
+                )}
+                <HamburgerButton
+                  ariaControls="mobile-nav"
+                  state={[isSubmenuExpanded, setIsSubmenuExpanded]}
+                />
+              </div>
 
-              {isDesktop && (
-                <>
-                  <NavDesktop
-                    isExpanded={isSubmenuExpanded}
-                    setIsExpanded={handleSubmenu}
-                    setPanelHeight={setPanelHeight}
-                  />
+              <NavDesktop
+                isExpanded={isSubmenuExpanded}
+                setIsExpanded={handleSubmenu}
+                setPanelHeight={setPanelHeight}
+              />
 
-                  {/* Secondary Nav */}
-                  <div className={styles.secondaryNav}>
-                    {hasScrolled ? (
-                      <CTA
-                        type="primary"
-                        onClick={() => setIsQuoteModalOpen(true)}
-                      >
-                        {content.gaq}
-                      </CTA>
-                    ) : (
-                      <div className={styles.secondaryNavContainer}>
-                        <NavSecondary searchToggleFn={deskTopSearchButton} />
-                      </div>
-                    )}
-
-                    <CartLink />
+              {/* Secondary Nav */}
+              <div className={styles.secondaryNav}>
+                {hasScrolled ? (
+                  <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
+                    {content.gaq}
+                  </CTA>
+                ) : (
+                  <div className={styles.secondaryNavContainer}>
+                    <NavSecondary searchToggleFn={deskTopSearchButton} />
                   </div>
-                </>
-              )}
+                )}
+
+                <CartLink />
+              </div>
             </div>
           ) : (
             // TODO: move this out of header bar

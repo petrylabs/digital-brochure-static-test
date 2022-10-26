@@ -36,7 +36,7 @@ function NavDesktop(props) {
   }, [visibleSubmenu, isExpanded, setPanelHeight]);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul className={styles.navList}>
         {navItems.map((item, index) => (
           <li key={item.order}>
