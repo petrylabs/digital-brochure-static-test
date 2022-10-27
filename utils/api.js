@@ -1,3 +1,4 @@
+import { getOrigin } from "./origin";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
@@ -180,8 +181,9 @@ export function getTestimonialWidgetData(tagString, recordsToShow, languageId) {
  * @returns {object} with an array of Banners as "contentlets"
  */
 export function getSiteBanners(languageId = 1) {
+  const apiUrl = getOrigin();
   return get(
-    `${process.env.NEXT_PUBLIC_DOTCMS_HOST}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
+    `${apiUrl}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
   );
 }
 
@@ -229,6 +231,7 @@ export const getSignUpModal = (languageId = 1) => {
  * @returns API response with sign up form submission
  */
 export const signUpSubmission = (formData) => {
+  const apiUrl = getOrigin();
   return get(`${apiUrl}/vtl/contact`, {
     method: "POST",
     body: JSON.stringify(formData),
@@ -350,7 +353,8 @@ export async function getGaqModal(languageId = 1) {
  * @returns API response with search related data
  */
 export const getSearchResults = (keywords, languageId) => {
-  var url = new URL(`${apiUrl}/es/search`);
+  const apiUrl = getOrigin();
+  let url = new URL(`${apiUrl}/es/search`);
   const raw = buildSearchResultQuery(keywords, ["FAQ", "Blog"], languageId);
   url.search = new URLSearchParams(raw).toString();
   return get(`${apiUrl}/es/search`, {
