@@ -181,7 +181,7 @@ export function getTestimonialWidgetData(tagString, recordsToShow, languageId) {
  */
 export function getSiteBanners(languageId = 1) {
   return get(
-    `${process.env.NEXT_PUBLIC_DOTCMS_HOST}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
+    `${window.location.origin}/api/content/render/false/query/+contentType:Banner +languageId:${languageId}`
   );
 }
 
@@ -229,7 +229,7 @@ export const getSignUpModal = (languageId = 1) => {
  * @returns API response with sign up form submission
  */
 export const signUpSubmission = (formData) => {
-  return get(`${apiUrl}/vtl/contact`, {
+  return get(`${window.location.origin}/api/vtl/contact`, {
     method: "POST",
     body: JSON.stringify(formData),
   });
@@ -350,10 +350,10 @@ export async function getGaqModal(languageId = 1) {
  * @returns API response with search related data
  */
 export const getSearchResults = (keywords, languageId) => {
-  var url = new URL(`${apiUrl}/es/search`);
+  let url = new URL(`${window.location.origin}/api/es/search`);
   const raw = buildSearchResultQuery(keywords, ["FAQ", "Blog"], languageId);
   url.search = new URLSearchParams(raw).toString();
-  return get(`${apiUrl}/es/search`, {
+  return get(`${window.location.origin}/api/es/search`, {
     method: "POST",
     body: raw,
     redirect: "follow",

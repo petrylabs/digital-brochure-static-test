@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import { languageId, locales } from "../../config";
 import LanguageContext from "../../context/language";
-import banners from "../../site-data/banners.preval";
 import { getSiteBanners } from "../../utils/api";
 import ParsedCopy from "../ParsedCopy";
 import styles from "./SiteBanners.module.scss";
@@ -21,9 +20,7 @@ function SiteBanners(props) {
   const currentLanguageId = isFrench ? languageId.fr : languageId.en;
 
   const [isMounted, setIsMounted] = useState(false);
-  const [activeBanners, setActiveBanners] = useState(
-    banners[lang]?.data?.contentlets
-  );
+  const [activeBanners, setActiveBanners] = useState([]);
 
   const ref = useRef();
   const setBannersHeight = () => setHeight(ref.current?.clientHeight);
