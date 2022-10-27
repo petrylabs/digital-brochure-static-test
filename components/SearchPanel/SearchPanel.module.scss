@@ -176,14 +176,10 @@
 
 .searchResultItem {
   display: block !important;
-  padding: 20px 30px !important;
+  padding: 0 !important;
   border: 1px solid transparent;
-  color: $color-primary-grey;
-  font-size: 14px;
 
   &:hover {
-    color: $color-links;
-    text-decoration: underline;
     background-color: $color-secondary-light !important;
   }
 
@@ -199,19 +195,48 @@
     border-bottom: 1px solid $color-grey-06;
   }
 
-  @include mq-min-width(lg) {
-    padding: 0.3125rem 0.625rem !important;
-    line-height: 23px;
+  a {
+    display: block;
+    padding: 20px 30px;
+    color: $color-primary-grey;
+    font-size: 14px;
+    text-decoration: none;
 
+    &:hover {
+      color: $color-links;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: $color-primary-grey;
+    }
+  }
+
+  &:has(a:active) {
+    background-color: $color-grey-03 !important;
+    border: 1px solid $color-primary-accent;
+  }
+
+  @include mq-min-width(lg) {
     &:hover {
       background-color: $color-grey-03 !important;
     }
 
     &:focus,
     &[class*="focused"]:not(:hover) {
-      border: unset; // unsets the focus styles on smaller screens
+      border: 1px solid transparent; // unsets the focus styles on smaller screens
       border-bottom: 1px solid $color-grey-06; // re-sets the bottom border
       background-color: $color-grey-03 !important;
+    }
+
+    a {
+      padding: 5px 10px !important;
+      line-height: 23px;
+
+      &:active {
+        color: $color-white;
+        background-color: $color-primary-accent;
+      }
     }
   }
 }

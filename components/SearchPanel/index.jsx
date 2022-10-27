@@ -102,7 +102,9 @@ function SearchPanel(props) {
           getOptionLabel={(option) => option.metaTitle || option.title}
           renderOption={(props, option) => (
             <li {...props} className={styles.searchResultItem}>
-              {highlight(query, option.metaTitle || option.title)}
+              <a href={option.url}>
+                {highlight(query, option.metaTitle || option.title)}
+              </a>
             </li>
           )}
           onOpen={() => setShowResults(true)}
