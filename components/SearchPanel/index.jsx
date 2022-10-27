@@ -107,7 +107,9 @@ function SearchPanel(props) {
               </a>
             </li>
           )}
-          onOpen={() => setShowResults(true)}
+          onOpen={() => {
+            if (query !== "") setShowResults(true);
+          }}
           onClose={(event, reason) => {
             if (reason === "escape" || reason === "blur") {
               setShowResults(false);
