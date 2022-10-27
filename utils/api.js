@@ -1,4 +1,4 @@
-import { getOrigin } from "./hostname";
+import { getOrigin } from "./origin";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
