@@ -1,3 +1,4 @@
+import { getOrigin } from "./hostname";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
@@ -180,8 +181,9 @@ export function getTestimonialWidgetData(tagString, recordsToShow, languageId) {
  * @returns {object} with an array of Banners as "contentlets"
  */
 export function getSiteBanners(languageId = 1) {
+  const apiUrl = getOrigin();
   return get(
-    `${window.location.origin}/api/content/render/false/query/+contentType:Banner +languageId:${languageId}`
+    `${apiUrl}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
   );
 }
 
@@ -229,7 +231,8 @@ export const getSignUpModal = (languageId = 1) => {
  * @returns API response with sign up form submission
  */
 export const signUpSubmission = (formData) => {
-  return get(`${window.location.origin}/api/vtl/contact`, {
+  const apiUrl = getOrigin();
+  return get(`${apiUrl}/vtl/contact`, {
     method: "POST",
     body: JSON.stringify(formData),
   });
@@ -350,10 +353,11 @@ export async function getGaqModal(languageId = 1) {
  * @returns API response with search related data
  */
 export const getSearchResults = (keywords, languageId) => {
-  let url = new URL(`${window.location.origin}/api/es/search`);
+  const apiUrl = getOrigin();
+  let url = new URL(`${apiUrl}/es/search`);
   const raw = buildSearchResultQuery(keywords, ["FAQ", "Blog"], languageId);
   url.search = new URLSearchParams(raw).toString();
-  return get(`${window.location.origin}/api/es/search`, {
+  return get(`${apiUrl}/es/search`, {
     method: "POST",
     body: raw,
     redirect: "follow",
