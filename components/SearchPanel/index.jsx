@@ -36,7 +36,7 @@ function SearchPanel(props) {
       const { data, error } = res;
       if (data) {
         setSearchResults(data?.contentlets || []);
-        setShowResults(!!data?.contentlets);
+        setShowResults(data?.contentlets?.length > 0);
       }
     });
   }, [query, lang]);
@@ -60,24 +60,23 @@ function SearchPanel(props) {
           showResults ? styles.withResults : styles.noResults
         }`}
       >
-        <div className={styles.top}>
-          {/* back (close) button on mobile */}
-          <button
-            className={styles.chevronButton}
-            onClick={() => onBackButton()}
-          >
-            <Chevron direction="left" size="25px" />
-          </button>
-
-          <Autocomplete
-            autoComplete
-            freeSolo
-            fullWidth
-            includeInputInList
-            inputValue={query}
-            onInputChange={(event) => setQuery(event?.target.value)}
-            onChange={(event, option) => (window.location.href = option.url)}
-            renderInput={(params) => (
+        <Autocomplete
+          autoComplete
+          freeSolo
+          fullWidth
+          includeInputInList
+          inputValue={query}
+          onInputChange={(event) => setQuery(event?.target.value)}
+          onChange={(event, option) => (window.location.href = option.url)}
+          renderInput={(params) => (
+            <div className={styles.top}>
+              {/* back (close) button on mobile */}
+              <button
+                className={styles.chevronButton}
+                onClick={() => onBackButton()}
+              >
+                <Chevron direction="left" size="25px" />
+              </button>
               <div
                 ref={params.InputProps.ref}
                 className={styles.inputContainer}
@@ -92,36 +91,31 @@ function SearchPanel(props) {
                   autoFocus
                 />
               </div>
-            )}
-            options={searchResults}
-            limit={10}
-            getOptionLabel={(option) => option.metaTitle || option.title}
-            renderOption={(props, option) => (
-              <li className={styles.searchResultItem} {...props}>
-                <a href={option.url} className={styles.searchResultItemLink}>
-                  {highlight(query, option.metaTitle || option.title)}
-                </a>
-              </li>
-            )}
-            onClose={(event, reason) => {
-              if (reason === "escape" || reason === "blur") {
-                setShowResults(false);
-              }
-            }}
-          />
-        </div>
-
-        {/* {showResults ? (
-          <ul className={styles.searchResults}>
-            {searchResults.map((item, i) => (
-              <li key={i} className={styles.searchResultItem}>
-                <a href={item.url} className={styles.searchResultItemLink}>
-                  {highlight(query, item.metaTitle || item.title)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : null} */}
+            </div>
+          )}
+          disablePortal
+          PopperComponent={({ children }) => (
+            <div className={styles.searchResultsContainer}>{children}</div>
+          )}
+          options={searchResults}
+          limit={10}
+          getOptionLabel={(option) => option.metaTitle || option.title}
+          renderOption={(props, option) => (
+            <li {...props} className={styles.searchResultItem}>
+              {highlight(query, option.metaTitle || option.title)}
+            </li>
+          )}
+          onClose={(event, reason) => {
+            if (reason === "escape" || reason === "blur") {
+              setShowResults(false);
+            }
+          }}
+          classes={{
+            root: styles.autocompleteRoot,
+            paper: styles.autocompletePaper,
+            listbox: styles.searchResults,
+          }}
+        />
       </div>
     </>
   ) : null;

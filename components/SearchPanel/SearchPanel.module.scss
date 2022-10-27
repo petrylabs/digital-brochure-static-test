@@ -3,6 +3,17 @@
 @import "../../scss/globals/buttons";
 @import "../../scss/globals/mixins";
 
+/* BAKCDROP */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(51, 51, 51, 0.75);
+  overflow: hidden;
+}
+
+/* PANEL */
+
 .panel {
   position: fixed;
   background-color: $color-white;
@@ -60,6 +71,8 @@
 
   svg {
     height: 23px;
+    width: 23px;
+
     path {
       stroke: $color-black;
       stroke-width: 2.5;
@@ -75,13 +88,6 @@
   }
 }
 
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(51, 51, 51, 0.75);
-  overflow: hidden;
-}
-
 /* INPUT */
 
 .inputContainer {
@@ -90,7 +96,8 @@
   gap: 10px;
   width: 100%;
   border-radius: 25px;
-  padding: 0 18px;
+  padding: 0 20px;
+  margin-left: 5px;
   border: 1px solid $color-grey-07;
 
   &:hover {
@@ -134,16 +141,24 @@
 
 /* RESULTS */
 
+.autocompletePaper {
+  display: contents;
+}
+
+.searchResultsContainer {
+  height: 100%;
+}
+
 .searchResults {
   @include unstyle-list;
-
-  border-radius: 0 0 25px 25px;
+  max-height: none;
 
   @include mq-min-width(lg) {
     position: absolute;
     background: $color-white;
     width: 100%;
     padding: 10px;
+    border-radius: 0 0 25px 25px;
 
     /* Divider between input and results: */
     &::before {
@@ -159,41 +174,43 @@
 }
 
 .searchResultItem {
-  &:not(:first-child) {
-    border-top: 1px solid $color-grey-06;
-  }
-}
-
-.searchResultItemLink {
-  display: block;
-  padding: 20px 30px;
-  text-decoration: none;
+  display: block !important;
+  padding: 20px 30px !important;
+  border: 1px solid transparent;
   color: $color-primary-grey;
   font-size: 14px;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: $color-links;
     text-decoration: underline;
-    border-color: $color-secondary-light;
-    background-color: $color-secondary-light;
+    background-color: $color-secondary-light !important;
+  }
+
+  &:focus,
+  &[class*="focused"]:not(:hover) {
     outline: none;
+    font-family: $font-extra-bold;
+    border: 1px solid $color-primary-accent;
+    background-color: $color-white !important;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-grey-06;
   }
 
   @include mq-min-width(lg) {
-    padding: 0.3125rem 0.625rem;
-    color: $color-primary-grey;
+    padding: 0.3125rem 0.625rem !important;
     line-height: 23px;
 
-    &:hover,
-    :focus {
-      background-color: $color-grey-03;
+    &:hover {
+      background-color: $color-grey-03 !important;
+    }
+
+    &:focus,
+    &[class*="focused"]:not(:hover) {
+      border: unset; // unsets the focus styles on smaller screens
+      border-bottom: 1px solid $color-grey-06; // re-sets the bottom border
+      background-color: $color-grey-03 !important;
     }
   }
-}
-
-.searchResultHoveredItem {
-  color: $color-links;
-  text-decoration: underline;
-  background-color: $color-secondary-light;
 }
