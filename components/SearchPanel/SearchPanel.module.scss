@@ -3,13 +3,14 @@
 @import "../../scss/globals/buttons";
 @import "../../scss/globals/mixins";
 
-/* BAKCDROP */
-
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(51, 51, 51, 0.75);
-  overflow: hidden;
+/* BACKDROP */
+@include mq-min-width(lg) {
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(51, 51, 51, 0.75);
+    overflow: hidden;
+  }
 }
 
 /* PANEL */
