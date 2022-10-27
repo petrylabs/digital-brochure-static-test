@@ -105,6 +105,7 @@ function SearchPanel(props) {
               {highlight(query, option.metaTitle || option.title)}
             </li>
           )}
+          onOpen={() => setShowResults(true)}
           onClose={(event, reason) => {
             if (reason === "escape" || reason === "blur") {
               setShowResults(false);
