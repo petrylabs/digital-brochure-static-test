@@ -66,9 +66,7 @@ function SearchPanel(props) {
           fullWidth
           includeInputInList
           inputValue={query}
-          onInputChange={(event) => {
-            setQuery(event?.target.value);
-          }}
+          onInputChange={(event) => setQuery(event?.target.value)}
           onKeyDown={(event) => {
             if (event.key === "Enter" && event.target.value) {
               // Prevent's default 'Enter' behavior.
