@@ -67,6 +67,14 @@ function SearchPanel(props) {
           includeInputInList
           inputValue={query}
           onInputChange={(event) => setQuery(event?.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && event.target.value) {
+              // Prevent's default 'Enter' behavior.
+              event.defaultMuiPrevented = true;
+              // redirect to search results page
+              window.location.href = `${window.location.origin}/search?es=${event.target.value}`;
+            }
+          }}
           onChange={(event, option) => (window.location.href = option.url)}
           renderInput={(params) => (
             <div className={styles.top}>

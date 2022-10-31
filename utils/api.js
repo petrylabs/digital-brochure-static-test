@@ -8,17 +8,21 @@ const apiUrl = process.env.DOTCMS_HOST;
  * @param {string} url API endpoint
  * @returns API response
  */
-async function get(url, options = {}) {
+async function get(url, options = {}, auth = true) {
   try {
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization:
-          "Basic " +
-          Buffer.from(
-            `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
-          ).toString("base64"),
+        ...(auth
+          ? {
+              Authorization:
+                "Basic " +
+                Buffer.from(
+                  `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
+                ).toString("base64"),
+            }
+          : {}),
       },
       ...options,
     });
@@ -183,7 +187,9 @@ export function getTestimonialWidgetData(tagString, recordsToShow, languageId) {
 export function getSiteBanners(languageId = 1) {
   const apiUrl = getOrigin();
   return get(
-    `${apiUrl}/content/render/false/query/+contentType:Banner +languageId:${languageId}`
+    `${apiUrl}/content/render/false/query/+contentType:Banner +languageId:${languageId}`,
+    {},
+    false
   );
 }
 
@@ -232,10 +238,14 @@ export const getSignUpModal = (languageId = 1) => {
  */
 export const signUpSubmission = (formData) => {
   const apiUrl = getOrigin();
-  return get(`${apiUrl}/vtl/contact`, {
-    method: "POST",
-    body: JSON.stringify(formData),
-  });
+  return get(
+    `${apiUrl}/vtl/contact`,
+    {
+      method: "POST",
+      body: JSON.stringify(formData),
+    },
+    false
+  );
 };
 
 /**
@@ -357,11 +367,15 @@ export const getSearchResults = (keywords, languageId) => {
   let url = new URL(`${apiUrl}/es/search`);
   const raw = buildSearchResultQuery(keywords, ["FAQ", "Blog"], languageId);
   url.search = new URLSearchParams(raw).toString();
-  return get(`${apiUrl}/es/search`, {
-    method: "POST",
-    body: raw,
-    redirect: "follow",
-  });
+  return get(
+    `${apiUrl}/es/search`,
+    {
+      method: "POST",
+      body: raw,
+      redirect: "follow",
+    },
+    false
+  );
 };
 
 export const getRecaptchaSiteKey = () => {
