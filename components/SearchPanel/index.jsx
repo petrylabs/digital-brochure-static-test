@@ -70,7 +70,7 @@ function SearchPanel(props) {
             setQuery(event?.target.value);
           }}
           onKeyDown={(event) => {
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && event.target.value) {
               // Prevent's default 'Enter' behavior.
               event.defaultMuiPrevented = true;
               // redirect to search results page
