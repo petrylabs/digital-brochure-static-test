@@ -5,7 +5,7 @@ import { GTMContainerId } from "../config";
 
 class CustomDocument extends Document {
   render() {
-    const { pageLang } = this.props.__NEXT_DATA__.props.pageProps;
+    const { pageLang, favicons } = this.props.__NEXT_DATA__.props.pageProps;
 
     return (
       <Html lang={pageLang}>
@@ -27,6 +27,16 @@ class CustomDocument extends Document {
           ></script>
 
           <link rel="shortcut icon" href="/favicon.png" />
+          {favicons &&
+            favicons.map((x, i) => (
+              <link
+                key={i}
+                rel="icon"
+                type={`${x.metaData.contentType}`}
+                sizes={`${x.metaData.width}x${x.metaData.height}`}
+                href={`https://dev-economical.dotcmscloud.com${x.url}`}
+              ></link>
+            ))}
         </Head>
 
         <body>

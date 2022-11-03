@@ -381,3 +381,9 @@ export const getSearchResults = (keywords, languageId) => {
 export const getRecaptchaSiteKey = () => {
   return get(`${apiUrl}/vtl/googleRecaptchaKey?language_id=1`);
 };
+
+export const getFaviconIcons = (languageId = 1) => {
+  return get(
+    `${apiUrl}/content/render/false/query/+contentType:Favicon1 +languageId:${languageId} +deleted:false/depth/3`
+  );
+};
