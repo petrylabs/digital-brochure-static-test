@@ -34,7 +34,7 @@ class CustomDocument extends Document {
                 rel="icon"
                 type={`${x.metaData.contentType}`}
                 sizes={`${x.metaData.width}x${x.metaData.height}`}
-                href={`https://dev-economical.dotcmscloud.com${x.url}`}
+                href={`${x.url}`}
               ></link>
             ))}
         </Head>
