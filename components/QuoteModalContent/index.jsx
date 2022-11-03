@@ -45,9 +45,14 @@ function QuoteModalContent() {
             </div>
             <div className={styles.linkPanel}>
               <div className={styles.iconPanel}>
-                <img src={iconSrc(1, leftIconSrc)} alt="" />
+                {screenWidth != 0 && (
+                  <img src={iconSrc(1, leftIconSrc)} alt="" />
+                )}
                 <span className={styles.plus} />
-                <img src={iconSrc(1, rightIconSrc)} alt="" />
+
+                {screenWidth != 0 && (
+                  <img src={iconSrc(1, rightIconSrc)} alt="" />
+                )}
               </div>
               <div className="h4">{menuItem(1).menuItem.menuItem}</div>
             </div>
@@ -62,7 +67,9 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              <img src={iconSrc(2, leftIconSrc)} alt="" />
+              {screenWidth !== 0 && (
+                <img src={iconSrc(2, leftIconSrc)} alt="" />
+              )}
               <div className="h4">{menuItem(2).menuItem.menuItem}</div>
             </div>
           </a>
@@ -76,7 +83,7 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              <img src={iconSrc(3, leftIconSrc)} alt="" />
+              {screenWidth != 0 && <img src={iconSrc(3, leftIconSrc)} alt="" />}
               <div className="h4">{menuItem(3).menuItem.menuItem}</div>
             </div>
           </a>
@@ -96,7 +103,9 @@ function QuoteModalContent() {
                 {content[4].buttonHighlightText}
               </div>
               <div className={styles.linkPanel}>
-                <img src={iconSrc(4, leftIconSrc)} alt="" />
+                {screenWidth !== 0 && (
+                  <img src={iconSrc(4, leftIconSrc)} alt="" />
+                )}
                 <div className="h4">
                   {menuItem(4).menuItem.menuItem}
                   <span className={styles.extIcon}>
