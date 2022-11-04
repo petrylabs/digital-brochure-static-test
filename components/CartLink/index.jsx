@@ -11,7 +11,7 @@ function CartLink() {
   const screenWidth = useWindowWidth();
   const isDesktop = screenWidth >= breakpoints.lg;
   return (
-    cartCount &&
+    !!cartCount &&
     isDesktop && (
       <a
         href={"https://secure.sonnet.ca/#/shopping_cart"}
