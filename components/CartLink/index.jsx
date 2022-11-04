@@ -6,7 +6,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 
 function CartLink() {
-  const cartCount = getCookie("cart_number_of_quotes") || "0";
+  const cartCount = getCookie("cart_number_of_quotes") || 0;
   /* Handle screen sizes: */
   const screenWidth = useWindowWidth();
   const isDesktop = screenWidth >= breakpoints.lg;
