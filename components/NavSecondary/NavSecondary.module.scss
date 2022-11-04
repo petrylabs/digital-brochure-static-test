@@ -81,9 +81,14 @@
   margin-left: 4px; // nudge for mobile layout;
 
   @include mq-min-width(lg) {
-    border-left: 1px solid $color-grey-06;
-    padding-left: 21px;
     margin-left: unset;
     line-height: 30px; // sets the border height
+  }
+}
+
+.loginLinkWrapper {
+  @include mq-min-width(lg) {
+    border-left: 1px solid $color-grey-06;
+    padding-left: 21px;
   }
 }

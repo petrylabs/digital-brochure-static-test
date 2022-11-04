@@ -2,12 +2,15 @@
 @import "/scss/globals/variables.scss";
 
 .cartButton {
+  margin-left: 2px;
   position: relative;
   color: $color-primary-grey;
   white-space: nowrap;
-  padding: 1px 3px 1px 3px;
+  padding: 2px 4px 0px 4px;
   display: inline-block;
   border-bottom: 3px solid transparent;
+  top: -1px;
+  line-height: 0px;
 }
 .cartButton:hover {
   color: $color-primary-accent;
@@ -17,8 +20,8 @@
 .itemCounter {
   position: absolute;
   font-family: $font-extra-bold;
-  top: -6%;
-  right: -18%;
+  top: -10%;
+  right: -22%;
   height: 16px;
   width: 16px;
   border: 1px solid $color-white;

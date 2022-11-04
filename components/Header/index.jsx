@@ -129,8 +129,6 @@ function Header(props) {
                     <NavSecondary searchToggleFn={deskTopSearchButton} />
                   </div>
                 )}
-
-                <CartLink />
               </div>
             </div>
           ) : (

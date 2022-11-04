@@ -7,6 +7,7 @@ import LanguageContext from "../../context/language";
 import { locales } from "../../config";
 import { useRouter } from "next/router";
 import { getTogglePath, getCurrentPath } from "../../utils";
+import CartLink from "../CartLink";
 
 /**
  * NavSecondary
@@ -47,12 +48,15 @@ function NavSecondary(props) {
       </a>
 
       {/* Login */}
-      <a
-        href={content.loginLink}
-        className={`${styles.link} ${styles.loginLink}`}
-      >
-        {content.loginStr}
-      </a>
+      <span className={styles.loginLinkWrapper}>
+        <a
+          href={content.loginLink}
+          className={`${styles.link} ${styles.loginLink}`}
+        >
+          {content.loginStr}
+        </a>
+      </span>
+      <CartLink />
     </nav>
   );
 }
