@@ -16,6 +16,7 @@ import ThreeItemLayout from "../components/ThreeItemLayout";
 import TrustPilot from "../components/TrustPilot";
 import TwoAccordionSection from "../components/TwoAccordionSection";
 import LanguageContext from "../context/language";
+import faviconsPreval from "../site-data/favicons.preval";
 
 /**
  * This is the site homepage in English.
@@ -33,6 +34,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      favicons: faviconsPreval[locales.en],
       title: data.title,
       content: data.content,
       pageLang: locales.en,

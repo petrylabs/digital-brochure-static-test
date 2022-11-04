@@ -15,6 +15,7 @@ import { landingPageRoutes } from "../config";
 import PageFooterContext from "../context/pageFooter";
 import { getPage } from "../utils/api";
 import LanguageContext from "../context/language";
+import faviconsPreval from "../site-data/favicons.preval";
 
 export function getStaticPaths() {
   const paths = landingPageRoutes
@@ -46,6 +47,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      favicons: faviconsPreval[locale],
       title: data.title,
       seodescription: data.seodescription,
       description: data.description,

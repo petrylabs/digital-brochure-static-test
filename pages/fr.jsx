@@ -1,5 +1,6 @@
 import IndexPage from ".";
 import { languageId, locales } from "../config";
+import faviconsPreval from "../site-data/favicons.preval";
 import { getPage } from "../utils/api";
 
 /**
@@ -17,6 +18,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      favicons: faviconsPreval[locales.fr],
       title: data.title,
       content: data.content,
       pageLang: locales.fr,
