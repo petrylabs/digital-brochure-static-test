@@ -50,6 +50,7 @@ export async function getStaticProps({ params }) {
       favicons: faviconsPreval[locale],
       title: data.title,
       seodescription: data.seodescription,
+      canonicalUrl: data.canonicalUrl,
       description: data.description,
       content: data.content,
       slug,

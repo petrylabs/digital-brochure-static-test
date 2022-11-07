@@ -20,6 +20,8 @@ export async function getStaticProps() {
     props: {
       favicons: faviconsPreval[locales.fr],
       title: data.title,
+      seodescription: data.seodescription,
+      canonicalUrl: data.canonicalUrl,
       content: data.content,
       pageLang: locales.fr,
     },

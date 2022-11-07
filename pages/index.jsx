@@ -36,6 +36,8 @@ export async function getStaticProps() {
     props: {
       favicons: faviconsPreval[locales.en],
       title: data.title,
+      canonicalUrl: data.canonicalUrl,
+      seodescription: data.seodescription,
       content: data.content,
       pageLang: locales.en,
     },
