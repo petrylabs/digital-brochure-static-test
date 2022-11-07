@@ -89,6 +89,7 @@ export async function getPage(languageId = 1, pageId) {
       return {
         data: {
           title: page.title,
+          canonicalUrl: page.canonicalUrl,
           seodescription: page.seodescription,
           description: page.description,
           content,
