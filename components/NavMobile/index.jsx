@@ -81,6 +81,7 @@ function NavMobile(props) {
                         mainText={subItem.header}
                         subText={subItem.subtext}
                         isNew={subItem.isNew}
+                        id={subItem.buttonId}
                       />
                     </li>
                   );
@@ -99,7 +100,11 @@ function NavMobile(props) {
         </div>
 
         <div className={styles.buttonContainer}>
-          <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
+          <CTA
+            type="primary"
+            onClick={() => setIsQuoteModalOpen(true)}
+            buttonId={content?.getAQuoteId}
+          >
             {content.gaq}
           </CTA>
         </div>

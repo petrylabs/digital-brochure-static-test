@@ -30,6 +30,7 @@ function NavSecondary(props) {
         aria-controls={ariaControls}
         aria-expanded={ariaExpanded}
         className={styles.searchButton}
+        id={content?.searchId}
       >
         {/* TODO: translate */}
         <span className="visually-hidden">Search</span>
@@ -40,6 +41,7 @@ function NavSecondary(props) {
       <a
         href={togglePath || (lang === locales.en ? "fr" : "/")}
         className={styles.link}
+        id={content?.languageToggleId}
       >
         <span aria-hidden>
           {content.toggleLanguage === "Français" ? "Fr" : "En"}
@@ -52,11 +54,12 @@ function NavSecondary(props) {
         <a
           href={content.loginLink}
           className={`${styles.link} ${styles.loginLink}`}
+          id={content?.logInId}
         >
           {content.loginStr}
         </a>
       </span>
-      <CartLink />
+      <CartLink id={content?.shoppingCartId} />
     </nav>
   );
 }

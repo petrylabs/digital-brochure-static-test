@@ -13,10 +13,10 @@ import LanguageContext from "../../context/language";
 
 function NavCard(props) {
   const { lang } = useContext(LanguageContext);
-  const { mainText, url, subText, isNew } = props;
+  const { mainText, url, subText, isNew, id } = props;
 
   return (
-    <a href={url} className={styles.navLink}>
+    <a href={url} className={styles.navLink} id={id}>
       <span>{mainText}</span>
 
       {isNew && (
@@ -37,6 +37,7 @@ NavCard.propTypes = {
   mainText: PropTypes.string.isRequired,
   subText: PropTypes.string.isRequired,
   isNew: PropTypes.bool,
+  id: PropTypes.string.isRequired,
 };
 
 export default NavCard;

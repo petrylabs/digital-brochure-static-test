@@ -18,7 +18,7 @@ function HomeLogoLink() {
   const content = headerData[lang]?.headerMenu;
 
   return (
-    <a href={content.logoHref} className={styles.link}>
+    <a id="nav_sonnet" href={content.logoHref} className={styles.link}>
       <Image
         // TODO: Logo in content is white -- can we get the grey one?
         // src={`${baseUrl}${content.logoUrl}`}

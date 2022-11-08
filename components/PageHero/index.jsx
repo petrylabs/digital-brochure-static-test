@@ -17,7 +17,7 @@ import { getLanguageId } from "../../utils/languageVariable";
 function PageHero(props) {
   const { lang } = useContext(LanguageContext);
   const { content, imgContain } = props;
-  const { headline, copy, buttonType, cta } = content;
+  const { headline, copy, buttonType, cta, primaryButtonId } = content;
   const languageId = getLanguageId(lang);
 
   /* Handling modal display: */
@@ -29,7 +29,11 @@ function PageHero(props) {
         <div className={styles.content}>
           <h1>{headline}</h1>
           <p>{copy}</p>
-          <CTA type={buttonType} onClick={() => setIsQuoteModalOpen(true)}>
+          <CTA
+            buttonId={primaryButtonId}
+            type={buttonType}
+            onClick={() => setIsQuoteModalOpen(true)}
+          >
             {cta}
           </CTA>
         </div>
