@@ -16,7 +16,7 @@ import styles from "./SearchPanel.module.scss";
  * Displays the search input and live results
  */
 function SearchPanel(props) {
-  const { isActive, setIsActive, onBackButton } = props;
+  const { isActive, setIsActive, onBackButton, id } = props;
   const { lang } = useContext(LanguageContext);
 
   const [query, setQuery] = useState("");
@@ -55,7 +55,7 @@ function SearchPanel(props) {
       )}
 
       <div
-        id="search-panel"
+        id={id}
         className={`${styles.panel} ${
           showResults ? styles.withResults : styles.noResults
         }`}

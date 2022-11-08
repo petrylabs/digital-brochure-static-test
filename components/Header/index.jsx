@@ -102,6 +102,7 @@ function Header(props) {
                     type="primary"
                     small={isMobile}
                     onClick={() => setIsQuoteModalOpen(true)}
+                    buttonId={content?.getAQuoteId}
                   >
                     {isMobile ? content.gaqSmall : content.gaq}
                   </CTA>
@@ -121,7 +122,11 @@ function Header(props) {
               {/* Secondary Nav */}
               <div className={styles.secondaryNav}>
                 {hasScrolled ? (
-                  <CTA type="primary" onClick={() => setIsQuoteModalOpen(true)}>
+                  <CTA
+                    type="primary"
+                    onClick={() => setIsQuoteModalOpen(true)}
+                    buttonId={content?.primaryButtonId}
+                  >
                     {content.gaq}
                   </CTA>
                 ) : (
@@ -134,6 +139,7 @@ function Header(props) {
           ) : (
             // TODO: move this out of header bar
             <SearchPanel
+              id={content?.searchId}
               isActive={isMobileSearchExpanded}
               setIsActive={setIsMobileSearchExpanded}
               onBackButton={() => {

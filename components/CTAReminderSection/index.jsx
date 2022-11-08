@@ -17,7 +17,11 @@ function CTAReminderSection(props) {
     <section className={styles.getQuoteSection}>
       <h2>{content.headline}</h2>
       <div className={styles.buttonContainerGaq}>
-        <CTA type="secondary" onClick={() => setIsQuoteModalOpen(true)}>
+        <CTA
+          type="secondary"
+          onClick={() => setIsQuoteModalOpen(true)}
+          buttonId={content?.buttonId}
+        >
           {content.cta}
         </CTA>
       </div>

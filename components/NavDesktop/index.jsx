@@ -74,6 +74,7 @@ function NavDesktop(props) {
                       mainText={subItem.header}
                       subText={subItem.subtext}
                       isNew={subItem.isNew}
+                      id={subItem.buttonId}
                     />
                   </li>
                 ))}

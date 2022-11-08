@@ -5,7 +5,7 @@ import { getCookie } from "../../utils";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { breakpoints } from "../../config";
 
-function CartLink() {
+function CartLink({ id }) {
   const cartCount = getCookie("cart_number_of_quotes") || 0;
   /* Handle screen sizes: */
   const screenWidth = useWindowWidth();
@@ -17,6 +17,7 @@ function CartLink() {
         href={"https://secure.sonnet.ca/#/shopping_cart"}
         className={styles.cartButton}
         ariaLabel={`Shopping cart button`}
+        id={id}
       >
         <CartIcon />
         <span className={styles.itemCounter}>{cartCount}</span>

@@ -18,7 +18,7 @@ function ErrorContentModal({ open, content, onClose }) {
         <h2>{content?.headline}</h2>
         <ParsedCopy copy={content?.copy} />
         <div className={styles.buttonContainer}>
-          <CTA type="primary" onClick={onClose}>
+          <CTA type="primary" onClick={onClose} buttonId={content?.buttonId}>
             {/* ToDo translate */}
             Go Back
           </CTA>
