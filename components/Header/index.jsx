@@ -125,7 +125,7 @@ function Header(props) {
                   <CTA
                     type="primary"
                     onClick={() => setIsQuoteModalOpen(true)}
-                    buttonId={content?.primaryButtonId}
+                    buttonId={content?.getAQuoteId}
                   >
                     {content.gaq}
                   </CTA>
