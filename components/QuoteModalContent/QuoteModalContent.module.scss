@@ -134,3 +134,17 @@
 .spacings {
   margin-top: 13.008px;
 }
+
+.largeImg {
+  display: none;
+  @include mq-min-width(lg) {
+    display: inline-block;
+  }
+}
+
+.smallImg {
+  display: inline-block;
+  @include mq-min-width(lg) {
+    display: none;
+  }
+}
