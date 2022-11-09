@@ -6,8 +6,6 @@ import gaqModalData from "../../site-data/gaqModal.preval.js";
 import ExternalLinkIcon from "../../icons/ExternalLinkIcon.jsx";
 import ParsedCopy from "../ParsedCopy/index.jsx";
 import styles from "./QuoteModalContent.module.scss";
-import useWindowWidth from "../../hooks/useWindowWidth.js";
-import { breakpoints } from "../../config";
 import LanguageContext from "../../context/language.js";
 /**
  * QuoteModalContent
@@ -19,11 +17,6 @@ function QuoteModalContent() {
   const menuItem = (i) => content[i]?.fields;
   const iconSrc = (i, name) =>
     `${baseUrl}/dA/${content[i]?.fields[name]?.identifier}`;
-  const screenWidth = useWindowWidth();
-  const leftIconSrc =
-    screenWidth >= breakpoints.lg ? "lefticonlg" : "lefticonsm";
-  const rightIconSrc =
-    screenWidth >= breakpoints.lg ? "righticonlg" : "righticonsm";
 
   return (
     <article className={styles.container}>
@@ -45,14 +38,36 @@ function QuoteModalContent() {
             </div>
             <div className={styles.linkPanel}>
               <div className={styles.iconPanel}>
-                {screenWidth != 0 && (
-                  <img src={iconSrc(1, leftIconSrc)} alt="" />
-                )}
+                <img
+                  src={iconSrc(1, "lefticonlg")}
+                  alt=""
+                  className={styles.largeImg}
+                  width={35}
+                  height={35}
+                />
+                <img
+                  src={iconSrc(1, "lefticonsm")}
+                  alt=""
+                  className={styles.smallImg}
+                  width={30}
+                  height={30}
+                />
                 <span className={styles.plus} />
 
-                {screenWidth != 0 && (
-                  <img src={iconSrc(1, rightIconSrc)} alt="" />
-                )}
+                <img
+                  src={iconSrc(1, "righticonlg")}
+                  alt=""
+                  className={styles.largeImg}
+                  width={35}
+                  height={35}
+                />
+                <img
+                  src={iconSrc(1, "righticonsm")}
+                  alt=""
+                  className={styles.smallImg}
+                  width={30}
+                  height={30}
+                />
               </div>
               <div className="h4">{menuItem(1).menuItem.menuItem}</div>
             </div>
@@ -67,9 +82,20 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              {screenWidth !== 0 && (
-                <img src={iconSrc(2, leftIconSrc)} alt="" />
-              )}
+              <img
+                src={iconSrc(2, "lefticonlg")}
+                alt=""
+                className={styles.largeImg}
+                width={35}
+                height={35}
+              />
+              <img
+                src={iconSrc(2, "lefticonsm")}
+                alt=""
+                className={styles.smallImg}
+                width={30}
+                height={30}
+              />
               <div className="h4">{menuItem(2).menuItem.menuItem}</div>
             </div>
           </a>
@@ -83,7 +109,20 @@ function QuoteModalContent() {
             className={styles.link}
           >
             <div className={styles.linkPanel}>
-              {screenWidth != 0 && <img src={iconSrc(3, leftIconSrc)} alt="" />}
+              <img
+                src={iconSrc(3, "lefticonlg")}
+                alt=""
+                className={styles.largeImg}
+                width={35}
+                height={35}
+              />
+              <img
+                src={iconSrc(3, "lefticonsm")}
+                alt=""
+                className={styles.smallImg}
+                width={30}
+                height={30}
+              />
               <div className="h4">{menuItem(3).menuItem.menuItem}</div>
             </div>
           </a>
@@ -103,9 +142,21 @@ function QuoteModalContent() {
                 {content[4].buttonHighlightText}
               </div>
               <div className={styles.linkPanel}>
-                {screenWidth !== 0 && (
-                  <img src={iconSrc(4, leftIconSrc)} alt="" />
-                )}
+                <img
+                  src={iconSrc(4, "lefticonlg")}
+                  alt=""
+                  className={styles.largeImg}
+                  width={35}
+                  height={35}
+                />
+                <img
+                  src={iconSrc(4, "lefticonsm")}
+                  alt=""
+                  className={styles.smallImg}
+                  width={30}
+                  height={30}
+                />
+
                 <div className="h4">
                   {menuItem(4).menuItem.menuItem}
                   <span className={styles.extIcon}>
