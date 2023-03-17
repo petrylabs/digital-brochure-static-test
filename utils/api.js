@@ -28,13 +28,13 @@ async function get(url, options = {}, auth = true) {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
+      throw new Error(`HTTP error: ${response.status} @ ${url}`);
     }
 
     const data = await response.json();
     return { data, error: null };
   } catch (error) {
-    console.error(`Could not get response: ${error}`);
+    console.error(`Could not get response: ${error} @ ${{ url }}`);
     return { data: [], error };
   }
 }

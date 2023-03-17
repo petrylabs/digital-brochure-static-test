@@ -6,7 +6,8 @@
     "@loadable/component": "^5.15.2",
     "@mui/material": "^5.9.0",
     "html-react-parser": "^3.0.1",
-    "next": "latest",
+    "http-serve": "^1.0.1",
+    "next": "^12.3.1",
     "next-plugin-preval": "^1.2.4",
     "prop-types": "^15.8.1",
     "qs": "^6.11.0",
@@ -25,7 +26,8 @@
     "export": "next export",
     "lint": "next lint",
     "prestart": "npm run export",
-    "start": "serve out",
+    "start": "next start",
+    "serve": "serve out",
     "prepare": "husky install"
   },
   "devDependencies": {
