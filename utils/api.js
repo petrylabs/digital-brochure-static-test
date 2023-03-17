@@ -34,6 +34,9 @@ async function get(url, options = {}, auth = true) {
     const data = await response.json();
     return { data, error: null };
   } catch (error) {
+    console.dir(">>> data", data);
+    console.dir(">>> url", url);
+    console.dir(">>> error", error);
     console.error(`Could not get response: ${error} @ ${{ url }}`);
     return { data: [], error };
   }
