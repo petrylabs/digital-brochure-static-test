@@ -2,7 +2,6 @@ import { getOrigin } from "./origin";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
-console.log("apiURL", apiUrl);
 
 /**
  * GET request to API endpoint
@@ -11,7 +10,7 @@ console.log("apiURL", apiUrl);
  */
 async function get(url, options = {}, auth = true) {
   try {
-    console.log(">>> GET", url);
+    console.log("GET", url);
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
@@ -36,9 +35,7 @@ async function get(url, options = {}, auth = true) {
     const data = await response.json();
     return { data, error: null };
   } catch (error) {
-    console.dir(">>> url", url);
-    console.dir(">>> error", error);
-    console.error(`Could not get response: ${error} @ ${{ url }}`);
+    console.error(`Could not get response: ${error} @ ${JSON.stringify(url)}`);
     return { data: [], error };
   }
 }
