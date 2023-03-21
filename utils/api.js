@@ -2,6 +2,7 @@ import { getOrigin } from "./origin";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
+console.log("apiURL", apiUrl);
 
 /**
  * GET request to API endpoint
@@ -10,6 +11,7 @@ const apiUrl = process.env.DOTCMS_HOST;
  */
 async function get(url, options = {}, auth = true) {
   try {
+    console.log(">>> GET", url);
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
