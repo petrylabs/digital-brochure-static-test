@@ -2,6 +2,7 @@ import { getOrigin } from "./origin";
 import { buildSearchResultQuery } from "./search";
 
 const apiUrl = process.env.DOTCMS_HOST;
+const creds = `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`;
 
 /**
  * GET request to API endpoint
@@ -11,17 +12,14 @@ const apiUrl = process.env.DOTCMS_HOST;
 async function get(url, options = {}, auth = true) {
   try {
     console.log("GET", url);
+    console.log("CREDS", creds);
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         ...(auth
           ? {
-              Authorization:
-                "Basic " +
-                Buffer.from(
-                  `${process.env.DOTCMS_USERNAME}:${process.env.DOTCMS_PASSWORD}`
-                ).toString("base64"),
+              Authorization: "Basic " + Buffer.from(creds).toString("base64"),
             }
           : {}),
       },
