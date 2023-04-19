@@ -65,7 +65,7 @@ function Footer() {
             ))}
           <li className={styles.navItem}>
             <FooterLink
-              href={"https://www.sonnet.ca/fr"}
+              href={`/${lang == "en" ? "fr" : ""}`}
               title={getLanguageVariable("toggle-Language", lang)}
               style={{ fontFamily: "Averta-ExtraBold" }}
               externalLink={false}
