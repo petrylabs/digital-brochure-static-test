@@ -19,78 +19,78 @@ export const landingPageRoutes = [
       locale: locales.en,
     },
   },
-  {
-    path: "fr",
-    query: {
-      pageId: "index",
-      langId: languageId.fr,
-      locale: locales.fr,
-    },
-  },
-  {
-    path: "auto-insurance",
-    query: {
-      pageId: "auto-insurance",
-      langId: languageId.en,
-      locale: locales.en,
-    },
-  },
-  {
-    path: "assurance-auto",
-    query: {
-      pageId: "auto-insurance",
-      langId: languageId.fr,
-      locale: locales.fr,
-    },
-  },
-  {
-    path: "home-insurance",
-    query: {
-      pageId: "home-insurance",
-      langId: languageId.en,
-      locale: locales.en,
-    },
-  },
-  {
-    path: "assurance-habitation",
-    query: {
-      pageId: "home-insurance",
-      langId: languageId.fr,
-      locale: locales.fr,
-    },
-  },
-  {
-    path: "condo-insurance",
-    query: {
-      pageId: "condo-insurance",
-      langId: languageId.en,
-      locale: locales.en,
-    },
-  },
-  {
-    path: "assurance-coproprietaires",
-    query: {
-      pageId: "condo-insurance",
-      langId: languageId.fr,
-      locale: locales.fr,
-    },
-  },
-  {
-    path: "tenant-insurance",
-    query: {
-      pageId: "tenant-insurance",
-      langId: languageId.en,
-      locale: locales.en,
-    },
-  },
-  {
-    path: "assurance-locataires",
-    query: {
-      pageId: "tenant-insurance",
-      langId: languageId.fr,
-      locale: locales.fr,
-    },
-  },
+  // {
+  //   path: "fr",
+  //   query: {
+  //     pageId: "index",
+  //     langId: languageId.fr,
+  //     locale: locales.fr,
+  //   },
+  // },
+  // {
+  //   path: "auto-insurance",
+  //   query: {
+  //     pageId: "auto-insurance",
+  //     langId: languageId.en,
+  //     locale: locales.en,
+  //   },
+  // },
+  // {
+  //   path: "assurance-auto",
+  //   query: {
+  //     pageId: "auto-insurance",
+  //     langId: languageId.fr,
+  //     locale: locales.fr,
+  //   },
+  // },
+  // {
+  //   path: "home-insurance",
+  //   query: {
+  //     pageId: "home-insurance",
+  //     langId: languageId.en,
+  //     locale: locales.en,
+  //   },
+  // },
+  // {
+  //   path: "assurance-habitation",
+  //   query: {
+  //     pageId: "home-insurance",
+  //     langId: languageId.fr,
+  //     locale: locales.fr,
+  //   },
+  // },
+  // {
+  //   path: "condo-insurance",
+  //   query: {
+  //     pageId: "condo-insurance",
+  //     langId: languageId.en,
+  //     locale: locales.en,
+  //   },
+  // },
+  // {
+  //   path: "assurance-coproprietaires",
+  //   query: {
+  //     pageId: "condo-insurance",
+  //     langId: languageId.fr,
+  //     locale: locales.fr,
+  //   },
+  // },
+  // {
+  //   path: "tenant-insurance",
+  //   query: {
+  //     pageId: "tenant-insurance",
+  //     langId: languageId.en,
+  //     locale: locales.en,
+  //   },
+  // },
+  // {
+  //   path: "assurance-locataires",
+  //   query: {
+  //     pageId: "tenant-insurance",
+  //     langId: languageId.fr,
+  //     locale: locales.fr,
+  //   },
+  // },
 ];
 
 export const newsLetterFormKey = "newsLetterForm";
