@@ -12,7 +12,7 @@ import getSignUpModalSuccessData from "../site-data/signUpModalSuccess.preval";
 import getSignUpModalErrorData from "../site-data/signUpModalError.preval";
 import { getCurrentPath, removeStorage } from "../utils";
 import { newsLetterFormKey } from "../config";
-import SiteBanners from "../components/SiteBanners";
+// import SiteBanners from "../components/SiteBanners";
 
 const Footer = loadable(() => import("../components/Footer"));
 const Modal = loadable(() => import("../components/Modal"));
@@ -103,7 +103,7 @@ function CustomApp({ Component, pageProps }) {
         >
           <Header
             lockPageScroll={setScrollLocked}
-            banners={<SiteBanners setHeight={setPageOffset} />}
+            /*banners={<SiteBanners setHeight={setPageOffset} />}*/
           />
 
           {/* `main` and Footer position are affected by presence of banners */}
