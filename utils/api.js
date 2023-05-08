@@ -13,6 +13,7 @@ async function get(url, options = {}, auth = true) {
   try {
     console.log("GET", url);
     console.log("CREDS", creds);
+    console.log("apiUrl", apiUrl);
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
