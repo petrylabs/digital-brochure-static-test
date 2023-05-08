@@ -19,14 +19,14 @@ export const landingPageRoutes = [
       locale: locales.en,
     },
   },
-  // {
-  //   path: "fr",
-  //   query: {
-  //     pageId: "index",
-  //     langId: languageId.fr,
-  //     locale: locales.fr,
-  //   },
-  // },
+  {
+    path: "fr",
+    query: {
+      pageId: "index",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
   // {
   //   path: "auto-insurance",
   //   query: {

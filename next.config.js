@@ -10,7 +10,7 @@ const withNextPluginPreval = createNextPluginPreval();
  */
 const uploadDir = "out";
 const getBasePath = () => {
-  return process.env.NODE_ENV === "development" ? "" : `/${uploadDir}`;
+  return process.env.NODE_ENV === "development" ? "" : ""; // `/${uploadDir}`
 };
 
 module.exports = withNextPluginPreval({
