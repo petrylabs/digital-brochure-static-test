@@ -91,6 +91,22 @@ export const landingPageRoutes = [
       locale: locales.fr,
     },
   },
+  {
+    path: "tenant-insurance/british-columbia",
+    query: {
+      pageId: "tenant-insurance/british-columbia",
+      langId: languageId.en,
+      locale: locales.en,
+    },
+  },
+  {
+    path: "assurance-locataires/colombie-britannique",
+    query: {
+      pageId: "tenant-insurance/british-columbia",
+      langId: languageId.fr,
+      locale: locales.fr,
+    },
+  },
 ];
 
 export const newsLetterFormKey = "newsLetterForm";
