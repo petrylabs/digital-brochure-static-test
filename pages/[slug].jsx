@@ -19,7 +19,8 @@ import faviconsPreval from "../site-data/favicons.preval";
 
 export function getStaticPaths() {
   const paths = landingPageRoutes
-    .filter((route) => route.query.pageId !== "index")
+    //.filter((route) => route.query.pageId !== "index")
+    .filter((route) => route.query.pageId !== "index" && route.query.pageId.split('/').length < 2)
     .map(({ path }) => ({
       params: { slug: path },
     }));
