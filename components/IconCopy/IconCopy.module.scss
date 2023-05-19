@@ -1,0 +1,46 @@
+@import "/scss/globals/color.scss";
+@import "/scss/globals/layout.scss";
+@import "/scss/globals/typography.scss";
+
+.icon {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto 40px;
+  box-sizing: border-box;
+  //background-color: $color-secondary-medium;
+  //border-radius: 150px;
+  // border: 3px solid $color-secondary-medium;
+  @include mq-min-width(lg) {
+    height: 80px;
+    width: 240px;
+  }
+}
+
+.iconCopy {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px 20px;
+  background-color: $color-white;
+  height: 100%;
+  &__border {
+    border: 3px solid $color-grey-06;
+  }
+}
+
+.h3 {
+  @include heading-margin;
+
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.icon-image {
+  height: 80px;
+  width: 240px;
+}
