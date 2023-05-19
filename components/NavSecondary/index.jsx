@@ -39,7 +39,7 @@ function NavSecondary(props) {
 
       {/* Language toggle */}
       <a
-        href={togglePath || (lang === locales.en ? "fr" : "/")}
+        href={`/${togglePath}` || (lang === locales.en ? "fr" : "/")}
         className={styles.link}
         id={content?.languageToggleId}
       >
